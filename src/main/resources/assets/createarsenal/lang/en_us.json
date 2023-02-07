@@ -4,5 +4,16 @@
 
   "item.createarsenal.spring": "Spring",
   "item.createarsenal.brass_rod": "Brass Rod",
-  "item.createarsenal.iron_rod": "Iron Rod"
+  "item.createarsenal.iron_rod": "Iron Rod",
+
+  "item.createarsenal.gun_barrel_small": "Small Gun Barrel",
+  "item.createarsenal.gun_barrel_medium": "Medium Gun Barrel",
+  "item.createarsenal.gun_barrel_large": "Large Gun Barrel",
+  "item.createarsenal.brass_gun_barrel_small": "Small Brass Gun Barrel",
+  "item.createarsenal.brass_gun_barrel_medium": "Medium Brass Gun Barrel",
+  "item.createarsenal.brass_gun_barrel_large": "Large Brass Gun Barrel"
+
+
+
+
 }
