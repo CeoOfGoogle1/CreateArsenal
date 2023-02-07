@@ -1,0 +1,45 @@
+modLoader="javafml" #mandatory
+
+loaderVersion="[40,)" #mandatory
+license="All rights reserved"
+
+[[mods]]
+modId="createarsenal" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Create Arsenal" #mandatory
+logoFile="createarsenal.png" #optional
+credits="The mod is made by Create Arsenal team. Big thanks to the Create team for making the parent mod." #optional
+authors="CeoOfGoogle, amik, Truffle" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Create: Arsenal is an addon for the Create mod for Minecraft. We add a wide variety of stationary weapons, made to work perfectly together with
+Create: Aeronautics and its addons, but also the Clockwork mod and another addon called Create: Kaboom which adds many explosives
+'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.createarsenal]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[40,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createarsenal]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.18.2,1.19)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createarsenal]]
+    modId="create"
+    mandatory=true
+    versionRange="[0.5.0.i,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.createarsenal]]
+    modId="flywheel"
+    mandatory=true
+    versionRange="[0.6.8,0.6.9)"
+    ordering="NONE"
+    side="BOTH"
