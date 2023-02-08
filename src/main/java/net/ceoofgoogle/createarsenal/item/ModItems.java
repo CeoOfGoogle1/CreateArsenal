@@ -52,6 +52,7 @@ public class ModItems {
     public static final RegistryObject<Item> BULLET_BIG = ITEMS.register("bullet_large",
             () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
 
+    //bullet parts
 
 
     public static void register(IEventBus eventBus) {

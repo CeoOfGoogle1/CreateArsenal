@@ -1,11 +1,14 @@
 package net.ceoofgoogle.createarsenal.block;
 
 import net.ceoofgoogle.createarsenal.CreateArsenal;
+import net.ceoofgoogle.createarsenal.item.ModCreativeModTab;
 import net.ceoofgoogle.createarsenal.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -17,8 +20,8 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, CreateArsenal.MOD_ID);
 
-//   public static final RegistryObject<Block> ... = registerBlock("",
-//            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f)), ModCreativeModTab.);
+   public static final RegistryObject<Block> TURRET_BASE_BLOCK = registerBlock("turret_base_block",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f)), ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
