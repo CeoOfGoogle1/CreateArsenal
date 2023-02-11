@@ -11,9 +11,11 @@
   "item.createarsenal.gun_barrel_large": "Large Gun Barrel",
   "item.createarsenal.brass_gun_barrel_small": "Small Brass Gun Barrel",
   "item.createarsenal.brass_gun_barrel_medium": "Medium Brass Gun Barrel",
-  "item.createarsenal.brass_gun_barrel_large": "Large Brass Gun Barrel"
+  "item.createarsenal.brass_gun_barrel_large": "Large Brass Gun Barrel",
 
+  "item.createarsenal.bullet_small": "Small Bullet",
+  "item.createarsenal.bullet_medium": "Medium Bullet",
+  "item.createarsenal.bullet_large": "Large Bullet",
 
-
-
+  "block.createarsenal.turret_base_block": "Turret Base Block"
 }

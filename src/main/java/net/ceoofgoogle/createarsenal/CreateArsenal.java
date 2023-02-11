@@ -1,6 +1,9 @@
 package net.ceoofgoogle.createarsenal;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 import net.ceoofgoogle.createarsenal.block.ModBlocks;
 import net.ceoofgoogle.createarsenal.item.ModItems;
@@ -46,5 +49,8 @@ public class CreateArsenal
     {
     }
 
+    private void clientSetup(final FMLClientSetupEvent event) {
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURRET_BASE_BLOCK.get(), RenderType.cutout());
+    }
 
 }
