@@ -55,6 +55,40 @@ public class ModItems {
     //bullet parts
 
 
+    //bullet assembly parts
+    public static final RegistryObject<Item> BULLET_ASSEMBLY_LARGE = ITEMS.register("bullet_assembly_large", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> BULLET_ASSEMBLY_MEDIUM = ITEMS.register("bullet_assembly_medium", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> BULLET_ASSEMBLY_SMALL = ITEMS.register("bullet_assembly_small", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_ASSEMBLY_LARGE = ITEMS.register("cartridge_assembly_large", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_ASSEMBLY_MEDIUM = ITEMS.register("cartridge_assembly_medium", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_ASSEMBLY_SMALL = ITEMS.register("cartridge_assembly_small", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_EMPTY_LARGE = ITEMS.register("cartridge_empty_large", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_EMPTY_MEDIUM = ITEMS.register("cartridge_empty_medium", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_EMPTY_SMALL = ITEMS.register("cartridge_empty_small", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_LARGE = ITEMS.register("cartridge_large", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_LARGE_UNFILLED = ITEMS.register("cartridge_large_unfilled", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_MEDIUM = ITEMS.register("cartridge_medium", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_MEDIUM_UNFILLED = ITEMS.register("cartridge_medium_unfilled", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_SMALL = ITEMS.register("cartridge_small", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> CARTRIDGE_SMALL_UNFILLED = ITEMS.register("cartridge_small_unfilled", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE = ITEMS.register("round_large", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE_ARMORPIERCING = ITEMS.register("round_large_armorpiercing", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE_EMP = ITEMS.register("round_large_emp", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE_FLAK = ITEMS.register("round_large_flak", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE_HIGHEXPLOSIVE = ITEMS.register("round_large_highexplosive", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_LARGE_INCENDIARY = ITEMS.register("round_large_incendiary", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_MEDIUM = ITEMS.register("round_medium", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_MEDIUM_ARMORPIERCING = ITEMS.register("round_medium_armorpiercing", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_MEDIUM_HIGHEXPLOSIVE = ITEMS.register("round_medium_highexplosive", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_MEDIUM_INCENDIARY = ITEMS.register("round_medium_incendiary", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_SMALL = ITEMS.register("round_small", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_SMALL_ARMORPIERCING = ITEMS.register("round_small_armorpiercing", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_SMALL_HIGHEXPLOSIVE = ITEMS.register("round_small_highexplosive", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_SMALL_HOLLOWPOINT = ITEMS.register("round_small_hollowpoint", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+    public static final RegistryObject<Item> ROUND_SMALL_INCENDIARY = ITEMS.register("round_small_incendiary", () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)));
+
+
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }
