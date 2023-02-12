@@ -1,10 +1,10 @@
-{
+
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "createarsenal:block/turret_base_block",
+		"0": "turretbaseblock",
 		"1": "axis",
 		"2": "axis_top",
-		"particle": "createarsenal:block/turret_base_block"
+		"particle": "turretbaseblock"
 	},
 	"elements": [
 		{
