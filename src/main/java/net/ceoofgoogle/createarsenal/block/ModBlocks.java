@@ -1,6 +1,7 @@
 package net.ceoofgoogle.createarsenal.block;
 
 import net.ceoofgoogle.createarsenal.CreateArsenal;
+import net.ceoofgoogle.createarsenal.block.custom.TurretBaseBlock;
 import net.ceoofgoogle.createarsenal.item.ModCreativeModTab;
 import net.ceoofgoogle.createarsenal.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -21,7 +22,7 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, CreateArsenal.MOD_ID);
 
    public static final RegistryObject<Block> TURRET_BASE_BLOCK = registerBlock("turret_base_block",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f)), ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
+            () -> new TurretBaseBlock(BlockBehaviour.Properties.of(Material.METAL).strength(5f)), ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab){
