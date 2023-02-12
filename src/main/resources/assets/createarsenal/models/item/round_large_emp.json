@@ -1,0 +1,6 @@
+{
+  "parent" : "item/generated",
+  "textures": {
+    "layer0": "createarsenal:item/round_large_emp"
+  }
+}

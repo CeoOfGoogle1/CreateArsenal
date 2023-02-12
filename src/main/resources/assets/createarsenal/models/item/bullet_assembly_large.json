@@ -1,0 +1,6 @@
+{
+  "parent" : "item/generated",
+  "textures": {
+    "layer0": "createarsenal:item/bullet_assembly_large"
+  }
+}
