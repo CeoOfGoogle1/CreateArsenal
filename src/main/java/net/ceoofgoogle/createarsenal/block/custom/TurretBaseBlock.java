@@ -1,23 +1,11 @@
 package net.ceoofgoogle.createarsenal.block.custom;
 
-import com.simibubi.create.AllItems;
 import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
-import com.simibubi.create.content.contraptions.base.KineticBlock;
-import com.simibubi.create.content.contraptions.relays.gearbox.VerticalGearboxItem;
 import com.simibubi.create.foundation.block.ITE;
-import com.simibubi.create.foundation.gui.ScreenOpener;
-import com.tterrag.registrate.Registrate;
-import io.netty.handler.codec.mqtt.MqttProperties;
-import net.minecraft.client.player.LocalPlayer;
+import net.ceoofgoogle.createarsenal.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
@@ -26,16 +14,10 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.fml.DistExecutor;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
 
-public class TurretBaseBlock extends Block {
+public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<TurretBaseBlockTileEntity> {
 
     public TurretBaseBlock(Properties properties) {
         super(properties);
@@ -64,5 +46,24 @@ public class TurretBaseBlock extends Block {
         pBuilder.add(FACING);
     }
 
+    @Override
+    public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction direction) {
+        return direction.getAxis() == Direction.Axis.Y;
+    }
+
+    @Override
+    public Direction.Axis getRotationAxis(BlockState state) {
+        return Direction.Axis.Y;
+    }
+
+    @Override
+    public Class<TurretBaseBlockTileEntity> getTileEntityClass() {
+        return TurretBaseBlockTileEntity.class;
+    }
+
+    @Override
+    public BlockEntityType<? extends TurretBaseBlockTileEntity> getTileEntityType() {
+        return ModBlockEntities.TURRET_BASE_BLOCK_TILE_ENTITY.get();
+    }
 }
 
