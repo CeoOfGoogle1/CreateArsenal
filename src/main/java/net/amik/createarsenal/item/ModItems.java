@@ -1,6 +1,7 @@
 package net.amik.createarsenal.item;
 
 import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.item.custom.SpringItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,7 +14,7 @@ public class ModItems {
 
     //items & details
     public static final RegistryObject<Item> SPRING = ITEMS.register("spring",
-            () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));
+            () -> new SpringItem(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));
 
     public static final RegistryObject<Item> IRON_ROD = ITEMS.register("iron_rod",
             () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));

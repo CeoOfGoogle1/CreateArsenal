@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
-
 public class ModBlocks {
 
     private static final CreateRegistrate REGISTRATE = CreateArsenal
