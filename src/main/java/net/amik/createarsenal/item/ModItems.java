@@ -1,6 +1,6 @@
-package net.ceoofgoogle.createarsenal.item;
+package net.amik.createarsenal.item;
 
-import net.ceoofgoogle.createarsenal.CreateArsenal;
+import net.amik.createarsenal.CreateArsenal;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

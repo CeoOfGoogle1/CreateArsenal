@@ -1,16 +1,16 @@
-package net.ceoofgoogle.createarsenal;
+package net.amik.createarsenal;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.ceoofgoogle.createarsenal.block.entity.ModBlockEntities;
+import net.amik.createarsenal.block.entity.ModBlockEntities;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
-import net.ceoofgoogle.createarsenal.block.ModBlocks;
-import net.ceoofgoogle.createarsenal.item.ModItems;
+import net.amik.createarsenal.block.ModBlocks;
+import net.amik.createarsenal.item.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;

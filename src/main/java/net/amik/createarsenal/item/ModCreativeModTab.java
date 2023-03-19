@@ -1,4 +1,4 @@
-package net.ceoofgoogle.createarsenal.item;
+package net.amik.createarsenal.item;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

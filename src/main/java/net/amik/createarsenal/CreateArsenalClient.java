@@ -1,4 +1,4 @@
-package net.ceoofgoogle.createarsenal;
+package net.amik.createarsenal;
 
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;

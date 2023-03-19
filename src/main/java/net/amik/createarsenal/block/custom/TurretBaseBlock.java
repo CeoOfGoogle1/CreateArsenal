@@ -1,8 +1,8 @@
-package net.ceoofgoogle.createarsenal.block.custom;
+package net.amik.createarsenal.block.custom;
 
 import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.ITE;
-import net.ceoofgoogle.createarsenal.block.entity.ModBlockEntities;
+import net.amik.createarsenal.block.entity.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;

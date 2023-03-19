@@ -1,13 +1,13 @@
-package net.ceoofgoogle.createarsenal.block;
+package net.amik.createarsenal.block;
 
 
 import com.simibubi.create.foundation.block.BlockStressDefaults;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.ceoofgoogle.createarsenal.CreateArsenal;
-import net.ceoofgoogle.createarsenal.block.custom.TurretBaseBlock;
-import net.ceoofgoogle.createarsenal.item.ModCreativeModTab;
+import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.block.custom.TurretBaseBlock;
+import net.amik.createarsenal.item.ModCreativeModTab;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;

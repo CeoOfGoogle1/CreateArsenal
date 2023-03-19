@@ -1,4 +1,4 @@
-package net.ceoofgoogle.createarsenal.block.custom;
+package net.amik.createarsenal.block.custom;
 
 import com.simibubi.create.content.contraptions.base.KineticTileEntity;
 import net.minecraft.core.BlockPos;
