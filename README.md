@@ -12,7 +12,7 @@ To install this addon, you will need to have the Minecraft Create mod as well as
 + Regular updates: We have a hardworking community of artists and coders trying hard to make the mod as attractive as possible, considering the wishes and ideas of the community.
 
 ## **Compatibility**
-This addon is compatible with the latest version of the Minecraft Create mod. It may not be compatible with other mods, so be sure to check compatibility before installing.
+This mod was made to be compatible with the Create mod, as well as Create:Aeronautics and VS Clockwork (on release). It may not be compatible with other mods, so be sure to check compatibility before installing.
 
 ## **Support**
 If you encounter any issues or bugs with this addon, please report them on the mod's page on Curseforge, on the official Create Arsenal Discord or on our Github repository.
