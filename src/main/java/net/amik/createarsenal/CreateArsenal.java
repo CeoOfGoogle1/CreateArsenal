@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.block.entity.ModBlockEntities;
+import net.amik.createarsenal.util.ModItemProperties;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -51,6 +52,8 @@ public class CreateArsenal
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURRET_BASE_BLOCK.get(), RenderType.cutout());
+
+        ModItemProperties.addCustomItemProperties();
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

@@ -20,7 +20,7 @@ public class ModBlocks {
 
     public static final BlockEntry<TurretBaseBlock> TURRET_BASE_BLOCK =
             REGISTRATE.block("turret_base_block", TurretBaseBlock::new)
-                    .initialProperties(SharedProperties::stone)
+                    .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .transform(BlockStressDefaults.setImpact(0))
                     .item()

@@ -1,0 +1,6 @@
+{
+  "parent": "createarsenal:item/spring",
+  "textures": {
+    "layer0": "createarsenal:item/spring_pulling_1"
+  }
+}
