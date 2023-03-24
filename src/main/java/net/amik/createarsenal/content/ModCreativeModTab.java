@@ -14,7 +14,8 @@ public class ModCreativeModTab{
 
     public static final CreativeModeTab CREATE_ARSENAL_TAB_BULLETS = new CreativeModeTab("createarsenaltabbullets") {
         @Override
-        public ItemStack makeIcon() {return new ItemStack(ModItems.BULLET_MEDIUM.get());
+        public ItemStack makeIcon() {
+            return new ItemStack(ModItems.BULLET_MEDIUM.get());
         }
     };
 

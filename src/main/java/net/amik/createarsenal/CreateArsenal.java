@@ -4,6 +4,8 @@ import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.content.ModBlockEntities;
+import net.amik.createarsenal.content.ModShellTypes;
+import net.amik.createarsenal.content.shell.ShellType;
 import net.amik.createarsenal.util.ModItemProperties;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -37,9 +39,10 @@ public class CreateArsenal
 
 
         ModItems.register(eventBus);
+        ModShellTypes.register();
         ModBlocks.register();
         ModBlockEntities.register();
-
+        
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
