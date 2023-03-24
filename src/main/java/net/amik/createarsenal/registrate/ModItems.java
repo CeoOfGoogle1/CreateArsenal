@@ -1,8 +1,8 @@
-package net.amik.createarsenal.content;
+package net.amik.createarsenal.registrate;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.content.item.SpringItem;
+import net.amik.createarsenal.item.SpringItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,6 +25,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));
 
     public static final RegistryObject<Item> BRASS_ROD = ITEMS.register("brass_rod",
+            () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));
+
+    public static final RegistryObject<Item> TURRET_MECHANISM = ITEMS.register("turret_mechanism",
             () -> new Item(new Item.Properties().tab(ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL)));
 
     //barrels

@@ -1,7 +1,7 @@
-package net.amik.createarsenal.content.item;
+package net.amik.createarsenal.item;
 
-import net.amik.createarsenal.content.shell.ShellProperties;
-import net.amik.createarsenal.content.shell.ShellScale;
+import net.amik.createarsenal.shell.ShellProperties;
+import net.amik.createarsenal.shell.ShellScale;
 import net.minecraft.world.item.Item;
 
 public class ShellItem extends Item {

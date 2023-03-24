@@ -1,4 +1,4 @@
-package net.amik.createarsenal.content;
+package net.amik.createarsenal.registrate;
 
 
 import com.simibubi.create.foundation.block.BlockStressDefaults;
@@ -6,7 +6,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.content.block.turret_base.TurretBaseBlock;
+import net.amik.createarsenal.block.TurretBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;

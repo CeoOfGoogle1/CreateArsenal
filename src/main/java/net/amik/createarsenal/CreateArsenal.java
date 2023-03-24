@@ -3,17 +3,14 @@ package net.amik.createarsenal;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.amik.createarsenal.content.ModBlockEntities;
-import net.amik.createarsenal.content.ModShellTypes;
-import net.amik.createarsenal.content.shell.ShellType;
-import net.amik.createarsenal.util.ModItemProperties;
+import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
-import net.amik.createarsenal.content.ModBlocks;
-import net.amik.createarsenal.content.ModItems;
+import net.amik.createarsenal.registrate.ModBlocks;
+import net.amik.createarsenal.registrate.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -39,10 +36,9 @@ public class CreateArsenal
 
 
         ModItems.register(eventBus);
-        ModShellTypes.register();
         ModBlocks.register();
         ModBlockEntities.register();
-        
+
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
@@ -56,7 +52,6 @@ public class CreateArsenal
     private void clientSetup(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURRET_BASE_BLOCK.get(), RenderType.cutout());
 
-        ModItemProperties.addCustomItemProperties();
     }
 
     @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

@@ -1,10 +1,10 @@
-package net.amik.createarsenal.content;
+package net.amik.createarsenal.registrate;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.content.shell.ShellProperties;
-import net.amik.createarsenal.content.shell.ShellScale;
-import net.amik.createarsenal.content.shell.ShellType;
+import net.amik.createarsenal.shell.ShellProperties;
+import net.amik.createarsenal.shell.ShellScale;
+import net.amik.createarsenal.shell.ShellType;
 
 public class ModShellTypes {
   
