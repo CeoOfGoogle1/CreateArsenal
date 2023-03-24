@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block;
+package net.amik.createarsenal.content;
 
 
 import com.simibubi.create.foundation.block.BlockStressDefaults;
@@ -6,8 +6,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.block.custom.TurretBaseBlock;
-import net.amik.createarsenal.item.ModCreativeModTab;
+import net.amik.createarsenal.content.block.turret_base.TurretBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
@@ -28,6 +27,6 @@ public class ModBlocks {
                     .register();
 
 
-    public static void register(){
+    public static void register() {
     }
 }

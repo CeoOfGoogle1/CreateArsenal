@@ -1,12 +1,11 @@
-package net.amik.createarsenal.block.entity;
+package net.amik.createarsenal.content;
 
 import com.simibubi.create.content.contraptions.base.KineticTileEntityRenderer;
 import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.block.ModBlocks;
-import net.amik.createarsenal.block.custom.TurretBaseBlockTileEntity;
+import net.amik.createarsenal.content.block.turret_base.TurretBaseBlockTileEntity;
 
 public class ModBlockEntities {
     private static final CreateRegistrate REGISTRATE = CreateArsenal

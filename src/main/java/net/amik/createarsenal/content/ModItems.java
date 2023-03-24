@@ -1,7 +1,8 @@
-package net.amik.createarsenal.item;
+package net.amik.createarsenal.content;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.item.custom.SpringItem;
+import net.amik.createarsenal.content.item.SpringItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -11,6 +12,10 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, CreateArsenal.MOD_ID);
+    
+    private static final CreateRegistrate REGISTRATE = CreateArsenal
+        .registrate()
+        .creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
 
     //items & details
     public static final RegistryObject<Item> SPRING = ITEMS.register("spring",

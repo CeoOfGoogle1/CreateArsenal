@@ -1,8 +1,8 @@
-package net.amik.createarsenal.block.custom;
+package net.amik.createarsenal.content.block.turret_base;
 
 import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.ITE;
-import net.amik.createarsenal.block.entity.ModBlockEntities;
+import net.amik.createarsenal.content.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;

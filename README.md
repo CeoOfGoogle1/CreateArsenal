@@ -1,5 +1,5 @@
 # **Create: Arsenal**
-This is an addon for the Minecraft Create mod, which adds an extended system of stationary personal defense weapons. It was made regarding the lack of protection of builds offered by the upcoming addon of "Create Aeronautics". 
+This is an addon for the Minecraft Create mod, which adds an extended system of stationary personal *defense* weapons. It was made regarding the lack of protection of builds offered by the upcoming addon of "Create Aeronautics". 
 (~~Of course you can also strap a minigun on your blimp and commit spawnkilling we aren't judging~~)
 
 ## **Installation**
