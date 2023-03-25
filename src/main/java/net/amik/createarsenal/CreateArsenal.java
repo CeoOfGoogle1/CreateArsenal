@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.registrate.ModBlockEntities;
+import net.amik.createarsenal.registrate.ModShellTypes;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -38,6 +39,7 @@ public class CreateArsenal
         ModItems.register(eventBus);
         ModBlocks.register();
         ModBlockEntities.register();
+        ModShellTypes.register();
 
         eventBus.addListener(this::setup);
 
