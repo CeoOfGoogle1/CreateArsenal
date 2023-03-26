@@ -1,10 +1,6 @@
-package net.amik.createarsenal.content.shell;
+package net.amik.createarsenal.shell;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import net.amik.createarsenal.content.item.ShellItem;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public record ShellType(ShellProperties large, ShellProperties medium, ShellProperties small) {
   

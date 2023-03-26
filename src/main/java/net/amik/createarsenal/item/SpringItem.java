@@ -1,4 +1,4 @@
-package net.amik.createarsenal.content.item;
+package net.amik.createarsenal.item;
 import net.minecraft.world.item.Item;
 
 

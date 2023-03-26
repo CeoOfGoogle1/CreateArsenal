@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"0": "createarsenal:block/turret_base_block",
 		"1": "createarsenal:block/shaft/shaft",

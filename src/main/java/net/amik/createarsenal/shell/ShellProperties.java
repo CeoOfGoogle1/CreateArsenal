@@ -1,7 +1,7 @@
-package net.amik.createarsenal.content.shell;
+package net.amik.createarsenal.shell;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
-import net.amik.createarsenal.content.item.ShellItem;
+import net.amik.createarsenal.item.ShellItem;
 
 public record ShellProperties(ShellScale scale, int piercing, int velocity, int drag, int drop) {
   

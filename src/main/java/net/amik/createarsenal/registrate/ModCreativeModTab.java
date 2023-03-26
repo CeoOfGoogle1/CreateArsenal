@@ -1,4 +1,4 @@
-package net.amik.createarsenal.content;
+package net.amik.createarsenal.registrate;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
