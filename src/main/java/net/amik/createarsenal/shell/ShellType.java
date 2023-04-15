@@ -6,6 +6,7 @@ public record ShellType(ShellProperties large, ShellProperties medium, ShellProp
   
   public static ShellType generateScale(ShellProperties properties) {
     //Todo Change values probably
+    //Todo Medium
     return new ShellType(
         new ShellProperties(ShellScale.LARGE,
             (int) (properties.piercing() * 1.2),
