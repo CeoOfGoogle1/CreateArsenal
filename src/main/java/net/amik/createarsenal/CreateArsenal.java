@@ -36,7 +36,7 @@ public class CreateArsenal
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
 
-        ModItems.register(eventBus);
+        ModItems.register();
         ModBlocks.register();
         ModBlockEntities.register();
         ModShellTypes.register();

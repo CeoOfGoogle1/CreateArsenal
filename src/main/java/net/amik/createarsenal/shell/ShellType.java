@@ -23,11 +23,10 @@ public record ShellType(ShellProperties large, ShellProperties medium, ShellProp
   }
   
   public static ShellType registerItems(CreateRegistrate registrate, String id, ShellType type) {
-    
-    ShellProperties.registerItems(registrate, id + "_small", type.small());
+
+    /**ShellProperties.registerItems(registrate, id + "_small", type.small());
     ShellProperties.registerItems(registrate, id + "_medium", type.medium());
-    ShellProperties.registerItems(registrate, id + "_large", type.large());
-    
+    ShellProperties.registerItems(registrate, id + "_large", type.large()); */
     return type;
   }
   
