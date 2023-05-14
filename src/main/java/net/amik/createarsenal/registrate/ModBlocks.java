@@ -6,9 +6,8 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.block.staticTurret.FourBarrelStaticTurret;
+import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turret_base.TurretBaseBlock;
-import net.amik.createarsenal.block.staticTurret.ChainGunStaticTurret;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
