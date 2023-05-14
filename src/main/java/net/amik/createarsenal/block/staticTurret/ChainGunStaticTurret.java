@@ -1,27 +1,18 @@
-package net.amik.createarsenal.block;
+package net.amik.createarsenal.block.staticTurret;
 
-import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
-import com.simibubi.create.foundation.block.ITE;
-import net.amik.createarsenal.registrate.ModBlockEntities;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-
-public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<TurretBaseBlockTileEntity> {
-
-    public TurretBaseBlock(Properties properties) {
-        super(properties);
-
+public class ChainGunStaticTurret extends Block {
+    public ChainGunStaticTurret(Properties p_49795_) {
+        super(p_49795_);
     }
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -47,23 +38,7 @@ public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<Turr
     }
 
     @Override
-    public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction direction) {
-        return direction.getAxis() == Direction.Axis.Y;
-    }
-
-    @Override
-    public Direction.Axis getRotationAxis(BlockState state) {
-        return Direction.Axis.Y;
-    }
-
-    @Override
-    public Class<TurretBaseBlockTileEntity> getTileEntityClass() {
-        return TurretBaseBlockTileEntity.class;
-    }
-
-    @Override
-    public BlockEntityType<? extends TurretBaseBlockTileEntity> getTileEntityType() {
-        return ModBlockEntities.TURRET_BASE_BLOCK_TILE_ENTITY.get();
+    public RenderShape getRenderShape(BlockState pState) {
+        return RenderShape.MODEL;
     }
 }
-
