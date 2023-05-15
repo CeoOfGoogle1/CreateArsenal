@@ -9,4 +9,10 @@ public class FourBarrelStaticTurretTileEntity extends KineticTileEntity {
     public FourBarrelStaticTurretTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }
+
+    @Override
+    public void onSpeedChanged(float previousSpeed) {
+        super.onSpeedChanged(previousSpeed);
+        sendData();
+    }
 }

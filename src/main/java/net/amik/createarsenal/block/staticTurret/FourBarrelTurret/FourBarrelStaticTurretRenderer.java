@@ -14,8 +14,4 @@ public class FourBarrelStaticTurretRenderer extends KineticTileEntityRenderer {
         super(context);
     }
 
-    @Override
-    protected SuperByteBuffer getRotatedModel(KineticTileEntity te, BlockState state) {
-        return CachedBufferer.partial(ModBlockPartials.FOUR_BARREL, state);
-    }
 }

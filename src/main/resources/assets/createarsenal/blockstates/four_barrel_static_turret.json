@@ -1,8 +1,8 @@
 {
   "variants": {
-    "facing=north": {"model": "createarsenal:block/four_barrel_static_turret"},
-    "facing=south": {"model": "createarsenal:block/four_barrel_static_turret", "y": 180 },
-    "facing=east":  {"model": "createarsenal:block/four_barrel_static_turret", "y": 90 },
-    "facing=west":  {"model": "createarsenal:block/four_barrel_static_turret", "y": 270 }
+    "facing=north": {"model": "createarsenal:block/four_barrel_static_turret","y": 180},
+    "facing=south": {"model": "createarsenal:block/four_barrel_static_turret"  },
+    "facing=east":  {"model": "createarsenal:block/four_barrel_static_turret", "y": 270 },
+    "facing=west":  {"model": "createarsenal:block/four_barrel_static_turret", "y": 90 }
   }
 }

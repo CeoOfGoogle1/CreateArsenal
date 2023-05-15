@@ -26,6 +26,8 @@ public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<Turr
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
+
+
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
         return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());

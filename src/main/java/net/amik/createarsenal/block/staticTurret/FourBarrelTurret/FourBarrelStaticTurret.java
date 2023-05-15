@@ -30,6 +30,10 @@ public class FourBarrelStaticTurret extends DirectionalKineticBlock implements I
     }
 
     @Override
+    public SpeedLevel getMinimumRequiredSpeedLevel() {
+        return SpeedLevel.NONE;
+    }
+    @Override
     public BlockState rotate(BlockState pState, Rotation pRotation) {
         return pState.setValue(FACING, pRotation.rotate(pState.getValue(FACING)));
     }
