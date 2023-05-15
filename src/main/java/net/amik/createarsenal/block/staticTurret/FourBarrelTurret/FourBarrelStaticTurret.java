@@ -46,12 +46,14 @@ public class FourBarrelStaticTurret extends DirectionalKineticBlock implements I
 
     @Override
     public boolean hasShaftTowards(LevelReader world, BlockPos pos, BlockState state, Direction direction) {
-        return direction.getAxis() == Direction.Axis.Y;
+        return direction.getAxis() == state.getValue(FACING)
+                .getAxis();
     }
 
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        return Direction.Axis.Y;
+        return state.getValue(FACING)
+                .getAxis();
     }
 
 
