@@ -2,6 +2,7 @@ package net.amik.createarsenal;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.simibubi.create.Create;
+import net.minecraft.resources.ResourceLocation;
 
 public class ModBlockPartials {
     public static final PartialModel
@@ -9,13 +10,12 @@ public class ModBlockPartials {
     FOUR_BARREL = block("four_barrel_static_turret/four_barrel");
 
     private static PartialModel block(String path) {
-        return new PartialModel(Create.asResource("block/" + path));
+        return new PartialModel(new ResourceLocation(CreateArsenal.MOD_ID, "block/" + path));
     }
 
     private static PartialModel entity(String path) {
-        return new PartialModel(Create.asResource("entity/" + path));
+        return new PartialModel(new ResourceLocation(CreateArsenal.MOD_ID, "entity/" + path));
     }
-
     public static void init() {
         // init static fields
     }

@@ -8,6 +8,8 @@ import net.amik.createarsenal.registrate.ModShellTypes;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
 import net.amik.createarsenal.registrate.ModBlocks;
@@ -40,6 +42,9 @@ public class CreateArsenal
         ModBlocks.register();
         ModBlockEntities.register();
         ModShellTypes.register();
+
+        //Copied from CreateAddition
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ModBlockPartials.init());
 
         eventBus.addListener(this::setup);
 
