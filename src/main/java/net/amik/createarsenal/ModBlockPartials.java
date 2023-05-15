@@ -7,7 +7,7 @@ import net.minecraft.resources.ResourceLocation;
 public class ModBlockPartials {
     public static final PartialModel
 
-    FOUR_BARREL = block("four_barrel_static_turret/four_barrel");
+    FOUR_BARREL = block("fourbarrel_static_barrel");
 
     private static PartialModel block(String path) {
         return new PartialModel(new ResourceLocation(CreateArsenal.MOD_ID, "block/" + path));

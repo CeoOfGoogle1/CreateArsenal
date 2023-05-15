@@ -1,7 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "createarsenal:item/custom/bullet_small"
+		"2": "createarsenal:item/bullet_small"
 	},
 	"elements": [
 		{

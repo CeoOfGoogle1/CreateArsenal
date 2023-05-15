@@ -31,8 +31,7 @@ public class ModBlocks {
             REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .item()
-                    .transform(customItemModel())
+                    .simpleItem()
                     .register();
 
 
