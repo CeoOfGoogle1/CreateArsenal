@@ -14,7 +14,7 @@ public class FourBarrelStaticTurretInstance extends KineticTileInstance<FourBarr
 
     private final RotatingData BARREL;
     private final FourBarrelStaticTurretTileEntity turret;
-    private final  Direction dir;
+    private final Direction dir;
     public FourBarrelStaticTurretInstance(MaterialManager dispatcher, FourBarrelStaticTurretTileEntity tile) {
         super(dispatcher, tile);
         turret=tile;
@@ -29,19 +29,19 @@ public class FourBarrelStaticTurretInstance extends KineticTileInstance<FourBarr
         BARREL.setRotationAxis(dir.getAxis());
         if(dir==Direction.SOUTH)
         {
-            BARREL.nudge(0,0,-1.2f);
+            BARREL.nudge(0,0.065f,-1.375f);
         }
         if(dir==Direction.NORTH)
         {
-            BARREL.nudge(0,0,1.2f);
+            BARREL.nudge(0,0.065f,1.375f);
         }
         if(dir==Direction.EAST)
         {
-            BARREL.nudge(-1.2f,0,0);
+            BARREL.nudge(-1.375f,0.065f,0);
         }
         if(dir==Direction.WEST)
         {
-            BARREL.nudge(1.2f,0,0);
+            BARREL.nudge(1.375f,0.065f,0);
         }
         BARREL.setRotationalSpeed(turret.getSpeed());
 
