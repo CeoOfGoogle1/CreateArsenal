@@ -17,20 +17,6 @@ public class FourBarrelStaticTurretTileEntity extends KineticTileEntity {
         super(typeIn, pos, state);
     }
 
-    @Override
-    public void lazyTick() {
-        if(targetInSight()&&getSpeed()>8)
-        {
-            System.out.println("Fire!");
-        }
-    }
 
-    private boolean targetInSight()
-    {
-        Direction dir= getBlockState().getValue(FACING);
-        AABB range= new AABB(getBlockPos().below(),getBlockPos().relative(dir,-16));
-        System.out.println(range);
-        System.out.println(level.getEntities(null,range));
-        return !level.getEntities(null,range).isEmpty();
-    }
+
 }
