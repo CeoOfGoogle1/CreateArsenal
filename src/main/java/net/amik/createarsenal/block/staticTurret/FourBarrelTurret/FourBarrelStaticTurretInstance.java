@@ -22,30 +22,20 @@ public class FourBarrelStaticTurretInstance extends KineticTileInstance<FourBarr
         super(dispatcher, tile);
         turret=tile;
         dir=turret.getBlockState().getValue(FACING);
-        System.out.println(dir);
         BARREL = getRotatingMaterial().getModel(ModBlockPartials.FOUR_BARREL,blockState,dir).createInstance();
+        BARREL.setRotationAxis(dir.getAxis());
     }
 
 
     private void transformTurret()
     {
         BARREL.setPosition(getInstancePosition());
-        BARREL.setRotationAxis(dir.getAxis());
-        if(dir==Direction.SOUTH)
+        switch (dir)
         {
-            BARREL.nudge(0,0,-offsett);
-        }
-        if(dir==Direction.NORTH)
-        {
-            BARREL.nudge(0,0,offsett);
-        }
-        if(dir==Direction.EAST)
-        {
-            BARREL.nudge(-offsett,0,0);
-        }
-        if(dir==Direction.WEST)
-        {
-            BARREL.nudge(offsett,0,0);
+            case NORTH ->BARREL.nudge(0,0,offsett);
+            case SOUTH ->BARREL.nudge(0,0,-offsett);
+            case EAST ->BARREL.nudge(-offsett,0,0);
+            case WEST ->BARREL.nudge(offsett,0,0);
         }
         BARREL.setRotationalSpeed(turret.getSpeed());
 
@@ -59,7 +49,6 @@ public class FourBarrelStaticTurretInstance extends KineticTileInstance<FourBarr
 
     @Override
     public void updateLight() {
-        super.updateLight();
         relight(pos, BARREL);
     }
 
