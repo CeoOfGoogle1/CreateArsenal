@@ -11,9 +11,9 @@ import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStat
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
 import net.amik.createarsenal.block.turret_base.TurretBaseBlockTileEntity;
 
+import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
+
 public class ModBlockEntities {
-    private static final CreateRegistrate REGISTRATE = CreateArsenal
-            .registrate();
 
 
     public static final BlockEntityEntry<TurretBaseBlockTileEntity> TURRET_BASE_BLOCK_TILE_ENTITY = REGISTRATE

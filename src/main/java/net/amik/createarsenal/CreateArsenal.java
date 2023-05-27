@@ -3,8 +3,7 @@ package net.amik.createarsenal;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.amik.createarsenal.registrate.ModBlockEntities;
-import net.amik.createarsenal.registrate.ModShellTypes;
+import net.amik.createarsenal.registrate.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -12,8 +11,6 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.slf4j.Logger;
-import net.amik.createarsenal.registrate.ModBlocks;
-import net.amik.createarsenal.registrate.ModItems;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -32,16 +29,20 @@ public class CreateArsenal
     // Directly reference a slf4j logger
     public static final String MOD_ID = "createarsenal";
     public static final Logger LOGGER = LogUtils.getLogger();
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArsenal.MOD_ID).creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
+
     public CreateArsenal()
     {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        MinecraftForge.EVENT_BUS.register(this);
 
 
         ModItems.register();
         ModBlocks.register();
         ModBlockEntities.register();
         ModShellTypes.register();
+        REGISTRATE.registerEventListeners(eventBus);
 
         //Copied from CreateAddition
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ModBlockPartials.init());
@@ -49,7 +50,6 @@ public class CreateArsenal
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event)
@@ -57,7 +57,6 @@ public class CreateArsenal
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TURRET_BASE_BLOCK.get(), RenderType.cutout());
 
     }
 
@@ -70,11 +69,7 @@ public class CreateArsenal
         }
     }
 
-    public static CreateRegistrate registrate() {
-        return REGISTRATE;
-    }
 
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArsenal.MOD_ID);
 
     public void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event)
     {

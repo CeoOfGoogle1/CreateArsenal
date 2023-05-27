@@ -6,13 +6,13 @@ import net.amik.createarsenal.shell.ShellProperties;
 import net.amik.createarsenal.shell.ShellScale;
 import net.amik.createarsenal.shell.ShellType;
 
+import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
+
 public class ModShellTypes {
   
   //!These are arbitrary values for now
   
-  private static final CreateRegistrate REGISTRATE = CreateArsenal
-      .registrate()
-      .creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS);
+
   
   public static ShellType ARMOUR_PIERCING = ShellType.registerItems(REGISTRATE, "armour_piercing_shell", ShellType.generateScale(
       new ShellProperties(ShellScale.MEDIUM, 20000, 1000, 100, 100)

@@ -11,11 +11,10 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
+
 public class ModItems {
-    
-    private static final CreateRegistrate REGISTRATE = CreateArsenal
-        .registrate()
-        .creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
+
 
     /** Items and Details */
 

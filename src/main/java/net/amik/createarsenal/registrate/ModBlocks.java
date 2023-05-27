@@ -11,12 +11,10 @@ import net.amik.createarsenal.block.turret_base.TurretBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
+import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlocks {
 
-    private static final CreateRegistrate REGISTRATE = CreateArsenal
-            .registrate()
-            .creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
 
     public static final BlockEntry<TurretBaseBlock> TURRET_BASE_BLOCK =
             REGISTRATE.block("turret_base_block", TurretBaseBlock::new)
