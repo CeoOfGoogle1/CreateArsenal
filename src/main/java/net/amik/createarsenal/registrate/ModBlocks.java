@@ -1,7 +1,7 @@
 package net.amik.createarsenal.registrate;
 
 
-import com.simibubi.create.foundation.block.BlockStressDefaults;
+import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;

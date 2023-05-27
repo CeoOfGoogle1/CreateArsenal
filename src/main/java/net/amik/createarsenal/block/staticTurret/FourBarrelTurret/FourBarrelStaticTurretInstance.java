@@ -2,15 +2,14 @@ package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
-import com.simibubi.create.content.contraptions.base.KineticTileInstance;
-import com.simibubi.create.content.contraptions.base.flwdata.RotatingData;
-import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
+import com.simibubi.create.content.kinetics.base.KineticBlockEntityInstance;
+import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 import net.amik.createarsenal.ModBlockPartials;
 import net.minecraft.core.Direction;
 
 import static net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret.FACING;
 
-public class FourBarrelStaticTurretInstance extends KineticTileInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {
+public class FourBarrelStaticTurretInstance extends KineticBlockEntityInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {
 
     private final RotatingData BARREL;
     private final FourBarrelStaticTurretTileEntity turret;

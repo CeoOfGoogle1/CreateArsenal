@@ -1,7 +1,7 @@
 package net.amik.createarsenal.block.turret_base;
 
-import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
-import com.simibubi.create.foundation.block.ITE;
+import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 
-public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<TurretBaseBlockTileEntity> {
+public class TurretBaseBlock extends DirectionalKineticBlock implements IBE<TurretBaseBlockTileEntity> {
 
     public TurretBaseBlock(Properties properties) {
         super(properties);
@@ -58,13 +58,14 @@ public class TurretBaseBlock extends DirectionalKineticBlock implements ITE<Turr
         return Direction.Axis.Y;
     }
 
+
     @Override
-    public Class<TurretBaseBlockTileEntity> getTileEntityClass() {
+    public Class<TurretBaseBlockTileEntity> getBlockEntityClass() {
         return TurretBaseBlockTileEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends TurretBaseBlockTileEntity> getTileEntityType() {
+    public BlockEntityType<? extends TurretBaseBlockTileEntity> getBlockEntityType() {
         return ModBlockEntities.TURRET_BASE_BLOCK_TILE_ENTITY.get();
     }
 }

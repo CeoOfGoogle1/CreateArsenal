@@ -1,7 +1,8 @@
 package net.amik.createarsenal.registrate;
 
-import com.simibubi.create.content.contraptions.base.KineticTileEntityRenderer;
-import com.simibubi.create.content.contraptions.relays.encased.ShaftInstance;
+
+import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
+import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.CreateArsenal;
@@ -16,14 +17,14 @@ public class ModBlockEntities {
 
 
     public static final BlockEntityEntry<TurretBaseBlockTileEntity> TURRET_BASE_BLOCK_TILE_ENTITY = REGISTRATE
-            .tileEntity("turret_base_block", TurretBaseBlockTileEntity::new)
+            .blockEntity("turret_base_block", TurretBaseBlockTileEntity::new)
             .instance(() -> ShaftInstance::new, true)
             .validBlocks(ModBlocks.TURRET_BASE_BLOCK)
-            .renderer(() -> KineticTileEntityRenderer::new)
+            .renderer(() -> KineticBlockEntityRenderer::new)
             .register();
 
     public static final BlockEntityEntry<FourBarrelStaticTurretTileEntity> FOUR_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .tileEntity("four_barrel_static_turret", FourBarrelStaticTurretTileEntity::new)
+            .blockEntity("four_barrel_static_turret", FourBarrelStaticTurretTileEntity::new)
             .instance(() -> FourBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
             .renderer(() -> FourBarrelStaticTurretRenderer::new)

@@ -1,7 +1,7 @@
 package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
-import com.simibubi.create.content.contraptions.base.DirectionalKineticBlock;
-import com.simibubi.create.foundation.block.ITE;
+import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -17,7 +17,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 
-public class FourBarrelStaticTurret extends DirectionalKineticBlock implements ITE<FourBarrelStaticTurretTileEntity> {
+public class FourBarrelStaticTurret extends DirectionalKineticBlock implements IBE<FourBarrelStaticTurretTileEntity> {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public FourBarrelStaticTurret(Properties properties) {
@@ -61,13 +61,14 @@ public class FourBarrelStaticTurret extends DirectionalKineticBlock implements I
     }
 
 
+
     @Override
-    public Class<FourBarrelStaticTurretTileEntity> getTileEntityClass() {
+    public Class<FourBarrelStaticTurretTileEntity> getBlockEntityClass() {
         return FourBarrelStaticTurretTileEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends FourBarrelStaticTurretTileEntity> getTileEntityType() {
+    public BlockEntityType<? extends FourBarrelStaticTurretTileEntity> getBlockEntityType() {
         return ModBlockEntities.FOUR_BARREL_STATIC_TURRET_TILE_ENTITY.get();
     }
 }

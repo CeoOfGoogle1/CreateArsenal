@@ -71,11 +71,10 @@ public class CreateArsenal
     }
 
     public static CreateRegistrate registrate() {
-        return REGISTRATE.get();
+        return REGISTRATE;
     }
 
-    @SuppressWarnings("removal")
-    public static final NonNullSupplier<CreateRegistrate> REGISTRATE = CreateRegistrate.lazy(CreateArsenal.MOD_ID);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArsenal.MOD_ID);
 
     public void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event)
     {
