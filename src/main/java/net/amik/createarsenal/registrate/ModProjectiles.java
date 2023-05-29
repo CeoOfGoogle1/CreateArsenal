@@ -8,7 +8,7 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.shell.BulletRenderer;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.shell.ShellEntity;
+import net.amik.createarsenal.shell.BulletEntity;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
@@ -18,11 +18,15 @@ import net.minecraft.world.entity.MobCategory;
 public class ModProjectiles {
 
 
-    public static final EntityEntry<ShellEntity> SHELL_ENTITY =
-            register("bullet", ShellEntity::new, () -> BulletRenderer::new,
-                    MobCategory.MISC, 4, 20, true, false, ShellEntity::build).register();
+    public static final EntityEntry<BulletEntity> BULLET_ENTITY =
+            register("bullet", BulletEntity::new, () -> BulletRenderer::new,
+                    MobCategory.MISC, 4, 20, true, false, BulletEntity::build).register();
 
     public static void register() {}
+
+
+
+
     private static <T extends Entity> CreateEntityBuilder<T, ?> register(String name, EntityType.EntityFactory<T> factory,
                                                                          NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer,
                                                                          MobCategory group, int range, int updateFrequency, boolean sendVelocity, boolean immuneToFire,

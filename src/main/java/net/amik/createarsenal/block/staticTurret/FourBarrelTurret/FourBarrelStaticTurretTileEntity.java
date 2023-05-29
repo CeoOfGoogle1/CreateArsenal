@@ -1,9 +1,8 @@
 package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
-import net.amik.createarsenal.registrate.ModProjectiles;
 import net.amik.createarsenal.registrate.sound.ModSoundEvents;
-import net.amik.createarsenal.shell.ShellEntity;
+import net.amik.createarsenal.shell.BulletEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvent;
@@ -11,12 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.RandomSource;
-import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.lwjgl.system.CallbackI;
-
-import java.util.Random;
 
 import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.FACING;
 
@@ -44,7 +38,7 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
             counter += Math.abs(getSpeed());
             if (counter >= 1280) {
                 counter = 0;
-                ShellEntity bullet = new ShellEntity(getLevel());
+                BulletEntity bullet = new BulletEntity(getLevel());
                 bullet.setPos(Vec3.atCenterOf(getBlockPos()).add(level.random.nextInt(10)/100D,level.random.nextInt(10)/100D,level.random.nextInt(10)/100D));
                 bullet.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 2.0F, 0.9F);
                 level.addFreshEntity(bullet);
