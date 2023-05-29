@@ -36,25 +36,18 @@ public class CreateArsenal
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
-
-
         ModItems.register();
         ModBlocks.register();
         ModBlockEntities.register();
         ModShellTypes.register();
+        ModProjectiles.register();
         REGISTRATE.registerEventListeners(eventBus);
 
-        //Copied from CreateAddition
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ModBlockPartials.init());
 
-        eventBus.addListener(this::setup);
-
-        // Register ourselves for server and other game events we are interested in
     }
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-    }
+
 
     private void clientSetup(final FMLClientSetupEvent event) {
 
@@ -69,11 +62,5 @@ public class CreateArsenal
         }
     }
 
-
-
-    public void registerRecipeSerializers(RegistryEvent.Register<RecipeSerializer<?>> event)
-    {
-
-    }
 
 }

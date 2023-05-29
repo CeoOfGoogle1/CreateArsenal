@@ -47,7 +47,8 @@
   "item.createarsenal.round_small_hollowpoint": "Round Small Hollowpoint",
   "item.createarsenal.round_small_incendiary": "Round Small Incendiary",
 
-  "block.createarsenal.turret_base_block": "Turret Base Block"
+  "block.createarsenal.turret_base_block": "Turret Base Block",
+  "block.createarsenal.four_barrel_static_turret": "Four Barrel Static Turret"
 
 
 }

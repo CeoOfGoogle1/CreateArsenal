@@ -19,10 +19,9 @@ public class ModBlocks {
     public static final BlockEntry<TurretBaseBlock> TURRET_BASE_BLOCK =
             REGISTRATE.block("turret_base_block", TurretBaseBlock::new)
                     .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
                     .transform(BlockStressDefaults.setImpact(0))
-                    .item()
-                    .transform(customItemModel())
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .simpleItem()
                     .register();
 
     public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
