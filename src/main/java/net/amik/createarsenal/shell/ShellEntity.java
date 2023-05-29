@@ -1,5 +1,6 @@
 package net.amik.createarsenal.shell;
 
+import com.simibubi.create.content.equipment.potatoCannon.PotatoProjectileEntity;
 import com.simibubi.create.foundation.particle.AirParticleData;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModProjectiles;
@@ -34,7 +35,11 @@ public class ShellEntity extends AbstractHurtingProjectile implements ItemSuppli
     protected boolean shouldBurn() {
         return false;
     }
-
+    @SuppressWarnings("unchecked")
+    public static EntityType.Builder<?> build(EntityType.Builder<?> builder) {
+        EntityType.Builder<ShellEntity> entityBuilder = (EntityType.Builder<ShellEntity>) builder;
+        return entityBuilder.sized(.25f, .25f);
+    }
     @Override
     public void tick() {
         super.tick();

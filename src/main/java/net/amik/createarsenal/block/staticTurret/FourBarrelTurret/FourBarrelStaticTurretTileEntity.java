@@ -22,12 +22,11 @@ import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.
 public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
 
     int counter;
-    int xoffsett;
-    int yoffsett;
-    int zoffsett;
+    Direction direction;
+
     public FourBarrelStaticTurretTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
-
+        direction = getBlockState().getValue(FACING).getOpposite();
     }
 
     @Override
@@ -38,7 +37,6 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
             if (counter >= 1280) {
                 counter = 0;
                 ShellEntity bullet = new ShellEntity(getLevel());
-                Direction direction = getBlockState().getValue(FACING).getOpposite();
                 bullet.setPos(Vec3.atCenterOf(getBlockPos()).add(level.random.nextInt(10)/100D,level.random.nextInt(10)/100D,level.random.nextInt(10)/100D));
                 bullet.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 2.0F, 0.9F);
                 level.addFreshEntity(bullet);
