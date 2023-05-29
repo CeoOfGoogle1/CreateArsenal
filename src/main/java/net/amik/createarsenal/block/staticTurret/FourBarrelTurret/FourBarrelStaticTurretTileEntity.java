@@ -2,9 +2,11 @@ package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import net.amik.createarsenal.registrate.ModProjectiles;
+import net.amik.createarsenal.registrate.sound.ModSoundEvents;
 import net.amik.createarsenal.shell.ShellEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,6 +34,12 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
     @Override
     public void tick() {
         super.tick();
+        shoot();
+        ModSoundEvents.FIRE_MEDIUM_TURRET.playOnServer(level, new BlockPos(this.getBlockPos()));
+
+    }
+
+    private void shoot() {
         if (!level.isClientSide) {
             counter += Math.abs(getSpeed());
             if (counter >= 1280) {

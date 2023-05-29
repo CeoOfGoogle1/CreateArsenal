@@ -6,6 +6,7 @@ import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.registrate.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
@@ -62,5 +63,8 @@ public class CreateArsenal
         }
     }
 
+    public static ResourceLocation resource(String path) {
+        return new ResourceLocation(MOD_ID, path);
+    }
 
 }

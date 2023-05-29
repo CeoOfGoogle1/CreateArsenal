@@ -1,15 +1,9 @@
 package net.amik.createarsenal.registrate;
 
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-import net.amik.createarsenal.CreateArsenal;
+
 import net.amik.createarsenal.item.SpringItem;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
