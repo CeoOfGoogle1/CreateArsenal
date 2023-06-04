@@ -30,7 +30,7 @@ mixin {
 
 
 version = project.mod_version
-group = 'net.ceoofgoogle.' + project.modid
+group = 'net.amik.' + project.modid
 archivesBaseName = project.modid
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)

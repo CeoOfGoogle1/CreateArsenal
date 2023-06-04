@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "createarsenal:block/eight_barrel_static_turret","y": 180},
+    "facing=south": {"model": "createarsenal:block/eight_barrel_static_turret"  },
+    "facing=east":  {"model": "createarsenal:block/eight_barrel_static_turret", "y": 270 },
+    "facing=west":  {"model": "createarsenal:block/eight_barrel_static_turret", "y": 90 }
+  }
+}
