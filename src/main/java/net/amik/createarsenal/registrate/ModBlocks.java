@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turret_base.TurretBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -26,6 +27,13 @@ public class ModBlocks {
 
     public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
             REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
+            REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .simpleItem()

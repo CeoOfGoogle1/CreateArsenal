@@ -3,12 +3,14 @@ package net.amik.createarsenal.registrate;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
-import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretTileEntity;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretRenderer;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
+import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretInstance;
+import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretTileEntity;
 import net.amik.createarsenal.block.turret_base.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -28,6 +30,13 @@ public class ModBlockEntities {
             .instance(() -> FourBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
             .renderer(() -> FourBarrelStaticTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<EightBarrelStaticTurretTileEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
+            .blockEntity("eight_barrel_static_turret", EightBarrelStaticTurretTileEntity::new)
+            .instance(() -> EightBarrelStaticTurretInstance::new, true)
+            .validBlocks(ModBlocks.EIGHT_BARREL_STATIC_TURRET)
+            .renderer(() -> EightBarrelStaticTurretRenderer::new)
             .register();
 
     public static void register(){}

@@ -1,24 +1,24 @@
-package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
+package net.amik.createarsenal.block.staticTurret.EightBarrelTurret;
 
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityInstance;
-import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 import net.amik.createarsenal.ModBlockPartials;
+import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
 import net.minecraft.core.Direction;
 
-import static net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret.FACING;
+import static net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret.FACING;
 
-public class FourBarrelStaticTurretInstance extends KineticBlockEntityInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {
+public class EightBarrelStaticTurretInstance extends KineticBlockEntityInstance<EightBarrelStaticTurretTileEntity> implements DynamicInstance {
 
     private final RotatingData BARREL;
-    private final FourBarrelStaticTurretTileEntity turret;
+    private final EightBarrelStaticTurretTileEntity turret;
     private final Direction dir;
     float offset = 1.5f;
 
 
-    public FourBarrelStaticTurretInstance(MaterialManager dispatcher, FourBarrelStaticTurretTileEntity tile) {
+    public EightBarrelStaticTurretInstance(MaterialManager dispatcher, EightBarrelStaticTurretTileEntity tile) {
         super(dispatcher, tile);
         turret=tile;
         dir=turret.getBlockState().getValue(FACING);
