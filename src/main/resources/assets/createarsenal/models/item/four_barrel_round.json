@@ -1,0 +1,21 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "createarsenal:item/four_barrel_round",
+		"particle": "createarsenal:item/four_barrel_round"
+	},
+	"elements": [
+		{
+			"from": [2, 8, 8],
+			"to": [16, 10, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 2], "texture": "#0"},
+				"east": {"uv": [0, 8, 2, 10], "texture": "#0"},
+				"south": {"uv": [0, 2, 16, 4], "texture": "#0"},
+				"west": {"uv": [2, 8, 4, 10], "texture": "#0"},
+				"up": {"uv": [16, 6, 0, 4], "texture": "#0"},
+				"down": {"uv": [16, 6, 0, 8], "texture": "#0"}
+			}
+		}
+	]
+}

@@ -15,6 +15,9 @@ public class ModItems {
     public static final RegistryEntry<SpringItem> SPRING = REGISTRATE.item("spring", SpringItem::new)
             .register();
 
+    public static final RegistryEntry<SpringItem> FOUR_BARREL_ROUND = REGISTRATE.item("four_barrel_round", SpringItem::new)
+            .register();
+
     public static final RegistryEntry<Item> IRON_ROD = REGISTRATE.item("iron_rod", Item::new)
             .register();
 

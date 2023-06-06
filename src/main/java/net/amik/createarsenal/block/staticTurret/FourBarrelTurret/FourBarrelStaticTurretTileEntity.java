@@ -36,11 +36,13 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
     private void shoot() {
         if (!level.isClientSide) {
             counter += Math.abs(getSpeed());
-            if (counter >= 1280) {
+            if (counter >= 512) {
                 counter = 0;
                 BulletEntity bullet = new BulletEntity(getLevel());
-                bullet.setPos(Vec3.atCenterOf(getBlockPos()).add(level.random.nextInt(10)/100D,level.random.nextInt(10)/100D,level.random.nextInt(10)/100D));
-                bullet.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 2.0F, 0.9F);
+
+                //hardcoded for now in one direction, testing rendering
+                bullet.setPos(Vec3.atCenterOf(getBlockPos()).add(-2.8,(level.random.nextInt(60)-30)/100D,(level.random.nextInt(60)-30)/100D));
+                bullet.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 3.0F, 0.9F);
                 level.addFreshEntity(bullet);
             }
         }

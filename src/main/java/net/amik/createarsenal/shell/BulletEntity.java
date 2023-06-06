@@ -62,6 +62,6 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
     //TODO dynamic bullet models
     @Override
     public ItemStack getItem() {
-        return ModItems.BULLET_LARGE.get().getDefaultInstance();
+        return ModItems.FOUR_BARREL_ROUND.get().getDefaultInstance();
     }
 }

@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ItemTransforms;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -17,11 +18,19 @@ public class BulletRenderer extends EntityRenderer<BulletEntity> {
     }
 
     @Override
+    protected int getBlockLightLevel(BulletEntity pEntity, BlockPos pPos) {
+        return 15;
+    }
+
+
+
+    @Override
     public void render(BulletEntity entity, float yaw, float pt, PoseStack ms, MultiBufferSource buffer,
                        int light) {
         ItemStack item = entity.getItem();
         if (item.isEmpty())
             return;
+
 
         Minecraft.getInstance()
                 .getItemRenderer()
