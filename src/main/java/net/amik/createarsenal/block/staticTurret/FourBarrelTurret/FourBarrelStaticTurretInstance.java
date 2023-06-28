@@ -2,7 +2,9 @@ package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
 import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
+import com.jozufozu.flywheel.api.instance.TickableInstance;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityInstance;
+import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.simibubi.create.content.kinetics.base.SingleRotatingInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 import net.amik.createarsenal.ModBlockPartials;
@@ -10,27 +12,27 @@ import net.minecraft.core.Direction;
 
 import static net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret.FACING;
 
-public class FourBarrelStaticTurretInstance extends KineticBlockEntityInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {
+public class FourBarrelStaticTurretInstance extends ShaftInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {
 
     private final RotatingData BARREL;
     private final FourBarrelStaticTurretTileEntity turret;
-    private final Direction dir;
+    private final Direction facing;
     float offset = 1.5f;
 
 
     public FourBarrelStaticTurretInstance(MaterialManager dispatcher, FourBarrelStaticTurretTileEntity tile) {
         super(dispatcher, tile);
-        turret=tile;
-        dir=turret.getBlockState().getValue(FACING);
-        BARREL = getRotatingMaterial().getModel(ModBlockPartials.FOUR_BARREL,blockState,dir).createInstance();
-        BARREL.setRotationAxis(dir.getAxis());
+        turret = tile;
+        facing = turret.getBlockState().getValue(FACING);
+        BARREL = getRotatingMaterial().getModel(ModBlockPartials.FOUR_BARREL,blockState,facing).createInstance();
+        BARREL.setRotationAxis(facing.getAxis());
     }
 
 
     private void transformTurret()
     {
         BARREL.setPosition(getInstancePosition());
-        switch (dir)
+        switch (facing)
         {
             case NORTH ->BARREL.nudge(0,0,offset);
             case SOUTH ->BARREL.nudge(0,0,-offset);
@@ -50,11 +52,14 @@ public class FourBarrelStaticTurretInstance extends KineticBlockEntityInstance<F
     @Override
     public void updateLight() {
         relight(pos, BARREL);
+        super.updateLight();
     }
 
 
     @Override
     public void remove() {
         BARREL.delete();
+        super.remove();
     }
+
 }
