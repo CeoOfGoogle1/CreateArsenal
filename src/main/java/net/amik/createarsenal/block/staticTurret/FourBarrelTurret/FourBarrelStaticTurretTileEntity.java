@@ -29,8 +29,6 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
     public void tick() {
         super.tick();
         shoot();
-        ModSoundEvents.FIRE_MEDIUM_TURRET.playOnServer(level, this.getBlockPos());
-
     }
 
     private void shoot() {
@@ -40,7 +38,7 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
                 counter = 0;
                 BulletEntity bullet = new BulletEntity(getLevel());
 
-                //hardcoded for now in one direction, testing rendering
+                //hardcoded for now in one direction, testing rendering // ok bro
                 bullet.setPos(getBlockPos());
                 bullet.shoot(direction.getStepX(), direction.getStepY(), direction.getStepZ(), 3.0F, 0.9F);
                 level.addFreshEntity(bullet);
