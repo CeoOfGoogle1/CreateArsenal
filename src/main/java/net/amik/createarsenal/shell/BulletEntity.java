@@ -3,6 +3,7 @@ package net.amik.createarsenal.shell;
 import com.simibubi.create.foundation.particle.AirParticleData;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModProjectiles;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraft.world.phys.Vec3;
 
 public class BulletEntity extends AbstractHurtingProjectile implements ItemSupplier {
     int life=0;
@@ -39,6 +41,10 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
             if (life > 40)
                 discard();
         }
+    }
+
+    public final void setPos(BlockPos pPos) {
+        this.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
     }
 
     @Override

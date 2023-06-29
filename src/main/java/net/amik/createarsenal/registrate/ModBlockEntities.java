@@ -4,6 +4,8 @@ package net.amik.createarsenal.registrate;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
+import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlockTileEntity;
@@ -32,6 +34,12 @@ public class ModBlockEntities {
             .instance(() -> FourBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
             .renderer(() -> FourBarrelStaticTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<MonitorBlockEntity> MONITOR = REGISTRATE
+            .blockEntity("monitor", MonitorBlockEntity::new)
+            .validBlocks(ModBlocks.MONITOR)
+            .renderer(() -> MonitorRenderer::new)
             .register();
 
     public static final BlockEntityEntry<EightBarrelStaticTurretTileEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE

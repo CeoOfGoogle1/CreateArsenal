@@ -1,0 +1,23 @@
+{
+	"credit": "Made with Blockbench",
+	"texture_size": [64, 64],
+	"textures": {
+		"0": "createarsenal:block/monitor",
+		"4": "createarsenal:block/radar_screen",
+		"particle": "createarsenal:block/monitor"
+	},
+	"elements": [
+		{
+			"from": [1, 1, 1],
+			"to": [15, 15, 1],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"east": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#4"},
+				"west": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#0"},
+				"up": {"uv": [16, 16, 0, 0.25], "rotation": 180, "texture": "#0"},
+				"down": {"uv": [16, 0.25, 0, 16], "rotation": 180, "texture": "#0"}
+			}
+		}
+	]
+}

@@ -4,8 +4,7 @@ import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
-import net.amik.createarsenal.ModBlockPartials;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
+import net.amik.createarsenal.registrate.ModBlockPartials;
 import net.minecraft.core.Direction;
 
 import static net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret.FACING;

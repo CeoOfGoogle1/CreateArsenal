@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "createarsenal:block/monitor"},
+    "facing=south": {"model": "createarsenal:block/monitor", "y": 180 },
+    "facing=east": {"model": "createarsenal:block/monitor", "y": 90 },
+    "facing=west": {"model": "createarsenal:block/monitor", "y": 270 }
+  }
+}

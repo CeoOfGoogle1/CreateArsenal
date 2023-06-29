@@ -4,6 +4,7 @@ package net.amik.createarsenal.registrate;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
@@ -28,6 +29,13 @@ public class ModBlocks {
 
     public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
             REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<MonitorBlock> MONITOR =
+            REGISTRATE.block("monitor", MonitorBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .simpleItem()

@@ -60,7 +60,7 @@
 		{
 			"from": [4, 5.75, 2.5],
 			"to": [14, 11.75, 2.5],
-			"rotation": {"angle": 10, "axis": "x", "origin": [9, 9, 2]},
+			"rotation": {"angle": 22.5, "axis": "x", "origin": [9, 9, 2]},
 			"faces": {
 				"north": {"uv": [0.5, 1.25, 3, 2.75], "texture": "#4"},
 				"east": {"uv": [12, 0, 16, 3.5], "texture": "#4"},
