@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model": "createarsenal:block/big_radar_dish_block"},
+    "facing=south": {"model": "createarsenal:block/big_radar_dish_block", "y": 180 },
+    "facing=east": {"model": "createarsenal:block/big_radar_dish_block", "y": 90 },
+    "facing=west": {"model": "createarsenal:block/big_radar_dish_block", "y": 270 }
+  }
+}
