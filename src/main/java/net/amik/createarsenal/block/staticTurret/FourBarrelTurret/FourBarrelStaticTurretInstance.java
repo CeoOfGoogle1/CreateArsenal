@@ -7,6 +7,7 @@ import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
 import net.amik.createarsenal.registrate.ModBlockPartials;
 import net.minecraft.core.Direction;
 
+import static com.simibubi.create.content.kinetics.base.HorizontalAxisKineticBlock.HORIZONTAL_AXIS;
 import static net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret.FACING;
 
 public class FourBarrelStaticTurretInstance extends ShaftInstance<FourBarrelStaticTurretTileEntity> implements DynamicInstance {

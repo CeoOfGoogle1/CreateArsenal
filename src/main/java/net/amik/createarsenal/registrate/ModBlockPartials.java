@@ -11,7 +11,8 @@ public class ModBlockPartials {
             RADAR_LINE = block("radar_line"),
             HITBOX_1 = block("hitbox1"),
             HITBOX_2 = block("hitbox2"),
-            FOUR_BARREL = block("fourbarrel_static_barrel");
+            FOUR_BARREL = block("fourbarrel_static_barrel"),
+            EIGHT_BARREL = block("fourbarrel_static_barrel");
 
     private static PartialModel block(String path) {
         return new PartialModel(new ResourceLocation(CreateArsenal.MOD_ID, "block/" + path));
