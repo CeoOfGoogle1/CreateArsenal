@@ -1,8 +1,15 @@
 {
   "variants": {
-    "facing=north": {"model": "createarsenal:block/monitor"},
-    "facing=south": {"model": "createarsenal:block/monitor", "y": 180 },
-    "facing=east": {"model": "createarsenal:block/monitor", "y": 90 },
-    "facing=west": {"model": "createarsenal:block/monitor", "y": 270 }
+    "shape=ghost": {"model": "createarsenal:block/monitor"},
+
+    "facing=north,shape=single": {"model": "createarsenal:block/monitor"},
+    "facing=south,shape=single": {"model": "createarsenal:block/monitor", "y": 180 },
+    "facing=east,shape=single": {"model": "createarsenal:block/monitor", "y": 90 },
+    "facing=west,shape=single": {"model": "createarsenal:block/monitor", "y": 270 },
+
+    "facing=north,shape=double": {"model": "createarsenal:block/monitor_2x2"},
+    "facing=south,shape=double": {"model": "createarsenal:block/monitor_2x2", "y": 180 },
+    "facing=east,shape=double": {"model": "createarsenal:block/monitor_2x2", "y": 90 },
+    "facing=west,shape=double": {"model": "createarsenal:block/monitor_2x2", "y": 270 }
   }
 }

@@ -15,8 +15,10 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         super(type, pos, state);
     }
 
-    public static final int RANGE_WIDTH=64;
+    public static final int RANGE_WIDTH=128;
     public static final int RANGE_HEIGHT=4;
+    private float animation;
+
 
     List<Entity> scannedEntities=new ArrayList<>();
 
@@ -30,6 +32,13 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     public void lazyTick() {
         super.lazyTick();
         scanEntities();
+    }
+
+    public float getAnimation()
+    {
+        animation+=.01/2f;
+        if(animation>=1) animation=.0f;
+        return animation;
     }
 
     public List<Entity> getDisplayEntities(){
