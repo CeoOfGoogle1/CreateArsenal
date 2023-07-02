@@ -24,9 +24,6 @@ public class ModProjectiles {
 
     public static void register() {}
 
-
-
-
     private static <T extends Entity> CreateEntityBuilder<T, ?> register(String name, EntityType.EntityFactory<T> factory,
                                                                          NonNullSupplier<NonNullFunction<EntityRendererProvider.Context, EntityRenderer<? super T>>> renderer,
                                                                          MobCategory group, int range, int updateFrequency, boolean sendVelocity, boolean immuneToFire,
