@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.turret_base;
+package net.amik.createarsenal.block.turretBase;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import net.minecraft.core.BlockPos;

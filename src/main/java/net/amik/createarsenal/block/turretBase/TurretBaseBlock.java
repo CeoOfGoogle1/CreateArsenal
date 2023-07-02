@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.turret_base;
+package net.amik.createarsenal.block.turretBase;
 
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
@@ -40,6 +40,7 @@ public class TurretBaseBlock extends DirectionalKineticBlock implements IBE<Turr
 
     @Override
     public BlockState mirror(BlockState pState, Mirror pMirror) {
+        //noinspection deprecation
         return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
     }
 

@@ -15,7 +15,7 @@ import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStat
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.turret_base.TurretBaseBlockTileEntity;
+import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 

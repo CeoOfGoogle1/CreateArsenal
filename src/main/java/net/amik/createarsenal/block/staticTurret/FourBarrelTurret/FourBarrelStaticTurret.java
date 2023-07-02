@@ -5,6 +5,7 @@ import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -14,10 +15,8 @@ public class FourBarrelStaticTurret extends DirectionalKineticBlock implements I
         super(properties);
     }
 
-
-    @Override
-    public SpeedLevel getMinimumRequiredSpeedLevel() {
-        return SpeedLevel.NONE;
+    public Direction getPreferredFacing(BlockPlaceContext context) {
+        return super.getPreferredFacing(context) == null || !super.getPreferredFacing(context).getAxis().isHorizontal() ? context.getHorizontalDirection() : super.getPreferredFacing(context).getOpposite();
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.world.entity.projectile.ItemSupplier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
-import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 public class BulletEntity extends AbstractHurtingProjectile implements ItemSupplier {
     int life=0;
@@ -29,10 +29,11 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
         return false;
     }
     @SuppressWarnings("unchecked")
-    public static EntityType.Builder<?> build(EntityType.Builder<?> builder) {
+    public static void build(EntityType.Builder<?> builder) {
         EntityType.Builder<BulletEntity> entityBuilder = (EntityType.Builder<BulletEntity>) builder;
-        return entityBuilder.sized(.25f, .25f);
+        entityBuilder.sized(.375f, .375f);
     }
+
     @Override
     public void tick() {
         super.tick();
@@ -48,15 +49,12 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
     }
 
     @Override
-    protected ParticleOptions getTrailParticle() {
+    protected @NotNull ParticleOptions getTrailParticle() {
         return new AirParticleData(1, 10);
     }
 
-
-
-
     //TODO Damage Source
-    protected void onHitEntity(EntityHitResult p_37216_) {
+    protected void onHitEntity(@NotNull EntityHitResult p_37216_) {
         super.onHitEntity(p_37216_);
         if (!this.level.isClientSide) {
             Entity entity = p_37216_.getEntity();
@@ -67,7 +65,7 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
 
     //TODO dynamic bullet models
     @Override
-    public ItemStack getItem() {
+    public @NotNull ItemStack getItem() {
         return ModItems.FOUR_BARREL_ROUND.get().getDefaultInstance();
     }
 }

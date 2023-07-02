@@ -4,16 +4,15 @@ package net.amik.createarsenal.registrate;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
-import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
+import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
-import net.amik.createarsenal.block.turret_base.TurretBaseBlock;
+import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlocks {
