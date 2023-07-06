@@ -8,6 +8,7 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
+import net.amik.createarsenal.block.staticTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
@@ -54,6 +55,13 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ChainGunStaticTurret> CHAINGUN_STATIC_TURRET =
+            REGISTRATE.block("chaingun_static_turret", ChainGunStaticTurret::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
                     .simpleItem()
                     .register();
 

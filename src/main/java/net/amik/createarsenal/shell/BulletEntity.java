@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.NotNull;
 
@@ -56,6 +57,13 @@ public class BulletEntity extends AbstractHurtingProjectile {
         if (!this.level.isClientSide) {
             Entity entity = p_37216_.getEntity();
             entity.hurt(DamageSource.GENERIC, 6.0F);
+            this.kill();
         }
+    }
+
+    @Override
+    protected void onHitBlock(BlockHitResult pResult) {
+        super.onHitBlock(pResult);
+        this.kill();
     }
 }

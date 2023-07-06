@@ -36,7 +36,7 @@ public class FourBarrelStaticTurretInstance extends HalfShaftInstance<FourBarrel
             case EAST ->BARREL.nudge(-offset,0,0);
             case WEST ->BARREL.nudge(offset,0,0);
         }
-        BARREL.setRotationalSpeed(turret.getSpeed());
+        BARREL.setRotationalSpeed(turret.getSpeed() * 0.5f);
 
     }
 
