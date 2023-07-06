@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"textures": {
 		"4": "createarsenal:block/big_radar_base_block",
 		"particle": "create:block/zinc_block"

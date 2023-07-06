@@ -1,5 +1,6 @@
 {
 	"credit": "Made with Blockbench",
+	"parent": "block/block",
 	"texture_size": [128, 128],
 	"textures": {
 		"2": "createarsenal:block/four_barrel_static_turret",

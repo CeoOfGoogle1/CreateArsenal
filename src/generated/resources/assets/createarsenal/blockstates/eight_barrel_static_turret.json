@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createarsenal:block/eight_barrel_static_turret"
+    },
+    "facing=up": {
+      "model": "createarsenal:block/eight_barrel_static_turret"
+    },
+    "facing=north": {
+      "model": "createarsenal:block/eight_barrel_static_turret",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "createarsenal:block/eight_barrel_static_turret"
+    },
+    "facing=west": {
+      "model": "createarsenal:block/eight_barrel_static_turret",
+      "y": 90
+    },
+    "facing=east": {
+      "model": "createarsenal:block/eight_barrel_static_turret",
+      "y": 270
+    }
+  }
+}

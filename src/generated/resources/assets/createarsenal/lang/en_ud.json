@@ -1,0 +1,20 @@
+{
+  "block.createarsenal.big_radar_base_block": "\u029E\u0254o\u05DF\u15FA \u01DDs\u0250\u15FA \u0279\u0250p\u0250\u1D1A b\u0131\u15FA",
+  "block.createarsenal.big_radar_dish_block": "\u029E\u0254o\u05DF\u15FA \u0265s\u0131\u15E1 \u0279\u0250p\u0250\u1D1A b\u0131\u15FA",
+  "block.createarsenal.big_radar_receiver_block": "\u029E\u0254o\u05DF\u15FA \u0279\u01DD\u028C\u0131\u01DD\u0254\u01DD\u1D1A \u0279\u0250p\u0250\u1D1A b\u0131\u15FA",
+  "block.createarsenal.eight_barrel_static_turret": "\u0287\u01DD\u0279\u0279n\u27D8 \u0254\u0131\u0287\u0250\u0287S \u05DF\u01DD\u0279\u0279\u0250\u15FA \u0287\u0265b\u0131\u018E",
+  "block.createarsenal.four_barrel_static_turret": "\u0287\u01DD\u0279\u0279n\u27D8 \u0254\u0131\u0287\u0250\u0287S \u05DF\u01DD\u0279\u0279\u0250\u15FA \u0279no\u2132",
+  "block.createarsenal.turret_base_block": "\u029E\u0254o\u05DF\u15FA \u01DDs\u0250\u15FA \u0287\u01DD\u0279\u0279n\u27D8",
+  "entity.createarsenal.bullet": "\u0287\u01DD\u05DF\u05DFn\u15FA",
+  "item.createarsenal.brass_rod": "po\u1D1A ss\u0250\u0279\u15FA",
+  "item.createarsenal.bullet_large": "\u0287\u01DD\u05DF\u05DFn\u15FA \u01DDb\u0279\u0250\uA780",
+  "item.createarsenal.bullet_medium": "\u0287\u01DD\u05DF\u05DFn\u15FA \u026Fn\u0131p\u01DDW",
+  "item.createarsenal.bullet_small": "\u0287\u01DD\u05DF\u05DFn\u15FA \u05DF\u05DF\u0250\u026FS",
+  "item.createarsenal.gun_barrel_large": "\u05DF\u01DD\u0279\u0279\u0250\u15FA un\u2141 \u01DDb\u0279\u0250\uA780",
+  "item.createarsenal.gun_barrel_medium": "\u05DF\u01DD\u0279\u0279\u0250\u15FA un\u2141 \u026Fn\u0131p\u01DDW",
+  "item.createarsenal.gun_barrel_small": "\u05DF\u01DD\u0279\u0279\u0250\u15FA un\u2141 \u05DF\u05DF\u0250\u026FS",
+  "item.createarsenal.iron_rod": "po\u1D1A uo\u0279I",
+  "item.createarsenal.spring": "bu\u0131\u0279dS",
+  "itemGroup.createarsenal.tab.bullets": "s\u0287\u01DD\u05DF\u05DFn\u15FA \u05DF\u0250u\u01DDs\u0279\u2C6F :\u01DD\u0287\u0250\u01DD\u0279\u0186",
+  "itemGroup.createarsenal.tab.general": "\u05DF\u0250u\u01DDs\u0279\u2C6F :\u01DD\u0287\u0250\u01DD\u0279\u0186"
+}

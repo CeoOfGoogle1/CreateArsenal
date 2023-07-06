@@ -2,20 +2,20 @@ package net.amik.createarsenal.registrate;
 
 import com.tterrag.registrate.util.entry.RegistryEntry;
 
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.item.SpringItem;
 import net.minecraft.world.item.Item;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
+@SuppressWarnings("unused")
 public class ModItems {
 
 
     /** Items and Details */
 
     public static final RegistryEntry<SpringItem> SPRING = REGISTRATE.item("spring", SpringItem::new)
-            .register();
-
-    public static final RegistryEntry<SpringItem> FOUR_BARREL_ROUND = REGISTRATE.item("four_barrel_round", SpringItem::new)
+            .model(NonNullBiConsumer.noop())
             .register();
 
     public static final RegistryEntry<Item> IRON_ROD = REGISTRATE.item("iron_rod", Item::new)
@@ -26,24 +26,33 @@ public class ModItems {
             .register();
 
     public static final RegistryEntry<Item> GUN_BARREL_SMALL = REGISTRATE.item("gun_barrel_small", Item::new)
+            .lang("Small Gun Barrel")
             .register();
 
     public static final RegistryEntry<Item> GUN_BARREL_MEDIUM = REGISTRATE.item("gun_barrel_medium", Item::new)
+            .lang("Medium Gun Barrel")
             .register();
 
     public static final RegistryEntry<Item> GUN_BARREL_LARGE = REGISTRATE.item("gun_barrel_large", Item::new)
+            .lang("Large Gun Barrel")
             .register();
 
     public static final RegistryEntry<Item> BULLET_SMALL = REGISTRATE.item("bullet_small", Item::new)
+            .lang("Small Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .model(NonNullBiConsumer.noop())
             .register();
 
     public static final RegistryEntry<Item> BULLET_MEDIUM = REGISTRATE.item("bullet_medium", Item::new)
+            .lang("Medium Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .model(NonNullBiConsumer.noop())
             .register();
 
     public static final RegistryEntry<Item> BULLET_LARGE = REGISTRATE.item("bullet_large", Item::new)
+            .lang("Large Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .model(NonNullBiConsumer.noop())
             .register();
 
     public static void register() {}

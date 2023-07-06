@@ -2,6 +2,7 @@ package net.amik.createarsenal.block.staticTurret.FourBarrelTurret;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import net.amik.createarsenal.shell.BulletEntity;
+import net.amik.createarsenal.util.IntUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -39,31 +40,20 @@ public class FourBarrelStaticTurretTileEntity extends KineticBlockEntity {
 
                 bullet.setPos(
                         new Vec3(
-                                getBlockPos().relative(direction, 3).getX() +
-                                        (direction.getStepX() < 0 ? 1 : 0)
+                                getBlockPos().relative(direction, 4).getX() +
+                                        IntUtil.toInt(direction.getStepX() < 0)
                                         + Math.abs(direction.getStepZ()/2F)
-                                        + 3/16F * (direction.getStepZ() != 0 ? 1 : 0) * Math.sin(theta)
-                                        + direction.getStepX() * 0.25
+                                        + 3/16F * IntUtil.toInt(direction.getStepZ() != 0) * Math.sin(theta)
                                 ,
-                                getBlockPos().relative(direction, 3).getY()
-                                        + 5/16F
+                                getBlockPos().relative(direction, 4).getY()
+                                        + 1/4F
                                         + 3/16F * Math.cos(theta)
                                 ,
-                                getBlockPos().relative(direction, 3).getZ() +
-                                        (direction.getStepZ() < 0 ? 1 : 0)
+                                getBlockPos().relative(direction, 4).getZ() +
+                                        IntUtil.toInt(direction.getStepZ() < 0)
                                         + Math.abs(direction.getStepX()/2F)
-                                        + 3/16F * (direction.getStepX() != 0 ? 1 : 0) * Math.sin(theta)
-                                        + direction.getStepZ() * 0.25
+                                        + 3/16F * IntUtil.toInt(direction.getStepX() != 0) * Math.sin(theta)
                         )
-                );
-
-                bullet.setYRot(
-                        switch (direction) {
-                            case SOUTH -> 180;
-                            case EAST -> 90;
-                            case WEST -> 270;
-                            default -> 0;
-                        }
                 );
 
                 bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 3.0F, 0F);

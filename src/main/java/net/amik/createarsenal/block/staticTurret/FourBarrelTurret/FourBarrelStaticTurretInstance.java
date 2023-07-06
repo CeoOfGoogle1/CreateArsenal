@@ -4,7 +4,7 @@ import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
-import net.amik.createarsenal.registrate.ModBlockPartials;
+import net.amik.createarsenal.registrate.ModPartials;
 import net.minecraft.core.Direction;
 
 import static net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret.FACING;
@@ -21,7 +21,7 @@ public class FourBarrelStaticTurretInstance extends HalfShaftInstance<FourBarrel
         super(dispatcher, tile);
         turret = tile;
         facing = turret.getBlockState().getValue(FACING);
-        BARREL = getRotatingMaterial().getModel(ModBlockPartials.FOUR_BARREL,blockState,facing).createInstance();
+        BARREL = getRotatingMaterial().getModel(ModPartials.FOUR_BARREL,blockState,facing).createInstance();
         BARREL.setRotationAxis(facing.getAxis());
     }
 

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "createarsenal:item/gun_barrel_large"
+  }
+}

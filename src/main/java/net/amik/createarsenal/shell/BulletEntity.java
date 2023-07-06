@@ -1,7 +1,6 @@
 package net.amik.createarsenal.shell;
 
 import com.simibubi.create.foundation.particle.AirParticleData;
-import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModProjectiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -9,13 +8,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
-import net.minecraft.world.entity.projectile.ItemSupplier;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.EntityHitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class BulletEntity extends AbstractHurtingProjectile implements ItemSupplier {
+public class BulletEntity extends AbstractHurtingProjectile {
     int life=0;
 
     public BulletEntity(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
@@ -31,7 +28,7 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
     @SuppressWarnings("unchecked")
     public static void build(EntityType.Builder<?> builder) {
         EntityType.Builder<BulletEntity> entityBuilder = (EntityType.Builder<BulletEntity>) builder;
-        entityBuilder.sized(.375f, .375f);
+        entityBuilder.sized(1/2f, 1/2f);
     }
 
     @Override
@@ -40,7 +37,7 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
         if (!this.level.isClientSide) {
             life++;
             if (life > 40)
-                discard();
+                kill();
         }
     }
 
@@ -60,12 +57,5 @@ public class BulletEntity extends AbstractHurtingProjectile implements ItemSuppl
             Entity entity = p_37216_.getEntity();
             entity.hurt(DamageSource.GENERIC, 6.0F);
         }
-    }
-
-
-    //TODO dynamic bullet models
-    @Override
-    public @NotNull ItemStack getItem() {
-        return ModItems.FOUR_BARREL_ROUND.get().getDefaultInstance();
     }
 }

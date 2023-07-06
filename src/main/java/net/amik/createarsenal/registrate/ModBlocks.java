@@ -4,13 +4,14 @@ package net.amik.createarsenal.registrate;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
-import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
+import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -23,27 +24,36 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .simpleItem()
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
                     .register();
 
     public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
             REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .simpleItem()
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
                     .register();
 
-    public static final BlockEntry<MonitorBlock> MONITOR =
-            REGISTRATE.block("monitor", MonitorBlock::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-                    .simpleItem()
-                    .register();
+//    public static final BlockEntry<MonitorBlock> MONITOR =
+//            REGISTRATE.block("monitor", MonitorBlock::new)
+//                    .initialProperties(SharedProperties::softMetal)
+//                    .properties(BlockBehaviour.Properties::noOcclusion)
+//                    .simpleItem()
+//                    .register();
+
+    // TODO: Fix this stupid system, implement multiblock @happysg
 
     public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
             REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
                     .simpleItem()
                     .register();
 
@@ -52,7 +62,10 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .simpleItem()
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
                     .register();
 
     public static final BlockEntry<BigRadarDishBlock> BIG_RADAR_DISH_BLOCK =
@@ -60,6 +73,7 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
                     .simpleItem()
                     .register();
 
@@ -68,6 +82,7 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
                     .simpleItem()
                     .register();
 

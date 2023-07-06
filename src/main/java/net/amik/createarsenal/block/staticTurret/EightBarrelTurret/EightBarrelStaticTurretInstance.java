@@ -4,8 +4,7 @@ import com.jozufozu.flywheel.api.MaterialManager;
 import com.jozufozu.flywheel.api.instance.DynamicInstance;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.simibubi.create.content.kinetics.base.flwdata.RotatingData;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
-import net.amik.createarsenal.registrate.ModBlockPartials;
+import net.amik.createarsenal.registrate.ModPartials;
 import net.minecraft.core.Direction;
 
 import static net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret.FACING;
@@ -22,7 +21,7 @@ public class EightBarrelStaticTurretInstance extends ShaftInstance<EightBarrelSt
         super(dispatcher, tile);
         turret = tile;
         facing = turret.getBlockState().getValue(FACING);
-        BARREL = getRotatingMaterial().getModel(ModBlockPartials.EIGHT_BARREL,blockState,facing).createInstance();
+        BARREL = getRotatingMaterial().getModel(ModPartials.EIGHT_BARREL,blockState,facing).createInstance();
         BARREL.setRotationAxis(facing.getAxis());
     }
 

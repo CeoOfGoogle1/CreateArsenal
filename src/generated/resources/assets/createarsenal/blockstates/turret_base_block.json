@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createarsenal:block/turret_base_block"
+    },
+    "facing=up": {
+      "model": "createarsenal:block/turret_base_block"
+    },
+    "facing=north": {
+      "model": "createarsenal:block/turret_base_block"
+    },
+    "facing=south": {
+      "model": "createarsenal:block/turret_base_block",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "createarsenal:block/turret_base_block",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "createarsenal:block/turret_base_block",
+      "y": 90
+    }
+  }
+}
