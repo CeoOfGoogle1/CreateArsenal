@@ -8,6 +8,7 @@ import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
+import net.amik.createarsenal.block.staticTurret.ChaingunTurret.ChaingunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
@@ -42,6 +43,13 @@ public class ModBlocks {
 
     public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
             REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ChaingunStaticTurret> CHAINGUN_STATIC_TURRET =
+            REGISTRATE.block("chaingun_static_turret", ChaingunStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .simpleItem()
