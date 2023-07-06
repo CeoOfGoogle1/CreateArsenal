@@ -20,8 +20,6 @@ import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlockEntities {
-
-
     public static final BlockEntityEntry<TurretBaseBlockTileEntity> TURRET_BASE_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("turret_base_block", TurretBaseBlockTileEntity::new)
             .instance(() -> ShaftInstance::new, true)

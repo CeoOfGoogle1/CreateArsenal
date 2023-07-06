@@ -8,7 +8,7 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
-import net.amik.createarsenal.block.staticTurret.ChainGunStaticTurret;
+import net.amik.createarsenal.block.staticTurret.ChaingunTurret.ChaingunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
@@ -58,11 +58,17 @@ public class ModBlocks {
                     .simpleItem()
                     .register();
 
-    public static final BlockEntry<ChainGunStaticTurret> CHAINGUN_STATIC_TURRET =
-            REGISTRATE.block("chaingun_static_turret", ChainGunStaticTurret::new)
+    public static final BlockEntry<ChaingunStaticTurret> CHAINGUN_STATIC_TURRET =
+            REGISTRATE.block("chaingun_static_turret", ChaingunStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .simpleItem()
+//                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    // TODO: @Amik, uncomment this line when you added the model, and remove the line below
+                    .blockstate(NonNullBiConsumer.noop())
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
+                    // TODO: And then change the 3 lines above to .simpleItem()
                     .register();
 
     public static final BlockEntry<BigRadarBaseBlock> BIG_RADAR_BASE_BLOCK =
