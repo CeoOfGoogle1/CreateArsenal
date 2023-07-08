@@ -14,7 +14,7 @@ import java.util.function.Consumer;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModFluids {
-    public static final FluidEntry<VirtualFluid> GUN_POWDER_FLUID = CreateArsenal.REGISTRATE.virtualFluid("gun_powder_fluid")
+    public static final FluidEntry<VirtualFluid> GUNPOWDER_FLUID = CreateArsenal.REGISTRATE.virtualFluid("gunpowder_fluid")
             .tag(AllTags.forgeFluidTag("tea"))
             .register();
 
