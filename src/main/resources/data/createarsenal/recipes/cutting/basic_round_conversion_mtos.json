@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "createarsenal:basic_medium_round"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:basic_small_round",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

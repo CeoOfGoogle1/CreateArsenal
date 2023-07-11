@@ -21,7 +21,6 @@ public class ModItems {
     public static final RegistryEntry<Item> IRON_ROD = REGISTRATE.item("iron_rod", Item::new)
             .register();
 
-
     public static final RegistryEntry<Item> BRASS_ROD = REGISTRATE.item("brass_rod", Item::new)
             .register();
 
@@ -64,9 +63,35 @@ public class ModItems {
             .lang("Medium Round Core")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-
     public static final RegistryEntry<Item> SMALL_ROUND_CORE = REGISTRATE.item("small_round_core", Item::new)
             .lang("Small Round Core")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> CARTRIDGE_CUTOUT_LARGE = REGISTRATE.item("cartridge_cutout_large", Item::new)
+            .lang("Large Cartridge Cutout")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> CARTRIDGE_CUTOUT_MEDIUM = REGISTRATE.item("cartridge_cutout_medium", Item::new)
+            .lang("Medium Cartridge Cutout")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> CARTRIDGE_CUTOUT_SMALL = REGISTRATE.item("cartridge_cutout_small", Item::new)
+            .lang("Small Cartridge Cutout")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> JACKET_PLATE_LARGE = REGISTRATE.item("jacket_plate_large", Item::new)
+            .lang("Large Jacket Plate")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> JACKET_PLATE_MEDIUM = REGISTRATE.item("jacket_plate_medium", Item::new)
+            .lang("Medium Jacket Plate")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> JACKET_PLATE_SMALL = REGISTRATE.item("jacket_plate_small", Item::new)
+            .lang("Small Jacket Plate")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 

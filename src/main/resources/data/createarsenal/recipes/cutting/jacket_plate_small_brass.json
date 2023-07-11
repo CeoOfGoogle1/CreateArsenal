@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:jacket_plate_small",
+      "count": 8
+    }
+  ],
+  "processingTime": 50
+}

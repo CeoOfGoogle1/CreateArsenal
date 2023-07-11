@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_cutout_large",
+      "count": 4
+    }
+  ],
+  "processingTime": 50
+}

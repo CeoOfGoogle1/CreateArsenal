@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "createarsenal:cartridge_cutout_large"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_cutout_medium",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

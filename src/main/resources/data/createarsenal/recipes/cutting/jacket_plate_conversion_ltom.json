@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "createarsenal:jacket_plate_large"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:jacket_plate_medium",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}

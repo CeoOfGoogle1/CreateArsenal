@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:small_round_core",
+      "count": 16
+    }
+  ],
+  "processingTime": 50
+}

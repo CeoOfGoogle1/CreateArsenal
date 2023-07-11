@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:brass_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:large_round_core",
+      "count": 2
+    }
+  ],
+  "processingTime": 50
+}
