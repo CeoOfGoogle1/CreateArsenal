@@ -2,12 +2,12 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:iron_ingot"
+      "item": "minecraft:copper_ingot"
     }
   ],
   "results": [
     {
-      "item": "createarsenal:basic_large_round",
+      "item": "createarsenal:medium_round_core",
       "count": 4
     }
   ]

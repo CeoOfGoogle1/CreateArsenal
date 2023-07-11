@@ -55,5 +55,20 @@ public class ModItems {
             .model(NonNullBiConsumer.noop())
             .register();
 
+    public static final RegistryEntry<Item> LARGE_ROUND_CORE = REGISTRATE.item("large_round_core", Item::new)
+            .lang("Large Round Core")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> MEDIUM_ROUND_CORE = REGISTRATE.item("medium_round_core", Item::new)
+            .lang("Medium Round Core")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> SMALL_ROUND_CORE = REGISTRATE.item("small_round_core", Item::new)
+            .lang("Small Round Core")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
     public static void register() {}
 }

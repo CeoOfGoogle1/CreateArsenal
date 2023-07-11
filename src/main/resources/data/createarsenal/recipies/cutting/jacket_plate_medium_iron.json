@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:iron_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:jacket_plate_medium",
+      "count": 4
+    }
+  ]
+}

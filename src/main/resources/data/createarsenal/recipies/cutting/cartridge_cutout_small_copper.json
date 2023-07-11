@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "create:copper_sheet"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_cutout_small",
+      "count": 8
+    }
+  ]
+}

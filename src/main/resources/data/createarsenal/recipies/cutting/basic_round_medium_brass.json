@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:brass_ingot"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:medium_round_core",
+      "count": 4
+    }
+  ]
+}

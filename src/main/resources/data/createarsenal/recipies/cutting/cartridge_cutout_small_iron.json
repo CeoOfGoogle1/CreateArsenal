@@ -2,12 +2,12 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:iron_ingot"
+      "item": "create:iron_sheet"
     }
   ],
   "results": [
     {
-      "item": "createarsenal:basic_medium_round",
+      "item": "createarsenal:cartridge_cutout_small",
       "count": 8
     }
   ]
