@@ -1,0 +1,14 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "createarsenal:cartridge_cutout_medium"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_cutout_small",
+      "count": 2
+    }
+  ]
+}
