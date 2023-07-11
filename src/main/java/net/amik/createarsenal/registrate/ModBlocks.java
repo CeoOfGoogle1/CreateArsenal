@@ -8,9 +8,9 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
-import net.amik.createarsenal.block.staticTurret.ChaingunTurret.ChaingunStaticTurret;
-import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurret;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurret;
+import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
+import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -55,20 +55,19 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
-                    .simpleItem()
-                    .register();
-
-    public static final BlockEntry<ChaingunStaticTurret> CHAINGUN_STATIC_TURRET =
-            REGISTRATE.block("chaingun_static_turret", ChaingunStaticTurret::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-//                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
-                    // TODO: @Amik, uncomment this line when you added the model, and remove the line below
-                    .blockstate(NonNullBiConsumer.noop())
                     .item()
                     .model(NonNullBiConsumer.noop())
                     .build()
-                    // TODO: And then change the 3 lines above to .simpleItem()
+                    .register();
+
+    public static final BlockEntry<ChainGunStaticTurret> CHAINGUN_STATIC_TURRET =
+            REGISTRATE.block("chain_gun_static_turret", ChainGunStaticTurret::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
                     .register();
 
     public static final BlockEntry<BigRadarBaseBlock> BIG_RADAR_BASE_BLOCK =

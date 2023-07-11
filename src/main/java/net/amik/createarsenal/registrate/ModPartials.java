@@ -11,9 +11,10 @@ public class ModPartials {
             RADAR_LINE = block("radar_line"),
             HITBOX_1 = block("hitbox1"),
             HITBOX_2 = block("hitbox2"),
+            CHAIN_GUN_BARREL = block("chain_gun_static_barrel"),
             FOUR_BARREL = block("four_barrel_static_barrel"),
             EIGHT_BARREL = block("eight_barrel_static_barrel"),
-            MEDIUM_ROUND = entity("four_barrel_round");
+            MEDIUM_ROUND = entity("medium_round");
 
     private static PartialModel block(String path) {
         return new PartialModel(new ResourceLocation(CreateArsenal.MOD_ID, "block/" + path));

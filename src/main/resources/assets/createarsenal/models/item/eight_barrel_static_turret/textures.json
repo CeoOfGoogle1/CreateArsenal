@@ -1,0 +1,11 @@
+{
+  "parent": "block/block",
+  "ambientocclusion": false,
+  "textures": {
+    "1": "createarsenal:block/four_barrel_static_turret",
+    "2": "createarsenal:block/eight_barrel_static_turret",
+    "3": "create:block/axis",
+    "4": "create:block/axis_top",
+    "particle": "create:block/brass_block"
+  }
+}

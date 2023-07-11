@@ -7,14 +7,15 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlockTileEntity;
-import net.amik.createarsenal.block.staticTurret.ChaingunTurret.ChaingunStaticTurretBlockEntity;
-import net.amik.createarsenal.block.staticTurret.ChaingunTurret.ChaingunStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretTileEntity;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.FourBarrelTurret.FourBarrelStaticTurretTileEntity;
-import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.EightBarrelTurret.EightBarrelStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
+import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
+import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretBlockEntity;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretInstance;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
+import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
+import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -27,8 +28,8 @@ public class ModBlockEntities {
             .renderer(() -> KineticBlockEntityRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<FourBarrelStaticTurretTileEntity> FOUR_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("four_barrel_static_turret", FourBarrelStaticTurretTileEntity::new)
+    public static final BlockEntityEntry<FourBarrelStaticTurretBlockEntity> FOUR_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
+            .blockEntity("four_barrel_static_turret", FourBarrelStaticTurretBlockEntity::new)
             .instance(() -> FourBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
             .renderer(() -> FourBarrelStaticTurretRenderer::new)
@@ -40,8 +41,8 @@ public class ModBlockEntities {
 //            .renderer(() -> MonitorRenderer::new)
 //            .register();
 
-    public static final BlockEntityEntry<EightBarrelStaticTurretTileEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("eight_barrel_static_turret", EightBarrelStaticTurretTileEntity::new)
+    public static final BlockEntityEntry<EightBarrelStaticTurretBlockEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
+            .blockEntity("eight_barrel_static_turret", EightBarrelStaticTurretBlockEntity::new)
             .instance(() -> EightBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.EIGHT_BARREL_STATIC_TURRET)
             .renderer(() -> EightBarrelStaticTurretRenderer::new)
@@ -49,11 +50,11 @@ public class ModBlockEntities {
 
     //
 
-    public static final BlockEntityEntry<ChaingunStaticTurretBlockEntity> CHAINGUN_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("chaingun_static_turret", ChaingunStaticTurretBlockEntity::new)
-            //TODO .instance(() -> ChaingunStaticTurretInstance::new, true)
+    public static final BlockEntityEntry<ChainGunStaticTurretBlockEntity> CHAINGUN_STATIC_TURRET_TILE_ENTITY = REGISTRATE
+            .blockEntity("chain_gun_static_turret", ChainGunStaticTurretBlockEntity::new)
+            .instance(() -> ChainGunStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.CHAINGUN_STATIC_TURRET)
-            .renderer(() -> ChaingunStaticTurretRenderer::new)
+            .renderer(() -> ChainGunStaticTurretRenderer::new)
             .register();
 
     public static final BlockEntityEntry<BigRadarBaseBlockTileEntity> BIG_RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE

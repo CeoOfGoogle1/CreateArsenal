@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "createarsenal:chaingun_static_turret"
+          "name": "createarsenal:chain_gun_static_turret"
         }
       ],
       "conditions": [

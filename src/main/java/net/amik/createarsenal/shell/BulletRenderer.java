@@ -68,8 +68,6 @@ public class BulletRenderer extends EntityRenderer<BulletEntity> {
             }
         }
 
-        ModPartials.MEDIUM_ROUND.get();
-
         Minecraft.getInstance()
                 .getItemRenderer()
                 .renderModelLists(ModPartials.MEDIUM_ROUND.get(), ItemStack.EMPTY, light, OverlayTexture.NO_OVERLAY, ms, buffer.getBuffer(RenderType.cutout()));
