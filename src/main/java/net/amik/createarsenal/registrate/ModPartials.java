@@ -13,6 +13,7 @@ public class ModPartials {
             HITBOX_2 = block("hitbox2"),
             CHAIN_GUN_BARREL = block("chain_gun_static_barrel"),
             FOUR_BARREL = block("four_barrel_static_barrel"),
+            BIG_DISH = block("radar_multi"),
             EIGHT_BARREL = block("eight_barrel_static_barrel"),
             MEDIUM_ROUND = entity("medium_round");
 

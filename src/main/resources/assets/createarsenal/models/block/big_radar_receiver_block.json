@@ -2,7 +2,8 @@
   "credit": "Made with Blockbench",
   "parent": "block/block",
   "textures": {
-    "4": "createarsenal:block/big_radar_receiver_block"
+    "4": "createarsenal:block/big_radar_receiver_block",
+    "particle": "createarsenal:block/big_radar_receiver_block"
   },
   "elements": [
     {

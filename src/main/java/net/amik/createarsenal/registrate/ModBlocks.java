@@ -1,10 +1,14 @@
 package net.amik.createarsenal.registrate;
 
 
+import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
+import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
@@ -13,9 +17,15 @@ import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelSt
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.amik.createarsenal.util.CreateUtil;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 
+import static com.simibubi.create.Create.asResource;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
+import static net.amik.createarsenal.block.big_radar.BigRadarDishBlock.MULTIBLOCK;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
 
 public class ModBlocks {
 
@@ -76,9 +86,7 @@ public class ModBlocks {
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
-                    .item()
-                    .model(NonNullBiConsumer.noop())
-                    .build()
+                    .simpleItem()
                     .register();
 
     public static final BlockEntry<BigRadarDishBlock> BIG_RADAR_DISH_BLOCK =
@@ -86,7 +94,18 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStates(state -> {
+                                Direction dir = state.getValue(BlockStateProperties.FACING);
+                                if(state.getValue(MULTIBLOCK))
+                                    return ConfiguredModel.builder()
+                                            .modelFile(p.models().getExistingFile(p.mcLoc("block/air")))
+                                            .build();
+                                return ConfiguredModel.builder()
+                                        .modelFile(p.models().getExistingFile(CreateArsenal.resource("block/big_radar_dish_block")))
+                                        .rotationY((int) dir.toYRot())
+                                        .build();
+                            }))
                     .simpleItem()
                     .register();
 
@@ -95,7 +114,18 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStates(state -> {
+                                Direction dir = state.getValue(BlockStateProperties.FACING);
+                                if(state.getValue(MULTIBLOCK))
+                                    return ConfiguredModel.builder()
+                                            .modelFile(p.models().getExistingFile(p.mcLoc("block/air")))
+                                            .build();
+                                return ConfiguredModel.builder()
+                                        .modelFile(p.models().getExistingFile(CreateArsenal.resource("block/big_radar_receiver_block")))
+                                        .rotationY((int) dir.toYRot())
+                                        .build();
+                            }))
                     .simpleItem()
                     .register();
 

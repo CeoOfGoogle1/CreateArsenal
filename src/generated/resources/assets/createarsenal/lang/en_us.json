@@ -6,29 +6,25 @@
   "block.createarsenal.eight_barrel_static_turret": "Eight Barrel Static Turret",
   "block.createarsenal.four_barrel_static_turret": "Four Barrel Static Turret",
   "block.createarsenal.turret_base_block": "Turret Base Block",
-
   "entity.createarsenal.bullet": "Bullet",
-
   "item.createarsenal.brass_rod": "Brass Rod",
   "item.createarsenal.bullet_large": "Large Bullet",
   "item.createarsenal.bullet_medium": "Medium Bullet",
   "item.createarsenal.bullet_small": "Small Bullet",
+  "item.createarsenal.cartridge_cutout_large": "Large Cartridge Cutout",
+  "item.createarsenal.cartridge_cutout_medium": "Medium Cartridge Cutout",
+  "item.createarsenal.cartridge_cutout_small": "Small Cartridge Cutout",
   "item.createarsenal.gun_barrel_large": "Large Gun Barrel",
   "item.createarsenal.gun_barrel_medium": "Medium Gun Barrel",
   "item.createarsenal.gun_barrel_small": "Small Gun Barrel",
   "item.createarsenal.iron_rod": "Iron Rod",
-  "item.createarsenal.spring": "Spring",
-  "item.createarsenal.large_round_core": "Large Round Core",
-  "item.createarsenal.medium_round_core": "Medium Round Core",
-  "item.createarsenal.small_round_core": "Small Round Core",
-  "item.createarsenal.cartridge_cutout_large": "Large Cartridge Cutout",
-  "item.createarsenal.cartridge_cutout_medium": "Medium Cartridge Cutout",
-  "item.createarsenal.cartridge_cutout_small": "Small Cartridge Cutout",
   "item.createarsenal.jacket_plate_large": "Large Jacket Plate",
   "item.createarsenal.jacket_plate_medium": "Medium Jacket Plate",
   "item.createarsenal.jacket_plate_small": "Small Jacket Plate",
-
-
+  "item.createarsenal.large_round_core": "Large Round Core",
+  "item.createarsenal.medium_round_core": "Medium Round Core",
+  "item.createarsenal.small_round_core": "Small Round Core",
+  "item.createarsenal.spring": "Spring",
   "itemGroup.createarsenal.tab.bullets": "Create: Arsenal Bullets",
   "itemGroup.createarsenal.tab.general": "Create: Arsenal"
 }

@@ -1,25 +1,45 @@
 {
   "variants": {
-    "facing=down": {
-      "model": "createarsenal:block/big_radar_receiver_block"
-    },
-    "facing=up": {
-      "model": "createarsenal:block/big_radar_receiver_block"
-    },
-    "facing=north": {
-      "model": "createarsenal:block/big_radar_receiver_block"
-    },
-    "facing=south": {
-      "model": "createarsenal:block/big_radar_receiver_block",
-      "y": 180
-    },
-    "facing=west": {
+    "facing=down,multiblock=false": {
       "model": "createarsenal:block/big_radar_receiver_block",
       "y": 270
     },
-    "facing=east": {
+    "facing=up,multiblock=false": {
+      "model": "createarsenal:block/big_radar_receiver_block",
+      "y": 270
+    },
+    "facing=north,multiblock=false": {
+      "model": "createarsenal:block/big_radar_receiver_block",
+      "y": 180
+    },
+    "facing=south,multiblock=false": {
+      "model": "createarsenal:block/big_radar_receiver_block"
+    },
+    "facing=west,multiblock=false": {
       "model": "createarsenal:block/big_radar_receiver_block",
       "y": 90
+    },
+    "facing=east,multiblock=false": {
+      "model": "createarsenal:block/big_radar_receiver_block",
+      "y": 270
+    },
+    "facing=down,multiblock=true": {
+      "model": "minecraft:block/air"
+    },
+    "facing=up,multiblock=true": {
+      "model": "minecraft:block/air"
+    },
+    "facing=north,multiblock=true": {
+      "model": "minecraft:block/air"
+    },
+    "facing=south,multiblock=true": {
+      "model": "minecraft:block/air"
+    },
+    "facing=west,multiblock=true": {
+      "model": "minecraft:block/air"
+    },
+    "facing=east,multiblock=true": {
+      "model": "minecraft:block/air"
     }
   }
 }

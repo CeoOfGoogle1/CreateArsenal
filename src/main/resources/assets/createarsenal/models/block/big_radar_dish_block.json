@@ -2,7 +2,8 @@
   "credit": "Made with Blockbench",
   "parent": "block/block",
   "textures": {
-    "0": "createarsenal:block/big_radar_dish_block"
+    "0": "createarsenal:block/big_radar_dish_block",
+    "particle": "createarsenal:block/big_radar_dish_block"
   },
   "elements": [
     {

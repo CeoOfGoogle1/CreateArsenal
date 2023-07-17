@@ -6,6 +6,7 @@ import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
+import net.amik.createarsenal.block.big_radar.BigRadarDishInstance;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlockTileEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
@@ -66,6 +67,7 @@ public class ModBlockEntities {
 
     public static final BlockEntityEntry<BigRadarDishBlockTileEntity> BIG_RADAR_DISH_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("big_radar_dish_block", BigRadarDishBlockTileEntity::new)
+            .instance(()-> BigRadarDishInstance::new)
             .validBlocks(ModBlocks.BIG_RADAR_DISH_BLOCK)
             .renderer(() -> KineticBlockEntityRenderer::new)
             .register();
