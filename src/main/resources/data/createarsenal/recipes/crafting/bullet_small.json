@@ -1,13 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    " P ",
+    "   "
+  ],
+  "key": {
+    "S": {
       "item": "createarsenal:basic_small_round"
     },
-    {
+    "P": {
       "item": "createarsenal:cartridge_small_filled"
     }
-  ],
+  },
   "result": {
     "item": "createarsenal:bullet_small"
   }
