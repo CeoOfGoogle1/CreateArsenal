@@ -1,0 +1,49 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "createarsenal:cartridge_large_empty"
+  },
+  "transitionalItem": {
+    "item": "createarsenal:cartridge_large_filled"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createarsenal:cartridge_large_empty"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "createarsenal:cartridge_large_filled"
+        }
+      ]
+    },
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createarsenal:cartridge_large_filled"
+        },
+        {
+          "item": "minecraft:redstone"
+        }
+      ],
+      "results": [
+        {
+          "item": "createarsenal:cartridge_large_filled"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_large_filled"
+    }
+  ],
+  "loops": 1
+}

@@ -1,0 +1,33 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "createarsenal:cartridge_small_empty"
+  },
+  "transitionalItem": {
+    "item": "createarsenal:cartridge_small_filled"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createarsenal:cartridge_small_empty"
+        },
+        {
+          "item": "minecraft:gunpowder"
+        }
+      ],
+      "results": [
+        {
+          "item": "createarsenal:cartridge_small_filled"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_small_filled"
+    }
+  ],
+  "loops": 1
+}

@@ -95,5 +95,47 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
+    public static final RegistryEntry<Item> CARTRIDGE_LARGE_EMPTY = REGISTRATE.item("cartridge_large_empty", Item::new)
+            .lang("Large Cartridge (Empty)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_EMPTY = REGISTRATE.item("cartridge_medium_empty", Item::new)
+            .lang("Medium Cartridge (Empty)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> CARTRIDGE_SMALL_EMPTY = REGISTRATE.item("cartridge_small_empty", Item::new)
+            .lang("Small Cartridge (Empty)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> CARTRIDGE_LARGE_FILLED = REGISTRATE.item("cartridge_large_filled", Item::new)
+            .lang("Large Cartridge (Filled)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_FILLED = REGISTRATE.item("cartridge_medium_filled", Item::new)
+            .lang("Medium Cartridge (Filled)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> CARTRIDGE_SMALL_FILLED = REGISTRATE.item("cartridge_small_filled", Item::new)
+            .lang("Small Cartridge (Filled)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+    public static final RegistryEntry<Item> BASIC_LARGE_ROUND = REGISTRATE.item("basic_large_round", Item::new)
+            .lang("Large Round (Basic)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> BASIC_MEDIUM_ROUND = REGISTRATE.item("basic_medium_round", Item::new)
+            .lang("Medium Round (Basic)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> BASIC_SMALL_ROUND = REGISTRATE.item("basic_small_round", Item::new)
+            .lang("Small Round (Basic)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+
+
+
     public static void register() {}
 }

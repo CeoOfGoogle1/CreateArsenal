@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "createarsenal:basic_medium_round"
+    },
+    {
+      "item": "createarsenal:cartridge_medium_filled"
+    }
+  ],
+  "result": {
+    "item": "createarsenal:bullet_medium"
+  }
+}

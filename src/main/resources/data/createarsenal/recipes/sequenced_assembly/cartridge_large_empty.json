@@ -1,0 +1,30 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "createarsenal:cartridge_cutout_large"
+  },
+  "transitionalItem": {
+    "item": "createarsenal:cartridge_cutout_large"
+  },
+  "sequence": [
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "createarsenal:cartridge_cutout_large"
+        }
+      ],
+      "results": [
+        {
+          "item": "create:cartridge_cutout_large"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:cartridge_large_empty"
+    }
+  ],
+  "loops": 5
+}

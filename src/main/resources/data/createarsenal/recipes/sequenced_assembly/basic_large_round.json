@@ -1,0 +1,46 @@
+{
+  "type": "create:sequenced_assembly",
+  "ingredient": {
+    "item": "createarsenal:large_round_core"
+  },
+  "transitionalItem": {
+    "item": "createarsenal:basic_large_round"
+  },
+  "sequence": [
+    {
+      "type": "create:deploying",
+      "ingredients": [
+        {
+          "item": "createarsenal:large_round_core"
+        },
+        {
+          "item": "createarsenal:jacket_plate_large"
+        }
+      ],
+      "results": [
+        {
+          "item": "createarsenal:large_round_core"
+        }
+      ]
+    },
+    {
+      "type": "create:pressing",
+      "ingredients": [
+        {
+          "item": "createarsenal:large_round_core"
+        }
+      ],
+      "results": [
+        {
+          "item": "createarsenal:basic_large_round"
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:basic_large_round"
+    }
+  ],
+  "loops": 1
+}
