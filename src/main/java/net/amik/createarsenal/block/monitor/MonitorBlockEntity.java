@@ -6,6 +6,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +26,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
 
     @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-
-    }
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
 
     @Override
     public void lazyTick() {
@@ -37,7 +37,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     public float getAnimation()
     {
         animation+=.005f;
-        if(animation>=1) animation=.0f;
+        if(animation>=1) animation=0f;
         return animation;
     }
 
@@ -53,4 +53,10 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         scannedEntities=level.getEntities(null, this.getRenderBoundingBox().inflate(RANGE_WIDTH,RANGE_HEIGHT,RANGE_WIDTH));
 
     }
+
+    public boolean wrenchClick(BlockHitResult pHit) {
+        return false;
+    }
+
+
 }

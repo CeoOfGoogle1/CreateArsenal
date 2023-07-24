@@ -7,7 +7,6 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishInstance;
-import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlockTileEntity;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
@@ -74,11 +73,6 @@ public class ModBlockEntities {
             .renderer(() -> KineticBlockEntityRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<BigRadarReceiverBlockTileEntity> BIG_RADAR_RECEIVER_BLOCK_TILE_ENTITY = REGISTRATE
-            .blockEntity("big_radar_receiver_block", BigRadarReceiverBlockTileEntity::new)
-            .validBlocks(ModBlocks.BIG_RADAR_RECEIVER_BLOCK)
-            .renderer(() -> KineticBlockEntityRenderer::new)
-            .register();
 
 
     public static void register(){}

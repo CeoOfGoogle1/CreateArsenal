@@ -27,6 +27,7 @@ import static com.simibubi.create.Create.asResource;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 import static net.amik.createarsenal.block.big_radar.BigRadarDishBlock.MULTIBLOCK;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class ModBlocks {
 
@@ -119,7 +120,7 @@ public class ModBlocks {
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate((c, p) -> p.getVariantBuilder(c.get())
                             .forAllStates(state -> {
-                                Direction dir = state.getValue(BlockStateProperties.FACING);
+                                Direction dir = state.getValue(HORIZONTAL_FACING);
                                 if(state.getValue(MULTIBLOCK))
                                     return ConfiguredModel.builder()
                                             .modelFile(p.models().getExistingFile(p.mcLoc("block/air")))

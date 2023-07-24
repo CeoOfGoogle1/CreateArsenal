@@ -1,10 +1,15 @@
 package net.amik.createarsenal.block.monitor;
 
+import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Lang;
+import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 
 
 public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<MonitorBlockEntity> {
@@ -39,6 +45,15 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
     @Override
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
+    }
+
+    @Override
+    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+        if(pPlayer.getItemInHand(pHand).is(AllItems.WRENCH.get())&&pLevel.getBlockEntity(pPos) instanceof MonitorBlockEntity monitor)
+            if(monitor.wrenchClick(pHit))
+                return InteractionResult.SUCCESS;
+
+        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
     public enum Shape implements StringRepresentable {

@@ -27,10 +27,9 @@ mixin {
     add sourceSets.main, "${project.modid}.refmap.json"
 }
 
-
-version = project.mod_version
-group = 'net.amik.' + project.modid
 archivesBaseName = project.modid
+String buildNumber = System.getenv("GITHUB_RUN_NUMBER")
+version = "${mod_version}" + (buildNumber != null ? ".${buildNumber}" : "") + "+mc1.18.2"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 

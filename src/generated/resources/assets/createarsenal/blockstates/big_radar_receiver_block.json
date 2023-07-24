@@ -1,13 +1,5 @@
 {
   "variants": {
-    "facing=down,multiblock=false": {
-      "model": "createarsenal:block/big_radar_receiver_block",
-      "y": 270
-    },
-    "facing=up,multiblock=false": {
-      "model": "createarsenal:block/big_radar_receiver_block",
-      "y": 270
-    },
     "facing=north,multiblock=false": {
       "model": "createarsenal:block/big_radar_receiver_block",
       "y": 180
@@ -22,12 +14,6 @@
     "facing=east,multiblock=false": {
       "model": "createarsenal:block/big_radar_receiver_block",
       "y": 270
-    },
-    "facing=down,multiblock=true": {
-      "model": "minecraft:block/air"
-    },
-    "facing=up,multiblock=true": {
-      "model": "minecraft:block/air"
     },
     "facing=north,multiblock=true": {
       "model": "minecraft:block/air"
