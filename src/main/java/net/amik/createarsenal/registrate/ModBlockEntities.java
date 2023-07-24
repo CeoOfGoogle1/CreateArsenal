@@ -8,6 +8,8 @@ import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishInstance;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlockTileEntity;
+import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
+import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretRenderer;
@@ -36,11 +38,11 @@ public class ModBlockEntities {
             .renderer(() -> FourBarrelStaticTurretRenderer::new)
             .register();
 
-//    public static final BlockEntityEntry<MonitorBlockEntity> MONITOR = REGISTRATE
-//            .blockEntity("monitor", MonitorBlockEntity::new)
-//            .validBlocks(ModBlocks.MONITOR)
-//            .renderer(() -> MonitorRenderer::new)
-//            .register();
+    public static final BlockEntityEntry<MonitorBlockEntity> MONITOR = REGISTRATE
+            .blockEntity("monitor", MonitorBlockEntity::new)
+            .validBlocks(ModBlocks.MONITOR)
+            .renderer(() -> MonitorRenderer::new)
+            .register();
 
     public static final BlockEntityEntry<EightBarrelStaticTurretBlockEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
             .blockEntity("eight_barrel_static_turret", EightBarrelStaticTurretBlockEntity::new)

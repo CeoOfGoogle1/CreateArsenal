@@ -36,7 +36,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
     public float getAnimation()
     {
-        animation+=.01/2f;
+        animation+=.005f;
         if(animation>=1) animation=.0f;
         return animation;
     }

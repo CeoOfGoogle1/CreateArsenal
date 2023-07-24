@@ -12,6 +12,7 @@ import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
+import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
@@ -51,14 +52,16 @@ public class ModBlocks {
                     .build()
                     .register();
 
-//    public static final BlockEntry<MonitorBlock> MONITOR =
-//            REGISTRATE.block("monitor", MonitorBlock::new)
-//                    .initialProperties(SharedProperties::softMetal)
-//                    .properties(BlockBehaviour.Properties::noOcclusion)
-//                    .simpleItem()
-//                    .register();
+    public static final BlockEntry<MonitorBlock> MONITOR =
+            REGISTRATE.block("monitor", MonitorBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(NonNullBiConsumer.noop())
+                    .item()
+                    .model(NonNullBiConsumer.noop())
+                    .build()
+                    .register();
 
-    // TODO: Fix this stupid system, implement multiblock @happysg
 
     public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
             REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
