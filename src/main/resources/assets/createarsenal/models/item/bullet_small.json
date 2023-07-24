@@ -1,7 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"2": "createarsenal:item/bullet_small"
+		"2": "createarsenal:item/bullet_small",
+		"particle": "create:brass_ingot"
 	},
 	"elements": [
 		{
@@ -33,27 +34,36 @@
 	],
 	"display": {
 		"thirdperson_righthand": {
-			"rotation": [90, 0, 0]
+			"rotation": [90, 0, 0],
+			"translation": [0, -1.25, -0.5],
+			"scale": [0.55, 0.55, 0.55]
 		},
 		"thirdperson_lefthand": {
-			"rotation": [90, 0, 0]
+			"rotation": [90, 0, 0],
+			"translation": [0, -1.25, -0.5],
+			"scale": [0.55, 0.55, 0.55]
 		},
 		"firstperson_righthand": {
-			"rotation": [90, 0, 0],
-			"translation": [0, 1, 0]
+			"rotation": [90, 0, 90],
+			"translation": [1.13, 3.2, 1.13],
+			"scale": [0.68, 0.68, 0.68]
 		},
 		"firstperson_lefthand": {
+			"rotation": [90, 0, 90],
+			"translation": [1.13, 3.2, 1.13],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"ground": {
 			"rotation": [90, 0, 0],
-			"translation": [0, 1, 0]
+			"translation": [0, 2, 0],
+			"scale": [0.5, 0.5, 0.5]
 		},
 		"gui": {
 			"rotation": [110, -40, -45],
-			"translation": [1, 1, 0],
-			"scale": [3, 3, 3]
+			"scale": [1.5, 1.5, 1.5]
 		},
 		"fixed": {
-			"translation": [0, 0, -4],
-			"scale": [2, 2, 2]
+			"rotation": [90, 0, -90]
 		}
 	},
 	"groups": [
