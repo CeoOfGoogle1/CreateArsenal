@@ -63,4 +63,4 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: ./build/libs/*-all.jar
+          args: ./build/libs/*.*
