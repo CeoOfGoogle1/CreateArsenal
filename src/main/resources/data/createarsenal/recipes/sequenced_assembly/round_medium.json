@@ -1,25 +1,25 @@
 {
   "type": "create:sequenced_assembly",
   "ingredient": {
-    "item": "createarsenal:small_round_core"
+    "item": "createarsenal:round_core_medium"
   },
   "transitionalItem": {
-    "item": "createarsenal:basic_small_round"
+    "item": "createarsenal:round_medium"
   },
   "sequence": [
     {
       "type": "create:deploying",
       "ingredients": [
         {
-          "item": "createarsenal:small_round_core"
+          "item": "createarsenal:round_core_medium"
         },
         {
-          "item": "createarsenal:jacket_plate_small"
+          "item": "createarsenal:jacket_plate_medium"
         }
       ],
       "results": [
         {
-          "item": "createarsenal:small_round_core"
+          "item": "createarsenal:round_core_medium"
         }
       ]
     },
@@ -27,19 +27,19 @@
       "type": "create:pressing",
       "ingredients": [
         {
-          "item": "createarsenal:small_round_core"
+          "item": "createarsenal:round_core_medium"
         }
       ],
       "results": [
         {
-          "item": "createarsenal:basic_small_round"
+          "item": "createarsenal:round_medium"
         }
       ]
     }
   ],
   "results": [
     {
-      "item": "createarsenal:basic_small_round"
+      "item": "createarsenal:round_medium"
     }
   ],
   "loops": 1

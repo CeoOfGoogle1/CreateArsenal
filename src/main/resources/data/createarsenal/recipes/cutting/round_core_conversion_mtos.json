@@ -2,13 +2,13 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:copper_ingot"
+      "item": "createarsenal:round_core_medium"
     }
   ],
   "results": [
     {
-      "item": "createarsenal:small_round_core",
-      "count": 8
+      "item": "createarsenal:round_core_small",
+      "count": 2
     }
   ],
   "processingTime": 50

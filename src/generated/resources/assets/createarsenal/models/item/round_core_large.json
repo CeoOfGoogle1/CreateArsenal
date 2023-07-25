@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "createarsenal:item/basic_large_round"
+    "layer0": "createarsenal:item/round_core_large"
   }
 }

@@ -2,13 +2,13 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:copper_ingot"
+      "item": "create:brass_ingot"
     }
   ],
   "results": [
     {
-      "item": "createarsenal:medium_round_core",
-      "count": 4
+      "item": "createarsenal:round_core_small",
+      "count": 8
     }
   ],
   "processingTime": 50

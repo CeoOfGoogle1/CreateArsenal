@@ -2,13 +2,13 @@
   "type": "create:cutting",
   "ingredients": [
     {
-      "item": "minecraft:iron_ingot"
+      "item": "createarsenal:round_core_large"
     }
   ],
   "results": [
     {
-      "item": "createarsenal:medium_round_core",
-      "count": 8
+      "item": "createarsenal:round_core_medium",
+      "count": 2
     }
   ],
   "processingTime": 50

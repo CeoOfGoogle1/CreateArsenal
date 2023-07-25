@@ -54,16 +54,16 @@ public class ModItems {
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> LARGE_ROUND_CORE = REGISTRATE.item("large_round_core", Item::new)
+    public static final RegistryEntry<Item> ROUND_CORE_LARGE = REGISTRATE.item("round_core_large", Item::new)
             .lang("Large Round Core")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> MEDIUM_ROUND_CORE = REGISTRATE.item("medium_round_core", Item::new)
+    public static final RegistryEntry<Item> ROUND_CORE_MEDIUM = REGISTRATE.item("round_core_medium", Item::new)
             .lang("Medium Round Core")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-    public static final RegistryEntry<Item> SMALL_ROUND_CORE = REGISTRATE.item("small_round_core", Item::new)
+    public static final RegistryEntry<Item> ROUND_CORE_SMALL = REGISTRATE.item("round_core_small", Item::new)
             .lang("Small Round Core")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
@@ -127,21 +127,67 @@ public class ModItems {
             .model(NonNullBiConsumer.noop())
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-
-    public static final RegistryEntry<Item> BASIC_LARGE_ROUND = REGISTRATE.item("basic_large_round", Item::new)
+    public static final RegistryEntry<Item> ROUND_LARGE = REGISTRATE.item("round_large", Item::new)
             .lang("Large Round (Basic)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-    public static final RegistryEntry<Item> BASIC_MEDIUM_ROUND = REGISTRATE.item("basic_medium_round", Item::new)
-            .lang("Medium Round (Basic)")
+    public static final RegistryEntry<Item> ROUND_LARGE_ARMORPIERCING = REGISTRATE.item("round_large_armorpiercing", Item::new)
+            .lang("Large Round (AP)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-    public static final RegistryEntry<Item> BASIC_SMALL_ROUND = REGISTRATE.item("basic_small_round", Item::new)
+    public static final RegistryEntry<Item> ROUND_LARGE_EMP = REGISTRATE.item("round_large_emp", Item::new)
+            .lang("Large Round (EMP)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> ROUND_LARGE_FLAK = REGISTRATE.item("round_large_flak", Item::new)
+            .lang("Large Round (Flak)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> ROUND_LARGE_HIGHEXPLOSIVE = REGISTRATE.item("round_large_highexplosive", Item::new)
+            .lang("Large Round (HE)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> ROUND_LARGE_INCENDIARY = REGISTRATE.item("round_large_incendiary", Item::new)
+            .lang("Large Round (Incendiary)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+     public static final RegistryEntry<Item> ROUND_MEDIUM = REGISTRATE.item("round_medium", Item::new)
+             .lang("Medium Round (Basic)")
+             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+             .register();
+    public static final RegistryEntry<Item> ROUND_MEDIUM_ARMORPIERCING = REGISTRATE.item("round_medium_armorpiercing", Item::new)
+             .lang("Medium Round (AP)")
+             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+             .register();
+    public static final RegistryEntry<Item> ROUND_MEDIUM_HIGHEXPLOSIVE = REGISTRATE.item("round_medium_highexplosive", Item::new)
+             .lang("Medium Round (HE)")
+             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+             .register();
+     public static final RegistryEntry<Item> ROUND_MEDIUM_INCENDIARY = REGISTRATE.item("round_medium_incendiary", Item::new)
+             .lang("Medium Round (Incendiary)")
+             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+             .register();
+    public static final RegistryEntry<Item> ROUND_SMALL = REGISTRATE.item("round_small", Item::new)
             .lang("Small Round (Basic)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
+    public static final RegistryEntry<Item> ROUND_SMALL_ARMORPIERCING = REGISTRATE.item("round_small_armorpiercing", Item::new)
+            .lang("Small Round (AP)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> ROUND_SMALL_HIGHEXPLOSIVE = REGISTRATE.item("round_small_highexplosive", Item::new)
+            .lang("Small Round (HE)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+     public static final RegistryEntry<Item> ROUND_SMALL_HOLLOWPOINT = REGISTRATE.item("round_small_hollowpoint", Item::new)
+            .lang("Small Round (Hollow-Point)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
+    public static final RegistryEntry<Item> ROUND_SMALL_INCENDIARY = REGISTRATE.item("round_small_incendiary", Item::new)
+            .lang("Small Round (Incendiary)")
+            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+            .register();
 
-
-
+    //TODO: Organize items in creative tab
     public static void register() {}
 }
