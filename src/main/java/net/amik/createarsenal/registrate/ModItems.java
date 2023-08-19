@@ -95,18 +95,31 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
+    public static final RegistryEntry<Item> CARTRIDGE_LARGE_INCOMPLETE = REGISTRATE.item("cartridge_large_incomplete", Item::new)
+            .lang("Large Cartridge (Incomplete)")
+            .model(NonNullBiConsumer.noop())
+            .register();
+
     public static final RegistryEntry<Item> CARTRIDGE_LARGE_EMPTY = REGISTRATE.item("cartridge_large_empty", Item::new)
             .lang("Large Cartridge (Empty)")
             .model(NonNullBiConsumer.noop())
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
+    public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_INCOMPLETE = REGISTRATE.item("cartridge_medium_incomplete", Item::new)
+            .lang("Medium Cartridge (Incomplete)")
+            .model(NonNullBiConsumer.noop())
+            .register();
     public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_EMPTY = REGISTRATE.item("cartridge_medium_empty", Item::new)
             .lang("Medium Cartridge (Empty)")
             .model(NonNullBiConsumer.noop())
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
+    public static final RegistryEntry<Item> CARTRIDGE_SMALL_INCOMPLETE = REGISTRATE.item("cartridge_small_incomplete", Item::new)
+            .lang("Small Cartridge (Incomplete)")
+            .model(NonNullBiConsumer.noop())
+            .register();
     public static final RegistryEntry<Item> CARTRIDGE_SMALL_EMPTY = REGISTRATE.item("cartridge_small_empty", Item::new)
             .lang("Small Cartridge (Empty)")
             .model(NonNullBiConsumer.noop())
