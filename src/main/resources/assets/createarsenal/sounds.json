@@ -1,0 +1,8 @@
+{
+  "chain_gun_fired": {
+    "subtitle": "sounds.createarsenal.chain_gun_fired",
+    "sounds": [
+      "createarsenal:chain_gun_fired"
+    ]
+  }
+}

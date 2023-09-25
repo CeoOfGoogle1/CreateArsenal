@@ -3,6 +3,7 @@ package net.amik.createarsenal;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.amik.createarsenal.registrate.*;
+import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -37,6 +38,7 @@ public class CreateArsenal
         ModShellTypes.register();
         ModProjectiles.register();
         ModTranslations.register();
+        ModSounds.register(eventBus);
         REGISTRATE.registerEventListeners(eventBus);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ModPartials::init);
