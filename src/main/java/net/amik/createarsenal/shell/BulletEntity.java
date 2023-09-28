@@ -8,9 +8,13 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import net.minecraftforge.api.distmarker.Dist;
 import org.jetbrains.annotations.NotNull;
 
 public class BulletEntity extends AbstractHurtingProjectile {
@@ -61,9 +65,24 @@ public class BulletEntity extends AbstractHurtingProjectile {
         }
     }
 
+
+
     @Override
     protected void onHitBlock(BlockHitResult pResult) {
         super.onHitBlock(pResult);
-        this.kill();
+
+        //shitty implementation but works (barely), future me or anyone else, please fix it :thumbs_up:
+        //TODO: make some thing to keep track of block damage
+        double breakChance = this.getLevel().getBlockState(pResult.getBlockPos()).getDestroySpeed(this.getLevel(), pResult.getBlockPos()) / 2.5;
+
+        if (!this.level.isClientSide) {
+            if (Math.random() >= breakChance)
+                //breaks the block
+                this.getLevel().destroyBlock(pResult.getBlockPos(), false);
+            else
+                //sets the visual to half broken
+                this.getLevel().destroyBlockProgress(0, pResult.getBlockPos(), 3);
+            this.kill();
+        }
     }
 }
