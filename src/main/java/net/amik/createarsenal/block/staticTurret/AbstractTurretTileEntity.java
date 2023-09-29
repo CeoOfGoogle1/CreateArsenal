@@ -41,10 +41,14 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity {
 
     protected abstract float getBarrelLength();
 
+    protected int getBreakerLevel() {
+        return (int) getBarrelLength();
+    }
+
     protected void shoot() {
         if (level == null || level.isClientSide) return;
 
-        BulletEntity bullet = new BulletEntity(getLevel());
+        BulletEntity bullet = new BulletEntity(getLevel(), getBreakerLevel());
 
         Direction direction = getBlockState().getValue(FACING).getOpposite();
 
