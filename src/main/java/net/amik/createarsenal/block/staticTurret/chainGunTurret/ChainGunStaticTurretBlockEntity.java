@@ -3,9 +3,10 @@ package net.amik.createarsenal.block.staticTurret.chainGunTurret;
 import net.amik.createarsenal.block.staticTurret.AbstractTurretTileEntity;
 import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ChainGunStaticTurretBlockEntity extends AbstractTurretTileEntity {
     public ChainGunStaticTurretBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
@@ -16,8 +17,13 @@ public class ChainGunStaticTurretBlockEntity extends AbstractTurretTileEntity {
     @Override
     protected void shoot() {
         tickUntilRecoil = 5;
-        level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), ModSounds.CHAIN_GUN_FIRED.get(), SoundSource.BLOCKS, 0.25f, 1, true);
+        //level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), ModSounds.CHAIN_GUN_FIRED.get(), SoundSource.BLOCKS, 0.25f, 1, true);
         super.shoot();
+    }
+
+    @Override
+    protected RegistryObject<SoundEvent> fireSoundName() {
+        return ModSounds.CHAIN_GUN_FIRED;
     }
 
     @Override

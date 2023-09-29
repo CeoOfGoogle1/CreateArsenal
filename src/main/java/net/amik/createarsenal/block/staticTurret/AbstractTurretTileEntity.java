@@ -5,9 +5,12 @@ import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.util.IntUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.registries.RegistryObject;
 
 import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.FACING;
 
@@ -21,9 +24,14 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity {
     @Override
     public void tick() {
         super.tick();
-        if (canShoot())
+        if (canShoot()) {
+            assert level != null;
+            level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 0.25f, 1, true);
             shoot();
+        }
     }
+
+    protected abstract RegistryObject<SoundEvent> fireSoundName();
 
     protected abstract float shootingInterval();
 
@@ -65,7 +73,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity {
                 )
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 3.0F, 0F);
+        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 10.0F, 0F);
 
         whenBulletCreated(bullet);
 
