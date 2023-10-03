@@ -5,6 +5,7 @@ import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.util.IntUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,7 +27,24 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity {
         super.tick();
         if (canShoot()) {
             assert level != null;
-            level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 0.25f, 1, true);
+            level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
+            Direction direction = getBlockState().getValue(FACING).getOpposite();
+            level.addAlwaysVisibleParticle(ParticleTypes.FIREWORK, getBlockPos().getX() +
+                    IntUtil.toInt(direction.getStepX() < 0)
+                    + Math.abs(direction.getStepZ()/2F)
+                    + direction.getStepX() * (getBarrelLength() + 2),getBlockPos().relative(direction, 4).getY()
+                    + 1/4F,getBlockPos().getZ() +
+                    IntUtil.toInt(direction.getStepZ() < 0)
+                    + Math.abs(direction.getStepX()/2F)
+                    + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
+            level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, getBlockPos().getX() +
+                    IntUtil.toInt(direction.getStepX() < 0)
+                    + Math.abs(direction.getStepZ()/2F)
+                    + direction.getStepX() * (getBarrelLength() + 2),getBlockPos().relative(direction, 4).getY()
+                    + 1/4F,getBlockPos().getZ() +
+                    IntUtil.toInt(direction.getStepZ() < 0)
+                    + Math.abs(direction.getStepX()/2F)
+                    + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
             shoot();
         }
     }
@@ -77,7 +95,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity {
                 )
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 10.0F, 0F);
+        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 100.0F, 0F);
 
         whenBulletCreated(bullet);
 
