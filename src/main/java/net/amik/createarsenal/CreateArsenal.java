@@ -3,6 +3,7 @@ package net.amik.createarsenal;
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import net.amik.createarsenal.registrate.*;
+import net.amik.createarsenal.registrate.network.ModMessages;
 import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -13,6 +14,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
@@ -40,6 +42,7 @@ public class CreateArsenal
         ModTranslations.register();
         ModSounds.register(eventBus);
         REGISTRATE.registerEventListeners(eventBus);
+        eventBus.addListener(CreateArsenal::init);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ModPartials::init);
 
@@ -53,6 +56,10 @@ public class CreateArsenal
             // Register a new block here
             LOGGER.info("HELLO from Register Block");
         }
+    }
+
+    public static void init(final FMLCommonSetupEvent event) {
+        event.enqueueWork(ModMessages::register);
     }
 
     public static ResourceLocation resource(String path) {

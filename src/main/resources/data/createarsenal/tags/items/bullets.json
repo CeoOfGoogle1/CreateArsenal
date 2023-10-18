@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "createarsenal:bullet_small",
+    "createarsenal:bullet_medium",
+    "createarsenal:bullet_large"
+  ]
+}
