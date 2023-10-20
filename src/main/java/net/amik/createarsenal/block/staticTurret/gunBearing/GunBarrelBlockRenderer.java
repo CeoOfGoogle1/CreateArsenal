@@ -13,13 +13,13 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.FACING;
 
-public class BarrelBlockRenderer extends SmartBlockEntityRenderer<BarrelBlockEntity> {
-    public BarrelBlockRenderer(BlockEntityRendererProvider.Context context) {
+public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBlockEntity> {
+    public GunBarrelBlockRenderer(BlockEntityRendererProvider.Context context) {
         super(context);
     }
 
     @Override
-    protected void renderSafe(BarrelBlockEntity barrel, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
+    protected void renderSafe(GunBarrelBlockEntity barrel, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         super.renderSafe(barrel, partialTicks, ms, buffer, light, overlay);
         if(barrel.getBarrelCount()==0||barrel.getPartialModel()==null) return;
 
@@ -28,6 +28,9 @@ public class BarrelBlockRenderer extends SmartBlockEntityRenderer<BarrelBlockEnt
         VertexConsumer vb = buffer.getBuffer(RenderType.cutoutMipped());
         Direction shift=direction.getCounterClockWise();
 
+        double modifier=barrel.size.ordinal();
+        if(barrel.size== NormalGunBlockEntity.Size.SMALL)
+            modifier=1.5;
 
         SuperByteBuffer barrelModel=CachedBufferer
                 .partialFacing(barrel.getPartialModel(), blockState, direction);
@@ -38,31 +41,31 @@ public class BarrelBlockRenderer extends SmartBlockEntityRenderer<BarrelBlockEnt
 
 
         if(barrel.barrelCount==2) {
-            barrelModel.translate(shift.getStepX() * -0.1, 0, shift.getStepZ() * -0.1);
+            barrelModel.translate(shift.getStepX() * -0.05*modifier, 0, shift.getStepZ() * -0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.1, 0, shift.getStepZ() * 0.1);
+            barrelModel.translate(shift.getStepX() * 0.05*modifier, 0, shift.getStepZ() * 0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
         }
 
 
         if(barrel.barrelCount==3) {
-            barrelModel.translate(shift.getStepX() * -0.1, -0.1, shift.getStepZ() * -0.1);
+            barrelModel.translate(shift.getStepX() * -0.05*modifier, -0.05*modifier, shift.getStepZ() * -0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.1, -0.1, shift.getStepZ() * 0.1);
+            barrelModel.translate(shift.getStepX() * 0.05*modifier, -0.05*modifier, shift.getStepZ() * 0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(0, .1, 0);
+            barrelModel.translate(0, .05*modifier, 0);
             barrelModel.light(light).renderInto(ms, vb);
         }
 
 
         if (barrel.barrelCount >= 4) {
-            barrelModel.translate(shift.getStepX() * -0.1, -0.1, shift.getStepZ() * -0.1);
+            barrelModel.translate(shift.getStepX() * -0.05*modifier, -0.05*modifier, shift.getStepZ() * -0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.1, -0.1, shift.getStepZ() * 0.1);
+            barrelModel.translate(shift.getStepX() * 0.05*modifier, -0.05*modifier, shift.getStepZ() * 0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * -0.1, 0.1, shift.getStepZ() * -0.1);
+            barrelModel.translate(shift.getStepX() * -0.05*modifier, 0.05*modifier, shift.getStepZ() * -0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.1, 0.1, shift.getStepZ() * 0.1);
+            barrelModel.translate(shift.getStepX() * 0.05*modifier, 0.05*modifier, shift.getStepZ() * 0.05*modifier);
             barrelModel.light(light).renderInto(ms, vb);
         }
 

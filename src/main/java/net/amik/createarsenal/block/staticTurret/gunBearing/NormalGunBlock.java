@@ -29,6 +29,14 @@ public class NormalGunBlock extends HorizontalDirectionBlock implements IBE<Norm
     }
 
     @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        BlockPos facing=pPos.relative(pState.getValue(FACING).getOpposite());
+        if(pLevel.getBlockEntity(facing) instanceof GunBarrelBlockEntity)
+            pLevel.removeBlock(facing,false);
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
+    @Override
     public Class<NormalGunBlockEntity> getBlockEntityClass() {
         return NormalGunBlockEntity.class;
     }

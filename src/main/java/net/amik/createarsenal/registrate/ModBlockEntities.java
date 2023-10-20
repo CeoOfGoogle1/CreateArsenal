@@ -19,8 +19,8 @@ import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStat
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlockEntity;
-import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlockRenderer;
+import net.amik.createarsenal.block.staticTurret.gunBearing.GunBarrelBlockEntity;
+import net.amik.createarsenal.block.staticTurret.gunBearing.GunBarrelBlockRenderer;
 import net.amik.createarsenal.block.staticTurret.gunBearing.NormalGunBlockEntity;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
@@ -47,10 +47,10 @@ public class ModBlockEntities {
             .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<BarrelBlockEntity> BARREL_BLOCK_ENTITY = REGISTRATE
-            .blockEntity("barrel_block", BarrelBlockEntity::new)
+    public static final BlockEntityEntry<GunBarrelBlockEntity> BARREL_BLOCK_ENTITY = REGISTRATE
+            .blockEntity("barrel_block", GunBarrelBlockEntity::new)
             .validBlocks(ModBlocks.BARREL_BLOCK)
-            .renderer(() -> BarrelBlockRenderer::new)
+            .renderer(() -> GunBarrelBlockRenderer::new)
             .register();
 
     public static final BlockEntityEntry<MonitorBlockEntity> MONITOR = REGISTRATE

@@ -1,10 +1,7 @@
 package net.amik.createarsenal.registrate;
 
 
-import com.simibubi.create.Create;
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
-import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
-import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
@@ -16,7 +13,7 @@ import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
-import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlock;
+import net.amik.createarsenal.block.staticTurret.gunBearing.GunBarrelBlock;
 import net.amik.createarsenal.block.staticTurret.gunBearing.NormalGunBlock;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.amik.createarsenal.util.CreateUtil;
@@ -25,10 +22,8 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
-import static com.simibubi.create.Create.asResource;
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 import static net.amik.createarsenal.block.big_radar.BigRadarDishBlock.MULTIBLOCK;
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AXIS;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.HORIZONTAL_FACING;
 
 public class ModBlocks {
@@ -64,15 +59,15 @@ public class ModBlocks {
                     .build()
                     .register();
 
-    public static final BlockEntry<BarrelBlock> BARREL_BLOCK =
-            REGISTRATE.block("barrel_block", BarrelBlock::new)
+    public static final BlockEntry<GunBarrelBlock> BARREL_BLOCK =
+            REGISTRATE.block("barrel_block", GunBarrelBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate((c, p) -> p.getVariantBuilder(c.get())
                             .forAllStatesExcept(state -> ConfiguredModel.builder()
                                     .modelFile(p.models()
                                             .getExistingFile(p.mcLoc("block/air")))
-                                    .build(), BarrelBlock.FACING))
+                                    .build(), GunBarrelBlock.FACING))
                     .item()
                     .build()
                     .register();
