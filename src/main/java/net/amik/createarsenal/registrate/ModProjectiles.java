@@ -6,9 +6,9 @@ import com.tterrag.registrate.util.entry.EntityEntry;
 import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.amik.createarsenal.shell.BulletRenderer;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.shell.BulletEntity;
+import net.amik.createarsenal.shell.DynamicBulletRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
@@ -19,8 +19,8 @@ public class ModProjectiles {
 
 
     public static final EntityEntry<BulletEntity> BULLET_ENTITY =
-            register("bullet", BulletEntity::new, () -> BulletRenderer::new,
-                    MobCategory.MISC, 16, 20, true, false, BulletEntity::build).register();
+            register("bullet", BulletEntity::new, () -> DynamicBulletRenderer::new,
+                    MobCategory.MISC, 16, 5, true, false, BulletEntity::build).register();
 
     public static void register() {}
 

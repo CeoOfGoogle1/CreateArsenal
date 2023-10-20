@@ -6,6 +6,7 @@ import net.amik.createarsenal.registrate.ModPartials;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.culling.Frustum;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -73,6 +74,11 @@ public class BulletRenderer extends EntityRenderer<BulletEntity> {
                 .renderModelLists(ModPartials.MEDIUM_ROUND.get(), ItemStack.EMPTY, light, OverlayTexture.NO_OVERLAY, ms, buffer.getBuffer(RenderType.cutout()));
 
         ms.popPose();
+    }
+
+    @Override
+    public boolean shouldRender(BulletEntity pLivingEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
+        return super.shouldRender(pLivingEntity, pCamera, pCamX, pCamY, pCamZ);
     }
 
     @Override

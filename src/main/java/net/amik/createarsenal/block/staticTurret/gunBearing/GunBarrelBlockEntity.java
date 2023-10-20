@@ -53,6 +53,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     public void addBarrel(NormalGunBlockEntity.Size size) {
         this.size=size;
         this.barrelCount++;
+        notifyUpdate();
     }
 
     public PartialModel getPartialModel() {

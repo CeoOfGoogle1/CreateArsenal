@@ -105,6 +105,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
             barrel.addBarrel(size);
             barrelCount=barrel.getBarrelCount();
         }
+        notifyUpdate();
     }
 
 
@@ -145,6 +146,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     public void removeBarrel() {
         barrelCount=0;
         size=Size.NONE;
+        notifyUpdate();
     }
 
     @Override
