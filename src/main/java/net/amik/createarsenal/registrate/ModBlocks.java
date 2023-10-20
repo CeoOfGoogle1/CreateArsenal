@@ -16,6 +16,8 @@ import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
+import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlock;
+import net.amik.createarsenal.block.staticTurret.gunBearing.NormalGunBlock;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.core.Direction;
@@ -50,6 +52,28 @@ public class ModBlocks {
                     .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
                     .item()
                     .model(NonNullBiConsumer.noop())
+                    .build()
+                    .register();
+
+    public static final BlockEntry<NormalGunBlock> NORMAL_GUN =
+            REGISTRATE.block("normal_gun_bearing", NormalGunBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .item()
+                    .build()
+                    .register();
+
+    public static final BlockEntry<BarrelBlock> BARREL_BLOCK =
+            REGISTRATE.block("barrel_block", BarrelBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStatesExcept(state -> ConfiguredModel.builder()
+                                    .modelFile(p.models()
+                                            .getExistingFile(p.mcLoc("block/air")))
+                                    .build(), BarrelBlock.FACING))
+                    .item()
                     .build()
                     .register();
 

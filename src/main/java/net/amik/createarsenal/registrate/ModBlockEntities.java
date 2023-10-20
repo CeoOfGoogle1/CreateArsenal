@@ -3,6 +3,7 @@ package net.amik.createarsenal.registrate;
 
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
+import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
@@ -18,6 +19,9 @@ import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStat
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlockEntity;
+import net.amik.createarsenal.block.staticTurret.gunBearing.BarrelBlockRenderer;
+import net.amik.createarsenal.block.staticTurret.gunBearing.NormalGunBlockEntity;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -35,6 +39,18 @@ public class ModBlockEntities {
             .instance(() -> FourBarrelStaticTurretInstance::new, true)
             .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
             .renderer(() -> FourBarrelStaticTurretRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<NormalGunBlockEntity> NORMAL_GUN_BLOCK_ENTITY = REGISTRATE
+            .blockEntity("normal_gun_bearing", NormalGunBlockEntity::new)
+            .validBlocks(ModBlocks.NORMAL_GUN)
+            .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<BarrelBlockEntity> BARREL_BLOCK_ENTITY = REGISTRATE
+            .blockEntity("barrel_block", BarrelBlockEntity::new)
+            .validBlocks(ModBlocks.BARREL_BLOCK)
+            .renderer(() -> BarrelBlockRenderer::new)
             .register();
 
     public static final BlockEntityEntry<MonitorBlockEntity> MONITOR = REGISTRATE

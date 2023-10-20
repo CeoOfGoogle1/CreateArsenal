@@ -24,18 +24,17 @@ public class ModItems {
     public static final RegistryEntry<Item> BRASS_ROD = REGISTRATE.item("brass_rod", Item::new)
             .register();
 
-    public static final RegistryEntry<Item> GUN_BARREL_SMALL = REGISTRATE.item("gun_barrel_small", Item::new)
-            .lang("Small Gun Barrel")
+    public static final RegistryEntry<Item> SMALL_BARREL = REGISTRATE.item("small_gun_barrel", Item::new)
+            .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> GUN_BARREL_MEDIUM = REGISTRATE.item("gun_barrel_medium", Item::new)
-            .lang("Medium Gun Barrel")
+    public static final RegistryEntry<Item> MEDIUM_BARREL = REGISTRATE.item("medium_gun_barrel", Item::new)
+            .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> GUN_BARREL_LARGE = REGISTRATE.item("gun_barrel_large", Item::new)
-            .lang("Large Gun Barrel")
+    public static final RegistryEntry<Item> LARGE_BARREL = REGISTRATE.item("large_gun_barrel", Item::new)
+            .model(NonNullBiConsumer.noop())
             .register();
-
     public static final RegistryEntry<Item> BULLET_SMALL = REGISTRATE.item("bullet_small", Item::new)
             .lang("Small Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
