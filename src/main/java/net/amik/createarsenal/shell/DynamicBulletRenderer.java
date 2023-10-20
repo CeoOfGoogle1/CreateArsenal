@@ -43,7 +43,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
         Vec3 deltaMovement = entity.getDeltaMovement();
 
-        ms.translate(0, -1/2f, 0);
+        ms.translate(0, -3/4f, 0);
 
         if (deltaMovement.z == 0) {
             if (deltaMovement.x > 0) {
@@ -76,13 +76,12 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
                 ));
             }
         }
-        //Rainbow Color
-        Color color= Color.generateFromLong(entity.level.getGameTime());
+
 
         RenderType rendertype = this.getRenderType(entity);
         if (rendertype != null) {
             VertexConsumer vertexconsumer = pBuffer.getBuffer(rendertype);
-            this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, color.getRedAsFloat(), color.getGreenAsFloat(), color.getBlueAsFloat(), 1.0F);
+            this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f,1f, 1f, 1.0F);
         }
         super.render(entity, pEntityYaw, pPartialTick, ms, pBuffer, pPackedLight);
         ms.popPose();
@@ -102,6 +101,6 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
     @Override
     public ResourceLocation getTextureLocation(BulletEntity pEntity) {
-        return resource("textures/entity/custom_bullet.png");
+        return resource("textures/entity/dynamic_bullet.png");
     }
 }

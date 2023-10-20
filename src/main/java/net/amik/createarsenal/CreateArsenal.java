@@ -37,7 +37,6 @@ public class CreateArsenal
         ModItems.register();
         ModBlocks.register();
         ModBlockEntities.register();
-        ModShellTypes.register();
         ModProjectiles.register();
         ModTranslations.register();
         ModSounds.register(eventBus);

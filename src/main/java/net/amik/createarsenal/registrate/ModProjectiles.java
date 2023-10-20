@@ -20,7 +20,7 @@ public class ModProjectiles {
 
     public static final EntityEntry<BulletEntity> BULLET_ENTITY =
             register("bullet", BulletEntity::new, () -> DynamicBulletRenderer::new,
-                    MobCategory.MISC, 16, 5, true, false, BulletEntity::build).register();
+                    MobCategory.MISC, 64, 1, true, false, BulletEntity::build).register();
 
     public static void register() {}
 
