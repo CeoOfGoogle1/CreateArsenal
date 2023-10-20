@@ -37,6 +37,8 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     protected void spawnDestroyParticles(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState) {
     }
 
+
+
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         Direction behind=pState.getValue(FACING);

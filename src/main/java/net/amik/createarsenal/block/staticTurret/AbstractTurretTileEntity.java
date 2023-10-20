@@ -180,7 +180,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     }
 
 
-    private String getTooltipName(){
+    protected String getTooltipName(){
         String key=this.getBlockState().getBlock().getDescriptionId();
         return Components.translatable(key).getString();
     }

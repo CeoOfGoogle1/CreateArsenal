@@ -28,9 +28,8 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
         VertexConsumer vb = buffer.getBuffer(RenderType.cutoutMipped());
         Direction shift=direction.getCounterClockWise();
 
-        double modifier=barrel.size.ordinal();
-        if(barrel.size== NormalGunBlockEntity.Size.SMALL)
-            modifier=1.5;
+        double modifier=4;
+
 
         SuperByteBuffer barrelModel=CachedBufferer
                 .partialFacing(barrel.getPartialModel(), blockState, direction);

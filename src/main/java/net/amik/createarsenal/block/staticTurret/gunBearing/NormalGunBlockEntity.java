@@ -1,5 +1,6 @@
 package net.amik.createarsenal.block.staticTurret.gunBearing;
 
+import com.jozufozu.flywheel.util.StringUtil;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -160,4 +162,10 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         return 1f;
     }
 
+    @Override
+    protected String getTooltipName() {
+        if(barrelCount>0)
+            return StringUtils.capitalize(size.toString().toLowerCase())+" "+barrelCount+" Barrel Gun";
+        return super.getTooltipName();
+    }
 }
