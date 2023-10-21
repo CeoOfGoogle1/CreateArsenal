@@ -5,6 +5,7 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.amik.createarsenal.block.big_radar.BidRadarDishRenderer;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
@@ -84,7 +85,7 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<BigRadarDishBlockTileEntity> BIG_RADAR_DISH_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("big_radar_dish_block", BigRadarDishBlockTileEntity::new)
             .validBlocks(ModBlocks.BIG_RADAR_DISH_BLOCK)
-            .renderer(() -> KineticBlockEntityRenderer::new)
+            .renderer(() -> BidRadarDishRenderer::new)
             .register();
 
 
