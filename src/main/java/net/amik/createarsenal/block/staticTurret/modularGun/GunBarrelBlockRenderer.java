@@ -5,11 +5,13 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.simibubi.create.foundation.render.CachedBufferer;
 import com.simibubi.create.foundation.render.SuperByteBuffer;
+import net.amik.createarsenal.registrate.ModPartials;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
 
 import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.FACING;
 
@@ -68,6 +70,57 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
             barrelModel.light(light).renderInto(ms, vb);
         }
 
+        SuperByteBuffer barrelEnd=CachedBufferer
+                .partialFacing(ModPartials.BARREL_END_PIECE, blockState, direction);
+
+
+        if(barrel.isPrimary()){
+            barrelEnd.scale(1,1.2f,1.2f);
+            barrelEnd.translate(0,0.1,-.075);
+            barrelEnd.translate(direction.getStepX()*.5,0,direction.getStepZ()*.5);
+            barrelEnd.light(light).renderInto(ms,vb);
+
+        }
+
+        if(barrel.isLastBarrel()){
+            barrelEnd.scale(1,1.2f,1.2f);
+            barrelEnd.translate(0,0.1,-.075);
+            barrelEnd.translate(direction.getStepX()*.75,0,direction.getStepZ()*.75);
+            barrelEnd.translate(direction.getOpposite().getStepX(),0,direction.getOpposite().getStepZ());
+            barrelEnd.light(light).renderInto(ms,vb);
+        }
+
+        SuperByteBuffer barrelMiddle=CachedBufferer
+                .partialFacing(ModPartials.BARREL_MIDDLE_PIECE, blockState, direction);
+
+        if(barrel.getGunBE()!=null){
+            int barrelLength= (int) barrel.getGunBE().getBarrelLength();
+            if(barrel.getBarrelPosition()==2&&barrelLength>=3){
+                barrelMiddle.scale(1,1.2f,1.2f);
+                barrelMiddle.translate(0,0.1,-.075);
+                if(barrelLength==3)
+                    barrelMiddle.renderInto(ms,vb);
+                if(barrelLength>=4) {
+                    barrelMiddle.translate(direction.getOpposite().getStepX()*.5 , 0, direction.getOpposite().getStepZ()*.5);
+                    barrelMiddle.renderInto(ms, vb);
+                }
+            }
+
+            if(barrel.getBarrelPosition()==4&&barrelLength>=6){
+                barrelMiddle.scale(1,1.2f,1.2f);
+                barrelMiddle.translate(0,0.1,-.075);
+                barrelMiddle.translate(direction.getOpposite().getStepX()*.5 , 0, direction.getOpposite().getStepZ()*.5);
+                barrelMiddle.renderInto(ms, vb);
+            }
+
+            if(barrel.getBarrelPosition()==6&&barrelLength>=8){
+                barrelMiddle.scale(1,1.2f,1.2f);
+                barrelMiddle.translate(0,0.1,-.075);
+                barrelMiddle.translate(direction.getOpposite().getStepX()*.5 , 0, direction.getOpposite().getStepZ()*.5);
+                barrelMiddle.renderInto(ms, vb);
+            }
+
+        }
 
     }
 

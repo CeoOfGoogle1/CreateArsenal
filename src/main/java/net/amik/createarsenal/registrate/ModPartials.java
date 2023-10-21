@@ -18,6 +18,8 @@ public class ModPartials {
             FOUR_BARREL = block("four_barrel_static_barrel"),
             BIG_DISH = block("radar_multi"),
             EIGHT_BARREL = block("eight_barrel_static_barrel"),
+            BARREL_MIDDLE_PIECE = block("barrel_middle_piece"),
+            BARREL_END_PIECE = block("barrel_end_piece"),
             MEDIUM_ROUND = entity("medium_round");
 
     private static PartialModel block(String path) {

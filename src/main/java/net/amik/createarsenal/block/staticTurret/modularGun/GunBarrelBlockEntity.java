@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -139,5 +140,25 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     public BlockPos getGunBearing() {
         return gunBearing;
     }
+
+    public boolean isPrimary(){
+        BlockPos gunpos = getBlockPos().relative(getBlockState().getValue(FACING));
+        return level.getBlockEntity(gunpos) instanceof NormalGunBlockEntity;
+    }
+
+    public int getBarrelPosition(){
+        return Math.abs(getBlockPos().getX()-gunBearing.getX())+Math.abs(getBlockPos().getY()-gunBearing.getY());
+    }
+    public boolean isLastBarrel(){
+        BlockPos gunpos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
+        return !(level.getBlockEntity(gunpos) instanceof GunBarrelBlockEntity);
+    }
+    public NormalGunBlockEntity getGunBE(){
+        if(level.getBlockEntity(gunBearing) instanceof NormalGunBlockEntity gun)
+            return gun;
+        return null;
+    }
+
+
 
 }
