@@ -7,7 +7,6 @@ import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRende
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
-import net.amik.createarsenal.block.big_radar.BigRadarDishInstance;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
@@ -19,9 +18,9 @@ import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStat
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.gunBearing.GunBarrelBlockEntity;
-import net.amik.createarsenal.block.staticTurret.gunBearing.GunBarrelBlockRenderer;
-import net.amik.createarsenal.block.staticTurret.gunBearing.NormalGunBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockRenderer;
+import net.amik.createarsenal.block.staticTurret.modularGun.NormalGunBlockEntity;
 import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -84,7 +83,6 @@ public class ModBlockEntities {
 
     public static final BlockEntityEntry<BigRadarDishBlockTileEntity> BIG_RADAR_DISH_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("big_radar_dish_block", BigRadarDishBlockTileEntity::new)
-            .instance(()-> BigRadarDishInstance::new)
             .validBlocks(ModBlocks.BIG_RADAR_DISH_BLOCK)
             .renderer(() -> KineticBlockEntityRenderer::new)
             .register();

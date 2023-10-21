@@ -1,9 +1,14 @@
 package net.amik.createarsenal.registrate;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
+import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
+import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
+import net.amik.createarsenal.shell.ShellScale;
 import net.minecraft.world.item.Item;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
@@ -24,30 +29,30 @@ public class ModItems {
     public static final RegistryEntry<Item> BRASS_ROD = REGISTRATE.item("brass_rod", Item::new)
             .register();
 
-    public static final RegistryEntry<Item> SMALL_BARREL = REGISTRATE.item("small_gun_barrel", Item::new)
+    public static final RegistryEntry<ScaleItem> SMALL_BARREL = scaleItem("small_gun_barrel", ShellScale.SMALL)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> MEDIUM_BARREL = REGISTRATE.item("medium_gun_barrel", Item::new)
+    public static final RegistryEntry<ScaleItem> MEDIUM_BARREL = scaleItem("medium_gun_barrel", ShellScale.MEDIUM)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> LARGE_BARREL = REGISTRATE.item("large_gun_barrel", Item::new)
+    public static final RegistryEntry<ScaleItem> LARGE_BARREL = scaleItem("large_gun_barrel", ShellScale.LARGE)
             .model(NonNullBiConsumer.noop())
             .register();
-    public static final RegistryEntry<Item> BULLET_SMALL = REGISTRATE.item("bullet_small", Item::new)
+    public static final RegistryEntry<ScaleItem> BULLET_SMALL = scaleItem("bullet_small", ShellScale.SMALL)
             .lang("Small Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> BULLET_MEDIUM = REGISTRATE.item("bullet_medium", Item::new)
+    public static final RegistryEntry<ScaleItem> BULLET_MEDIUM = scaleItem("bullet_medium", ShellScale.MEDIUM)
             .lang("Medium Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<Item> BULLET_LARGE = REGISTRATE.item("bullet_large", Item::new)
+    public static final RegistryEntry<ScaleItem> BULLET_LARGE = scaleItem("bullet_large", ShellScale.LARGE)
             .lang("Large Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
@@ -202,4 +207,10 @@ public class ModItems {
 
     //TODO: Organize items in creative tab
     public static void register() {}
+
+
+    private static ItemBuilder<ScaleItem, CreateRegistrate> scaleItem(String name, ShellScale scale) {
+        return REGISTRATE.item(name, properties -> new ScaleItem(properties,scale));
+    }
+
 }

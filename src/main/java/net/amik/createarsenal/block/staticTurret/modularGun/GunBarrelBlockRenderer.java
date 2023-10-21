@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.staticTurret.gunBearing;
+package net.amik.createarsenal.block.staticTurret.modularGun;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

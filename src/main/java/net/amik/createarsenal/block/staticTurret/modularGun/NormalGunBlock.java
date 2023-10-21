@@ -1,16 +1,13 @@
-package net.amik.createarsenal.block.staticTurret.gunBearing;
+package net.amik.createarsenal.block.staticTurret.modularGun;
 
 import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
-import net.amik.createarsenal.util.HorizontalDirectionalKineticBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.DirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
