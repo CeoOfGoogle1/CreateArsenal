@@ -53,6 +53,7 @@ public class ModBlocks {
     public static final BlockEntry<NormalGunBlock> NORMAL_GUN =
             REGISTRATE.block("normal_gun_bearing", NormalGunBlock::new)
                     .initialProperties(SharedProperties::softMetal)
+                    .properties(properties -> properties.isRedstoneConductor((pState, pLevel, pPos) -> false))
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
                     .item()

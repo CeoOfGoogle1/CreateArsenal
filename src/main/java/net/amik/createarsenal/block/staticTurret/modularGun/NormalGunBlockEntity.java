@@ -4,6 +4,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
+import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.shell.ShellScale;
 import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.core.BlockPos;
@@ -26,7 +27,7 @@ import static net.amik.createarsenal.util.HorizontalDirectionBlock.FACING;
 
 public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
-    private static final int MAX_BARREL_LENGTH = 8;
+    private static final int MAX_BARREL_LENGTH = 4;
 
 
     public NormalGunBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -61,13 +62,13 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     }
     @Override
     protected float shootingInterval() {
-        return 2;
+        return 1;
     }
 
 
     @Override
     public float getSpeed() {
-        return 16*getBarrelCount();
+        return 32*getBarrelCount();
     }
 
     @Override
@@ -129,5 +130,18 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
     public boolean maxBarrelLength() {
         return getBarrelLength()>=MAX_BARREL_LENGTH;
+    }
+
+    @Override
+    protected void whenBulletCreated(BulletEntity bullet) {
+        bullet.setLife((int) (getBarrelLength()*20));
+        bullet.setDamage(2*getBarrelSize().ordinal());
+        super.whenBulletCreated(bullet);
+    }
+
+
+    @Override
+    protected float getVelocity() {
+        return 6+getBarrelLength();
     }
 }

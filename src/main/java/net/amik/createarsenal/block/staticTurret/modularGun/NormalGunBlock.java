@@ -4,9 +4,11 @@ import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -32,6 +34,9 @@ public class NormalGunBlock extends HorizontalDirectionBlock implements IBE<Norm
             pLevel.removeBlock(facing,false);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
+
+
+
 
     @Override
     public Class<NormalGunBlockEntity> getBlockEntityClass() {

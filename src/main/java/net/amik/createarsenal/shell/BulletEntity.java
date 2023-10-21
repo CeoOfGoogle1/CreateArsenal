@@ -23,7 +23,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class BulletEntity extends AbstractHurtingProjectile {
     public static final AtomicInteger NEXT_BREAKER_ID = new AtomicInteger();
 
-    protected int life=0;
+
+    protected int life=20;
+
+    protected int damage=2;
+
+
+
+    private Color insideColor=new Color(255,212,0,255);
+    private Color OutsideColor=new Color(255,72,0,100);
 
     protected int breakerId = -NEXT_BREAKER_ID.incrementAndGet();
 
@@ -52,8 +60,8 @@ public class BulletEntity extends AbstractHurtingProjectile {
     public void tick() {
         super.tick();
         if (!this.level.isClientSide) {
-            life++;
-            if (life > 40)
+            life--;
+            if (life < 0)
                 kill();
         }
     }
@@ -72,7 +80,7 @@ public class BulletEntity extends AbstractHurtingProjectile {
         super.onHitEntity(p_37216_);
         if (!this.level.isClientSide) {
             Entity entity = p_37216_.getEntity();
-            entity.hurt(DamageSource.GENERIC, 6.0F);
+            entity.hurt(DamageSource.GENERIC, damage);
             this.kill();
         }
     }
@@ -107,6 +115,31 @@ public class BulletEntity extends AbstractHurtingProjectile {
         pCompound.putInt("BreakerId", breakerId);
     }
 
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public void setColor(Color outside, Color inside){
+        this.insideColor=inside;
+        this.OutsideColor=outside;
+    }
+
+    public Color getInsideColor() {
+        return insideColor;
+    }
+
+    public Color getOutsideColor() {
+        return OutsideColor;
+    }
+
+    @Override
+    protected float getInertia() {
+        return 1;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);

@@ -81,6 +81,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
         RenderType rendertype = this.getRenderType(entity);
         if (rendertype != null) {
             VertexConsumer vertexconsumer = pBuffer.getBuffer(rendertype);
+            this.model.setColor(entity.getOutsideColor(),entity.getInsideColor());
             this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f,1f, 1f, 1.0F);
         }
         super.render(entity, pEntityYaw, pPartialTick, ms, pBuffer, pPackedLight);

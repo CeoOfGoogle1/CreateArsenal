@@ -18,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -56,7 +55,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         compound.put("inv",itemCapability.orElse(new TurretItemHandler()).serializeNBT());
     }
 
-    int counter;
+    protected int counter;
 
 
 
@@ -64,9 +63,9 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     public void tick() {
         super.tick();
         if (canShoot()&&hasAmmo()) {
-            consumeAmmo();
             playSoundAndParticles();
             shoot();
+            consumeAmmo();
         }
     }
 
@@ -136,12 +135,13 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 )
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), 8.0F+getBarrelLength(), 0F);
+        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getVelocity(), 0F);
 
         whenBulletCreated(bullet);
 
         level.addFreshEntity(bullet);
     }
+
 
 
 
@@ -229,4 +229,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 + Math.abs(direction.getStepX()/2F)
                 + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
     }
+
+
+    protected float getVelocity(){return 10;}
 }

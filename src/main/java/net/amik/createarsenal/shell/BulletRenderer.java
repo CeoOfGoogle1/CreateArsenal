@@ -76,10 +76,6 @@ public class BulletRenderer extends EntityRenderer<BulletEntity> {
         ms.popPose();
     }
 
-    @Override
-    public boolean shouldRender(BulletEntity pLivingEntity, Frustum pCamera, double pCamX, double pCamY, double pCamZ) {
-        return super.shouldRender(pLivingEntity, pCamera, pCamX, pCamY, pCamZ);
-    }
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull BulletEntity entity) {
