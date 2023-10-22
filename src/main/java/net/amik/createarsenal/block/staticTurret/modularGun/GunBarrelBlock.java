@@ -16,10 +16,13 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunBarrelBlockEntity> {
     public GunBarrelBlock(Properties pProperties) {
@@ -34,7 +37,7 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity be)
-            return be.use(pState,pLevel,pPos,pPlayer,pHand,pHit);
+            return be.use(pPlayer,pPlayer.getItemInHand(pHand));
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
@@ -60,11 +63,19 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
     }
 
+
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         Direction behind=pState.getValue(FACING).getOpposite();
+
         if(pLevel.getBlockEntity(pPos.relative(behind)) instanceof GunBarrelBlockEntity)
             pLevel.removeBlock(pPos.relative(behind),false);
+
+        if(pLevel.getBlockEntity(pPos.relative(behind.getOpposite())) instanceof NormalGunBlockEntity gun)
+            gun.dropAmmo();
+
+        if(pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity barrel)
+            barrel.dropItemEntity();
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 

@@ -30,6 +30,8 @@ public class BulletEntity extends AbstractHurtingProjectile {
 
 
 
+    protected ShellScale size=ShellScale.SMALL;
+
     private Color insideColor=new Color(255,212,0,255);
     private Color OutsideColor=new Color(255,72,0,100);
 
@@ -140,6 +142,15 @@ public class BulletEntity extends AbstractHurtingProjectile {
     public void setDamage(int damage) {
         this.damage = damage;
     }
+
+    public ShellScale getSize() {
+        return size;
+    }
+
+    public void setSize(ShellScale size) {
+        this.size = size;
+    }
+
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);

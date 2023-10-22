@@ -73,9 +73,14 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     @Override
     public void destroy() {
         super.destroy();
-        ItemHelper.dropContents(level, worldPosition, itemCapability.orElse(new TurretItemHandler()));
+        dropAmmo();
     }
 
+    public void dropAmmo(){
+        if(hasAmmo())
+            ItemHelper.dropContents(level, worldPosition, itemCapability.orElse(new TurretItemHandler()));
+        notifyUpdate();
+    }
     private void consumeAmmo() {
         itemCapability.ifPresent(itemCapability->itemCapability.extractItem(0,1,false));
     }

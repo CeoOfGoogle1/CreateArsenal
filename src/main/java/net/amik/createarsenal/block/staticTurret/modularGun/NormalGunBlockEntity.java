@@ -1,6 +1,7 @@
 package net.amik.createarsenal.block.staticTurret.modularGun;
 
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import com.simibubi.create.foundation.item.ItemHelper;
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
@@ -57,6 +58,8 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
                 notifyUpdate();
                 return true;
             }
+            if(barrel.atMaxBarrelCount())
+              return  barrel.use(pPlayer,stack).equals(InteractionResult.SUCCESS);
         }
         return false;
     }
@@ -77,7 +80,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     }
 
 
-    private int getBarrelCount(){
+    public int getBarrelCount(){
         BlockPos barrelPos=getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
         if(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel)
             return barrel.getBarrelCount();
@@ -136,6 +139,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     protected void whenBulletCreated(BulletEntity bullet) {
         bullet.setLife((int) (getBarrelLength()*20));
         bullet.setDamage(2*getBarrelSize().ordinal());
+        bullet.setSize(getBarrelSize());
         super.whenBulletCreated(bullet);
     }
 
@@ -144,4 +148,5 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     protected float getVelocity() {
         return 6+getBarrelLength();
     }
+
 }

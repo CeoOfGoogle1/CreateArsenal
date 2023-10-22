@@ -12,9 +12,11 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -61,9 +63,13 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
     boolean validBarrel(ItemStack stack){
         if(size!=ShellScale.NONE&&size!=ShellScale.getScaleFromItem(stack)) return false;
-        if(barrelCount>=MAX_BARREL_COUNT) return false;
+        if(atMaxBarrelCount()) return false;
         if(!barrelBehindMatches()) return false;
         return true;
+    }
+
+    boolean isCorrectSize(ItemStack stack){
+        return (size==ShellScale.NONE||size==ShellScale.getScaleFromItem(stack));
     }
 
     private boolean maxBarrelLength() {
@@ -98,20 +104,30 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
         return InteractionResult.PASS;
     }
 
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        ItemStack stack = pPlayer.getItemInHand(pHand);
-        if(!isBarrelItem(stack)) return InteractionResult.PASS;
+    public InteractionResult use(Player player, ItemStack stack) {
+        if(!isBarrelItem(stack)||!isCorrectSize(stack)) return InteractionResult.PASS;
 
         BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
-        if(!maxBarrelLength())
+        if(!maxBarrelLength()&&this.barrelCount==getPrimaryBarrelCount())
             level.setBlockAndUpdate(barrelPos, ModBlocks.BARREL_BLOCK.getDefaultState().setValue(FACING, getBlockState().getValue(FACING)));
+
         if (level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel) {
             if (barrel.validBarrel(stack)&&barrel.barrelCount<this.barrelCount) {
-                barrel.addBarrel(size,gunBearing,pPlayer,stack);
+                barrel.addBarrel(size,gunBearing,player,stack);
                 return InteractionResult.SUCCESS;
             }
+            if(this.barrelCount==getPrimaryBarrelCount())
+              return barrel.use(player,stack);
+
         }
         return InteractionResult.PASS;
+    }
+
+    public int getPrimaryBarrelCount(){
+        if(isPrimary()) return barrelCount;
+        if(getGunBE()!=null)
+            return getGunBE().getBarrelCount();
+        return 0;
     }
 
     public PartialModel getPartialModel() {
@@ -131,6 +147,10 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
 
     public int getBarrelCount() {
         return barrelCount;
+    }
+
+    public boolean atMaxBarrelCount(){
+        return barrelCount>=MAX_BARREL_COUNT;
     }
 
     public ShellScale getSize() {
@@ -160,5 +180,16 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
 
+    public void dropItemEntity() {
+        ItemStack barrel=new ItemStack(getBarrelItemfromSize(size),getBarrelCount());
+        level.addFreshEntity(new ItemEntity(level,getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(),barrel));
+    }
 
+    private ItemLike getBarrelItemfromSize(ShellScale size) {
+        if(size.equals(ShellScale.MEDIUM))
+            return ModItems.MEDIUM_BARREL.get();
+        if(size.equals(ShellScale.LARGE))
+            return ModItems.LARGE_BARREL.get();
+        return ModItems.SMALL_BARREL.get();
+    }
 }
