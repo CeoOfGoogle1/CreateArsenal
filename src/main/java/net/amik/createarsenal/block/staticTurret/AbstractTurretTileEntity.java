@@ -35,6 +35,9 @@ import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.
 
 public abstract class AbstractTurretTileEntity extends KineticBlockEntity implements IHaveGoggleInformation, ItemStackSyncS2CPacket.ItemStackSyncBlockEntity {
     protected LazyOptional<TurretItemHandler> itemCapability;
+
+
+
     ItemStack renderStack=ItemStack.EMPTY;
 
     public AbstractTurretTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
@@ -235,6 +238,8 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
     }
 
-
+    public ItemStack getBulletItem() {
+        return itemCapability.orElse(new TurretItemHandler()).getStackInSlot(0);
+    }
     protected float getVelocity(){return 10;}
 }

@@ -6,6 +6,9 @@ import net.amik.createarsenal.registrate.ModProjectiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -24,16 +27,20 @@ public class BulletEntity extends AbstractHurtingProjectile {
     public static final AtomicInteger NEXT_BREAKER_ID = new AtomicInteger();
 
 
+    private static final EntityDataAccessor<Integer> DATA_ID_SIZE =
+            SynchedEntityData.defineId(BulletEntity.class, EntityDataSerializers.INT);
+
+    private static final EntityDataAccessor<Integer> DATA_ID_INSIDE_COLOR =
+            SynchedEntityData.defineId(BulletEntity.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Integer> DATA_ID_OUTSIDE_COLOR =
+            SynchedEntityData.defineId(BulletEntity.class, EntityDataSerializers.INT);
     protected int life=20;
 
     protected int damage=2;
 
-
-
     protected ShellScale size=ShellScale.SMALL;
 
-    private Color insideColor=new Color(255,212,0,255);
-    private Color OutsideColor=new Color(255,72,0,100);
+
 
     protected int breakerId = -NEXT_BREAKER_ID.incrementAndGet();
 
@@ -115,6 +122,28 @@ public class BulletEntity extends AbstractHurtingProjectile {
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putInt("BreakerId", breakerId);
+        pCompound.putInt("size", this.entityData.get(DATA_ID_SIZE));
+        pCompound.putInt("insideColor", this.entityData.get(DATA_ID_INSIDE_COLOR));
+        pCompound.putInt("outsideColor", this.entityData.get(DATA_ID_OUTSIDE_COLOR));
+
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.entityData.set(DATA_ID_SIZE, tag.getInt("size"));
+        this.entityData.set(DATA_ID_INSIDE_COLOR, tag.getInt("insideColor"));
+        this.entityData.set(DATA_ID_OUTSIDE_COLOR, tag.getInt("outsideColor"));
+
+    }
+
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(DATA_ID_SIZE, ShellScale.SMALL.ordinal());
+        this.entityData.define(DATA_ID_INSIDE_COLOR, new  Color(255,212,0).getRGB());
+        this.entityData.define(DATA_ID_OUTSIDE_COLOR, new Color(255,72,0).getRGB());
     }
 
     public void setLife(int life) {
@@ -122,16 +151,20 @@ public class BulletEntity extends AbstractHurtingProjectile {
     }
 
     public void setColor(Color outside, Color inside){
-        this.insideColor=inside;
-        this.OutsideColor=outside;
+        this.entityData.set(DATA_ID_INSIDE_COLOR, inside.getRGB());
+        this.entityData.set(DATA_ID_OUTSIDE_COLOR, outside.getRGB());
     }
 
+    public void setColor(int outside, int inside){
+        this.entityData.set(DATA_ID_INSIDE_COLOR, inside);
+        this.entityData.set(DATA_ID_OUTSIDE_COLOR, outside);
+    }
     public Color getInsideColor() {
-        return insideColor;
+        return new Color(this.entityData.get(DATA_ID_INSIDE_COLOR));
     }
 
     public Color getOutsideColor() {
-        return OutsideColor;
+        return new Color(this.entityData.get(DATA_ID_OUTSIDE_COLOR));
     }
 
     @Override
@@ -144,17 +177,14 @@ public class BulletEntity extends AbstractHurtingProjectile {
     }
 
     public ShellScale getSize() {
-        return size;
+        return ShellScale.values()[this.entityData.get(DATA_ID_SIZE)];
     }
 
     public void setSize(ShellScale size) {
-        this.size = size;
+        this.entityData.set(DATA_ID_SIZE, size.ordinal());
     }
 
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-    }
+
 
 
 }

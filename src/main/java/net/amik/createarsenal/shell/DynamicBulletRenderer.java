@@ -77,6 +77,8 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
             }
         }
 
+        ms.scale(.8f,.8f,1f*entity.getSize().ordinal());
+
 
         RenderType rendertype = this.getRenderType(entity);
         if (rendertype != null) {

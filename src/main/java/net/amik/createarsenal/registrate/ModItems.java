@@ -6,6 +6,7 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import net.amik.createarsenal.item.BulletItem;
 import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
 import net.amik.createarsenal.shell.ShellScale;
@@ -40,19 +41,19 @@ public class ModItems {
     public static final RegistryEntry<ScaleItem> LARGE_BARREL = scaleItem("large_gun_barrel", ShellScale.LARGE)
             .model(NonNullBiConsumer.noop())
             .register();
-    public static final RegistryEntry<ScaleItem> BULLET_SMALL = scaleItem("bullet_small", ShellScale.SMALL)
+    public static final RegistryEntry<BulletItem> BULLET_SMALL = bulletItem("bullet_small", ShellScale.SMALL)
             .lang("Small Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<ScaleItem> BULLET_MEDIUM = scaleItem("bullet_medium", ShellScale.MEDIUM)
+    public static final RegistryEntry<BulletItem> BULLET_MEDIUM = bulletItem("bullet_medium", ShellScale.MEDIUM)
             .lang("Medium Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<ScaleItem> BULLET_LARGE = scaleItem("bullet_large", ShellScale.LARGE)
+    public static final RegistryEntry<BulletItem> BULLET_LARGE = bulletItem("bullet_large", ShellScale.LARGE)
             .lang("Large Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
@@ -211,6 +212,10 @@ public class ModItems {
 
     private static ItemBuilder<ScaleItem, CreateRegistrate> scaleItem(String name, ShellScale scale) {
         return REGISTRATE.item(name, properties -> new ScaleItem(properties,scale));
+    }
+
+    private static ItemBuilder<BulletItem, CreateRegistrate> bulletItem(String name, ShellScale scale) {
+        return REGISTRATE.item(name, properties -> new BulletItem(properties,scale));
     }
 
 }

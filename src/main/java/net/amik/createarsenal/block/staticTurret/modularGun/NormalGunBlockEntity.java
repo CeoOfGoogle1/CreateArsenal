@@ -1,12 +1,13 @@
 package net.amik.createarsenal.block.staticTurret.modularGun;
 
+import com.jozufozu.flywheel.util.Color;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.item.ItemHelper;
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.shell.ShellScale;
+import net.amik.createarsenal.shell.TracerColors;
 import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -140,8 +141,11 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         bullet.setLife((int) (getBarrelLength()*20));
         bullet.setDamage(2*getBarrelSize().ordinal());
         bullet.setSize(getBarrelSize());
+        TracerColors.setBulletColor(bullet,getBulletItem());
         super.whenBulletCreated(bullet);
     }
+
+
 
 
     @Override
