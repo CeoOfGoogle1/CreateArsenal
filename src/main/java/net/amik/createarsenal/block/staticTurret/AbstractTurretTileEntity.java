@@ -35,9 +35,6 @@ import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.
 
 public abstract class AbstractTurretTileEntity extends KineticBlockEntity implements IHaveGoggleInformation, ItemStackSyncS2CPacket.ItemStackSyncBlockEntity {
     protected LazyOptional<TurretItemHandler> itemCapability;
-
-
-
     ItemStack renderStack=ItemStack.EMPTY;
 
     public AbstractTurretTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
@@ -48,19 +45,17 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     @Override
     protected void read(CompoundTag compound, boolean clientPacket) {
         super.read(compound, clientPacket);
-        itemCapability.orElse(new TurretItemHandler()).deserializeNBT(compound.getCompound("inv"));
+        getItemHandler().deserializeNBT(compound.getCompound("inv"));
         itemCapability.ifPresent(itemCapability->renderStack=itemCapability.getStackInSlot(0));
     }
 
     @Override
     protected void write(CompoundTag compound, boolean clientPacket) {
         super.write(compound, clientPacket);
-        compound.put("inv",itemCapability.orElse(new TurretItemHandler()).serializeNBT());
+        compound.put("inv",getItemHandler().serializeNBT());
     }
 
     protected int counter;
-
-
 
     @Override
     public void tick() {
@@ -81,15 +76,16 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
 
     public void dropAmmo(){
         if(hasAmmo())
-            ItemHelper.dropContents(level, worldPosition, itemCapability.orElse(new TurretItemHandler()));
+            ItemHelper.dropContents(level, worldPosition, getItemHandler());
         notifyUpdate();
     }
+
     private void consumeAmmo() {
         itemCapability.ifPresent(itemCapability->itemCapability.extractItem(0,1,false));
     }
 
     private boolean hasAmmo() {
-        return itemCapability.orElse(new TurretItemHandler()).getStackInSlot(0).getCount()>0;
+        return getItemHandler().getStackInSlot(0).getCount()>0;
     }
 
     @Override
@@ -143,13 +139,12 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 )
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getVelocity(), 0F);
+        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getBulletVelocity(), 0F);
 
         whenBulletCreated(bullet);
 
         level.addFreshEntity(bullet);
     }
-
 
 
 
@@ -162,8 +157,6 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     public boolean isValidBulletInserted(ItemStack stack){
         return stack.is(ModTags.BULLET_TAG);
     }
-
-
 
     @Nonnull
     @Override
@@ -195,26 +188,6 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
 
     protected void whenBulletCreated(BulletEntity bullet) {}
 
-    private  class TurretItemHandler extends ItemStackHandler{
-
-        public TurretItemHandler() {
-            super(1);
-        }
-
-        @NotNull
-        @Override
-        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if(isValidBulletInserted(stack))
-                return super.insertItem(slot, stack, simulate);
-            return stack;
-        }
-
-        @Override
-        protected void onContentsChanged(int slot) {
-            syncItem(this.getStackInSlot(0),getBlockPos());
-        }
-    }
-
 
     protected void playSoundAndParticles(){
         assert level != null;
@@ -239,7 +212,32 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     }
 
     public ItemStack getBulletItem() {
-        return itemCapability.orElse(new TurretItemHandler()).getStackInSlot(0);
+        return getItemHandler().getStackInSlot(0);
     }
-    protected float getVelocity(){return 10;}
+    protected float getBulletVelocity(){return 10;}
+
+    TurretItemHandler getItemHandler(){
+        return itemCapability.orElse(new TurretItemHandler());
+    }
+
+    private  class TurretItemHandler extends ItemStackHandler{
+
+        public TurretItemHandler() {
+            super(1);
+        }
+
+        @NotNull
+        @Override
+        public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
+            if(isValidBulletInserted(stack))
+                return super.insertItem(slot, stack, simulate);
+            return stack;
+        }
+
+        @Override
+        protected void onContentsChanged(int slot) {
+            syncItem(this.getStackInSlot(0),getBlockPos());
+        }
+    }
+
 }

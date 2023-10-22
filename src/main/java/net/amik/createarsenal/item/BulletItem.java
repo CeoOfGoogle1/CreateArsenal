@@ -29,7 +29,7 @@ public class BulletItem extends ScaleItem{
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
         if(pStack.getOrCreateTag().contains("tracerColorName")){
-            pTooltipComponents.add(Components.literal(pStack.getOrCreateTag().getString("tracerColorName")+" Tracers"));
+            pTooltipComponents.add(Components.literal(pStack.getOrCreateTag().getString("tracerColorName")+" Tracer"));
         }
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }

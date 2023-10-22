@@ -1,6 +1,5 @@
 package net.amik.createarsenal.block.staticTurret.modularGun;
 
-import com.jozufozu.flywheel.util.Color;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
@@ -41,7 +40,6 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
 
 
-
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         ItemStack stack=pPlayer.getItemInHand(pHand);
         if(!isBarrelItem(stack))  return InteractionResult.PASS;
@@ -60,7 +58,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
                 return true;
             }
             if(barrel.atMaxBarrelCount())
-              return  barrel.use(pPlayer,stack).equals(InteractionResult.SUCCESS);
+              return barrel.use(pPlayer,stack).equals(InteractionResult.SUCCESS);
         }
         return false;
     }
@@ -132,7 +130,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
     }
 
-    public boolean maxBarrelLength() {
+    public boolean atMaxBarrelLength() {
         return getBarrelLength()>=MAX_BARREL_LENGTH;
     }
 
@@ -145,11 +143,8 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         super.whenBulletCreated(bullet);
     }
 
-
-
-
     @Override
-    protected float getVelocity() {
+    protected float getBulletVelocity() {
         return 6+getBarrelLength();
     }
 
