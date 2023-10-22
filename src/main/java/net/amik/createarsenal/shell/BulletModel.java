@@ -11,8 +11,7 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 import static net.amik.createarsenal.CreateArsenal.resource;
 
@@ -25,7 +24,7 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 
 	private Color insideColor=new Color(255,212,0,255);
-	private Color OutsideColor=new Color(255,72,0,100);
+	private Color outsideColor =new Color(255,72,0,100);
 
 	public BulletModel(ModelPart root) {
 		this.inside = root.getChild("inside");
@@ -45,19 +44,19 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 
 	@Override
-	public void setupAnim(BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+	public void setupAnim(@NotNull BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
 	}
 
 	public void setColor(Color outside, Color inside){
-		insideColor=inside;
-		OutsideColor=outside;
+		insideColor = inside;
+		outsideColor = outside;
 	}
 
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, OutsideColor.getRedAsFloat(), OutsideColor.getGreenAsFloat(),OutsideColor.getBlueAsFloat(), .1f);
+	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .1f);
 		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 
