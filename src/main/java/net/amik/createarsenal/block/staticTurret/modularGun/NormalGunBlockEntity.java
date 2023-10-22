@@ -1,6 +1,5 @@
 package net.amik.createarsenal.block.staticTurret.modularGun;
 
-import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
@@ -10,19 +9,13 @@ import net.amik.createarsenal.shell.TracerColors;
 import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.List;
 
 import static net.amik.createarsenal.util.HorizontalDirectionBlock.FACING;
 
@@ -35,21 +28,17 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         super(type, pos, state);
     }
 
-    @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
-
-
-
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    public InteractionResult use(Player pPlayer, InteractionHand pHand) {
         ItemStack stack=pPlayer.getItemInHand(pHand);
-        if(!isBarrelItem(stack))  return InteractionResult.PASS;
+        if(!isBarrelItem(stack)) return InteractionResult.PASS;
         if(addBarrel(pPlayer, stack))
             return InteractionResult.SUCCESS;
         return InteractionResult.PASS;
     }
 
     private boolean addBarrel(Player pPlayer,ItemStack stack) {
-        BlockPos barrelPos=getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
+        assert level != null;
+        BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
         level.setBlockAndUpdate(barrelPos, ModBlocks.BARREL_BLOCK.getDefaultState().setValue(FACING,getBlockState().getValue(FACING)));
         if(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel) {
             if(barrel.validBarrel(stack)) {
@@ -70,24 +59,27 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
     @Override
     public float getSpeed() {
-        return 32*getBarrelCount();
+        return 32 * getBarrelCount();
     }
 
     @Override
     protected boolean canShoot() {
-        return super.canShoot()&&level.hasNeighborSignal(getBlockPos());
+        assert level != null;
+        return super.canShoot() && level.hasNeighborSignal(getBlockPos());
     }
 
 
     public int getBarrelCount(){
-        BlockPos barrelPos=getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
+        assert level != null;
+        BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
         if(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel)
             return barrel.getBarrelCount();
         return 0;
     }
 
     private ShellScale getBarrelSize(){
-        BlockPos barrelPos=getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
+        assert level != null;
+        BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
         if(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel)
             return barrel.getSize();
         return ShellScale.NONE;
@@ -95,6 +87,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
     @Override
     protected float getBarrelLength() {
+        assert level != null;
         for (int i = 0; i < MAX_BARREL_LENGTH; i++) {
             BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite(),i+1);
             if (!(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity))
@@ -104,40 +97,41 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     }
 
     private boolean isBarrelItem(ItemStack stack) {
-        return stack.is(ModItems.SMALL_BARREL.get())||stack.is(ModItems.MEDIUM_BARREL.get())||stack.is(ModItems.LARGE_BARREL.get());
+        return stack.is(ModItems.SMALL_BARREL.get()) || stack.is(ModItems.MEDIUM_BARREL.get()) || stack.is(ModItems.LARGE_BARREL.get());
     }
 
     @Override
     public boolean isValidBulletInserted(ItemStack stack) {
-        return super.isValidBulletInserted(stack)&&(getBarrelSize().equals(ShellScale.getScaleFromItem(stack)));
+        return super.isValidBulletInserted(stack) && (getBarrelSize().equals(ShellScale.getScaleFromItem(stack)));
     }
 
 
     @Override
-    protected RegistryObject<SoundEvent> fireSoundName() {
-        return ModSounds.CHAIN_GUN_FIRED;
+    protected SoundEvent fireSoundName() {
+        return ModSounds.CHAIN_GUN_FIRED.get();
     }
 
     @Override
     protected String getTooltipName() {
-        if(getBarrelCount()>0)
-            return StringUtils.capitalize(getBarrelSize().toString().toLowerCase())+" "+getBarrelCount()+" Barrel Gun";
+        if(getBarrelCount() > 0)
+            return StringUtils.capitalize(getBarrelSize().toString().toLowerCase()) + " " + getBarrelCount() + " Barrel Gun";
         return super.getTooltipName();
     }
 
     @Override
     protected void playSoundAndParticles() {
-        level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
+        super.playSoundAndParticles();
+//        level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
     }
 
     public boolean atMaxBarrelLength() {
-        return getBarrelLength()>=MAX_BARREL_LENGTH;
+        return getBarrelLength() >= MAX_BARREL_LENGTH;
     }
 
     @Override
     protected void whenBulletCreated(BulletEntity bullet) {
-        bullet.setLife((int) (getBarrelLength()*20));
-        bullet.setDamage(2*getBarrelSize().ordinal());
+        bullet.setLife((int) (getBarrelLength() * 20));
+        bullet.setDamage(2 * getBarrelSize().ordinal());
         bullet.setSize(getBarrelSize());
         TracerColors.setBulletColor(bullet,getBulletItem());
         super.whenBulletCreated(bullet);
@@ -145,7 +139,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
 
     @Override
     protected float getBulletVelocity() {
-        return 6+getBarrelLength();
+        return 6 + getBarrelLength();
     }
 
 }
