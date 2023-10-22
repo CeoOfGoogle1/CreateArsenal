@@ -37,39 +37,89 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
                 .partialFacing(barrel.getPartialModel(), blockState, direction);
 
 
-        if(barrel.barrelCount==1)
-            barrelModel.light(light).renderInto(ms, vb);
+        if(barrel.isPrimary()) {
+            if (barrel.barrelCount == 1)
+                barrelModel.light(light).renderInto(ms, vb);
 
 
-        if(barrel.barrelCount==2) {
-            barrelModel.translate(shift.getStepX() * -0.05*modifier, 0, shift.getStepZ() * -0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.05*modifier, 0, shift.getStepZ() * 0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
+            if (barrel.barrelCount == 2) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0, shift.getStepZ() * 0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+            }
+
+
+            if (barrel.barrelCount == 3) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(0, .05 * modifier, 0);
+                barrelModel.light(light).renderInto(ms, vb);
+            }
+
+
+            if (barrel.barrelCount >= 4) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+            }
         }
+        else {
+            int primaryBarrelCount=barrel.getPrimaryBarrelCount();
+
+            if (primaryBarrelCount == 1&&barrel.barrelCount==1)
+                barrelModel.light(light).renderInto(ms, vb);
 
 
-        if(barrel.barrelCount==3) {
-            barrelModel.translate(shift.getStepX() * -0.05*modifier, -0.05*modifier, shift.getStepZ() * -0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.05*modifier, -0.05*modifier, shift.getStepZ() * 0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(0, .05*modifier, 0);
-            barrelModel.light(light).renderInto(ms, vb);
+            if (primaryBarrelCount == 2) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                if(barrel.barrelCount==2) {
+                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0, shift.getStepZ() * 0.05 * modifier);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+            }
+
+
+            if (primaryBarrelCount == 3) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                if(barrel.barrelCount>=2) {
+                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+                if(barrel.barrelCount==3) {
+                    barrelModel.translate(0, .05 * modifier, 0);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+            }
+
+
+            if (primaryBarrelCount >= 4) {
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                barrelModel.light(light).renderInto(ms, vb);
+                if(barrel.barrelCount>=2) {
+                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+                if(barrel.barrelCount>=3) {
+                    barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+                if(barrel.barrelCount>=4) {
+                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+                    barrelModel.light(light).renderInto(ms, vb);
+                }
+            }
+
         }
-
-
-        if (barrel.barrelCount >= 4) {
-            barrelModel.translate(shift.getStepX() * -0.05*modifier, -0.05*modifier, shift.getStepZ() * -0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.05*modifier, -0.05*modifier, shift.getStepZ() * 0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * -0.05*modifier, 0.05*modifier, shift.getStepZ() * -0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-            barrelModel.translate(shift.getStepX() * 0.05*modifier, 0.05*modifier, shift.getStepZ() * 0.05*modifier);
-            barrelModel.light(light).renderInto(ms, vb);
-        }
-
 
     }
 

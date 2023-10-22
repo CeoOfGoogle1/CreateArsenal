@@ -22,7 +22,8 @@ public abstract class HorizontalDirectionBlock extends Block {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
 
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite());
+        return pContext.getPlayer().isShiftKeyDown()?
+                this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()) : this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
     }
 
     @Override

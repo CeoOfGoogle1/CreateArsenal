@@ -1,11 +1,13 @@
 package net.amik.createarsenal.registrate;
 
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
+import net.amik.createarsenal.item.BulletItem;
 import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
 import net.amik.createarsenal.shell.ShellScale;
@@ -40,19 +42,19 @@ public class ModItems {
     public static final RegistryEntry<ScaleItem> LARGE_BARREL = scaleItem("large_gun_barrel", ShellScale.LARGE)
             .model(NonNullBiConsumer.noop())
             .register();
-    public static final RegistryEntry<ScaleItem> BULLET_SMALL = scaleItem("bullet_small", ShellScale.SMALL)
+    public static final RegistryEntry<BulletItem> BULLET_SMALL = bulletItem("bullet_small", ShellScale.SMALL)
             .lang("Small Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<ScaleItem> BULLET_MEDIUM = scaleItem("bullet_medium", ShellScale.MEDIUM)
+    public static final RegistryEntry<BulletItem> BULLET_MEDIUM = bulletItem("bullet_medium", ShellScale.MEDIUM)
             .lang("Medium Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
             .register();
 
-    public static final RegistryEntry<ScaleItem> BULLET_LARGE = scaleItem("bullet_large", ShellScale.LARGE)
+    public static final RegistryEntry<BulletItem> BULLET_LARGE = bulletItem("bullet_large", ShellScale.LARGE)
             .lang("Large Bullet")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .model(NonNullBiConsumer.noop())
@@ -99,7 +101,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_LARGE_INCOMPLETE = REGISTRATE.item("cartridge_large_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_LARGE_INCOMPLETE = REGISTRATE.item("cartridge_large_incomplete", SequencedAssemblyItem::new)
             .lang("Large Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -110,7 +112,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_INCOMPLETE = REGISTRATE.item("cartridge_medium_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_MEDIUM_INCOMPLETE = REGISTRATE.item("cartridge_medium_incomplete", SequencedAssemblyItem::new)
             .lang("Medium Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -120,7 +122,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_SMALL_INCOMPLETE = REGISTRATE.item("cartridge_small_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_SMALL_INCOMPLETE = REGISTRATE.item("cartridge_small_incomplete", SequencedAssemblyItem::new)
             .lang("Small Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -150,10 +152,6 @@ public class ModItems {
             .register();
     public static final RegistryEntry<Item> ROUND_LARGE_ARMORPIERCING = REGISTRATE.item("round_large_armorpiercing", Item::new)
             .lang("Large Round (AP)")
-            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
-            .register();
-    public static final RegistryEntry<Item> ROUND_LARGE_EMP = REGISTRATE.item("round_large_emp", Item::new)
-            .lang("Large Round (EMP)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
     public static final RegistryEntry<Item> ROUND_LARGE_FLAK = REGISTRATE.item("round_large_flak", Item::new)
@@ -211,6 +209,10 @@ public class ModItems {
 
     private static ItemBuilder<ScaleItem, CreateRegistrate> scaleItem(String name, ShellScale scale) {
         return REGISTRATE.item(name, properties -> new ScaleItem(properties,scale));
+    }
+
+    private static ItemBuilder<BulletItem, CreateRegistrate> bulletItem(String name, ShellScale scale) {
+        return REGISTRATE.item(name, properties -> new BulletItem(properties,scale));
     }
 
 }
