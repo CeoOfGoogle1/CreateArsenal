@@ -25,7 +25,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -62,7 +61,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     @Override
     public void tick() {
         super.tick();
-        if (canShoot()&&hasAmmo()) {
+        if (canShoot() && hasAmmo()) {
             playSoundAndParticles();
             shoot();
             consumeAmmo();
@@ -89,7 +88,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         renderStack=stack;
     }
 
-    protected abstract RegistryObject<SoundEvent> fireSoundName();
+    protected abstract SoundEvent fireSoundName();
 
     protected abstract float shootingInterval();
 
@@ -101,6 +100,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         if (counter < shootingInterval() * 256) {
             return false;
         }
+
         counter = 0;
         return true;
     }
@@ -210,7 +210,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
 
     protected void playSoundAndParticles(){
         assert level != null;
-        level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
+        level.playSound(null, worldPosition, fireSoundName(), SoundSource.BLOCKS, 0.2F + ((float) Math.random()) * 0.2F, 0.9F + ((float) Math.random()) * 0.15F);
         Direction direction = getBlockState().getValue(FACING).getOpposite();
         level.addAlwaysVisibleParticle(ParticleTypes.FIREWORK, getBlockPos().getX() +
                 IntUtil.toInt(direction.getStepX() < 0)

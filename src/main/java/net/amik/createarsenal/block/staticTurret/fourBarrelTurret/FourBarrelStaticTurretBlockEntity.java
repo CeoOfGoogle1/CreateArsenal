@@ -6,7 +6,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.registries.RegistryObject;
 
 
 public class FourBarrelStaticTurretBlockEntity extends AbstractRotatingTurretTileEntity {
@@ -15,8 +14,8 @@ public class FourBarrelStaticTurretBlockEntity extends AbstractRotatingTurretTil
     }
 
     @Override
-    protected RegistryObject<SoundEvent> fireSoundName() {
-        return ModSounds.CHAIN_GUN_FIRED;
+    protected SoundEvent fireSoundName() {
+        return ModSounds.CHAIN_GUN_FIRED.get();
     }
 
     @Override
