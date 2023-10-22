@@ -1,5 +1,6 @@
 package net.amik.createarsenal.registrate;
 
+import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
@@ -100,7 +101,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_LARGE_INCOMPLETE = REGISTRATE.item("cartridge_large_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_LARGE_INCOMPLETE = REGISTRATE.item("cartridge_large_incomplete", SequencedAssemblyItem::new)
             .lang("Large Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -111,7 +112,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_MEDIUM_INCOMPLETE = REGISTRATE.item("cartridge_medium_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_MEDIUM_INCOMPLETE = REGISTRATE.item("cartridge_medium_incomplete", SequencedAssemblyItem::new)
             .lang("Medium Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -121,7 +122,7 @@ public class ModItems {
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
 
-    public static final RegistryEntry<Item> CARTRIDGE_SMALL_INCOMPLETE = REGISTRATE.item("cartridge_small_incomplete", Item::new)
+    public static final RegistryEntry<SequencedAssemblyItem> CARTRIDGE_SMALL_INCOMPLETE = REGISTRATE.item("cartridge_small_incomplete", SequencedAssemblyItem::new)
             .lang("Small Cartridge (Incomplete)")
             .model(NonNullBiConsumer.noop())
             .register();
@@ -151,10 +152,6 @@ public class ModItems {
             .register();
     public static final RegistryEntry<Item> ROUND_LARGE_ARMORPIERCING = REGISTRATE.item("round_large_armorpiercing", Item::new)
             .lang("Large Round (AP)")
-            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
-            .register();
-    public static final RegistryEntry<Item> ROUND_LARGE_EMP = REGISTRATE.item("round_large_emp", Item::new)
-            .lang("Large Round (EMP)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
     public static final RegistryEntry<Item> ROUND_LARGE_FLAK = REGISTRATE.item("round_large_flak", Item::new)

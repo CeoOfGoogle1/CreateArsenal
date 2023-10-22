@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"1": "createarsenal:item/bullet_medium",
-		"particle": "create:brass_ingot"
+		"particle": "create:item/brass_ingot"
 	},
 	"elements": [
 		{
