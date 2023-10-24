@@ -54,7 +54,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         compound.put("inv",getItemHandler().serializeNBT());
     }
 
-    protected int counter;
+    protected int torqueCounter; // Shoot every 256 torque
 
     @Override
     public void tick() {
@@ -100,12 +100,12 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         if (level == null)
             return false;
 
-        counter += Math.abs(getSpeed());
-        if (counter < shootingInterval() * 256) {
+        torqueCounter += Math.abs(getSpeed());
+        if (torqueCounter < shootingInterval() * 256) {
             return false;
         }
 
-        counter = 0;
+        torqueCounter %= 256;
         return true;
     }
 

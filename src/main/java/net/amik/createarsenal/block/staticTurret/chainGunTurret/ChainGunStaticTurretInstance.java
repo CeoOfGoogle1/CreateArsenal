@@ -15,8 +15,9 @@ public class ChainGunStaticTurretInstance extends AbstractTurretInstance<ChainGu
         return ModPartials.CHAIN_GUN_BARREL;
     }
 
+
     @Override
     protected float getOffset() {
-        return 2 - blockEntity.tickUntilRecoil * 0.05f;
+        return 2 - blockEntity.getTickUntilRecoil() * 0.05f;
     }
 }

@@ -23,8 +23,8 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	private final ModelPart outside;
 
 
-	private Color insideColor=new Color(255,212,0,255);
-	private Color OutsideColor=new Color(255,72,0,100);
+	private Color insideColor = new Color(255, 212, 0, 255);
+	private Color outsideColor = new Color(255, 72, 0, 100);
 
 	public BulletModel(ModelPart root) {
 		this.inside = root.getChild("inside");
@@ -48,14 +48,14 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	}
 
 	public void setColor(Color outside, Color inside){
-		insideColor=inside;
-		OutsideColor=outside;
+		insideColor = inside;
+		outsideColor = outside;
 	}
 
 
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, OutsideColor.getRedAsFloat(), OutsideColor.getGreenAsFloat(), OutsideColor.getBlueAsFloat(), .4f);
+		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .4f);
 		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 

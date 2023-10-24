@@ -11,21 +11,22 @@ public class ChainGunStaticTurretBlockEntity extends AbstractTurretTileEntity {
     public ChainGunStaticTurretBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
     }
-    protected int tickUntilRecoil = 0;
+
+    private int tickUntilRecoil = 0;
 
     @Override
     protected void shoot() {
         tickUntilRecoil = 3;
-        assert level != null;
         super.shoot();
     }
 
     @Override
     public void tick() {
-        super.tick();
-        if (tickUntilRecoil > 0) {
-            tickUntilRecoil--;
+        tickUntilRecoil--;
+        if (tickUntilRecoil <= 0) {
+            tickUntilRecoil = 0;
         }
+        super.tick();
     }
 
     @Override
@@ -40,6 +41,11 @@ public class ChainGunStaticTurretBlockEntity extends AbstractTurretTileEntity {
 
     @Override
     protected float getBarrelLength() {
-        return 3;
+        return 2.5f;
+    }
+
+    public int getTickUntilRecoil() {
+        return tickUntilRecoil;
     }
 }
+
