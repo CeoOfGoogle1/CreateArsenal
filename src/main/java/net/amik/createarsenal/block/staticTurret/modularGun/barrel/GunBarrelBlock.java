@@ -1,6 +1,7 @@
-package net.amik.createarsenal.block.staticTurret.modularGun;
+package net.amik.createarsenal.block.staticTurret.modularGun.barrel;
 
 import com.simibubi.create.foundation.block.IBE;
+import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
 import net.minecraft.core.BlockPos;
@@ -80,7 +81,7 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     @Override
     public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
         if (level.getBlockEntity(pos) instanceof GunBarrelBlockEntity barrel) {
-            return new ItemStack(barrel.getBarrelItemfromSize());
+            return new ItemStack(barrel.getBarrelItemFromSize());
         }
         return ItemStack.EMPTY;
     }

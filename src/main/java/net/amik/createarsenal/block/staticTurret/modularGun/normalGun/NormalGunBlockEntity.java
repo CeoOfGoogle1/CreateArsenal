@@ -1,6 +1,7 @@
-package net.amik.createarsenal.block.staticTurret.modularGun;
+package net.amik.createarsenal.block.staticTurret.modularGun.normalGun;
 
 import net.amik.createarsenal.block.staticTurret.AbstractTurretTileEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.shell.BulletEntity;
@@ -35,6 +36,7 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
             return InteractionResult.SUCCESS;
         return InteractionResult.PASS;
     }
+
 
     private boolean addBarrel(Player pPlayer,ItemStack stack) {
         assert level != null;

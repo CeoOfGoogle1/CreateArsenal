@@ -7,9 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 @SuppressWarnings("unused")
 public class ModPartials {
     public static final PartialModel
-            SMALL_BARREL=item("small_gun_barrel"),
-            MEDIUM_BARREL=item("medium_gun_barrel"),
-            LARGE_BARREL=item("large_gun_barrel"),
+            SMALL_BARREL = item("small_gun_barrel"),
+            SMALL_ROTAING_BARREL = block("small_rotating_gun_barrel"),
+            MEDIUM_ROTAING_BARREL = block("medium_rotating_gun_barrel"),
+            LARGE_ROTAING_BARREL = block("large_rotating_gun_barrel"),
+            MEDIUM_BARREL = item("medium_gun_barrel"),
+            LARGE_BARREL = item("large_gun_barrel"),
             RADAR = block("radar_screen"),
             RADAR_LINE = block("radar_line"),
             HITBOX_1 = block("hitbox1"),

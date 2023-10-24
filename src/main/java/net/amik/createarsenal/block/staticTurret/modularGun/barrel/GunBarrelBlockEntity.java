@@ -1,8 +1,10 @@
-package net.amik.createarsenal.block.staticTurret.modularGun;
+package net.amik.createarsenal.block.staticTurret.modularGun.barrel;
 
 import com.jozufozu.flywheel.core.PartialModel;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
+import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlockEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModPartials;
@@ -28,9 +30,13 @@ import static net.amik.createarsenal.util.HorizontalDirectionBlock.FACING;
 public class GunBarrelBlockEntity extends SmartBlockEntity {
 
 
-    public static final int MAX_BARREL_COUNT=4;
-    ShellScale size= ShellScale.NONE;
-    BlockPos gunBearing=BlockPos.ZERO;
+    public static final int MAX_NORMAL_GUN_BARREL_COUNT = 4;
+    public static final int MAX_ROTARY_GUN_BARREL_COUNT = 8;
+
+    ShellScale size = ShellScale.NONE;
+    BlockPos gunBearing = BlockPos.ZERO;
+
+
     int barrelCount;
 
     public GunBarrelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -38,7 +44,8 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
     @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+    }
 
 
 
@@ -97,7 +104,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
         notifyUpdate();
     }
 
-    boolean validBarrel(ItemStack stack) {
+    public boolean validBarrel(ItemStack stack) {
         if (!isCorrectSize(stack)) return false;
         if (atMaxBarrelCount()) return false;
         return barrelBehindMatches();
@@ -131,26 +138,39 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
     public PartialModel getPartialModel() {
-        if(size.equals(ShellScale.SMALL))
+        if (size.equals(ShellScale.SMALL))
             return ModPartials.SMALL_BARREL;
 
-        if(size.equals(ShellScale.MEDIUM))
+        if (size.equals(ShellScale.MEDIUM))
             return ModPartials.MEDIUM_BARREL;
 
-        if(size.equals(ShellScale.LARGE))
+        if (size.equals(ShellScale.LARGE))
             return ModPartials.LARGE_BARREL;
         return null;
     }
+
+    public PartialModel getPartialRotatingModel() {
+        if (size.equals(ShellScale.SMALL))
+            return ModPartials.SMALL_ROTAING_BARREL;
+
+        if (size.equals(ShellScale.MEDIUM))
+            return ModPartials.MEDIUM_ROTAING_BARREL;
+
+        if (size.equals(ShellScale.LARGE))
+            return ModPartials.LARGE_ROTAING_BARREL;
+        return null;
+    }
+
     private boolean isBarrelItem(ItemStack stack) {
-        return stack.is(ModItems.SMALL_BARREL.get())||stack.is(ModItems.MEDIUM_BARREL.get())||stack.is(ModItems.LARGE_BARREL.get());
+        return stack.is(ModItems.SMALL_BARREL.get()) || stack.is(ModItems.MEDIUM_BARREL.get()) || stack.is(ModItems.LARGE_BARREL.get());
     }
 
     public int getBarrelCount() {
         return barrelCount;
     }
 
-    public boolean atMaxBarrelCount(){
-        return barrelCount>=MAX_BARREL_COUNT;
+    public boolean atMaxBarrelCount() {
+        return barrelCount >= (isSpinning() ? MAX_ROTARY_GUN_BARREL_COUNT : MAX_NORMAL_GUN_BARREL_COUNT);
     }
 
     public ShellScale getSize() {
@@ -158,7 +178,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
 
-    public boolean isPrimary(){
+    public boolean isPrimary() {
         BlockPos gunpos = getBlockPos().relative(getBlockState().getValue(FACING));
         assert level != null;
         return level.getBlockEntity(gunpos) instanceof NormalGunBlockEntity;
@@ -173,12 +193,18 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
     public void dropItemEntity() {
-        ItemStack barrel = new ItemStack(getBarrelItemfromSize(), getBarrelCount());
+        ItemStack barrel = new ItemStack(getBarrelItemFromSize(), getBarrelCount());
         assert level != null;
         level.addFreshEntity(new ItemEntity(level, getBlockPos().getX(), getBlockPos().getY(), getBlockPos().getZ(), barrel));
     }
 
-    public ItemLike getBarrelItemfromSize() {
+    public boolean isSpinning() {
+        assert level != null;
+        return (level.getBlockEntity(gunBearing) instanceof RotaryGunBlockEntity);
+    }
+
+
+    public ItemLike getBarrelItemFromSize() {
         if (size.equals(ShellScale.MEDIUM))
             return ModItems.MEDIUM_BARREL.get();
         if (size.equals(ShellScale.LARGE))

@@ -13,8 +13,9 @@ import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
-import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlock;
-import net.amik.createarsenal.block.staticTurret.modularGun.NormalGunBlock;
+import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlock;
+import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlock;
+import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -41,6 +42,16 @@ public class ModBlocks {
 
     public static final BlockEntry<NormalGunBlock> NORMAL_GUN =
             REGISTRATE.block("normal_gun_bearing", NormalGunBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(properties -> properties.isRedstoneConductor((pState, pLevel, pPos) -> false))
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .item()
+                    .build()
+                    .register();
+
+    public static final BlockEntry<RotaryGunBlock> ROTARY_GUN =
+            REGISTRATE.block("rotary_gun_bearing", RotaryGunBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(properties -> properties.isRedstoneConductor((pState, pLevel, pPos) -> false))
                     .properties(BlockBehaviour.Properties::noOcclusion)

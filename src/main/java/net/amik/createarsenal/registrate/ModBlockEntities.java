@@ -1,8 +1,10 @@
 package net.amik.createarsenal.registrate;
 
 
+import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftInstance;
+import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.big_radar.BidRadarDishRenderer;
@@ -19,9 +21,10 @@ import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelSt
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockEntity;
-import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockRenderer;
-import net.amik.createarsenal.block.staticTurret.modularGun.NormalGunBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockRenderer;
+import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
+import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlockEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
@@ -40,6 +43,12 @@ public class ModBlockEntities {
             .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
 
+    public static final BlockEntityEntry<RotaryGunBlockEntity> ROTARY_GUN_BLOCK_ENTITY = REGISTRATE
+            .blockEntity("rotary_gun_bearing", RotaryGunBlockEntity::new)
+            .instance(() -> HalfShaftInstance::new)
+            .validBlocks(ModBlocks.ROTARY_GUN)
+            .renderer(() -> ShaftRenderer::new)
+            .register();
     public static final BlockEntityEntry<GunBarrelBlockEntity> BARREL_BLOCK_ENTITY = REGISTRATE
             .blockEntity("barrel_block", GunBarrelBlockEntity::new)
             .validBlocks(ModBlocks.BARREL_BLOCK)

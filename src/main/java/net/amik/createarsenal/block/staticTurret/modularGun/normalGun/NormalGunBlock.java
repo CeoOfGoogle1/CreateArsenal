@@ -1,6 +1,7 @@
-package net.amik.createarsenal.block.staticTurret.modularGun;
+package net.amik.createarsenal.block.staticTurret.modularGun.normalGun;
 
 import com.simibubi.create.foundation.block.IBE;
+import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
 import net.minecraft.core.BlockPos;
@@ -45,4 +46,5 @@ public class NormalGunBlock extends HorizontalDirectionBlock implements IBE<Norm
     public BlockEntityType<? extends NormalGunBlockEntity> getBlockEntityType() {
         return ModBlockEntities.NORMAL_GUN_BLOCK_ENTITY.get();
     }
+
 }
