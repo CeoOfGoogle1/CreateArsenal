@@ -4,9 +4,7 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
-
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import com.tterrag.registrate.util.nullness.NonNullFunction;
 import net.amik.createarsenal.item.BulletItem;
 import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
