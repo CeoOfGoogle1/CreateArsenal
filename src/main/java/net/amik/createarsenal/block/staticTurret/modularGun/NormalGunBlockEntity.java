@@ -126,7 +126,7 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
     @Override
     protected void whenBulletCreated(BulletEntity bullet) {
         bullet.setLife((int) (getBarrelLength() * 20));
-        bullet.setDamage(2 * getBarrelSize().ordinal());
+        bullet.setDamage(10 * getBarrelSize().ordinal());
         bullet.setSize(getBarrelSize());
         TracerColors.setBulletColor(bullet, getBulletItem());
         super.whenBulletCreated(bullet);
