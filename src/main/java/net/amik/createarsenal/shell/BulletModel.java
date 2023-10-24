@@ -1,7 +1,4 @@
-package net.amik.createarsenal.shell;// Made with Blockbench 4.8.3
-// Exported for Minecraft version 1.17 or later with Mojang mappings
-// Paste this class into your mod and generate all required imports
-
+package net.amik.createarsenal.shell;
 
 import com.jozufozu.flywheel.util.Color;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -22,22 +19,21 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	private final ModelPart inside;
 	private final ModelPart outside;
 
-
 	private Color insideColor = new Color(255, 212, 0, 255);
 	private Color outsideColor = new Color(255, 72, 0, 100);
 
 	public BulletModel(ModelPart root) {
 		this.inside = root.getChild("inside");
-		this.outside = root.getChild("outside");	}
-
+		this.outside = root.getChild("outside");
+	}
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 4).addBox(-9.5F, -9.5F, -3.5F, 3.0F, 3.0F, 23.0F, new CubeDeformation(0.0F)), PartPose.offset(8.0F, 24.0F, -8.0F));
+		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
-		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(-2.0F, -10.0F, -12.0F, 4.0F, 4.0F, 24.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 24.0F, 0.0F));
+		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		return LayerDefinition.create(meshdefinition, 16, 16);
 	}
@@ -52,11 +48,9 @@ public class BulletModel extends EntityModel<BulletEntity> {
 		outsideColor = outside;
 	}
 
-
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .4f);
 		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
-
 }

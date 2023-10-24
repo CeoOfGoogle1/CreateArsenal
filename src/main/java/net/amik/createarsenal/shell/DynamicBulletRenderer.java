@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -23,7 +23,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
     public DynamicBulletRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);
-        this.model=new BulletModel(pContext.bakeLayer(BulletModel.LAYER_LOCATION));
+        this.model = new BulletModel(pContext.bakeLayer(BulletModel.LAYER_LOCATION));
     }
 
     @Override
@@ -37,49 +37,11 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
     }
 
     @Override
-    public void render(BulletEntity entity, float pEntityYaw, float pPartialTick, PoseStack ms, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
-
+    public void render(BulletEntity entity, float pEntityYaw, float pPartialTicks, PoseStack ms, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
         ms.pushPose();
 
-        Vec3 deltaMovement = entity.getDeltaMovement();
-
-        ms.translate(0, -3 / 8f, 0);
-
-
-        if (deltaMovement.z == 0) {
-            if (deltaMovement.x > 0) {
-                ms.translate(-1 / 16f, 0, 0f);
-
-                ms.mulPose(Vector3f.YP.rotationDegrees(
-                        90
-                ));
-            } else {
-                ms.translate(1 / 16f, 0, 0);
-
-                ms.mulPose(Vector3f.YP.rotationDegrees(
-                        -90
-                ));
-            }
-        }
-
-        if (deltaMovement.x == 0) {
-            if (deltaMovement.z > 0) {
-                ms.translate(0f, 0, 1/16f);
-
-                ms.mulPose(Vector3f.YP.rotationDegrees(
-                        180
-                ));
-            } else {
-                ms.translate(0, 0f, -1/16f);
-
-                ms.mulPose(Vector3f.YP.rotationDegrees(
-                        0
-                ));
-            }
-        }
-
-        ms.scale(.6f, .6f, 1.5f * entity.getSize().ordinal());
-
+        ms.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(pPartialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
+        ms.mulPose(Vector3f.ZP.rotationDegrees(Mth.lerp(pPartialTicks, entity.xRotO, entity.getXRot()) + 90.0F));
 
         RenderType rendertype = this.getRenderType(entity);
         if (rendertype != null) {
@@ -87,8 +49,9 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
             this.model.setColor(entity.getOutsideColor(),entity.getInsideColor());
             this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f,1f, 1f, 1.0F);
         }
-        super.render(entity, pEntityYaw, pPartialTick, ms, pBuffer, pPackedLight);
+
         ms.popPose();
+        super.render(entity, pEntityYaw, pPartialTicks, ms, pBuffer, pPackedLight);
     }
 
     @Override

@@ -1,10 +1,8 @@
 package net.amik.createarsenal.shell;
 
 import com.jozufozu.flywheel.util.Color;
-import com.simibubi.create.foundation.particle.AirParticleData;
 import net.amik.createarsenal.registrate.ModProjectiles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -12,7 +10,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.projectile.AbstractHurtingProjectile;
+import net.minecraft.world.entity.projectile.AbstractArrow;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
@@ -23,9 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class BulletEntity extends AbstractHurtingProjectile {
+public class BulletEntity extends AbstractArrow {
     public static final AtomicInteger NEXT_BREAKER_ID = new AtomicInteger();
-
 
     private static final EntityDataAccessor<Integer> DATA_ID_SIZE =
             SynchedEntityData.defineId(BulletEntity.class, EntityDataSerializers.INT);
@@ -48,17 +46,15 @@ public class BulletEntity extends AbstractHurtingProjectile {
 
     protected static Map<BlockPos, Float> breakProgress = new HashMap<>();
 
-    public BulletEntity(EntityType<? extends AbstractHurtingProjectile> p_36833_, Level p_36834_) {
+    public BulletEntity(EntityType<? extends BulletEntity> p_36833_, Level p_36834_) {
         super(p_36833_, p_36834_);
     }
+
     public BulletEntity(Level p_36834_, int breakerLevel) {
         super(ModProjectiles.BULLET_ENTITY.get(), p_36834_);
         this.breakerLevel = breakerLevel;
     }
-    @Override
-    protected boolean shouldBurn() {
-        return false;
-    }
+
     @SuppressWarnings("unchecked")
     public static void build(EntityType.Builder<?> builder) {
         EntityType.Builder<BulletEntity> entityBuilder = (EntityType.Builder<BulletEntity>) builder;
@@ -77,11 +73,6 @@ public class BulletEntity extends AbstractHurtingProjectile {
 
     public final void setPos(BlockPos pPos) {
         this.setPos(pPos.getX(), pPos.getY(), pPos.getZ());
-    }
-
-    @Override
-    protected @NotNull ParticleOptions getTrailParticle() {
-        return new AirParticleData(1, 10);
     }
 
     //TODO Damage Source
@@ -129,12 +120,17 @@ public class BulletEntity extends AbstractHurtingProjectile {
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag tag) {
+    public void readAdditionalSaveData(@NotNull CompoundTag tag) {
         super.readAdditionalSaveData(tag);
         this.entityData.set(DATA_ID_SIZE, tag.getInt("size"));
         this.entityData.set(DATA_ID_INSIDE_COLOR, tag.getInt("insideColor"));
         this.entityData.set(DATA_ID_OUTSIDE_COLOR, tag.getInt("outsideColor"));
 
+    }
+
+    @Override
+    protected @NotNull ItemStack getPickupItem() {
+        return ItemStack.EMPTY;
     }
 
 
@@ -150,11 +146,6 @@ public class BulletEntity extends AbstractHurtingProjectile {
         this.life = life;
     }
 
-    public void setColor(Color outside, Color inside){
-        this.entityData.set(DATA_ID_INSIDE_COLOR, inside.getRGB());
-        this.entityData.set(DATA_ID_OUTSIDE_COLOR, outside.getRGB());
-    }
-
     public void setColor(int outside, int inside){
         this.entityData.set(DATA_ID_INSIDE_COLOR, inside);
         this.entityData.set(DATA_ID_OUTSIDE_COLOR, outside);
@@ -165,11 +156,6 @@ public class BulletEntity extends AbstractHurtingProjectile {
 
     public Color getOutsideColor() {
         return new Color(this.entityData.get(DATA_ID_OUTSIDE_COLOR));
-    }
-
-    @Override
-    protected float getInertia() {
-        return 1;
     }
 
     public void setDamage(int damage) {

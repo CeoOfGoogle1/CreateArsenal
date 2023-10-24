@@ -11,10 +11,12 @@ import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.util.IntUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.BlockSourceImpl;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
@@ -34,24 +36,24 @@ import static com.simibubi.create.content.kinetics.base.DirectionalKineticBlock.
 
 public abstract class AbstractTurretTileEntity extends KineticBlockEntity implements IHaveGoggleInformation, ItemStackSyncS2CPacket.ItemStackSyncBlockEntity {
     protected LazyOptional<TurretItemHandler> itemCapability;
-    ItemStack renderStack=ItemStack.EMPTY;
+    ItemStack renderStack = ItemStack.EMPTY;
 
     public AbstractTurretTileEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
         super(typeIn, pos, state);
-        itemCapability=LazyOptional.of(TurretItemHandler::new);
+        itemCapability = LazyOptional.of(TurretItemHandler::new);
     }
 
     @Override
     protected void read(CompoundTag compound, boolean clientPacket) {
         super.read(compound, clientPacket);
         getItemHandler().deserializeNBT(compound.getCompound("inv"));
-        itemCapability.ifPresent(itemCapability->renderStack=itemCapability.getStackInSlot(0));
+        itemCapability.ifPresent(itemCapability -> renderStack = itemCapability.getStackInSlot(0));
     }
 
     @Override
     protected void write(CompoundTag compound, boolean clientPacket) {
         super.write(compound, clientPacket);
-        compound.put("inv",getItemHandler().serializeNBT());
+        compound.put("inv", getItemHandler().serializeNBT());
     }
 
     protected int torqueCounter; // Shoot every 256 torque
@@ -123,20 +125,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         Direction direction = getBlockState().getValue(FACING).getOpposite();
 
         bullet.setPos(
-                new Vec3(
-                        getBlockPos().getX() +
-                                IntUtil.toInt(direction.getStepX() < 0)
-                                + Math.abs(direction.getStepZ()/2F)
-                                + direction.getStepX() * (getBarrelLength() + 2)
-                        ,
-                        getBlockPos().relative(direction, 4).getY()
-                                + 1/4F
-                        ,
-                        getBlockPos().getZ() +
-                                IntUtil.toInt(direction.getStepZ() < 0)
-                                + Math.abs(direction.getStepX() / 2F)
-                                + direction.getStepZ() * (getBarrelLength() + 2 + getBulletSizeModifier())
-                )
+                bulletPos(direction)
         );
 
         bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getBulletVelocity(), 0F);
@@ -146,8 +135,16 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         level.addFreshEntity(bullet);
     }
 
-    protected float getBulletSizeModifier() {
-        return 0;
+    protected Vec3 bulletPos(Direction direction) {
+        assert level != null;
+        ServerLevel level = (ServerLevel) this.level;
+
+        BlockSourceImpl blockSource = new BlockSourceImpl(level, getBlockPos());
+        return new Vec3(
+                        blockSource.x() + direction.getStepX() * (getBarrelLength() + 2)
+                        , blockSource.y() + direction.getStepY() * (getBarrelLength() + 2)
+                        , blockSource.z() + direction.getStepZ() * (getBarrelLength() + 2)
+                );
     }
 
 
@@ -190,7 +187,6 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
     }
 
     protected void whenBulletCreated(BulletEntity bullet) {}
-
 
     protected void playSoundAndParticles(){
         assert level != null;

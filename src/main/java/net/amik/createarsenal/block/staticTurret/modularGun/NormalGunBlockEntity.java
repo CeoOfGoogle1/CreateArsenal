@@ -137,11 +137,6 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
         super.whenBulletCreated(bullet);
     }
 
-    @Override
-    protected float getBulletSizeModifier() {
-        return getBarrelSize().ordinal() - .7f;
-    }
-
 
     @Override
     protected float getBulletVelocity() {
