@@ -8,6 +8,10 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
+import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 
 import static net.amik.createarsenal.CreateArsenal.resource;
@@ -43,14 +47,28 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	public void setupAnim(@NotNull BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	}
 
-	public void setColor(Color outside, Color inside){
+	public void setColor(Color outside, Color inside) {
 		insideColor = inside;
 		outsideColor = outside;
 	}
 
+	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer, int packedLight, int packedOverlay) {
+
+		inside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), false))
+				, LightTexture.FULL_BRIGHT, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
+
+		outside.render(poseStack, pBuffer.getBuffer(RenderType.itemEntityTranslucentCull(getTextureLocation()))
+				, LightTexture.FULL_BRIGHT, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
+	}
+
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-        outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
-        inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
+
+		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
+		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
+	}
+
+	public @NotNull ResourceLocation getTextureLocation() {
+		return resource("textures/entity/dynamic_bullet.png");
 	}
 }

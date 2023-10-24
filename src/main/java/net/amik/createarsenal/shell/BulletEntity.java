@@ -22,6 +22,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static net.minecraft.sounds.SoundEvents.FIREWORK_ROCKET_BLAST;
+
 public class BulletEntity extends AbstractArrow {
     public static final AtomicInteger NEXT_BREAKER_ID = new AtomicInteger();
 
@@ -36,7 +38,6 @@ public class BulletEntity extends AbstractArrow {
 
     protected int damage=2;
 
-    protected ShellScale size=ShellScale.SMALL;
 
 
 
@@ -53,6 +54,7 @@ public class BulletEntity extends AbstractArrow {
     public BulletEntity(Level p_36834_, int breakerLevel) {
         super(ModProjectiles.BULLET_ENTITY.get(), p_36834_);
         this.breakerLevel = breakerLevel;
+        setSoundEvent(FIREWORK_ROCKET_BLAST);
     }
 
     @SuppressWarnings("unchecked")
@@ -169,8 +171,6 @@ public class BulletEntity extends AbstractArrow {
     public void setSize(ShellScale size) {
         this.entityData.set(DATA_ID_SIZE, size.ordinal());
     }
-
-
 
 
 }

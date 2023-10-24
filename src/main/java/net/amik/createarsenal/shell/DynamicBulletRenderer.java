@@ -1,7 +1,6 @@
 package net.amik.createarsenal.shell;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -51,9 +50,8 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
             ms.translate(0, -1 * entity.getSize().ordinal(), -.075f);
             ms.scale(.6f, 1f * entity.getSize().ordinal(), .6f);
-            VertexConsumer vertexconsumer = pBuffer.getBuffer(rendertype);
             this.model.setColor(entity.getOutsideColor(), entity.getInsideColor());
-            this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f, 1f, 1f, 1.0F);
+            this.model.customRender(ms, pBuffer, pPackedLight, pPackedLight);
         }
 
         ms.popPose();
@@ -68,7 +66,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
     @Nullable
     protected RenderType getRenderType(BulletEntity entity) {
         ResourceLocation resourcelocation = this.getTextureLocation(entity);
-        return RenderType.itemEntityTranslucentCull(resourcelocation);
+        return RenderType.beaconBeam(resourcelocation, false);
     }
 
     @Override

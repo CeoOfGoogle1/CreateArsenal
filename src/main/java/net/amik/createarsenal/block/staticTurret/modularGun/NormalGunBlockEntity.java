@@ -118,11 +118,6 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
         return super.getTooltipName();
     }
 
-    @Override
-    protected void playSoundAndParticles() {
-        super.playSoundAndParticles();
-//        level.playLocalSound(getBlockPos().getX(),getBlockPos().getY(),getBlockPos().getZ(), fireSoundName().get(), SoundSource.BLOCKS, 5f, 1, true);
-    }
 
     public boolean atMaxBarrelLength() {
         return getBarrelLength() >= MAX_BARREL_LENGTH;
@@ -140,7 +135,11 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
 
     @Override
     protected float getBulletVelocity() {
-        return 6 + getBarrelLength();
+        return 7 + getBarrelLength();
     }
 
+    @Override
+    protected float getBulletInaccuracy() {
+        return 0f;
+    }
 }

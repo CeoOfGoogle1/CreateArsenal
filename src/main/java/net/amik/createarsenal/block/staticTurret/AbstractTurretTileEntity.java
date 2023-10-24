@@ -128,7 +128,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 bulletPos(direction)
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getBulletVelocity(), 0F);
+        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getBulletVelocity(), getBulletInaccuracy());
 
         whenBulletCreated(bullet);
 
@@ -202,24 +202,32 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
         level.addAlwaysVisibleParticle(ParticleTypes.CAMPFIRE_SIGNAL_SMOKE, getBlockPos().getX() +
                 IntUtil.toInt(direction.getStepX() < 0)
-                + Math.abs(direction.getStepZ()/2F)
-                + direction.getStepX() * (getBarrelLength() + 2),getBlockPos().relative(direction, 4).getY()
-                + 1/4F,getBlockPos().getZ() +
+                + Math.abs(direction.getStepZ() / 2F)
+                + direction.getStepX() * (getBarrelLength() + 2), getBlockPos().relative(direction, 4).getY()
+                + 1 / 4F, getBlockPos().getZ() +
                 IntUtil.toInt(direction.getStepZ() < 0)
-                + Math.abs(direction.getStepX()/2F)
+                + Math.abs(direction.getStepX() / 2F)
                 + direction.getStepZ() * (getBarrelLength() + 2), 0d, 0d, 0d);
     }
 
     public ItemStack getBulletItem() {
         return getItemHandler().getStackInSlot(0);
     }
-    protected float getBulletVelocity(){return 10;}
 
-    TurretItemHandler getItemHandler(){
+    protected float getBulletVelocity() {
+        return 10;
+    }
+
+    protected float getBulletInaccuracy() {
+        return 0;
+    }
+
+
+    TurretItemHandler getItemHandler() {
         return itemCapability.orElse(new TurretItemHandler());
     }
 
-    private  class TurretItemHandler extends ItemStackHandler{
+    private class TurretItemHandler extends ItemStackHandler {
 
         public TurretItemHandler() {
             super(1);
@@ -228,7 +236,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         @NotNull
         @Override
         public ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) {
-            if(isValidBulletInserted(stack))
+            if (isValidBulletInserted(stack))
                 return super.insertItem(slot, stack, simulate);
             return stack;
         }
