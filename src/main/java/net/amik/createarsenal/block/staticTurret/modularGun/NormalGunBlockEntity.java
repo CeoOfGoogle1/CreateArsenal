@@ -1,6 +1,6 @@
 package net.amik.createarsenal.block.staticTurret.modularGun;
 
-import net.amik.createarsenal.block.staticTurret.AbstractRotatingTurretTileEntity;
+import net.amik.createarsenal.block.staticTurret.AbstractTurretTileEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.shell.BulletEntity;
@@ -19,7 +19,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import static net.amik.createarsenal.util.HorizontalDirectionBlock.FACING;
 
-public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
+public class NormalGunBlockEntity extends AbstractTurretTileEntity {
 
     private static final int MAX_BARREL_LENGTH = 4;
 
@@ -29,7 +29,7 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
     }
 
     public InteractionResult use(Player pPlayer, InteractionHand pHand) {
-        ItemStack stack=pPlayer.getItemInHand(pHand);
+        ItemStack stack = pPlayer.getItemInHand(pHand);
         if(!isBarrelItem(stack)) return InteractionResult.PASS;
         if(addBarrel(pPlayer, stack))
             return InteractionResult.SUCCESS;
@@ -133,9 +133,15 @@ public class NormalGunBlockEntity extends AbstractRotatingTurretTileEntity {
         bullet.setLife((int) (getBarrelLength() * 20));
         bullet.setDamage(2 * getBarrelSize().ordinal());
         bullet.setSize(getBarrelSize());
-        TracerColors.setBulletColor(bullet,getBulletItem());
+        TracerColors.setBulletColor(bullet, getBulletItem());
         super.whenBulletCreated(bullet);
     }
+
+    @Override
+    protected float getBulletSizeModifier() {
+        return getBarrelSize().ordinal() - .7f;
+    }
+
 
     @Override
     protected float getBulletVelocity() {

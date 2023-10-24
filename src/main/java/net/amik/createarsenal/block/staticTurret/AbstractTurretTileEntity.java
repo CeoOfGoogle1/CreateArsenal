@@ -134,8 +134,8 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                         ,
                         getBlockPos().getZ() +
                                 IntUtil.toInt(direction.getStepZ() < 0)
-                                + Math.abs(direction.getStepX()/2F)
-                                + direction.getStepZ() * (getBarrelLength() + 2)
+                                + Math.abs(direction.getStepX() / 2F)
+                                + direction.getStepZ() * (getBarrelLength() + 2 + getBulletSizeModifier())
                 )
         );
 
@@ -146,6 +146,9 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         level.addFreshEntity(bullet);
     }
 
+    protected float getBulletSizeModifier() {
+        return 0;
+    }
 
 
     @Override
@@ -154,7 +157,7 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
         itemCapability.invalidate();
     }
 
-    public boolean isValidBulletInserted(ItemStack stack){
+    public boolean isValidBulletInserted(ItemStack stack) {
         return stack.is(ModTags.BULLET_TAG);
     }
 

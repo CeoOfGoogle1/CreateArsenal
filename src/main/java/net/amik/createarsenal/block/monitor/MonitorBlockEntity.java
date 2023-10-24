@@ -7,7 +7,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,16 +16,17 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         super(type, pos, state);
     }
 
-    public static final int RANGE_WIDTH=128;
-    public static final int RANGE_HEIGHT=4;
+    public static final int RANGE_WIDTH = 256;
+    public static final int RANGE_HEIGHT = 4;
     private float animation;
 
 
-    List<Entity> scannedEntities=new ArrayList<>();
+    List<Entity> scannedEntities = new ArrayList<>();
 
 
     @Override
-    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {}
+    public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
+    }
 
     @Override
     public void lazyTick() {
@@ -53,6 +53,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         scannedEntities=level.getEntities(null, this.getRenderBoundingBox().inflate(RANGE_WIDTH,RANGE_HEIGHT,RANGE_WIDTH));
 
     }
+
 
     public boolean wrenchClick(BlockHitResult pHit) {
         return false;

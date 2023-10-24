@@ -1,6 +1,5 @@
 package net.amik.createarsenal.shell;
 
-import com.jozufozu.flywheel.util.Color;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
@@ -12,6 +11,7 @@ import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
@@ -21,39 +21,40 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
     protected BulletModel model;
 
-
     public DynamicBulletRenderer(EntityRendererProvider.Context pContext) {
         super(pContext);
         this.model=new BulletModel(pContext.bakeLayer(BulletModel.LAYER_LOCATION));
     }
 
     @Override
-    protected int getSkyLightLevel(BulletEntity pEntity, BlockPos pPos) {
+    protected int getSkyLightLevel(@NotNull BulletEntity pEntity, @NotNull BlockPos pPos) {
         return 15;
     }
 
     @Override
-    protected int getBlockLightLevel(BulletEntity pEntity, BlockPos pPos) {
+    protected int getBlockLightLevel(@NotNull BulletEntity pEntity, @NotNull BlockPos pPos) {
         return 15;
     }
+
     @Override
-    public void render(BulletEntity entity, float pEntityYaw, float pPartialTick, PoseStack ms, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(BulletEntity entity, float pEntityYaw, float pPartialTick, PoseStack ms, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
 
         ms.pushPose();
 
         Vec3 deltaMovement = entity.getDeltaMovement();
 
-        ms.translate(0, -3/4f, 0);
+        ms.translate(0, -3 / 8f, 0);
+
 
         if (deltaMovement.z == 0) {
             if (deltaMovement.x > 0) {
-                ms.translate(-1/16f, 0, 0f);
+                ms.translate(-1 / 16f, 0, 0f);
 
                 ms.mulPose(Vector3f.YP.rotationDegrees(
                         90
                 ));
             } else {
-                ms.translate(1/16f, 0, 0);
+                ms.translate(1 / 16f, 0, 0);
 
                 ms.mulPose(Vector3f.YP.rotationDegrees(
                         -90
@@ -77,7 +78,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
             }
         }
 
-        ms.scale(.8f,.8f,1f*entity.getSize().ordinal());
+        ms.scale(.6f, .6f, 1.5f * entity.getSize().ordinal());
 
 
         RenderType rendertype = this.getRenderType(entity);
@@ -91,19 +92,18 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
     }
 
     @Override
-    public BulletModel getModel() {
+    public @NotNull BulletModel getModel() {
         return model;
     }
 
     @Nullable
     protected RenderType getRenderType(BulletEntity entity) {
         ResourceLocation resourcelocation = this.getTextureLocation(entity);
-            return  RenderType.outline(resourcelocation);
+        return RenderType.itemEntityTranslucentCull(resourcelocation);
     }
 
-
     @Override
-    public ResourceLocation getTextureLocation(BulletEntity pEntity) {
+    public @NotNull ResourceLocation getTextureLocation(@NotNull BulletEntity pEntity) {
         return resource("textures/entity/dynamic_bullet.png");
     }
 }

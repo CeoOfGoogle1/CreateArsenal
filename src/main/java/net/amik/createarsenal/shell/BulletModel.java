@@ -11,17 +11,16 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 import static net.amik.createarsenal.CreateArsenal.resource;
 
+@SuppressWarnings("unused")
 public class BulletModel extends EntityModel<BulletEntity> {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(resource("custom_bullet"), "main");
 
 	private final ModelPart inside;
 	private final ModelPart outside;
-
 
 
 	private Color insideColor=new Color(255,212,0,255);
@@ -30,6 +29,7 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	public BulletModel(ModelPart root) {
 		this.inside = root.getChild("inside");
 		this.outside = root.getChild("outside");	}
+
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
@@ -43,10 +43,8 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	}
 
 
-
 	@Override
-	public void setupAnim(BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-
+	public void setupAnim(@NotNull BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 	}
 
 	public void setColor(Color outside, Color inside){
@@ -56,8 +54,8 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 
 	@Override
-	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, OutsideColor.getRedAsFloat(), OutsideColor.getGreenAsFloat(),OutsideColor.getBlueAsFloat(), .1f);
+	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, OutsideColor.getRedAsFloat(), OutsideColor.getGreenAsFloat(), OutsideColor.getBlueAsFloat(), .4f);
 		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 

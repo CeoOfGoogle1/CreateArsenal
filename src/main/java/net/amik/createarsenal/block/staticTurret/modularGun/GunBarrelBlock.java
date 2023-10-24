@@ -17,13 +17,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunBarrelBlockEntity> {
     public GunBarrelBlock(Properties pProperties) {
@@ -33,12 +31,11 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     protected static final VoxelShape SHAPE_Z = Block.box(4.0D, 4.0D, 0.0D, 12.0D, 12.0D, 16.0D);
     protected static final VoxelShape SHAPE_X = Block.box(0.0D, 4.0D, 4.0D, 16.0D, 12.0D, 12.0D);
 
-
-
+    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity be)
-            return be.use(pPlayer,pPlayer.getItemInHand(pHand));
+    public @NotNull InteractionResult use(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
+        if (pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity be)
+            return be.use(pPlayer, pPlayer.getItemInHand(pHand));
         return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
     }
 
@@ -61,27 +58,35 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
     }
 
     @Override
-    public void fillItemCategory(CreativeModeTab pTab, NonNullList<ItemStack> pItems) {
+    public void fillItemCategory(@NotNull CreativeModeTab pTab, @NotNull NonNullList<ItemStack> pItems) {
     }
 
-
+    @SuppressWarnings("deprecation")
     @Override
-    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        Direction behind=pState.getValue(FACING).getOpposite();
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, @NotNull BlockState pNewState, boolean pIsMoving) {
+        Direction behind = pState.getValue(FACING).getOpposite();
 
-        if(pLevel.getBlockEntity(pPos.relative(behind)) instanceof GunBarrelBlockEntity)
-            pLevel.removeBlock(pPos.relative(behind),false);
+        if (pLevel.getBlockEntity(pPos.relative(behind)) instanceof GunBarrelBlockEntity)
+            pLevel.removeBlock(pPos.relative(behind), false);
 
-        if(pLevel.getBlockEntity(pPos.relative(behind.getOpposite())) instanceof NormalGunBlockEntity gun)
+        if (pLevel.getBlockEntity(pPos.relative(behind.getOpposite())) instanceof NormalGunBlockEntity gun)
             gun.dropAmmo();
 
-        if(pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity barrel)
+        if (pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity barrel)
             barrel.dropItemEntity();
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @Override
-    protected void spawnDestroyParticles(Level pLevel, Player pPlayer, BlockPos pPos, BlockState pState) {
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter level, BlockPos pos, Player player) {
+        if (level.getBlockEntity(pos) instanceof GunBarrelBlockEntity barrel) {
+            return new ItemStack(barrel.getBarrelItemfromSize());
+        }
+        return ItemStack.EMPTY;
+    }
+
+    @Override
+    protected void spawnDestroyParticles(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull BlockPos pPos, @NotNull BlockState pState) {
     }
 
     @Override

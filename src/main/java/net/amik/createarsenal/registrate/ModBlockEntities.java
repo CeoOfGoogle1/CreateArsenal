@@ -14,25 +14,18 @@ import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTu
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretRenderer;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretBlockEntity;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretInstance;
+import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretRenderer;
 import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlockRenderer;
 import net.amik.createarsenal.block.staticTurret.modularGun.NormalGunBlockEntity;
-import net.amik.createarsenal.block.turretBase.TurretBaseBlockTileEntity;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlockEntities {
-    public static final BlockEntityEntry<TurretBaseBlockTileEntity> TURRET_BASE_BLOCK_TILE_ENTITY = REGISTRATE
-            .blockEntity("turret_base_block", TurretBaseBlockTileEntity::new)
-            .instance(() -> ShaftInstance::new, true)
-            .validBlocks(ModBlocks.TURRET_BASE_BLOCK)
-            .renderer(() -> KineticBlockEntityRenderer::new)
-            .register();
 
     public static final BlockEntityEntry<FourBarrelStaticTurretBlockEntity> FOUR_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
             .blockEntity("four_barrel_static_turret", FourBarrelStaticTurretBlockEntity::new)
@@ -66,7 +59,6 @@ public class ModBlockEntities {
             .renderer(() -> EightBarrelStaticTurretRenderer::new)
             .register();
 
-    //
 
     public static final BlockEntityEntry<ChainGunStaticTurretBlockEntity> CHAINGUN_STATIC_TURRET_TILE_ENTITY = REGISTRATE
             .blockEntity("chain_gun_static_turret", ChainGunStaticTurretBlockEntity::new)

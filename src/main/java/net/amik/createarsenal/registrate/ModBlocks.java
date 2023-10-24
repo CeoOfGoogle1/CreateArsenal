@@ -15,7 +15,6 @@ import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelSt
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.modularGun.GunBarrelBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.NormalGunBlock;
-import net.amik.createarsenal.block.turretBase.TurretBaseBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -29,16 +28,6 @@ import static net.minecraft.world.level.block.state.properties.BlockStatePropert
 public class ModBlocks {
 
 
-    public static final BlockEntry<TurretBaseBlock> TURRET_BASE_BLOCK =
-            REGISTRATE.block("turret_base_block", TurretBaseBlock::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .transform(BlockStressDefaults.setImpact(0))
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 180))
-                    .item()
-                    .model(NonNullBiConsumer.noop())
-                    .build()
-                    .register();
 
     public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
             REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
