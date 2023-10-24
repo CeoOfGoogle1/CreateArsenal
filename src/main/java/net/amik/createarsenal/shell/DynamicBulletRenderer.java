@@ -45,9 +45,15 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
 
         RenderType rendertype = this.getRenderType(entity);
         if (rendertype != null) {
+
+            if (entity.getSize().equals(ShellScale.SMALL))
+                ms.translate(0, 1, 0);
+
+            ms.translate(0, -1 * entity.getSize().ordinal(), -.075f);
+            ms.scale(.6f, 1f * entity.getSize().ordinal(), .6f);
             VertexConsumer vertexconsumer = pBuffer.getBuffer(rendertype);
-            this.model.setColor(entity.getOutsideColor(),entity.getInsideColor());
-            this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f,1f, 1f, 1.0F);
+            this.model.setColor(entity.getOutsideColor(), entity.getInsideColor());
+            this.model.renderToBuffer(ms, vertexconsumer, pPackedLight, pPackedLight, 1f, 1f, 1f, 1.0F);
         }
 
         ms.popPose();

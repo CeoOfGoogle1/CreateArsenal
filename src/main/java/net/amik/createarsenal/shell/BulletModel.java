@@ -31,7 +31,7 @@ public class BulletModel extends EntityModel<BulletEntity> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
+		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(.5f, .5f, .5f, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
@@ -50,7 +50,7 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .4f);
-		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
+        outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
+        inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 }
