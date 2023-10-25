@@ -9,6 +9,7 @@
   "block.createarsenal.monitor": "Monitor",
   "block.createarsenal.normal_gun_bearing": "Normal Gun Bearing",
   "block.createarsenal.rotary_gun_bearing": "Rotary Gun Bearing",
+  "block.createarsenal.sea_mine": "Sea Mine",
   "entity.createarsenal.bullet": "Bullet",
   "item.createarsenal.brass_rod": "Brass Rod",
   "item.createarsenal.bullet_large": "Large Bullet",
@@ -52,5 +53,6 @@
   "item.createarsenal.small_gun_barrel": "Small Gun Barrel",
   "item.createarsenal.spring": "Spring",
   "itemGroup.createarsenal.tab.bullets": "Create: Arsenal Bullets",
-  "itemGroup.createarsenal.tab.general": "Create: Arsenal"
+  "itemGroup.createarsenal.tab.general": "Create: Arsenal",
+  "sea_mine.float_level": "Float Level"
 }

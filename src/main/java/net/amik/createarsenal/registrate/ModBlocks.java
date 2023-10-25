@@ -2,6 +2,7 @@ package net.amik.createarsenal.registrate;
 
 
 import com.simibubi.create.content.kinetics.BlockStressDefaults;
+import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
@@ -10,6 +11,7 @@ import net.amik.createarsenal.block.big_radar.BigRadarBaseBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlock;
 import net.amik.createarsenal.block.big_radar.BigRadarReceiverBlock;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
+import net.amik.createarsenal.block.seaMine.SeaMineBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
 import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
 import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
@@ -83,7 +85,14 @@ public class ModBlocks {
                     .build()
                     .register();
 
-
+    public static final BlockEntry<SeaMineBlock> SEA_MINE =
+            REGISTRATE.block("sea_mine", SeaMineBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
+                    .item()
+                    .build()
+                    .register();
     public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
             REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
                     .initialProperties(SharedProperties::softMetal)

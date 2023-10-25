@@ -12,5 +12,10 @@ public class ModTranslations {
                 "itemGroup.createarsenal.tab.bullets",
                 "Create: Arsenal Bullets"
         );
+        CreateArsenal.REGISTRATE.addRawLang(
+                "sea_mine.float_level",
+                "Float Level"
+        );
+
     }
 }

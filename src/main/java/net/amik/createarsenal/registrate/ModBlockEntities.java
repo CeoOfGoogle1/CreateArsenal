@@ -12,6 +12,7 @@ import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
+import net.amik.createarsenal.block.seaMine.SeaMineBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretRenderer;
@@ -40,6 +41,12 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<NormalGunBlockEntity> NORMAL_GUN_BLOCK_ENTITY = REGISTRATE
             .blockEntity("normal_gun_bearing", NormalGunBlockEntity::new)
             .validBlocks(ModBlocks.NORMAL_GUN)
+            .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<SeaMineBlockEntity> SEA_MINE = REGISTRATE
+            .blockEntity("sea_mine", SeaMineBlockEntity::new)
+            .validBlocks(ModBlocks.SEA_MINE)
             .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
 
