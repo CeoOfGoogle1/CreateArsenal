@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -46,6 +47,11 @@ public class RotaryGunBlock extends HorizontalDirectionalKineticBlock implements
     @Override
     public BlockEntityType<? extends RotaryGunBlockEntity> getBlockEntityType() {
         return ModBlockEntities.ROTARY_GUN_BLOCK_ENTITY.get();
+    }
+
+    public BlockState getStateForPlacement(BlockPlaceContext pContext) {
+        return pContext.getPlayer().isShiftKeyDown() ?
+                this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection().getOpposite()) : this.defaultBlockState().setValue(FACING, pContext.getHorizontalDirection());
     }
 
     @Override

@@ -37,7 +37,7 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(.5f, .5f, .5f, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
-		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
+		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0f, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		return LayerDefinition.create(meshdefinition, 16, 16);
 	}
@@ -53,12 +53,10 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	}
 
 	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer, int packedLight, int packedOverlay) {
-
+		outside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), true))
+				, LightTexture.FULL_BRIGHT, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
 		inside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), false))
 				, LightTexture.FULL_BRIGHT, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
-
-		outside.render(poseStack, pBuffer.getBuffer(RenderType.itemEntityTranslucentCull(getTextureLocation()))
-				, LightTexture.FULL_BRIGHT, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
 	}
 
 	@Override
