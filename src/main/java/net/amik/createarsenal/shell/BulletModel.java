@@ -33,11 +33,10 @@ public class BulletModel extends EntityModel<BulletEntity> {
 
 	public static LayerDefinition createBodyLayer() {
 		MeshDefinition meshdefinition = new MeshDefinition();
+
 		PartDefinition partdefinition = meshdefinition.getRoot();
-
-		PartDefinition inside = partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(.5f, .5f, .5f, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
-
-		PartDefinition outside = partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0f, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
+		partdefinition.addOrReplaceChild("inside", CubeListBuilder.create().texOffs(0, 0).addBox(.5f, .5f, .5f, 3.0F, 23.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
+		partdefinition.addOrReplaceChild("outside", CubeListBuilder.create().texOffs(0, 0).addBox(0, 0f, 0, 4.0F, 24.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.ZERO);
 
 		return LayerDefinition.create(meshdefinition, 16, 16);
 	}
@@ -52,18 +51,17 @@ public class BulletModel extends EntityModel<BulletEntity> {
 		outsideColor = outside;
 	}
 
-	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer, int packedLight, int packedOverlay) {
+	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer) {
+
 		outside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), true))
-				, LightTexture.FULL_BRIGHT, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
+				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
+
 		inside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), false))
-				, LightTexture.FULL_BRIGHT, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
+				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 
 	@Override
 	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-
-		inside.render(poseStack, vertexConsumer, packedLight, packedOverlay, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
-		outside.render(poseStack, vertexConsumer, packedLight, packedOverlay, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), .3f);
 	}
 
 	public @NotNull ResourceLocation getTextureLocation() {
