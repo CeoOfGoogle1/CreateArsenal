@@ -30,15 +30,12 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
         BlockState blockState = barrel.getBlockState();
         Direction direction = barrel.getBlockState().getValue(FACING);
         VertexConsumer vb = buffer.getBuffer(RenderType.cutoutMipped());
-        Direction shift = direction.getCounterClockWise();
-
-        double modifier = 4;
 
 
         if (barrel.isSpinning())
             renderSpinningBarrels(blockState, barrel, direction, light, ms, vb);
         else
-            renderNormalBarrels(blockState, barrel, shift, direction, modifier, light, ms, vb);
+            renderNormalBarrels(blockState, barrel, direction, light, ms, vb);
 
     }
 
@@ -63,90 +60,54 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
 
     }
 
-
-    private void renderNormalBarrels(BlockState blockState, GunBarrelBlockEntity barrel, Direction shift, Direction direction, double modifier, int light, PoseStack ms, VertexConsumer vb) {
+    private void renderNormalBarrels(BlockState blockState, GunBarrelBlockEntity barrel, Direction direction, int light, PoseStack ms, VertexConsumer vb) {
         SuperByteBuffer barrelModel = CachedBufferer
                 .partialFacing(barrel.getPartialModel(), blockState, direction);
+        float recoilOffset = barrel.getGunBE().getTickUntilRecoil() * .05f;
+        Direction shift = direction.getCounterClockWise();
+        double modifier = 4;
 
-        if (barrel.isPrimary()) {
-            if (barrel.barrelCount == 1) {
-                barrelModel.light(light).renderInto(ms, vb);
-            }
-
-            if (barrel.barrelCount == 2) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0, shift.getStepZ() * 0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-            }
-
-            if (barrel.barrelCount == 3) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(0, .05 * modifier, 0);
-                barrelModel.light(light).renderInto(ms, vb);
-            }
-
-            if (barrel.barrelCount >= 4) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-            }
-        } else {
-            int primaryBarrelCount = barrel.getPrimaryBarrelCount();
-
-            if (primaryBarrelCount == 1 && barrel.barrelCount == 1)
-                barrelModel.light(light).renderInto(ms, vb);
-
-
-            if (primaryBarrelCount == 2) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                if (barrel.barrelCount == 2) {
-                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0, shift.getStepZ() * 0.05 * modifier);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-            }
-
-
-            if (primaryBarrelCount == 3) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                if (barrel.barrelCount >= 2) {
-                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-                if (barrel.barrelCount == 3) {
-                    barrelModel.translate(0, .05 * modifier, 0);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-            }
-
-            if (primaryBarrelCount >= 4) {
-                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                barrelModel.light(light).renderInto(ms, vb);
-                if (barrel.barrelCount >= 2) {
-                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-                if (barrel.barrelCount >= 3) {
-                    barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-                if (barrel.barrelCount >= 4) {
-                    barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
-                    barrelModel.light(light).renderInto(ms, vb);
-                }
-
-            }
+        for (int i = 0; i < barrel.barrelCount; i++) {
+            applyRecoil(barrelModel, direction, recoilOffset);
+            applyOffsetToNormalBarrel(i + 1, barrel.getPrimaryBarrelCount(), shift, modifier, barrelModel);
+            barrelModel.light(light).renderInto(ms, vb);
         }
+
+    }
+
+    private static void applyOffsetToNormalBarrel(int currentBarrel, int primaryBarrelCount, Direction shift, double modifier, SuperByteBuffer barrelModel) {
+        if (primaryBarrelCount == 1 && currentBarrel == 1) {
+            return;
+        }
+        if (primaryBarrelCount == 2) {
+            if (currentBarrel == 1)
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0, shift.getStepZ() * -0.05 * modifier);
+            if (currentBarrel == 2)
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0, shift.getStepZ() * 0.05 * modifier);
+        }
+        if (primaryBarrelCount == 3) {
+            if (currentBarrel == 1)
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+            if (currentBarrel == 2)
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+            if (currentBarrel == 3)
+                barrelModel.translate(0, .05 * modifier, 0);
+        }
+        if (primaryBarrelCount == 4) {
+            if (currentBarrel == 1)
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, -0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+            if (currentBarrel == 2)
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, -0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+            if (currentBarrel == 3)
+                barrelModel.translate(shift.getStepX() * -0.05 * modifier, 0.05 * modifier, shift.getStepZ() * -0.05 * modifier);
+            if (currentBarrel == 4)
+                barrelModel.translate(shift.getStepX() * 0.05 * modifier, 0.05 * modifier, shift.getStepZ() * 0.05 * modifier);
+        }
+    }
+
+
+    public static void applyRecoil(SuperByteBuffer barrelModel, Direction direction, float recoilOffset) {
+        barrelModel.translate(direction.getStepX() * recoilOffset, direction.getStepY() * recoilOffset, direction.getStepZ() * recoilOffset);
     }
 
 }

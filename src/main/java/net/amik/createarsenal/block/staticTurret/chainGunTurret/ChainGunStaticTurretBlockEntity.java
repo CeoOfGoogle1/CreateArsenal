@@ -1,7 +1,7 @@
 package net.amik.createarsenal.block.staticTurret.chainGunTurret;
 
 import net.amik.createarsenal.block.staticTurret.AbstractTurretTileEntity;
-import net.amik.createarsenal.sound.ModSounds;
+import net.amik.createarsenal.registrate.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,12 +26,13 @@ public class ChainGunStaticTurretBlockEntity extends AbstractTurretTileEntity {
         if (tickUntilRecoil <= 0) {
             tickUntilRecoil = 0;
         }
+        sendData();
         super.tick();
     }
 
     @Override
     protected SoundEvent fireSoundName() {
-        return ModSounds.CHAIN_GUN_FIRED.get();
+        return ModSoundEvents.FIRE_CHAINGUN_TURRET.getMainEvent();
     }
 
     @Override

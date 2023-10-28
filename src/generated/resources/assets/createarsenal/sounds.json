@@ -1,0 +1,52 @@
+{
+  "bullet_impact": {
+    "sounds": [
+      {
+        "name": "minecraft:block.stone.step",
+        "type": "event",
+        "attenuation_distance": 150
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.bullet_impact"
+  },
+  "fire_chaingun_turret": {
+    "sounds": [
+      {
+        "name": "createarsenal:fire_chaingun_turret",
+        "type": "file",
+        "attenuation_distance": 150
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.fire_chaingun_turret"
+  },
+  "fire_large_turret": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.firework_rocket.large_blast_far",
+        "type": "event",
+        "attenuation_distance": 150
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.fire_large_turret"
+  },
+  "fire_medium_turret": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.firework_rocket.large_blast",
+        "type": "event",
+        "attenuation_distance": 150
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.fire_medium_turret"
+  },
+  "fire_small_turret": {
+    "sounds": [
+      {
+        "name": "minecraft:entity.firework_rocket.blast_far",
+        "type": "event",
+        "attenuation_distance": 150
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.fire_small_turret"
+  }
+}

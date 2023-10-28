@@ -2,14 +2,16 @@ package net.amik.createarsenal;
 
 import com.mojang.logging.LogUtils;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.amik.createarsenal.datagen.ArsenalDataGen;
 import net.amik.createarsenal.registrate.*;
 import net.amik.createarsenal.registrate.network.ModMessages;
-import net.amik.createarsenal.sound.ModSounds;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -39,11 +41,13 @@ public class CreateArsenal
         ModBlockEntities.register();
         ModProjectiles.register();
         ModTranslations.register();
-        ModSounds.register(eventBus);
+        ModSoundEvents.prepare();
         REGISTRATE.registerEventListeners(eventBus);
         eventBus.addListener(CreateArsenal::init);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ModPartials::init);
+        eventBus.addGenericListener(SoundEvent.class, ModSoundEvents::register);
+        eventBus.addListener(EventPriority.LOWEST, ArsenalDataGen::gatherData);
 
     }
 

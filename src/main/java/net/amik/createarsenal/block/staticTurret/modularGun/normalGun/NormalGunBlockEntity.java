@@ -1,15 +1,18 @@
 package net.amik.createarsenal.block.staticTurret.modularGun.normalGun;
 
-import net.amik.createarsenal.block.staticTurret.AbstractTurretTileEntity;
+import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
+import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
+import net.amik.createarsenal.registrate.ModSoundEvents;
 import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.shell.ShellScale;
 import net.amik.createarsenal.shell.TracerColors;
-import net.amik.createarsenal.sound.ModSounds;
+import net.amik.createarsenal.util.IntUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.sounds.SoundEvent;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import static net.amik.createarsenal.util.HorizontalDirectionBlock.FACING;
 
-public class NormalGunBlockEntity extends AbstractTurretTileEntity {
+public class NormalGunBlockEntity extends ChainGunStaticTurretBlockEntity {
 
     private static final int MAX_BARREL_LENGTH = 4;
 
@@ -109,8 +112,28 @@ public class NormalGunBlockEntity extends AbstractTurretTileEntity {
 
 
     @Override
-    protected SoundEvent fireSoundName() {
-        return ModSounds.CHAIN_GUN_FIRED.get();
+    protected void playSoundAndParticles() {
+        assert level != null;
+        if (getBarrelSize().equals(ShellScale.SMALL))
+            ModSoundEvents.FIRE_SMALL_TURRET.playOnServer(level, getBlockPos());
+        if (getBarrelSize().equals(ShellScale.MEDIUM))
+            ModSoundEvents.FIRE_MEDIUM_TURRET.playOnServer(level, getBlockPos());
+        if (getBarrelSize().equals(ShellScale.LARGE))
+            ModSoundEvents.FIRE_LARGE_TURRET.playOnServer(level, getBlockPos());
+
+        Direction direction = getBlockState().getValue(DirectionalKineticBlock.FACING).getOpposite();
+
+        level.addAlwaysVisibleParticle(ParticleTypes.SMOKE,
+                getBlockPos().getX() +
+                        IntUtil.toInt(direction.getStepX() < 0)
+                        + Math.abs(direction.getStepZ() / 2F)
+                        + direction.getStepX() * (getBarrelLength() + 1.15f),
+                getBlockPos().getY() + .6f,
+                getBlockPos().getZ() +
+                        IntUtil.toInt(direction.getStepZ() < 0)
+                        + Math.abs(direction.getStepX() / 2F)
+                        + direction.getStepZ() * (getBarrelLength() + 1.15f),
+                0d, 0d, 0d);
     }
 
     @Override
