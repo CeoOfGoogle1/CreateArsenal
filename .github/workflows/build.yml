@@ -63,7 +63,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          args: ./build/libs/*.*
+          args: ./build/libs/*-dev.jar
 
       - name: Send building message to discord
         uses: realRobotix/action-discord-notifier@release-master
@@ -76,4 +76,4 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_TESTER }}
         with:
-          args: ./build/libs/*.*
+          args: ./build/libs/*-dev.jar

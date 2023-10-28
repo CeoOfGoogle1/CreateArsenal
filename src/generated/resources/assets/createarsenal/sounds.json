@@ -4,7 +4,7 @@
       {
         "name": "minecraft:block.stone.step",
         "type": "event",
-        "attenuation_distance": 150
+        "attenuation_distance": 32
       }
     ],
     "subtitle": "createarsenal.subtitle.bullet_impact"

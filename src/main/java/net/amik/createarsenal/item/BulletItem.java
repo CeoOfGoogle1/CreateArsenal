@@ -20,9 +20,9 @@ public class BulletItem extends ScaleItem{
 
     @Override
     public void fillItemCategory(CreativeModeTab pCategory, NonNullList<ItemStack> pItems) {
-        if (this.allowdedIn(pCategory)) {
+        if (this.allowedIn(pCategory)) {
             pItems.add(new ItemStack(this));
-            TracerColors.fillCreativeTab(pItems,this);
+            TracerColors.fillCreativeTab(pItems, this);
         }
     }
 
