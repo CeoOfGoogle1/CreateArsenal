@@ -52,7 +52,8 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	}
 
 	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer) {
-
+		System.out.println(outsideColor.getRGB());
+		if (outsideColor.getRGB() == -16777216) return;
 		outside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), true))
 				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
 

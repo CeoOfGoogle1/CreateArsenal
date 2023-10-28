@@ -61,6 +61,9 @@ repositories {
         content { includeGroup "curse.maven" }
     }
 
+    maven { url = "https://maven.firstdarkdev.xyz/snapshots" } // LDLib, Photon
+
+
 }
 
 configurations {
@@ -86,6 +89,8 @@ dependencies {
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modImplementation "com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
 
+    modImplementation("com.lowdragmc.photon:photon-forge-1.19.2:1.0.5") { transitive = false }
+    modImplementation("com.lowdragmc.ldlib:ldlib-forge-1.19.2:1.0.13") { transitive = false }
 
     // JEI
     modCompileOnly "mezz.jei:jei-${minecraft_version}-common-api:${jei_version}"

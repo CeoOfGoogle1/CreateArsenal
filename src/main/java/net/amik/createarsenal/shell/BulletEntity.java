@@ -144,8 +144,8 @@ public class BulletEntity extends AbstractArrow {
     protected void defineSynchedData() {
         super.defineSynchedData();
         this.entityData.define(DATA_ID_SIZE, ShellScale.SMALL.ordinal());
-        this.entityData.define(DATA_ID_INSIDE_COLOR, new Color(255, 212, 0).getRGB());
-        this.entityData.define(DATA_ID_OUTSIDE_COLOR, new Color(255, 72, 0).getRGB());
+        this.entityData.define(DATA_ID_INSIDE_COLOR, new Color(0, 0, 0).getRGB());
+        this.entityData.define(DATA_ID_OUTSIDE_COLOR, new Color(0, 0, 0).getRGB());
     }
 
     public void setLife(int life) {
