@@ -126,7 +126,8 @@ public abstract class AbstractTurretTileEntity extends KineticBlockEntity implem
                 bulletPos(direction)
         );
 
-        bullet.shoot(direction.getStepX(), 0, direction.getStepZ(), getBulletVelocity(), getBulletInaccuracy());
+
+        bullet.shoot(direction.getStepX() + (Math.random() * getBulletInaccuracy() - getBulletInaccuracy() / 2), (Math.random() * (Math.random() * getBulletInaccuracy() / 2)), direction.getStepZ() + (Math.random() * getBulletInaccuracy() - getBulletInaccuracy() / 2), getBulletVelocity(), 0);
 
         whenBulletCreated(bullet);
 

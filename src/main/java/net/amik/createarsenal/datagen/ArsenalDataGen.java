@@ -1,6 +1,5 @@
 package net.amik.createarsenal.datagen;
 
-import com.simibubi.create.infrastructure.data.CreateRegistrateTags;
 import com.tterrag.registrate.providers.ProviderType;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.registrate.ModSoundEvents;
@@ -22,7 +21,6 @@ public class ArsenalDataGen {
 
 
     private static void addExtraRegistrateData() {
-        CreateRegistrateTags.addGenerators();
 
         CreateArsenal.REGISTRATE.addDataGenerator(ProviderType.LANG, provider -> {
             BiConsumer<String, String> langConsumer = provider::add;

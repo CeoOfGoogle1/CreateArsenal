@@ -165,6 +165,6 @@ public class NormalGunBlockEntity extends ChainGunStaticTurretBlockEntity {
 
     @Override
     protected float getBulletInaccuracy() {
-        return 0f;
+        return .1f;
     }
 }
