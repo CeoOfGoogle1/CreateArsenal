@@ -5,6 +5,7 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlockEntity;
+import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModPartials;
@@ -33,7 +34,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     public static final int MAX_NORMAL_GUN_BARREL_COUNT = 4;
     public static final int MAX_ROTARY_GUN_BARREL_COUNT = 8;
 
-    ShellScale size = ShellScale.NONE;
+    ShellScale size;
     BlockPos gunBearing = BlockPos.ZERO;
 
 
@@ -111,7 +112,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
     boolean isCorrectSize(ItemStack stack) {
-        return (size == ShellScale.NONE || size == ShellScale.getScaleFromItem(stack));
+        return (size == null || size == ShellScale.getScaleFromItem(stack));
     }
 
     private boolean maxBarrelLength() {
@@ -162,7 +163,7 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     }
 
     private boolean isBarrelItem(ItemStack stack) {
-        return stack.is(ModItems.SMALL_BARREL.get()) || stack.is(ModItems.MEDIUM_BARREL.get()) || stack.is(ModItems.LARGE_BARREL.get());
+        return stack.getItem() instanceof ScaleItem;
     }
 
     public int getBarrelCount() {
@@ -205,10 +206,6 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
 
 
     public ItemLike getBarrelItemFromSize() {
-        if (size.equals(ShellScale.MEDIUM))
-            return ModItems.MEDIUM_BARREL.get();
-        if (size.equals(ShellScale.LARGE))
-            return ModItems.LARGE_BARREL.get();
-        return ModItems.SMALL_BARREL.get();
+        return ModItems.gunBarrelItems.get(size).get();
     }
 }

@@ -37,6 +37,7 @@ public class CreateArsenal
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         MinecraftForge.EVENT_BUS.register(this);
         ModItems.register();
+        ModCraftingMaterials.register();
         ModBlocks.register();
         ModBlockEntities.register();
         ModProjectiles.register();

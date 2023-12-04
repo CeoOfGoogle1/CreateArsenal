@@ -3,8 +3,8 @@ package net.amik.createarsenal.block.staticTurret.modularGun.normalGun;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
+import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.registrate.ModBlocks;
-import net.amik.createarsenal.registrate.ModItems;
 import net.amik.createarsenal.registrate.ModSoundEvents;
 import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.shell.ShellScale;
@@ -87,7 +87,7 @@ public class NormalGunBlockEntity extends ChainGunStaticTurretBlockEntity {
         BlockPos barrelPos = getBlockPos().relative(getBlockState().getValue(FACING).getOpposite());
         if(level.getBlockEntity(barrelPos) instanceof GunBarrelBlockEntity barrel)
             return barrel.getSize();
-        return ShellScale.NONE;
+        return null;
     }
 
     @Override
@@ -102,18 +102,19 @@ public class NormalGunBlockEntity extends ChainGunStaticTurretBlockEntity {
     }
 
     private boolean isBarrelItem(ItemStack stack) {
-        return stack.is(ModItems.SMALL_BARREL.get()) || stack.is(ModItems.MEDIUM_BARREL.get()) || stack.is(ModItems.LARGE_BARREL.get());
+        return stack.getItem() instanceof ScaleItem;
     }
 
     @Override
     public boolean isValidBulletInserted(ItemStack stack) {
-        return super.isValidBulletInserted(stack) && (getBarrelSize().equals(ShellScale.getScaleFromItem(stack)));
+        return super.isValidBulletInserted(stack) && (getBarrelSize() == ShellScale.getScaleFromItem(stack));
     }
 
 
     @Override
     protected void playSoundAndParticles() {
         assert level != null;
+        // TODO: This is repeated code (bad)
         if (getBarrelSize().equals(ShellScale.SMALL))
             ModSoundEvents.FIRE_SMALL_TURRET.playOnServer(level, getBlockPos());
         if (getBarrelSize().equals(ShellScale.MEDIUM))

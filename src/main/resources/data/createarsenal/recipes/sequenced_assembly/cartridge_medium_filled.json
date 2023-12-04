@@ -4,7 +4,7 @@
     "item": "createarsenal:cartridge_medium_empty"
   },
   "transitionalItem": {
-    "item": "createarsenal:cartridge_medium_filled"
+    "item": "createarsenal:cartridge_medium_incomplete"
   },
   "sequence": [
     {

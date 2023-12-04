@@ -1,8 +1,6 @@
 package net.amik.createarsenal.registrate;
 
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
-import com.simibubi.create.foundation.data.CreateRegistrate;
-import com.tterrag.registrate.builders.ItemBuilder;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.item.BulletItem;
@@ -10,6 +8,9 @@ import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
 import net.amik.createarsenal.shell.ShellScale;
 import net.minecraft.world.item.Item;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
@@ -27,35 +28,6 @@ public class ModItems {
             .register();
 
     public static final RegistryEntry<Item> BRASS_ROD = REGISTRATE.item("brass_rod", Item::new)
-            .register();
-
-    public static final RegistryEntry<ScaleItem> SMALL_BARREL = scaleItem("small_gun_barrel", ShellScale.SMALL)
-            .model(NonNullBiConsumer.noop())
-            .register();
-
-    public static final RegistryEntry<ScaleItem> MEDIUM_BARREL = scaleItem("medium_gun_barrel", ShellScale.MEDIUM)
-            .model(NonNullBiConsumer.noop())
-            .register();
-
-    public static final RegistryEntry<ScaleItem> LARGE_BARREL = scaleItem("large_gun_barrel", ShellScale.LARGE)
-            .model(NonNullBiConsumer.noop())
-            .register();
-    public static final RegistryEntry<BulletItem> BULLET_SMALL = bulletItem("bullet_small", ShellScale.SMALL)
-            .lang("Small Bullet")
-            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
-            .model(NonNullBiConsumer.noop())
-            .register();
-
-    public static final RegistryEntry<BulletItem> BULLET_MEDIUM = bulletItem("bullet_medium", ShellScale.MEDIUM)
-            .lang("Medium Bullet")
-            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
-            .model(NonNullBiConsumer.noop())
-            .register();
-
-    public static final RegistryEntry<BulletItem> BULLET_LARGE = bulletItem("bullet_large", ShellScale.LARGE)
-            .lang("Large Bullet")
-            .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
-            .model(NonNullBiConsumer.noop())
             .register();
 
     public static final RegistryEntry<Item> ROUND_CORE_LARGE = REGISTRATE.item("round_core_large", Item::new)
@@ -176,7 +148,7 @@ public class ModItems {
              .lang("Medium Round (HE)")
              .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
              .register();
-     public static final RegistryEntry<Item> ROUND_MEDIUM_INCENDIARY = REGISTRATE.item("round_medium_incendiary", Item::new)
+    public static final RegistryEntry<Item> ROUND_MEDIUM_INCENDIARY = REGISTRATE.item("round_medium_incendiary", Item::new)
              .lang("Medium Round (Incendiary)")
              .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
              .register();
@@ -192,7 +164,7 @@ public class ModItems {
             .lang("Small Round (HE)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
-     public static final RegistryEntry<Item> ROUND_SMALL_HOLLOWPOINT = REGISTRATE.item("round_small_hollowpoint", Item::new)
+    public static final RegistryEntry<Item> ROUND_SMALL_HOLLOWPOINT = REGISTRATE.item("round_small_hollowpoint", Item::new)
             .lang("Small Round (Hollow-Point)")
             .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
             .register();
@@ -204,13 +176,28 @@ public class ModItems {
     //TODO: Organize items in creative tab
     public static void register() {}
 
+    public static final Map<ShellScale, RegistryEntry<ScaleItem>> gunBarrelItems = new HashMap<>();
 
-    private static ItemBuilder<ScaleItem, CreateRegistrate> scaleItem(String name, ShellScale scale) {
-        return REGISTRATE.item(name, properties -> new ScaleItem(properties,scale));
+    private static RegistryEntry<ScaleItem> gunBarrel(ShellScale scale) {
+        return REGISTRATE.item(scale.name().toLowerCase() + "_gun_barrel", properties -> new ScaleItem(properties, scale))
+                .model(NonNullBiConsumer.noop())
+                .register();
     }
 
-    private static ItemBuilder<BulletItem, CreateRegistrate> bulletItem(String name, ShellScale scale) {
-        return REGISTRATE.item(name, properties -> new BulletItem(properties,scale));
+    public static final Map<ShellScale, RegistryEntry<BulletItem>> bulletItems = new HashMap<>();
+
+    private static RegistryEntry<BulletItem> bulletItem(ShellScale scale) {
+        return REGISTRATE.item("bullet_" + scale.name().toLowerCase(), properties -> new BulletItem(properties, scale))
+                .lang(scale.name().toLowerCase().substring(0, 1).toUpperCase() + scale.name().toLowerCase().substring(1) + " Bullet")
+                .tab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_BULLETS)
+                .model(NonNullBiConsumer.noop())
+                .register();
     }
 
+    static {
+        for (ShellScale scale : ShellScale.values()) {
+            ModItems.gunBarrelItems.put(scale, gunBarrel(scale));
+            ModItems.bulletItems.put(scale, bulletItem(scale));
+        }
+    }
 }

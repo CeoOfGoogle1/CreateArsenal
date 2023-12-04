@@ -24,7 +24,7 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
     @Override
     protected void renderSafe(GunBarrelBlockEntity barrel, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         super.renderSafe(barrel, partialTicks, ms, buffer, light, overlay);
-        if (barrel.getBarrelCount() == 0 || barrel.getGunBE() == null || barrel.getSize().equals(ShellScale.NONE))
+        if (barrel.getBarrelCount() == 0 || barrel.getGunBE() == null || barrel.getSize() == null)
             return;
 
         BlockState blockState = barrel.getBlockState();
