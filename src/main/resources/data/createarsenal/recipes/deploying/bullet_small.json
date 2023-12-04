@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createarsenal:round_small"
+    },
+    {
+      "item": "createarsenal:cartridge_small_filled"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:bullet_small"
+    }
+  ]
+}

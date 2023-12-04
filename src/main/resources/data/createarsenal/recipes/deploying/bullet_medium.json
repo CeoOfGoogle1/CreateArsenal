@@ -1,0 +1,16 @@
+{
+  "type": "create:deploying",
+  "ingredients": [
+    {
+      "item": "createarsenal:round_medium"
+    },
+    {
+      "item": "createarsenal:cartridge_medium_filled"
+    }
+  ],
+  "results": [
+    {
+      "item": "createarsenal:bullet_medium"
+    }
+  ]
+}
