@@ -3,7 +3,6 @@ package net.amik.createarsenal.block.monitor;
 import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Lang;
-import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
@@ -19,6 +18,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 
 public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<MonitorBlockEntity> {
@@ -37,18 +39,24 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
                         .getOpposite());
     }
 
+    @SuppressWarnings("deprecation")
     @Override
+    @ParametersAreNonnullByDefault
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         super.onPlace(pState, pLevel, pPos, pOldState, pIsMoving);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
+    @ParametersAreNonnullByDefault
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
         super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    @ParametersAreNonnullByDefault
+    public @NotNull InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if(pPlayer.getItemInHand(pHand).is(AllItems.WRENCH.get())&&pLevel.getBlockEntity(pPos) instanceof MonitorBlockEntity monitor)
             if(monitor.wrenchClick(pHit))
                 return InteractionResult.SUCCESS;
@@ -60,7 +68,7 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
         SINGLE, DOUBLE, TRIPLE, GHOST;
 
         @Override
-        public String getSerializedName() {
+        public @NotNull String getSerializedName() {
             return Lang.asId(name());
         }
     }

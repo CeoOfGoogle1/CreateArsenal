@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "createarsenal:big_radar_dish_block"
+          "name": "createarsenal:radar_base_block"
         }
       ],
       "conditions": [

@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createarsenal:block/radar_receiver_block",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "createarsenal:block/radar_receiver_block"
+    },
+    "facing=north": {
+      "model": "createarsenal:block/radar_receiver_block",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south": {
+      "model": "createarsenal:block/radar_receiver_block",
+      "x": 90
+    },
+    "facing=west": {
+      "model": "createarsenal:block/radar_receiver_block",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east": {
+      "model": "createarsenal:block/radar_receiver_block",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

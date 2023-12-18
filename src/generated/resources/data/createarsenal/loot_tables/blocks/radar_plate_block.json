@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "createarsenal:big_radar_receiver_block"
+          "name": "createarsenal:radar_plate_block"
         }
       ],
       "conditions": [

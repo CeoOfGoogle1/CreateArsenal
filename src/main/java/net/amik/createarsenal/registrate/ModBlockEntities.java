@@ -1,17 +1,15 @@
 package net.amik.createarsenal.registrate;
 
 
+import com.simibubi.create.content.contraptions.bearing.BearingInstance;
 import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
-import com.simibubi.create.content.kinetics.base.ShaftInstance;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
-import net.amik.createarsenal.block.big_radar.BidRadarDishRenderer;
-import net.amik.createarsenal.block.big_radar.BigRadarBaseBlockTileEntity;
-import net.amik.createarsenal.block.big_radar.BigRadarDishBlockTileEntity;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
+import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.seaMine.SeaMineBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
@@ -83,17 +81,11 @@ public class ModBlockEntities {
             .renderer(() -> ChainGunStaticTurretRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<BigRadarBaseBlockTileEntity> BIG_RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE
-            .blockEntity("big_radar_base_block", BigRadarBaseBlockTileEntity::new)
-            .instance(() -> ShaftInstance::new, true)
-            .validBlocks(ModBlocks.BIG_RADAR_BASE_BLOCK)
+    public static final BlockEntityEntry<RadarBaseBlockTileEntity> RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE
+            .blockEntity("radar_base_block", RadarBaseBlockTileEntity::new)
+            .instance(() -> BearingInstance::new, true)
+            .validBlocks(ModBlocks.RADAR_BASE_BLOCK)
             .renderer(() -> KineticBlockEntityRenderer::new)
-            .register();
-
-    public static final BlockEntityEntry<BigRadarDishBlockTileEntity> BIG_RADAR_DISH_BLOCK_TILE_ENTITY = REGISTRATE
-            .blockEntity("big_radar_dish_block", BigRadarDishBlockTileEntity::new)
-            .validBlocks(ModBlocks.BIG_RADAR_DISH_BLOCK)
-            .renderer(() -> BidRadarDishRenderer::new)
             .register();
 
 
