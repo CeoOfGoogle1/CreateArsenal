@@ -64,6 +64,7 @@ public class CreateArsenal
 
     public static void init(final FMLCommonSetupEvent event) {
         event.enqueueWork(ModMessages::register);
+        ModDisplayBehaviors.load();
     }
 
     public static ResourceLocation resource(String path) {

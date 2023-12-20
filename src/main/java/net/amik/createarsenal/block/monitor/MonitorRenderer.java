@@ -26,16 +26,19 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
     protected void renderSafe(MonitorBlockEntity monitor, float partialTicks, PoseStack ms, MultiBufferSource buffer, int light, int overlay) {
         super.renderSafe(monitor, partialTicks, ms, buffer, light, overlay);
 
+        if (monitor.tickSinceLastWork <= 0)
+            return;
+
 
         VertexConsumer vb = buffer.getBuffer(RenderType.cutout());
-        Direction direction=monitor.getBlockState().getValue(FACING).getOpposite();
+        Direction direction = monitor.getBlockState().getValue(FACING).getOpposite();
         MonitorBlock.Shape shape=monitor.getBlockState().getValue(MonitorBlock.SHAPE);
 
 
         if(shape.equals(MonitorBlock.Shape.GHOST)) return;
 
-        SuperByteBuffer radar= CachedBufferer.partialFacing(ModPartials.RADAR,monitor.getBlockState(),direction);
-        SuperByteBuffer radar_line= CachedBufferer.partialFacing(ModPartials.RADAR_LINE,monitor.getBlockState(),direction);
+        SuperByteBuffer radar = CachedBufferer.partialFacing(ModPartials.RADAR, monitor.getBlockState(), direction);
+        SuperByteBuffer radar_line = CachedBufferer.partialFacing(ModPartials.RADAR_LINE, monitor.getBlockState(), direction);
 
         if(shape.equals(MonitorBlock.Shape.DOUBLE)) {
             radar.scale(2, 2, 1);
