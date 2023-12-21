@@ -53,17 +53,6 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
         super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
     }
 
-    @SuppressWarnings("deprecation")
-    @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if(pPlayer.getItemInHand(pHand).is(AllItems.WRENCH.get())&&pLevel.getBlockEntity(pPos) instanceof MonitorBlockEntity monitor)
-            if(monitor.wrenchClick(pHit))
-                return InteractionResult.SUCCESS;
-
-        return super.use(pState, pLevel, pPos, pPlayer, pHand, pHit);
-    }
-
     public enum Shape implements StringRepresentable {
         SINGLE, DOUBLE, TRIPLE, GHOST;
 
