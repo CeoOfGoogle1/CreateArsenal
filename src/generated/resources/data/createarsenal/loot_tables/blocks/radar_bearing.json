@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "createarsenal:radar_base_block"
+          "name": "createarsenal:radar_bearing"
         }
       ],
       "conditions": [

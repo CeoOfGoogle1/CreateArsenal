@@ -104,19 +104,19 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
             switch (direction) {
                 case SOUTH -> {
                     hitbox.translate(0, 0, .043);
-                    hitbox.translate(x/MonitorBlockEntity.RANGE_WIDTH/2*.875,z/MonitorBlockEntity.RANGE_WIDTH/2*.875,0);
+                    hitbox.translate(x/monitor.widthRange /2*.875,z/monitor.widthRange /2*.875,0);
                 }
                 case NORTH -> {
                     hitbox.translate(0, 0, -.043);
-                    hitbox.translate(x/MonitorBlockEntity.RANGE_WIDTH/2*.875,-z/MonitorBlockEntity.RANGE_WIDTH/2*.875,0);
+                    hitbox.translate(x/monitor.widthRange /2*.875,-z/monitor.widthRange /2*.875,0);
                 }
                 case WEST -> {
                     hitbox.translate(-.043,0,0);
-                    hitbox.translate(0,-x/MonitorBlockEntity.RANGE_WIDTH/2*.875,z/MonitorBlockEntity.RANGE_WIDTH/2*.875);
+                    hitbox.translate(0,-x/monitor.widthRange /2*.875,z/monitor.widthRange /2*.875);
                 }
                 case EAST -> {
                     hitbox.translate(.043, 0, 0);
-                    hitbox.translate(0,x/MonitorBlockEntity.RANGE_WIDTH/2*.875,z/MonitorBlockEntity.RANGE_WIDTH/2*.875);
+                    hitbox.translate(0,x/monitor.widthRange /2*.875,z/monitor.widthRange /2*.875);
                 }
             }
 

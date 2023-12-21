@@ -7,7 +7,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +16,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         super(type, pos, state);
     }
 
-    public static final int RANGE_WIDTH = 256;
-    public static final int RANGE_HEIGHT = 4;
+    public int widthRange = 256;
+    public int heightRange = 4;
     private float animation;
 
     public int tickSinceLastWork = 0;
@@ -61,13 +60,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
     public void scanEntities(){
         if(level==null)return;
-        scannedEntities=level.getEntities(null, this.getRenderBoundingBox().inflate(RANGE_WIDTH,RANGE_HEIGHT,RANGE_WIDTH));
+        scannedEntities=level.getEntities(null, this.getRenderBoundingBox().inflate(widthRange, heightRange, widthRange));
 
-    }
-
-
-    public boolean wrenchClick(BlockHitResult pHit) {
-        return false;
     }
 
     @Override
@@ -75,11 +69,17 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         super.read(tag, clientPacket);
         if (tag.contains("tickSinceLastWork"))
             tickSinceLastWork = tag.getInt("tickSinceLastWork");
+        if (tag.contains("widthRange"))
+            widthRange = tag.getInt("widthRange");
+        if (tag.contains("heightRange"))
+            heightRange = tag.getInt("heightRange");
     }
 
     @Override
     protected void write(CompoundTag tag, boolean clientPacket) {
         super.write(tag, clientPacket);
         tag.putInt("tickSinceLastWork", tickSinceLastWork);
+        tag.putInt("widthRange", widthRange);
+        tag.putInt("heightRange", heightRange);
     }
 }

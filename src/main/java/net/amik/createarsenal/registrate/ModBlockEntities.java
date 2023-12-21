@@ -84,7 +84,7 @@ public class ModBlockEntities {
     public static final BlockEntityEntry<RadarBaseBlockTileEntity> RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("radar_base_block", RadarBaseBlockTileEntity::new)
             .instance(() -> BearingInstance::new, true)
-            .validBlocks(ModBlocks.RADAR_BASE_BLOCK)
+            .validBlocks(ModBlocks.RADAR_BEARING_BLOCK)
             .renderer(() -> KineticBlockEntityRenderer::new)
             .register();
 

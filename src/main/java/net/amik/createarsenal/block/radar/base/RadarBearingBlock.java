@@ -13,9 +13,9 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
-public class RadarBaseBlock extends BearingBlock implements IBE<RadarBaseBlockTileEntity> {
+public class RadarBearingBlock extends BearingBlock implements IBE<RadarBaseBlockTileEntity> {
 
-    public RadarBaseBlock(Properties properties) {
+    public RadarBearingBlock(Properties properties) {
         super(properties);
     }
 

@@ -7,9 +7,8 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
-import net.amik.createarsenal.block.radar.base.RadarBaseBlock;
-import net.amik.createarsenal.block.radar.dish.RadarDishBlock;
-import net.amik.createarsenal.block.radar.plate.RadarPlateBlock;
+import net.amik.createarsenal.block.radar.AbstractRadarFrame;
+import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
 import net.amik.createarsenal.block.radar.receiver.RadarReceiverBlock;
 import net.amik.createarsenal.block.seaMine.SeaMineBlock;
 import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
@@ -19,6 +18,7 @@ import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBloc
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlock;
 import net.amik.createarsenal.util.CreateUtil;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
@@ -109,8 +109,8 @@ public class ModBlocks {
                     .build()
                     .register();
 
-    public static final BlockEntry<RadarBaseBlock> RADAR_BASE_BLOCK =
-            REGISTRATE.block("radar_base_block", RadarBaseBlock::new)
+    public static final BlockEntry<RadarBearingBlock> RADAR_BEARING_BLOCK =
+            REGISTRATE.block("radar_bearing", RadarBearingBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
@@ -122,19 +122,20 @@ public class ModBlocks {
                     .register();
 
     @SuppressWarnings("unused")
-    public static final BlockEntry<RadarDishBlock> RADAR_DISH_BLOCK =
-            REGISTRATE.block("radar_dish_block", RadarDishBlock::new)
+    public static final BlockEntry<AbstractRadarFrame> RADAR_DISH_BLOCK =
+            REGISTRATE.block("radar_dish_block", properties -> new AbstractRadarFrame(properties, ModShapes.RADAR_DISH))
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .blockstate((ctx, prov) -> prov.directionalBlock(ctx.getEntry(), prov.models()
                             .getExistingFile(ctx.getId()), 0))
                     .simpleItem()
                     .register();
 
     @SuppressWarnings("unused")
-    public static final BlockEntry<RadarPlateBlock> RADAR_PLATE_BLOCK =
-            REGISTRATE.block("radar_plate_block", RadarPlateBlock::new)
+    public static final BlockEntry<AbstractRadarFrame> RADAR_PLATE_BLOCK =
+            REGISTRATE.block("radar_plate_block", properties -> new AbstractRadarFrame(properties, ModShapes.RADAR_PLATE))
                     .initialProperties(SharedProperties::softMetal)
                     .transform(BlockStressDefaults.setImpact(0))
                     .properties(BlockBehaviour.Properties::noOcclusion)
