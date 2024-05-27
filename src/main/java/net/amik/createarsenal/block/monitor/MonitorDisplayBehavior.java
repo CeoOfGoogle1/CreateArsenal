@@ -44,6 +44,7 @@ public class MonitorDisplayBehavior extends DisplayTarget {
 
 
         MonitorBlockEntity monitor = (MonitorBlockEntity) context.getTargetBlockEntity();
+        monitor = monitor.getController();
 
         monitor.tickSinceLastWork = 120;
         monitor.widthRange = width;

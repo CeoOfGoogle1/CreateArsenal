@@ -4,9 +4,11 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +22,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     public int heightRange = 4;
     private float animation;
 
+    BlockPos controllerPos = BlockPos.ZERO;
     public int tickSinceLastWork = 0;
 
 
@@ -73,6 +76,13 @@ public class MonitorBlockEntity extends SmartBlockEntity {
             widthRange = tag.getInt("widthRange");
         if (tag.contains("heightRange"))
             heightRange = tag.getInt("heightRange");
+        if (tag.contains("controllerPos"))
+            controllerPos = NbtUtils.readBlockPos(tag.getCompound("controllerPos"));
+    }
+
+    @Override
+    protected AABB createRenderBoundingBox() {
+        return super.createRenderBoundingBox().inflate(3);
     }
 
     @Override
@@ -81,5 +91,36 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         tag.putInt("tickSinceLastWork", tickSinceLastWork);
         tag.putInt("widthRange", widthRange);
         tag.putInt("heightRange", heightRange);
+        tag.put("controllerPos", NbtUtils.writeBlockPos(controllerPos));
+    }
+
+    public void setControllerPos(BlockPos controllerPos) {
+        this.controllerPos = controllerPos;
+    }
+
+    public BlockPos getControllerPos() {
+        return controllerPos;
+    }
+
+    public boolean isControllerPos() {
+        return controllerPos.equals(this.getBlockPos());
+    }
+
+    public boolean hasController() {
+        if (level == null)
+            return false;
+        return level.getBlockEntity(controllerPos) instanceof MonitorBlockEntity controller
+                && controller.isControllerPos();
+    }
+
+
+    public MonitorBlockEntity getController() {
+        if (isControllerPos() || !hasController())
+            return this;
+        if (level == null)
+            return null;
+        if (level.getBlockEntity(controllerPos) instanceof MonitorBlockEntity controller)
+            return controller;
+        return null;
     }
 }

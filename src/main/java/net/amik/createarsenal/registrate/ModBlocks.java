@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
@@ -19,6 +20,7 @@ import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunB
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 
@@ -75,7 +77,15 @@ public class ModBlocks {
             REGISTRATE.block("monitor", MonitorBlock::new)
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(NonNullBiConsumer.noop())
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStates(state -> {
+                                String shape = state.getValue(MonitorBlock.SHAPE).toString().toLowerCase();
+                                return ConfiguredModel.builder()
+                                        .modelFile(p.models()
+                                                .getExistingFile(new ResourceLocation(CreateArsenal.MOD_ID, "block/monitor_" + shape))).rotationY(((int) state.getValue(MonitorBlock.FACING).toYRot() + 180) % 360)
+                                        .build();
+                            }))
+                    .addLayer(() -> RenderType::cutoutMipped)
                     .item()
                     .model(NonNullBiConsumer.noop())
                     .build()

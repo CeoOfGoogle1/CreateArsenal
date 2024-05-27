@@ -1,14 +1,10 @@
 package net.amik.createarsenal.block.monitor;
 
-import com.simibubi.create.AllItems;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Lang;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -17,7 +13,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -31,7 +26,6 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
 
     public static final EnumProperty<Shape> SHAPE = EnumProperty.create("shape",Shape.class );
 
-
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState()
@@ -43,6 +37,7 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
     @Override
     @ParametersAreNonnullByDefault
     public void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
+        MonitorMultiBlockHelper.onPlace(pState, pLevel, pPos, pOldState, pIsMoving);
         super.onPlace(pState, pLevel, pPos, pOldState, pIsMoving);
     }
 
@@ -50,11 +45,18 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
     @Override
     @ParametersAreNonnullByDefault
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        MonitorMultiBlockHelper.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
         super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
     }
 
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        MonitorMultiBlockHelper.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
     public enum Shape implements StringRepresentable {
-        SINGLE, DOUBLE, TRIPLE, GHOST;
+        SINGLE, CENTER, LOWER_CENTER, LOWER_LEFT, LOWER_RIGHT, UPPER_CENTER, UPPER_LEFT, UPPER_RIGHT, MIDDLE_LEFT, MIDDLE_RIGHT;
 
         @Override
         public @NotNull String getSerializedName() {

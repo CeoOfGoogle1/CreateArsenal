@@ -14,6 +14,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Slime;
 
+import static net.amik.createarsenal.block.monitor.MonitorMultiBlockHelper.getSize;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity> {
@@ -34,21 +35,19 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
         Direction direction = monitor.getBlockState().getValue(FACING).getOpposite();
         MonitorBlock.Shape shape=monitor.getBlockState().getValue(MonitorBlock.SHAPE);
 
+        if (!monitor.isControllerPos())
+            return;
 
-        if(shape.equals(MonitorBlock.Shape.GHOST)) return;
-
+        int size = getSize(monitor.getLevel(), monitor.getBlockPos());
         SuperByteBuffer radar = CachedBufferer.partialFacing(ModPartials.RADAR, monitor.getBlockState(), direction);
         SuperByteBuffer radar_line = CachedBufferer.partialFacing(ModPartials.RADAR_LINE, monitor.getBlockState(), direction);
 
-        if(shape.equals(MonitorBlock.Shape.DOUBLE)) {
-            radar.scale(2, 2, 1);
-            radar_line.scale(2, 2, 1);
-        }
 
         switch (direction) {
             case SOUTH -> {
-            radar.translate(0, 0, -0.01);
-            radar_line.translate(0, 0, .045);}
+                radar.translate(0, 0, -0.01);
+                radar_line.translate(0, 0, .045);
+            }
             case NORTH -> {
                 radar.translate(0, 0, 0.01);
                 radar_line.translate(0, 0, -.045);}
@@ -59,9 +58,29 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
                 radar.translate(0.01, 0, 0);
                 radar_line.translate(-.045, 0, 0);}
         }
+        int translation = size - (size * 2 - 1);
+
+        switch (direction) {
+            case NORTH -> {
+                ms.translate(translation, 0, 0);
+                ms.scale(size, size, 1);
+            }
+            case SOUTH -> {
+                ms.translate(-translation, 0, 0);
+                ms.scale(size, size, 1);
+            }
+            case WEST -> {
+                ms.translate(0, 0, -translation);
+                ms.scale(1, size, size);
+            }
+            case EAST -> {
+                ms.translate(0, 0, translation);
+                ms.scale(1, size, size);
+            }
+        }
 
 
-        radar_line.rotateCentered(direction,(float) -Math.PI*2f*monitor.getAnimation());
+        radar_line.rotateCentered(direction, (float) Math.PI * 2f * monitor.getAnimation());
 
 
         radar_line.light(light).renderInto(ms,vb);
@@ -86,9 +105,6 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
             else
                 hitbox=CachedBufferer.partialFacing(ModPartials.HITBOX_2,monitor.getBlockState(),direction);
 
-            if(shape.equals(MonitorBlock.Shape.DOUBLE)) {
-                hitbox.scale(2, 2, 1);
-            }
 
             if(scannedEntity.getType().getDimensions().width<.5) {
                 hitbox.scale(.5f, .5f, .5f);
@@ -123,6 +139,7 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
             hitbox.color(MonitorUtils.getColor(scannedEntity));
             hitbox.light(light).renderInto(ms,vb);
         }
+
 
     }
 
