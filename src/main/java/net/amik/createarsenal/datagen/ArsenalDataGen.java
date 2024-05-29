@@ -4,7 +4,7 @@ import com.tterrag.registrate.providers.ProviderType;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.registrate.ModSoundEvents;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
+import net.minecraftforge.data.event.GatherDataEvent;
 
 import java.util.function.BiConsumer;
 
@@ -15,7 +15,7 @@ public class ArsenalDataGen {
         DataGenerator generator = event.getGenerator();
 
         if (event.includeClient()) {
-            generator.addProvider(ModSoundEvents.provider(generator));
+            generator.addProvider(true, ModSoundEvents.provider(generator));
         }
     }
 

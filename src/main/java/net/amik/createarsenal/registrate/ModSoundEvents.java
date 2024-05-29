@@ -6,9 +6,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.simibubi.create.Create;
 import net.minecraft.core.Vec3i;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
-import net.minecraft.data.HashCache;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -17,18 +18,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.RegisterEvent;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.NotNull;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
@@ -85,10 +84,12 @@ public class ModSoundEvents {
             entry.prepare();
     }
 
-    public static void register(RegistryEvent.Register<SoundEvent> event) {
-        IForgeRegistry<SoundEvent> registry = event.getRegistry();
-        for (SoundEntry entry : ALL.values())
-            entry.register(registry);
+
+    public static void register(RegisterEvent event) {
+        event.register(Registries.SOUND_EVENT, helper -> {
+            for (SoundEntry entry : ALL.values())
+                entry.register(helper);
+        });
     }
 
     public static void provideLang(BiConsumer<String, String> consumer) {
@@ -102,7 +103,7 @@ public class ModSoundEvents {
     }
 
 
-    private static class SoundEntryProvider implements DataProvider {
+    public static class SoundEntryProvider implements DataProvider {
 
         private DataGenerator generator;
 
@@ -110,9 +111,11 @@ public class ModSoundEvents {
             this.generator = generator;
         }
 
+
         @Override
-        public void run(@NotNull HashCache cache) throws IOException {
-            generate(generator.getOutputFolder(), cache);
+        public CompletableFuture<?> run(CachedOutput output) {
+            generate(generator.getPackOutput().getOutputFolder(), output);
+            return CompletableFuture.completedFuture(null);
         }
 
         @Override
@@ -120,24 +123,20 @@ public class ModSoundEvents {
             return "Create Arsenal's Custom Sounds";
         }
 
-        public void generate(Path path, HashCache cache) {
+        public void generate(Path path, CachedOutput cache) {
             Gson GSON = (new GsonBuilder()).setPrettyPrinting()
                     .disableHtmlEscaping()
                     .create();
             path = path.resolve("assets/createarsenal");
 
-            try {
-                JsonObject json = new JsonObject();
-                ALL.entrySet()
-                        .stream()
-                        .sorted(Map.Entry.comparingByKey())
-                        .forEach(entry -> entry.getValue()
-                                .write(json));
-                DataProvider.save(GSON, cache, json, path.resolve("sounds.json"));
+            JsonObject json = new JsonObject();
+            ALL.entrySet()
+                    .stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEach(entry -> entry.getValue()
+                            .write(json));
+            DataProvider.saveStable(cache, json, path.resolve("sounds.json"));
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
 
     }
@@ -228,7 +227,7 @@ public class ModSoundEvents {
 
         public abstract void prepare();
 
-        public abstract void register(IForgeRegistry<SoundEvent> registry);
+        public abstract void register(RegisterEvent.RegisterHelper<SoundEvent> registry);
 
         public abstract void write(JsonObject json);
 
@@ -268,7 +267,7 @@ public class ModSoundEvents {
 
         public void playFrom(Entity entity, float volume, float pitch) {
             if (!entity.isSilent())
-                play(entity.level, null, entity.blockPosition(), volume, pitch);
+                play(entity.level(), null, entity.blockPosition(), volume, pitch);
         }
 
         public void play(Level world, Player entity, Vec3i pos, float volume, float pitch) {
@@ -316,12 +315,13 @@ public class ModSoundEvents {
         }
 
         @Override
-        public void register(IForgeRegistry<SoundEvent> registry) {
+        public void register(RegisterEvent.RegisterHelper<SoundEvent> helper) {
             for (WrappedSoundEntry.CompiledSoundEvent compiledEvent : compiledEvents) {
                 ResourceLocation location = compiledEvent.event().getId();
-                registry.register(new SoundEvent(location).setRegistryName(location));
+                helper.register(location, SoundEvent.createVariableRangeEvent(location));
             }
         }
+
 
         @Override
         public SoundEvent getMainEvent() {
@@ -392,10 +392,11 @@ public class ModSoundEvents {
             event = RegistryObject.create(id, ForgeRegistries.SOUND_EVENTS);
         }
 
+
         @Override
-        public void register(IForgeRegistry<SoundEvent> registry) {
+        public void register(RegisterEvent.RegisterHelper<SoundEvent> helper) {
             ResourceLocation location = event.getId();
-            registry.register(new SoundEvent(location).setRegistryName(location));
+            helper.register(location, SoundEvent.createVariableRangeEvent(location));
         }
 
         @Override

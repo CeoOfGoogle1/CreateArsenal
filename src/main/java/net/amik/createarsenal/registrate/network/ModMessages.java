@@ -51,7 +51,7 @@ public class ModMessages {
                     }
                 })
                 .encoder(SimplePacketBase::write)
-                .consumer(ModMessages::handler)
+                .consumerMainThread(ModMessages::handler)
                 .add();
     }
 

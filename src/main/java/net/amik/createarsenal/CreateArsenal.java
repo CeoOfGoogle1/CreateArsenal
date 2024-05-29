@@ -6,14 +6,10 @@ import net.amik.createarsenal.datagen.ArsenalDataGen;
 import net.amik.createarsenal.registrate.*;
 import net.amik.createarsenal.registrate.network.ModMessages;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -29,7 +25,7 @@ public class CreateArsenal
     // Directly reference a slf4j logger
     public static final String MOD_ID = "createarsenal";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArsenal.MOD_ID).creativeModeTab(() -> ModCreativeModTab.CREATE_ARSENAL_TAB_GENERAL);
+    public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(CreateArsenal.MOD_ID);
 
     public CreateArsenal()
     {
@@ -43,24 +39,17 @@ public class CreateArsenal
         ModProjectiles.register();
         ModTranslations.register();
         ModSoundEvents.prepare();
+        ModCreativeModTab.register(eventBus);
         REGISTRATE.registerEventListeners(eventBus);
         eventBus.addListener(CreateArsenal::init);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ModPartials::init);
-        eventBus.addGenericListener(SoundEvent.class, ModSoundEvents::register);
+        eventBus.addListener(ModSoundEvents::register);
         eventBus.addListener(EventPriority.LOWEST, ArsenalDataGen::gatherData);
 
     }
 
 
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-    public static class RegistryEvents {
-        @SubscribeEvent
-        public static void onBlocksRegistry(final RegistryEvent.Register<Block> blockRegistryEvent) {
-            // Register a new block here
-            LOGGER.info("HELLO from Register Block");
-        }
-    }
 
     public static void init(final FMLCommonSetupEvent event) {
         event.enqueueWork(ModMessages::register);

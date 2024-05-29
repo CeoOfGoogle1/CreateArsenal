@@ -27,11 +27,9 @@ public class SeaMineBlockEntity extends SmartBlockEntity {
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
         floatLevel =
                 new ScrollValueBehaviour(Components.translatable("sea_mine.float_level"), this, new FloatLevelSlot())
-                        .between(-64, 256)
-                        .withFormatter(i -> i == 0 ? "*" : String.valueOf(i));
+                        .between(-64, 256);
         behaviours.add(floatLevel);
     }
-
 
     private static class FloatLevelSlot extends ValueBoxTransform.Sided {
 

@@ -1,10 +1,11 @@
 package net.amik.createarsenal.shell;
 
 import com.jozufozu.flywheel.util.Color;
-import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+
+import java.util.List;
 
 public class TracerColors {
    public static final Color GREEN_INSIDE=new Color(182,255,0);
@@ -18,7 +19,7 @@ public class TracerColors {
    public static final Color RED_INSIDE=new Color(255, 150, 150);
    public static final Color RED_OUTSIDE=new Color(255, 0, 16);
 
-    public static void fillCreativeTab(NonNullList<ItemStack> pItems, Item item) {
+    public static void fillCreativeTab(List<ItemStack> pItems, Item item) {
         pItems.add(getColoredStack(item,GREEN_INSIDE,GREEN_OUTSIDE,"Green"));
         pItems.add(getColoredStack(item,BLUE_INSIDE,BLUE_OUTSIDE,"Blue"));
         pItems.add(getColoredStack(item,PINK_INSIDE,PINK_OUTSIDE,"Pink"));

@@ -1,7 +1,7 @@
 package net.amik.createarsenal.shell;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -26,8 +26,8 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
     public void render(BulletEntity entity, float pEntityYaw, float pPartialTicks, PoseStack ms, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
         ms.pushPose();
 
-        ms.mulPose(Vector3f.YP.rotationDegrees(Mth.lerp(pPartialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
-        ms.mulPose(Vector3f.ZP.rotationDegrees(90.0F));
+        ms.mulPose(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
+        ms.mulPose(Axis.ZP.rotationDegrees(90.0F));
 
         if (entity.getSize().equals(ShellScale.SMALL))
             ms.translate(0, 1, 0);

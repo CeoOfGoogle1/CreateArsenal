@@ -8,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -65,7 +64,7 @@ public class BulletEntity extends AbstractArrow {
     @Override
     public void tick() {
         super.tick();
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             life--;
             if (life < 0)
                 kill();
@@ -79,9 +78,9 @@ public class BulletEntity extends AbstractArrow {
     //TODO Damage Source
     protected void onHitEntity(@NotNull EntityHitResult p_37216_) {
         super.onHitEntity(p_37216_);
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             Entity entity = p_37216_.getEntity();
-            entity.hurt(DamageSource.GENERIC, damage);
+            entity.hurt(level().damageSources().generic(), damage);
             this.kill();
         }
     }
@@ -92,20 +91,20 @@ public class BulletEntity extends AbstractArrow {
     protected void onHitBlock(@NotNull BlockHitResult pResult) {
         super.onHitBlock(pResult);
 
-        BlockState state = this.level.getBlockState(pResult.getBlockPos());
+        BlockState state = this.level().getBlockState(pResult.getBlockPos());
 
         breakProgress.putIfAbsent(pResult.getBlockPos(), 0F);
         breakProgress.get(pResult.getBlockPos());
-        breakProgress.put(pResult.getBlockPos(), breakProgress.get(pResult.getBlockPos()) + 10 / state.getDestroySpeed(this.level, pResult.getBlockPos()));
+        breakProgress.put(pResult.getBlockPos(), breakProgress.get(pResult.getBlockPos()) + 10 / state.getDestroySpeed(this.level(), pResult.getBlockPos()));
 
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             if (breakProgress.get(pResult.getBlockPos()) > 10) {
-                this.getLevel().destroyBlock(pResult.getBlockPos(), false);
+                this.level().destroyBlock(pResult.getBlockPos(), false);
                 breakProgress.put(pResult.getBlockPos(), 0F);
-                this.getLevel().destroyBlockProgress(breakerId, pResult.getBlockPos(), 0);
+                this.level().destroyBlockProgress(breakerId, pResult.getBlockPos(), 0);
 
             } else
-                this.getLevel().destroyBlockProgress(breakerId, pResult.getBlockPos(), (int) (float) breakProgress.get(pResult.getBlockPos()));
+                this.level().destroyBlockProgress(breakerId, pResult.getBlockPos(), (int) (float) breakProgress.get(pResult.getBlockPos()));
             this.kill();
         }
     }

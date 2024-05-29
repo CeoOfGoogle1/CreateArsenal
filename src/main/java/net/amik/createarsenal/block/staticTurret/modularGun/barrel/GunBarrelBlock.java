@@ -6,12 +6,10 @@ import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -58,9 +56,6 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
         return ModBlockEntities.BARREL_BLOCK_ENTITY.get();
     }
 
-    @Override
-    public void fillItemCategory(@NotNull CreativeModeTab pTab, @NotNull NonNullList<ItemStack> pItems) {
-    }
 
     @SuppressWarnings("deprecation")
     @Override

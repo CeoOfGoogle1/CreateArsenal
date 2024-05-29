@@ -80,8 +80,7 @@ public class AbstractRadarFrame extends WrenchableDirectionalBlock {
                     state.getValue(SailBlock.FACING)
                             .getAxis(),
                     dir -> world.getBlockState(pos.relative(dir))
-                            .getMaterial()
-                            .isReplaceable());
+                            .canBeReplaced());
 
             if (directions.isEmpty())
                 return PlacementOffset.fail();

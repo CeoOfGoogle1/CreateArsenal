@@ -34,11 +34,11 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
     public static final int MAX_NORMAL_GUN_BARREL_COUNT = 4;
     public static final int MAX_ROTARY_GUN_BARREL_COUNT = 8;
 
-    ShellScale size;
+    ShellScale size = ShellScale.SMALL;
     BlockPos gunBearing = BlockPos.ZERO;
 
 
-    int barrelCount;
+    int barrelCount = 1;
 
     public GunBarrelBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);

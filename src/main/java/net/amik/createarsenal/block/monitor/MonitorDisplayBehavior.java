@@ -9,8 +9,8 @@ import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStat
 import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 
 import java.util.List;
@@ -38,7 +38,7 @@ public class MonitorDisplayBehavior extends DisplayTarget {
         for (Map.Entry<BlockPos, StructureTemplate.StructureBlockInfo> block : contraption.getBlocks().entrySet()) {
             StructureTemplate.StructureBlockInfo info = block.getValue();
 
-            if (info.state.getBlock() instanceof AbstractRadarFrame)
+            if (info.state().getBlock() instanceof AbstractRadarFrame)
                 width += 10;
         }
 
@@ -60,7 +60,7 @@ public class MonitorDisplayBehavior extends DisplayTarget {
 
         @Override
         public List<MutableComponent> provideText(DisplayLinkContext context, DisplayTargetStats stats) {
-            return List.of(new TextComponent(" "));
+            return List.of(Component.literal(" "));
         }
     }
 }
