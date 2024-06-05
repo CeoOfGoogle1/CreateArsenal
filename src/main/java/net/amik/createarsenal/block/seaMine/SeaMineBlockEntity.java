@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour
 import com.simibubi.create.foundation.utility.VecHelper;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
@@ -38,7 +39,7 @@ public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleI
     @Override
     public void tick() {
         super.tick();
-        if (!armed && hasRedstone())
+        if (!armed && hasRedstone() && level.getBlockState(getBlockPos().below()).canBeReplaced())
             dropBomb();
         if (shouldTriggerExplosion() && armed)
             detonate();
@@ -47,12 +48,18 @@ public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleI
     private void dropBomb() {
         FallingSeaMineEntity seaMine = new FallingSeaMineEntity(level, new BlockPos(getBlockPos().getX(), floatLevel, getBlockPos().getZ()), detonationRadius);
         seaMine.setPos(getBlockPos().getX() + .5, getBlockPos().getY() - .25, getBlockPos().getZ() + .5);
-        level.setBlock(getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+        level.setBlockAndUpdate(getBlockPos(), Blocks.AIR.defaultBlockState());
         level.addFreshEntity(seaMine);
     }
 
     private boolean hasRedstone() {
-        return level.hasNeighborSignal(worldPosition);
+        if (level.hasNeighborSignal(worldPosition))
+            return true;
+        for (Direction direction : Direction.values()) {
+            if (level.hasSignal(worldPosition, direction))
+                return true;
+        }
+        return false;
     }
 
     @Override
@@ -72,7 +79,9 @@ public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleI
     }
 
     public boolean shouldTriggerExplosion() {
-        return level.getEntities(null, new AABB(worldPosition).inflate(detonationRadius - 1)).stream().dropWhile(entity -> !(entity instanceof LivingEntity) && !(entity instanceof Boat)).findFirst().isPresent();
+        return level.getEntities(null, new AABB(worldPosition).inflate(detonationRadius - 1)).stream()
+                .dropWhile(entity -> !(entity instanceof LivingEntity) && !(entity instanceof Boat) && !(entity instanceof FallingSeaMineEntity))
+                .findFirst().isPresent();
     }
 
     public void detonate() {
@@ -81,8 +90,8 @@ public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleI
         if (level.isClientSide)
             return;
         Vec3 pos = VecHelper.getCenterOf(worldPosition);
-        level.explode(null, pos.x, pos.y, pos.z, 5, Level.ExplosionInteraction.TNT);
         level.setBlockAndUpdate(worldPosition, Blocks.AIR.defaultBlockState());
+        level.explode(null, pos.x, pos.y, pos.z, 5, Level.ExplosionInteraction.MOB);
     }
 
     public void setFloatLevel(int floatLevel) {

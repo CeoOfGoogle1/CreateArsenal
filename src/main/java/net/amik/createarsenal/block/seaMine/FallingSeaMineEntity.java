@@ -3,7 +3,9 @@ package net.amik.createarsenal.block.seaMine;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModProjectiles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MoverType;
@@ -53,6 +55,12 @@ public class FallingSeaMineEntity extends Entity {
     @Override
     public void tick() {
         super.tick();
+        if (this.time > 200 || this.onGround()) {
+            if (level() instanceof ServerLevel level) {
+                level.sendParticles(ParticleTypes.POOF, this.getX(), this.getY() + .4, this.getZ(), 4, 0.5, 0.5, 0.5, 0.1);
+            }
+            this.remove(RemovalReason.DISCARDED);
+        }
         ++this.time;
         this.setDeltaMovement(this.getDeltaMovement().add(0.0, -0.04, 0.0));
 
@@ -61,9 +69,6 @@ public class FallingSeaMineEntity extends Entity {
             this.kill();
         }
         this.move(MoverType.SELF, this.getDeltaMovement());
-        if (this.time > 200 || this.onGround()) {
-            this.remove(RemovalReason.DISCARDED);
-        }
     }
 
     private boolean isAtTargetPosition() {
