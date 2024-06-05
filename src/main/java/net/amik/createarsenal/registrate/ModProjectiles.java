@@ -7,6 +7,8 @@ import com.tterrag.registrate.util.nullness.NonNullConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.block.seaMine.FallingSeaMineEntity;
+import net.amik.createarsenal.block.seaMine.FallingSeaMineRenderer;
 import net.amik.createarsenal.shell.BulletEntity;
 import net.amik.createarsenal.shell.DynamicBulletRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderer;
@@ -21,6 +23,10 @@ public class ModProjectiles {
     public static final EntityEntry<BulletEntity> BULLET_ENTITY =
             register("bullet", BulletEntity::new, () -> DynamicBulletRenderer::new,
                     MobCategory.MISC, 64, 2, true, false, BulletEntity::build).register();
+
+    public static final EntityEntry<FallingSeaMineEntity> FALLING_SEA_MINE =
+            register("falling_sea_mine", FallingSeaMineEntity::new, () -> FallingSeaMineRenderer::new,
+                    MobCategory.MISC, 64, 1, true, false, FallingSeaMineEntity::build).register();
 
     public static void register() {}
 

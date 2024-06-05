@@ -1,7 +1,6 @@
 package net.amik.createarsenal.block.staticTurret.modularGun.barrel;
 
 import com.simibubi.create.foundation.block.IBE;
-import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.util.HorizontalDirectionBlock;
 import net.minecraft.core.BlockPos;
@@ -65,8 +64,6 @@ public class GunBarrelBlock extends HorizontalDirectionBlock implements IBE<GunB
         if (pLevel.getBlockEntity(pPos.relative(behind)) instanceof GunBarrelBlockEntity)
             pLevel.removeBlock(pPos.relative(behind), false);
 
-        if (pLevel.getBlockEntity(pPos.relative(behind.getOpposite())) instanceof NormalGunBlockEntity gun)
-            gun.dropAmmo();
 
         if (pLevel.getBlockEntity(pPos) instanceof GunBarrelBlockEntity barrel)
             barrel.dropItemEntity();

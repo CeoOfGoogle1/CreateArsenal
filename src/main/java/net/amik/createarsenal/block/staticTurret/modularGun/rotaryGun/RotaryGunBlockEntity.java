@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
 
-//todo delete and use Normal for both. Need to make custom Renderer and Instance for Rotary shaft
 public class RotaryGunBlockEntity extends NormalGunBlockEntity {
 
 
@@ -15,9 +14,4 @@ public class RotaryGunBlockEntity extends NormalGunBlockEntity {
     }
 
 
-    public float getSpeed() {
-        if (overStressed)
-            return 0;
-        return getTheoreticalSpeed();
-    }
 }

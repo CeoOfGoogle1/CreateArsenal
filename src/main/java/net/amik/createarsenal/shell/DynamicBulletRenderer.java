@@ -5,14 +5,12 @@ import com.mojang.math.Axis;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
 import org.jetbrains.annotations.NotNull;
 
 import static net.amik.createarsenal.CreateArsenal.resource;
 
-public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implements RenderLayerParent<BulletEntity,BulletModel> {
+public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> {
 
     protected BulletModel model;
 
@@ -26,7 +24,7 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
     public void render(BulletEntity entity, float pEntityYaw, float pPartialTicks, PoseStack ms, @NotNull MultiBufferSource pBuffer, int pPackedLight) {
         ms.pushPose();
 
-        ms.mulPose(Axis.YP.rotationDegrees(Mth.lerp(pPartialTicks, entity.yRotO, entity.getYRot()) - 90.0F));
+        ms.mulPose(Axis.YP.rotationDegrees(entity.getYRot() - 90.0F));
         ms.mulPose(Axis.ZP.rotationDegrees(90.0F));
 
         if (entity.getSize().equals(ShellScale.SMALL))
@@ -35,16 +33,12 @@ public class DynamicBulletRenderer extends EntityRenderer<BulletEntity> implemen
         ms.scale(.6f, 1f * entity.getSize().ordinal(), .6f);
 
         this.model.setColor(entity.getOutsideColor(), entity.getInsideColor());
-        this.model.customRender(ms, pBuffer);
+        this.model.render(ms, pBuffer);
 
         ms.popPose();
         super.render(entity, pEntityYaw, pPartialTicks, ms, pBuffer, pPackedLight);
     }
 
-    @Override
-    public @NotNull BulletModel getModel() {
-        return model;
-    }
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull BulletEntity pEntity) {

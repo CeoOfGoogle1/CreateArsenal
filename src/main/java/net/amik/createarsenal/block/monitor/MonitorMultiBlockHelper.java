@@ -70,7 +70,7 @@ public class MonitorMultiBlockHelper {
     }
 
     public static int getHeight(Level pLevel, BlockPos pos) {
-        int height = 0;
+        int height = 1;
         for (int i = 0; i < MAX_SIZE; i++) {
             if (pLevel.getBlockState(pos.above(i)).is(ModBlocks.MONITOR.get()))
                 height++;
@@ -81,7 +81,7 @@ public class MonitorMultiBlockHelper {
     }
 
     public static int getWidth(Level pLevel, BlockPos pos) {
-        int width = 0;
+        int width = 1;
         if (!pLevel.getBlockState(pos).is(ModBlocks.MONITOR.get()))
             return width;
         for (int i = 0; i < MAX_SIZE; i++) {

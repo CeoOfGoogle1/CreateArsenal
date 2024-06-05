@@ -4,8 +4,10 @@
       "model": "createarsenal:block/radar_bearing",
       "x": 180
     },
-    "facing=up": {
-      "model": "createarsenal:block/radar_bearing"
+    "facing=east": {
+      "model": "createarsenal:block/radar_bearing",
+      "x": 90,
+      "y": 90
     },
     "facing=north": {
       "model": "createarsenal:block/radar_bearing",
@@ -16,15 +18,13 @@
       "x": 90,
       "y": 180
     },
+    "facing=up": {
+      "model": "createarsenal:block/radar_bearing"
+    },
     "facing=west": {
       "model": "createarsenal:block/radar_bearing",
       "x": 90,
       "y": 270
-    },
-    "facing=east": {
-      "model": "createarsenal:block/radar_bearing",
-      "x": 90,
-      "y": 90
     }
   }
 }

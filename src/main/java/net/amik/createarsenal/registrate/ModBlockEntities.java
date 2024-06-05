@@ -11,15 +11,6 @@ import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
 import net.amik.createarsenal.block.seaMine.SeaMineBlockEntity;
-import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretBlockEntity;
-import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretBlockEntity;
-import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurretRenderer;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretBlockEntity;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretInstance;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurretRenderer;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockRenderer;
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
@@ -29,12 +20,6 @@ import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlockEntities {
 
-    public static final BlockEntityEntry<FourBarrelStaticTurretBlockEntity> FOUR_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("four_barrel_static_turret", FourBarrelStaticTurretBlockEntity::new)
-            .instance(() -> FourBarrelStaticTurretInstance::new, true)
-            .validBlocks(ModBlocks.FOUR_BARREL_STATIC_TURRET)
-            .renderer(() -> FourBarrelStaticTurretRenderer::new)
-            .register();
 
     public static final BlockEntityEntry<NormalGunBlockEntity> NORMAL_GUN_BLOCK_ENTITY = REGISTRATE
             .blockEntity("normal_gun_bearing", NormalGunBlockEntity::new)
@@ -66,20 +51,6 @@ public class ModBlockEntities {
             .renderer(() -> MonitorRenderer::new)
             .register();
 
-    public static final BlockEntityEntry<EightBarrelStaticTurretBlockEntity> EIGHT_BARREL_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("eight_barrel_static_turret", EightBarrelStaticTurretBlockEntity::new)
-            .instance(() -> EightBarrelStaticTurretInstance::new, true)
-            .validBlocks(ModBlocks.EIGHT_BARREL_STATIC_TURRET)
-            .renderer(() -> EightBarrelStaticTurretRenderer::new)
-            .register();
-
-
-    public static final BlockEntityEntry<ChainGunStaticTurretBlockEntity> CHAINGUN_STATIC_TURRET_TILE_ENTITY = REGISTRATE
-            .blockEntity("chain_gun_static_turret", ChainGunStaticTurretBlockEntity::new)
-            .instance(() -> ChainGunStaticTurretInstance::new, true)
-            .validBlocks(ModBlocks.CHAINGUN_STATIC_TURRET)
-            .renderer(() -> ChainGunStaticTurretRenderer::new)
-            .register();
 
     public static final BlockEntityEntry<RadarBaseBlockTileEntity> RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("radar_base_block", RadarBaseBlockTileEntity::new)

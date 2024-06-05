@@ -1,7 +1,5 @@
 package net.amik.createarsenal.registrate;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.simibubi.create.Create;
@@ -10,6 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -103,19 +102,18 @@ public class ModSoundEvents {
     }
 
 
+
     public static class SoundEntryProvider implements DataProvider {
 
-        private DataGenerator generator;
+        private PackOutput output;
 
         public SoundEntryProvider(DataGenerator generator) {
-            this.generator = generator;
+            output = generator.getPackOutput();
         }
 
-
         @Override
-        public CompletableFuture<?> run(CachedOutput output) {
-            generate(generator.getPackOutput().getOutputFolder(), output);
-            return CompletableFuture.completedFuture(null);
+        public CompletableFuture<?> run(CachedOutput cache) {
+            return generate(output.getOutputFolder(), cache);
         }
 
         @Override
@@ -123,20 +121,17 @@ public class ModSoundEvents {
             return "Create Arsenal's Custom Sounds";
         }
 
-        public void generate(Path path, CachedOutput cache) {
-            Gson GSON = (new GsonBuilder()).setPrettyPrinting()
-                    .disableHtmlEscaping()
-                    .create();
+        public CompletableFuture<?> generate(Path path, CachedOutput cache) {
             path = path.resolve("assets/createarsenal");
-
             JsonObject json = new JsonObject();
             ALL.entrySet()
                     .stream()
                     .sorted(Map.Entry.comparingByKey())
-                    .forEach(entry -> entry.getValue()
-                            .write(json));
-            DataProvider.saveStable(cache, json, path.resolve("sounds.json"));
-
+                    .forEach(entry -> {
+                        entry.getValue()
+                                .write(json);
+                    });
+            return DataProvider.saveStable(cache, json, path.resolve("sounds.json"));
         }
 
     }

@@ -1,8 +1,5 @@
 {
   "block.createarsenal.barrel_block": "Barrel Block",
-  "block.createarsenal.chain_gun_static_turret": "Chain Gun Static Turret",
-  "block.createarsenal.eight_barrel_static_turret": "Eight Barrel Static Turret",
-  "block.createarsenal.four_barrel_static_turret": "Four Barrel Static Turret",
   "block.createarsenal.monitor": "Monitor",
   "block.createarsenal.normal_gun_bearing": "Normal Gun Bearing",
   "block.createarsenal.radar_bearing": "Radar Bearing",
@@ -58,7 +55,9 @@
   "item.createarsenal.round_small_incendiary": "Small Round (Incendiary)",
   "item.createarsenal.small_gun_barrel": "Small Gun Barrel",
   "item.createarsenal.spring": "Spring",
-  "itemGroup.createarsenal.tab.bullets": "Create: Arsenal Bullets",
-  "itemGroup.createarsenal.tab.general": "Create: Arsenal",
-  "sea_mine.float_level": "Float Level"
+  "itemGroup.createarsenal.base": "Create: Arsenal",
+  "sea_mine.armed": "Armed",
+  "sea_mine.float_level": "Float Level",
+  "sea_mine.range": "Trigger Range",
+  "seamine_gui.title": "Sea Mine"
 }

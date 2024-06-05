@@ -5,7 +5,6 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.simibubi.create.foundation.utility.Components;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.amik.createarsenal.CreateArsenal;
-import net.amik.createarsenal.shell.ShellScale;
 import net.amik.createarsenal.util.IAdditionalCreativeItems;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.CreativeModeTab;
@@ -27,7 +26,9 @@ public class ModCreativeModTab{
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CreateArsenal.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> BASE_CREATIVE_TAB = addTab("base", "Create: Arsenal",
-            ModItems.bulletItems.get(ShellScale.LARGE)::asStack);
+            ModBlocks.MONITOR::asStack);
+
+
 
 
     public static RegistryObject<CreativeModeTab> addTab(String id, String name, Supplier<ItemStack> icon) {

@@ -1,5 +1,6 @@
-package net.amik.createarsenal;
+package net.amik.createarsenal.events;
 
+import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.shell.BulletModel;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

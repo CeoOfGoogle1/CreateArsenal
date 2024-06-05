@@ -2,8 +2,6 @@ package net.amik.createarsenal.shell;
 
 import com.jozufozu.flywheel.util.Color;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
@@ -16,8 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static net.amik.createarsenal.CreateArsenal.resource;
 
-@SuppressWarnings("unused")
-public class BulletModel extends EntityModel<BulletEntity> {
+public class BulletModel {
 	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(resource("custom_bullet"), "main");
 
 	private final ModelPart inside;
@@ -42,16 +39,13 @@ public class BulletModel extends EntityModel<BulletEntity> {
 	}
 
 
-	@Override
-	public void setupAnim(@NotNull BulletEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-	}
 
 	public void setColor(Color outside, Color inside) {
 		insideColor = inside;
 		outsideColor = outside;
 	}
 
-	public void customRender(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer) {
+	public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer) {
 
 		outside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), true))
 				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
@@ -60,9 +54,6 @@ public class BulletModel extends EntityModel<BulletEntity> {
 				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);
 	}
 
-	@Override
-	public void renderToBuffer(@NotNull PoseStack poseStack, @NotNull VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
-	}
 
 	public @NotNull ResourceLocation getTextureLocation() {
 		return resource("textures/entity/dynamic_bullet.png");

@@ -12,9 +12,7 @@ import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
 import net.amik.createarsenal.block.radar.receiver.RadarReceiverBlock;
 import net.amik.createarsenal.block.seaMine.SeaMineBlock;
-import net.amik.createarsenal.block.staticTurret.chainGunTurret.ChainGunStaticTurret;
-import net.amik.createarsenal.block.staticTurret.eightBarrelTurret.EightBarrelStaticTurret;
-import net.amik.createarsenal.block.staticTurret.fourBarrelTurret.FourBarrelStaticTurret;
+import net.amik.createarsenal.block.seaMine.SeaMineBlockItem;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlock;
@@ -30,15 +28,6 @@ public class ModBlocks {
 
 
 
-    public static final BlockEntry<FourBarrelStaticTurret> FOUR_BARREL_STATIC_TURRET =
-            REGISTRATE.block("four_barrel_static_turret", FourBarrelStaticTurret::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
-                    .item()
-                    .model(NonNullBiConsumer.noop())
-                    .build()
-                    .register();
 
     public static final BlockEntry<NormalGunBlock> NORMAL_GUN =
             REGISTRATE.block("normal_gun_bearing", NormalGunBlock::new)
@@ -69,8 +58,6 @@ public class ModBlocks {
                                     .modelFile(p.models()
                                             .getExistingFile(p.mcLoc("block/air")))
                                     .build(), GunBarrelBlock.FACING))
-                    .item()
-                    .build()
                     .register();
 
     public static final BlockEntry<MonitorBlock> MONITOR =
@@ -96,26 +83,7 @@ public class ModBlocks {
                     .initialProperties(SharedProperties::softMetal)
                     .properties(BlockBehaviour.Properties::noOcclusion)
                     .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
-                    .item()
-                    .build()
-                    .register();
-    public static final BlockEntry<EightBarrelStaticTurret> EIGHT_BARREL_STATIC_TURRET =
-            REGISTRATE.block("eight_barrel_static_turret", EightBarrelStaticTurret::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
-                    .item()
-                    .model(NonNullBiConsumer.noop())
-                    .build()
-                    .register();
-
-    public static final BlockEntry<ChainGunStaticTurret> CHAINGUN_STATIC_TURRET =
-            REGISTRATE.block("chain_gun_static_turret", ChainGunStaticTurret::new)
-                    .initialProperties(SharedProperties::softMetal)
-                    .properties(BlockBehaviour.Properties::noOcclusion)
-                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
-                    .item()
-                    .model(NonNullBiConsumer.noop())
+                    .item(SeaMineBlockItem::new)
                     .build()
                     .register();
 

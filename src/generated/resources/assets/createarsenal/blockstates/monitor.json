@@ -1,154 +1,154 @@
 {
   "variants": {
-    "facing=north,shape=single": {
-      "model": "createarsenal:block/monitor_single"
+    "facing=east,shape=center": {
+      "model": "createarsenal:block/monitor_center",
+      "y": 90
     },
-    "facing=south,shape=single": {
-      "model": "createarsenal:block/monitor_single",
-      "y": 180
+    "facing=east,shape=lower_center": {
+      "model": "createarsenal:block/monitor_lower_center",
+      "y": 90
     },
-    "facing=west,shape=single": {
-      "model": "createarsenal:block/monitor_single",
-      "y": 270
+    "facing=east,shape=lower_left": {
+      "model": "createarsenal:block/monitor_lower_left",
+      "y": 90
+    },
+    "facing=east,shape=lower_right": {
+      "model": "createarsenal:block/monitor_lower_right",
+      "y": 90
+    },
+    "facing=east,shape=middle_left": {
+      "model": "createarsenal:block/monitor_middle_left",
+      "y": 90
+    },
+    "facing=east,shape=middle_right": {
+      "model": "createarsenal:block/monitor_middle_right",
+      "y": 90
     },
     "facing=east,shape=single": {
       "model": "createarsenal:block/monitor_single",
       "y": 90
     },
+    "facing=east,shape=upper_center": {
+      "model": "createarsenal:block/monitor_upper_center",
+      "y": 90
+    },
+    "facing=east,shape=upper_left": {
+      "model": "createarsenal:block/monitor_upper_left",
+      "y": 90
+    },
+    "facing=east,shape=upper_right": {
+      "model": "createarsenal:block/monitor_upper_right",
+      "y": 90
+    },
     "facing=north,shape=center": {
       "model": "createarsenal:block/monitor_center"
     },
+    "facing=north,shape=lower_center": {
+      "model": "createarsenal:block/monitor_lower_center"
+    },
+    "facing=north,shape=lower_left": {
+      "model": "createarsenal:block/monitor_lower_left"
+    },
+    "facing=north,shape=lower_right": {
+      "model": "createarsenal:block/monitor_lower_right"
+    },
+    "facing=north,shape=middle_left": {
+      "model": "createarsenal:block/monitor_middle_left"
+    },
+    "facing=north,shape=middle_right": {
+      "model": "createarsenal:block/monitor_middle_right"
+    },
+    "facing=north,shape=single": {
+      "model": "createarsenal:block/monitor_single"
+    },
+    "facing=north,shape=upper_center": {
+      "model": "createarsenal:block/monitor_upper_center"
+    },
+    "facing=north,shape=upper_left": {
+      "model": "createarsenal:block/monitor_upper_left"
+    },
+    "facing=north,shape=upper_right": {
+      "model": "createarsenal:block/monitor_upper_right"
+    },
     "facing=south,shape=center": {
       "model": "createarsenal:block/monitor_center",
+      "y": 180
+    },
+    "facing=south,shape=lower_center": {
+      "model": "createarsenal:block/monitor_lower_center",
+      "y": 180
+    },
+    "facing=south,shape=lower_left": {
+      "model": "createarsenal:block/monitor_lower_left",
+      "y": 180
+    },
+    "facing=south,shape=lower_right": {
+      "model": "createarsenal:block/monitor_lower_right",
+      "y": 180
+    },
+    "facing=south,shape=middle_left": {
+      "model": "createarsenal:block/monitor_middle_left",
+      "y": 180
+    },
+    "facing=south,shape=middle_right": {
+      "model": "createarsenal:block/monitor_middle_right",
+      "y": 180
+    },
+    "facing=south,shape=single": {
+      "model": "createarsenal:block/monitor_single",
+      "y": 180
+    },
+    "facing=south,shape=upper_center": {
+      "model": "createarsenal:block/monitor_upper_center",
+      "y": 180
+    },
+    "facing=south,shape=upper_left": {
+      "model": "createarsenal:block/monitor_upper_left",
+      "y": 180
+    },
+    "facing=south,shape=upper_right": {
+      "model": "createarsenal:block/monitor_upper_right",
       "y": 180
     },
     "facing=west,shape=center": {
       "model": "createarsenal:block/monitor_center",
       "y": 270
     },
-    "facing=east,shape=center": {
-      "model": "createarsenal:block/monitor_center",
-      "y": 90
-    },
-    "facing=north,shape=lower_center": {
-      "model": "createarsenal:block/monitor_lower_center"
-    },
-    "facing=south,shape=lower_center": {
-      "model": "createarsenal:block/monitor_lower_center",
-      "y": 180
-    },
     "facing=west,shape=lower_center": {
       "model": "createarsenal:block/monitor_lower_center",
       "y": 270
-    },
-    "facing=east,shape=lower_center": {
-      "model": "createarsenal:block/monitor_lower_center",
-      "y": 90
-    },
-    "facing=north,shape=lower_left": {
-      "model": "createarsenal:block/monitor_lower_left"
-    },
-    "facing=south,shape=lower_left": {
-      "model": "createarsenal:block/monitor_lower_left",
-      "y": 180
     },
     "facing=west,shape=lower_left": {
       "model": "createarsenal:block/monitor_lower_left",
       "y": 270
     },
-    "facing=east,shape=lower_left": {
-      "model": "createarsenal:block/monitor_lower_left",
-      "y": 90
-    },
-    "facing=north,shape=lower_right": {
-      "model": "createarsenal:block/monitor_lower_right"
-    },
-    "facing=south,shape=lower_right": {
-      "model": "createarsenal:block/monitor_lower_right",
-      "y": 180
-    },
     "facing=west,shape=lower_right": {
       "model": "createarsenal:block/monitor_lower_right",
       "y": 270
-    },
-    "facing=east,shape=lower_right": {
-      "model": "createarsenal:block/monitor_lower_right",
-      "y": 90
-    },
-    "facing=north,shape=upper_center": {
-      "model": "createarsenal:block/monitor_upper_center"
-    },
-    "facing=south,shape=upper_center": {
-      "model": "createarsenal:block/monitor_upper_center",
-      "y": 180
-    },
-    "facing=west,shape=upper_center": {
-      "model": "createarsenal:block/monitor_upper_center",
-      "y": 270
-    },
-    "facing=east,shape=upper_center": {
-      "model": "createarsenal:block/monitor_upper_center",
-      "y": 90
-    },
-    "facing=north,shape=upper_left": {
-      "model": "createarsenal:block/monitor_upper_left"
-    },
-    "facing=south,shape=upper_left": {
-      "model": "createarsenal:block/monitor_upper_left",
-      "y": 180
-    },
-    "facing=west,shape=upper_left": {
-      "model": "createarsenal:block/monitor_upper_left",
-      "y": 270
-    },
-    "facing=east,shape=upper_left": {
-      "model": "createarsenal:block/monitor_upper_left",
-      "y": 90
-    },
-    "facing=north,shape=upper_right": {
-      "model": "createarsenal:block/monitor_upper_right"
-    },
-    "facing=south,shape=upper_right": {
-      "model": "createarsenal:block/monitor_upper_right",
-      "y": 180
-    },
-    "facing=west,shape=upper_right": {
-      "model": "createarsenal:block/monitor_upper_right",
-      "y": 270
-    },
-    "facing=east,shape=upper_right": {
-      "model": "createarsenal:block/monitor_upper_right",
-      "y": 90
-    },
-    "facing=north,shape=middle_left": {
-      "model": "createarsenal:block/monitor_middle_left"
-    },
-    "facing=south,shape=middle_left": {
-      "model": "createarsenal:block/monitor_middle_left",
-      "y": 180
     },
     "facing=west,shape=middle_left": {
       "model": "createarsenal:block/monitor_middle_left",
       "y": 270
     },
-    "facing=east,shape=middle_left": {
-      "model": "createarsenal:block/monitor_middle_left",
-      "y": 90
-    },
-    "facing=north,shape=middle_right": {
-      "model": "createarsenal:block/monitor_middle_right"
-    },
-    "facing=south,shape=middle_right": {
-      "model": "createarsenal:block/monitor_middle_right",
-      "y": 180
-    },
     "facing=west,shape=middle_right": {
       "model": "createarsenal:block/monitor_middle_right",
       "y": 270
     },
-    "facing=east,shape=middle_right": {
-      "model": "createarsenal:block/monitor_middle_right",
-      "y": 90
+    "facing=west,shape=single": {
+      "model": "createarsenal:block/monitor_single",
+      "y": 270
+    },
+    "facing=west,shape=upper_center": {
+      "model": "createarsenal:block/monitor_upper_center",
+      "y": 270
+    },
+    "facing=west,shape=upper_left": {
+      "model": "createarsenal:block/monitor_upper_left",
+      "y": 270
+    },
+    "facing=west,shape=upper_right": {
+      "model": "createarsenal:block/monitor_upper_right",
+      "y": 270
     }
   }
 }

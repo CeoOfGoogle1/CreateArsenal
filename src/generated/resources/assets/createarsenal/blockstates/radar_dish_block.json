@@ -4,8 +4,10 @@
       "model": "createarsenal:block/radar_dish_block",
       "x": 180
     },
-    "facing=up": {
-      "model": "createarsenal:block/radar_dish_block"
+    "facing=east": {
+      "model": "createarsenal:block/radar_dish_block",
+      "x": 90,
+      "y": 270
     },
     "facing=north": {
       "model": "createarsenal:block/radar_dish_block",
@@ -16,15 +18,13 @@
       "model": "createarsenal:block/radar_dish_block",
       "x": 90
     },
+    "facing=up": {
+      "model": "createarsenal:block/radar_dish_block"
+    },
     "facing=west": {
       "model": "createarsenal:block/radar_dish_block",
       "x": 90,
       "y": 90
-    },
-    "facing=east": {
-      "model": "createarsenal:block/radar_dish_block",
-      "x": 90,
-      "y": 270
     }
   }
 }

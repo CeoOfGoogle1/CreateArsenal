@@ -3,8 +3,9 @@
     "facing=down": {
       "model": "createarsenal:block/rotary_gun_bearing"
     },
-    "facing=up": {
-      "model": "createarsenal:block/rotary_gun_bearing"
+    "facing=east": {
+      "model": "createarsenal:block/rotary_gun_bearing",
+      "y": 270
     },
     "facing=north": {
       "model": "createarsenal:block/rotary_gun_bearing",
@@ -13,13 +14,12 @@
     "facing=south": {
       "model": "createarsenal:block/rotary_gun_bearing"
     },
+    "facing=up": {
+      "model": "createarsenal:block/rotary_gun_bearing"
+    },
     "facing=west": {
       "model": "createarsenal:block/rotary_gun_bearing",
       "y": 90
-    },
-    "facing=east": {
-      "model": "createarsenal:block/rotary_gun_bearing",
-      "y": 270
     }
   }
 }

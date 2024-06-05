@@ -1,4 +1,4 @@
-package net.amik.createarsenal.registrate.network;
+package net.amik.createarsenal.network;
 
 import com.simibubi.create.foundation.networking.SimplePacketBase;
 import net.amik.createarsenal.CreateArsenal;
@@ -28,8 +28,7 @@ public class ModMessages {
                 .serverAcceptedVersions(s -> true)
                 .simpleChannel();
 
-        s2c(ItemStackSyncS2CPacket.class);
-
+        c2s(SeaMinePacketC2S.class);
 
     }
 

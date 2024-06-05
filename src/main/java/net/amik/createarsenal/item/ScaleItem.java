@@ -24,7 +24,9 @@ public class ScaleItem extends Item {
         return super.useOn(pContext);
     }
 
+
     public ShellScale getScale() {
         return scale;
     }
+
 }

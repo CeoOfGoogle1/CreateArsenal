@@ -6,7 +6,6 @@ import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRende
 import com.simibubi.create.foundation.render.CachedBufferer;
 import com.simibubi.create.foundation.render.SuperByteBuffer;
 import com.simibubi.create.foundation.utility.AnimationTickHolder;
-import net.amik.createarsenal.shell.ShellScale;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -63,7 +62,7 @@ public class GunBarrelBlockRenderer extends SmartBlockEntityRenderer<GunBarrelBl
     private void renderNormalBarrels(BlockState blockState, GunBarrelBlockEntity barrel, Direction direction, int light, PoseStack ms, VertexConsumer vb) {
         SuperByteBuffer barrelModel = CachedBufferer
                 .partialFacing(barrel.getPartialModel(), blockState, direction);
-        float recoilOffset = barrel.getGunBE().getTickUntilRecoil() * .05f;
+        float recoilOffset = .05f;
         Direction shift = direction.getCounterClockWise();
         double modifier = 4;
 

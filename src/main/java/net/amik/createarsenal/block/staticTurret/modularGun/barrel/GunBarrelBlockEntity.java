@@ -117,8 +117,6 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
 
     private boolean maxBarrelLength() {
         assert level != null;
-        if (level.getBlockEntity(gunBearing) instanceof NormalGunBlockEntity gun)
-            return gun.atMaxBarrelLength();
         return true;
     }
 
@@ -133,8 +131,6 @@ public class GunBarrelBlockEntity extends SmartBlockEntity {
 
     public int getPrimaryBarrelCount(){
         if(isPrimary()) return barrelCount;
-        if(getGunBE()!=null)
-            return getGunBE().getBarrelCount();
         return 0;
     }
 
