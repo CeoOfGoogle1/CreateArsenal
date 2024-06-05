@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-01T01:07:45.1009189	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-04T22:59:25.0887611	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
 feeace049314abe5eba539261d7427abfede0431 assets/createarsenal/blockstates/monitor.json
 4d5ba169f97e0ebfd69da65901cc82aeec256a95 assets/createarsenal/blockstates/normal_gun_bearing.json
@@ -8,8 +8,8 @@ d14fa7d67b744f4770e75f01a72d3cf8cdd4a34c assets/createarsenal/blockstates/radar_
 98d8dc9757892a55e3c7fda16e9f13d9b7cc1e2f assets/createarsenal/blockstates/radar_receiver_block.json
 78652c7626e05fa8b0f70c2ba231a138278bcb0a assets/createarsenal/blockstates/rotary_gun_bearing.json
 200971e5556e684c59ce3c5e39325639f9bc8e5a assets/createarsenal/blockstates/sea_mine.json
-5169bef8aa60fb08effdd72a1ab6d20571af1a2b assets/createarsenal/lang/en_ud.json
-c8c216900e66b67245b3ad0f17b3fbce4c3c310b assets/createarsenal/lang/en_us.json
+cc57324b336d1fdbc101aa2de3d1d4d79a48c4b6 assets/createarsenal/lang/en_ud.json
+06229e217b86466f1822ecd086571214023de309 assets/createarsenal/lang/en_us.json
 c7b71e0c121ac211974467c55201f02e1a7620f5 assets/createarsenal/models/item/brass_rod.json
 7e086c0376999698e8dd6ee631ac1f7699d76356 assets/createarsenal/models/item/cartridge_cutout_large.json
 ec969ef6388de23dbda90db5459f615a87f9e2e2 assets/createarsenal/models/item/cartridge_cutout_medium.json

@@ -1,22 +1,30 @@
 package net.amik.createarsenal.block.seaMine;
 
+import com.simibubi.create.content.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
-import com.simibubi.create.foundation.blockEntity.behaviour.ValueBoxTransform;
-import com.simibubi.create.foundation.blockEntity.behaviour.scrollValue.ScrollValueBehaviour;
-import com.simibubi.create.foundation.utility.Components;
 import com.simibubi.create.foundation.utility.VecHelper;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
 
-public class SeaMineBlockEntity extends SmartBlockEntity {
+public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleInformation {
 
-    ScrollValueBehaviour floatLevel;
+
+    int floatLevel = 0;
+    int detonationRadius = 1;
+    boolean armed = false;
 
 
     public SeaMineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -25,19 +33,77 @@ public class SeaMineBlockEntity extends SmartBlockEntity {
 
     @Override
     public void addBehaviours(List<BlockEntityBehaviour> behaviours) {
-        floatLevel =
-                new ScrollValueBehaviour(Components.translatable("sea_mine.float_level"), this, new FloatLevelSlot())
-                        .between(-64, 256);
-        behaviours.add(floatLevel);
     }
 
-    private static class FloatLevelSlot extends ValueBoxTransform.Sided {
+    @Override
+    public void tick() {
+        super.tick();
+        if (!armed && hasRedstone())
+            dropBomb();
+        if (shouldTriggerExplosion() && armed)
+            detonate();
+    }
 
-        @Override
-        protected Vec3 getSouthLocation() {
-            return direction == Direction.UP ? Vec3.ZERO : VecHelper.voxelSpace(8, 6, 15.5);
+    private void dropBomb() {
+        FallingSeaMineEntity seaMine = new FallingSeaMineEntity(level, new BlockPos(getBlockPos().getX(), floatLevel, getBlockPos().getZ()), detonationRadius);
+        seaMine.setPos(getBlockPos().getX() + .5, getBlockPos().getY() - .25, getBlockPos().getZ() + .5);
+        level.setBlock(getBlockPos(), Blocks.AIR.defaultBlockState(), 3);
+        level.addFreshEntity(seaMine);
+    }
+
+    private boolean hasRedstone() {
+        return level.hasNeighborSignal(worldPosition);
+    }
+
+    @Override
+    protected void read(CompoundTag tag, boolean clientPacket) {
+        super.read(tag, clientPacket);
+        floatLevel = tag.getInt("floatLevel");
+        detonationRadius = tag.getInt("detonationRadius");
+        armed = tag.getBoolean("armed");
+    }
+
+    @Override
+    protected void write(CompoundTag tag, boolean clientPacket) {
+        super.write(tag, clientPacket);
+        tag.putInt("floatLevel", floatLevel);
+        tag.putInt("detonationRadius", detonationRadius);
+        tag.putBoolean("armed", armed);
+    }
+
+    public boolean shouldTriggerExplosion() {
+        return level.getEntities(null, new AABB(worldPosition).inflate(detonationRadius - 1)).stream().dropWhile(entity -> !(entity instanceof LivingEntity) && !(entity instanceof Boat)).findFirst().isPresent();
+    }
+
+    public void detonate() {
+        if (level == null)
+            return;
+        if (level.isClientSide)
+            return;
+        Vec3 pos = VecHelper.getCenterOf(worldPosition);
+        level.explode(null, pos.x, pos.y, pos.z, 5, Level.ExplosionInteraction.TNT);
+        level.setBlockAndUpdate(worldPosition, Blocks.AIR.defaultBlockState());
+    }
+
+    public void setFloatLevel(int floatLevel) {
+        this.floatLevel = Math.max(-64, Math.min(255, floatLevel));
+        notifyUpdate();
+    }
+
+    public void setRange(int detonationRadius) {
+        this.detonationRadius = Math.max(1, Math.min(8, detonationRadius));
+        notifyUpdate();
+    }
+
+    @Override
+    public boolean addToGoggleTooltip(List<Component> tooltip, boolean isPlayerSneaking) {
+        tooltip.add(Component.literal(""));
+        if (armed) {
+            tooltip.add(Component.translatable("sea_mine.armed").withStyle(ChatFormatting.DARK_RED));
+        } else {
+            tooltip.add(Component.translatable("sea_mine.float_level").append(": " + floatLevel));
+            tooltip.add(Component.translatable("sea_mine.range").append(": " + detonationRadius));
         }
-
+        return true;
     }
-
 }

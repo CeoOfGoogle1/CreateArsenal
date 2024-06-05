@@ -3,9 +3,10 @@ package net.amik.createarsenal.block.seaMine;
 import com.simibubi.create.foundation.block.IBE;
 import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
-public class SeaMineBlock extends Block implements IBE<SeaMineBlockEntity> {
+public class SeaMineBlock extends Block implements IBE<SeaMineBlockEntity>, SimpleWaterloggedBlock {
     public SeaMineBlock(Properties pProperties) {
         super(pProperties);
     }
