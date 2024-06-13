@@ -2,6 +2,7 @@ package net.amik.createarsenal.block.seaMine;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.amik.createarsenal.registrate.ModBlocks;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -13,6 +14,7 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.state.BlockState;
@@ -33,25 +35,13 @@ public class FallingSeaMineRenderer extends EntityRenderer<FallingSeaMineEntity>
             Level level = entity.level();
             if (blockstate != level.getBlockState(entity.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
                 poseStack.pushPose();
-                BlockPos blockpos = BlockPos.containing(entity.getX(), entity.getBoundingBox().maxY, entity.getZ());
                 poseStack.translate(-0.5, 0.0, -0.5);
                 BakedModel model = this.dispatcher.getBlockModel(blockstate);
-                this.dispatcher
-                        .getModelRenderer()
-                        .tesselateBlock(
-                                level,
-                                model,
-                                blockstate,
-                                blockpos,
-                                poseStack,
-                                buffer.getBuffer(RenderType.cutoutMipped()),
-                                false,
-                                RandomSource.create(),
-                                blockstate.getSeed(entity.blockPosition()),
-                                OverlayTexture.NO_OVERLAY,
-                                ModelData.EMPTY,
-                                RenderType.cutoutMipped()
-                        );
+
+                Minecraft.getInstance()
+                        .getItemRenderer()
+                        .renderModelLists(model, ItemStack.EMPTY, packedLight, OverlayTexture.NO_OVERLAY, poseStack, buffer.getBuffer(RenderType.cutout()));
+
                 poseStack.popPose();
                 super.render(entity, entityYaw, partialTicks, poseStack, buffer, packedLight);
             }

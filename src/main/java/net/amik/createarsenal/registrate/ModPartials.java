@@ -7,7 +7,10 @@ import net.minecraft.resources.ResourceLocation;
 @SuppressWarnings("unused")
 public class ModPartials {
     public static final PartialModel
+
             SMALL_BARREL = item("small_gun_barrel"),
+            BOMBLET = item("bomblet"),
+            SHRAPNEL = item("shrapnel"),
             SMALL_ROTAING_BARREL = block("small_rotating_gun_barrel"),
             MEDIUM_ROTAING_BARREL = block("medium_rotating_gun_barrel"),
             LARGE_ROTAING_BARREL = block("large_rotating_gun_barrel"),

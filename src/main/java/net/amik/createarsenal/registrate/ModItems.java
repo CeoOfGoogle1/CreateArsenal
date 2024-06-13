@@ -4,6 +4,7 @@ import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.item.BulletItem;
+import net.amik.createarsenal.item.ProximityFuseItem;
 import net.amik.createarsenal.item.ScaleItem;
 import net.amik.createarsenal.item.SpringItem;
 import net.amik.createarsenal.shell.ShellScale;
@@ -23,6 +24,10 @@ public class ModItems {
     public static final ItemEntry<SpringItem> SPRING = REGISTRATE.item("spring", SpringItem::new)
             .model(NonNullBiConsumer.noop())
             .register();
+
+    public static final ItemEntry<ProximityFuseItem> PROXIMITY_FUSE = REGISTRATE.item("proximity_fuse", ProximityFuseItem::new)
+            .register();
+
 
     public static final ItemEntry<Item> IRON_ROD = REGISTRATE.item("iron_rod", Item::new)
             .register();

@@ -92,10 +92,6 @@ public class FallingSeaMineEntity extends Entity {
         return false;
     }
 
-    @Override
-    protected Entity.MovementEmission getMovementEmission() {
-        return Entity.MovementEmission.NONE;
-    }
 
     @Override
     public boolean isPickable() {

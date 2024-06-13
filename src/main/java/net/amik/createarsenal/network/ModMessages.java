@@ -29,6 +29,8 @@ public class ModMessages {
                 .simpleChannel();
 
         c2s(SeaMinePacketC2S.class);
+        c2s(ClusterBombPacketC2S.class);
+        c2s(ProximityFusePacketC2S.class);
 
     }
 

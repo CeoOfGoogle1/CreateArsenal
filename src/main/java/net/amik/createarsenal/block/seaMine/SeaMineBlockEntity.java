@@ -10,6 +10,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
@@ -79,8 +80,8 @@ public class SeaMineBlockEntity extends SmartBlockEntity implements IHaveGoggleI
     }
 
     public boolean shouldTriggerExplosion() {
-        return level.getEntities(null, new AABB(worldPosition).inflate(detonationRadius - 1)).stream()
-                .dropWhile(entity -> !(entity instanceof LivingEntity) && !(entity instanceof Boat) && !(entity instanceof FallingSeaMineEntity))
+        return level.getEntities(null, new AABB(worldPosition).inflate(detonationRadius)).stream()
+                .dropWhile(entity -> (entity instanceof ItemEntity))
                 .findFirst().isPresent();
     }
 

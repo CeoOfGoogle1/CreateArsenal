@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.seaMine;
+package net.amik.createarsenal.screen;
 
 import com.simibubi.create.foundation.gui.AbstractSimiScreen;
 import com.simibubi.create.foundation.gui.AllIcons;
@@ -6,24 +6,24 @@ import com.simibubi.create.foundation.gui.element.GuiGameElement;
 import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.ScrollInput;
 import net.amik.createarsenal.network.ModMessages;
+import net.amik.createarsenal.network.ProximityFusePacketC2S;
 import net.amik.createarsenal.network.SeaMinePacketC2S;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModGUI;
+import net.amik.createarsenal.registrate.ModItems;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.FormattedCharSequence;
 import org.lwjgl.glfw.GLFW;
 
-public class SeaMineScreen extends AbstractSimiScreen {
+public class ProximityFuseScreen extends AbstractSimiScreen {
 
-    private final ModGUI background = ModGUI.SEAMINE_GUI;
-    private int floatLevel;
+    private final ModGUI background = ModGUI.PROXIMITY_GUI;
     private int range;
 
 
-    public SeaMineScreen(int prevFloatLevel, int prevRange) {
-        super(Component.translatable("seamine_gui.title"));
-        this.floatLevel = prevFloatLevel;
+    public ProximityFuseScreen(int prevRange) {
+        super(Component.translatable("proximityfuse_gui.title"));
         this.range = prevRange;
     }
 
@@ -37,25 +37,17 @@ public class SeaMineScreen extends AbstractSimiScreen {
         int y = guiTop;
 
 
-        IconButton confirm = new IconButton(x + 155, y + 78, AllIcons.I_CONFIRM);
+        IconButton confirm = new IconButton(x + 155, y + 55, AllIcons.I_CONFIRM);
         confirm.withCallback(this::confirm);
         addRenderableWidget(confirm);
 
         ScrollInput rangeInput =
-                new ScrollInput(x + 20, y + 30, 150, 20).calling(state -> range = state).withRange(1, 9).setState(range);
-        rangeInput.titled(Component.translatable("sea_mine.range"));
+                new ScrollInput(x + 20, y + 30, 150, 20).calling(state -> range = state).withRange(1, 9).setState(range).withShiftStep(1);
+        rangeInput.titled(Component.translatable("proximityfuse.range"));
         rangeInput.active = true;
         rangeInput.visible = true;
         addRenderableWidget(rangeInput);
 
-
-        ScrollInput floatInput =
-                new ScrollInput(x + 20, y + 50, 150, 20).calling(state -> floatLevel = state).withRange(-64, 321).setState(floatLevel);
-        floatInput.titled(Component.translatable("sea_mine.float_level"));
-        floatInput.active = true;
-        floatInput.visible = true;
-
-        addRenderableWidget(floatInput);
     }
 
 
@@ -72,12 +64,10 @@ public class SeaMineScreen extends AbstractSimiScreen {
                 (float) (x + (background.width - 8) / 2 - font.width(formattedcharsequence) / 2), (float) y + 4, 0xFFFFFF, false);
         graphics.drawString(font, String.valueOf(range), (float) (x + (background.width - 8) / 2 - font.width(String.valueOf(range)) / 2), (float) y + 29, 0xFFFFFF, false);
 
-        graphics.drawString(font, String.valueOf(floatLevel), (float) (x + (background.width - 8) / 2 - font.width(String.valueOf(floatLevel)) / 2), (float) y + 51, 0xFFFFFF, false);
 
-
-        GuiGameElement.of(ModBlocks.SEA_MINE.asStack()).<GuiGameElement
-                        .GuiRenderBuilder>at(x + background.width + 8, y + background.height - 56, -200)
-                .scale(5)
+        GuiGameElement.of(ModItems.PROXIMITY_FUSE.asStack()).<GuiGameElement
+                        .GuiRenderBuilder>at(x + background.width, y + background.height - 52, -200)
+                .scale(2)
                 .render(graphics);
 
     }
@@ -98,7 +88,7 @@ public class SeaMineScreen extends AbstractSimiScreen {
     }
 
     private void confirm() {
-        ModMessages.sendToServer(new SeaMinePacketC2S(floatLevel, range));
+        ModMessages.sendToServer(new ProximityFusePacketC2S(range));
         onClose();
     }
 }

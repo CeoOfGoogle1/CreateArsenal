@@ -1,6 +1,7 @@
 package net.amik.createarsenal.block.seaMine;
 
 import com.simibubi.create.foundation.gui.ScreenOpener;
+import net.amik.createarsenal.screen.SeaMineScreen;
 import net.amik.createarsenal.util.IAdditionalCreativeItems;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.nbt.CompoundTag;

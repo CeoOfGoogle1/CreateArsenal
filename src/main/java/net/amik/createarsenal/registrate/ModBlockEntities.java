@@ -7,6 +7,8 @@ import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
+import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntity;
+import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntityRenderer;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
@@ -31,6 +33,12 @@ public class ModBlockEntities {
             .blockEntity("sea_mine", SeaMineBlockEntity::new)
             .validBlocks(ModBlocks.SEA_MINE)
             .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<AerialBombBlockEntity> AERIAL_BOMB = REGISTRATE
+            .blockEntity("aerial_bomb", AerialBombBlockEntity::new)
+            .validBlocks(ModBlocks.BIG_BOMB, ModBlocks.INCENDIARY_BOMB, ModBlocks.CLUSTER_BOMB, ModBlocks.ARMOR_PIERCING_BOMB, ModBlocks.SHRAPNEL_BOMB)
+            .renderer(() -> AerialBombBlockEntityRenderer::new)
             .register();
 
     public static final BlockEntityEntry<RotaryGunBlockEntity> ROTARY_GUN_BLOCK_ENTITY = REGISTRATE

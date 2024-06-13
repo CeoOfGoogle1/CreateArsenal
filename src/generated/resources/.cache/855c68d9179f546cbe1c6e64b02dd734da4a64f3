@@ -1,5 +1,10 @@
-// 1.20.1	2024-06-04T22:59:25.0887611	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-13T13:24:25.2160653	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
+c297026104e18ed66427e41ca9c5d1232b5eceda assets/createarsenal/blockstates/big_bomb.json
+3b410ea89379a6554fd37043c3cdf40159594422 assets/createarsenal/blockstates/big_bomb_armor_piercing.json
+d2248df58e8a7b03cdbb89feb62d88cb8718a95f assets/createarsenal/blockstates/big_bomb_cluster.json
+60089103d51d45003331578ebbf2bfeabd1a19b4 assets/createarsenal/blockstates/big_bomb_incendiary.json
+ece1694c5144c4a55f29cbee2e29464ac95dafa6 assets/createarsenal/blockstates/big_bomb_shrapnel.json
 feeace049314abe5eba539261d7427abfede0431 assets/createarsenal/blockstates/monitor.json
 4d5ba169f97e0ebfd69da65901cc82aeec256a95 assets/createarsenal/blockstates/normal_gun_bearing.json
 b29f3e45594b01e8f650e69a67a346af26d13f69 assets/createarsenal/blockstates/radar_bearing.json
@@ -8,8 +13,13 @@ d14fa7d67b744f4770e75f01a72d3cf8cdd4a34c assets/createarsenal/blockstates/radar_
 98d8dc9757892a55e3c7fda16e9f13d9b7cc1e2f assets/createarsenal/blockstates/radar_receiver_block.json
 78652c7626e05fa8b0f70c2ba231a138278bcb0a assets/createarsenal/blockstates/rotary_gun_bearing.json
 200971e5556e684c59ce3c5e39325639f9bc8e5a assets/createarsenal/blockstates/sea_mine.json
-cc57324b336d1fdbc101aa2de3d1d4d79a48c4b6 assets/createarsenal/lang/en_ud.json
-06229e217b86466f1822ecd086571214023de309 assets/createarsenal/lang/en_us.json
+719e2bfe1d4a78a92b1789f6302b7bf3b2521293 assets/createarsenal/lang/en_ud.json
+d3925f3d4cd83d7deb45f25ff75c6636411d34bf assets/createarsenal/lang/en_us.json
+45b3d5e0e9e1354e359c3be906eb5cb80d0550a3 assets/createarsenal/models/item/big_bomb.json
+bd5e721db38060b154735df59ad8a02f91bf7eb9 assets/createarsenal/models/item/big_bomb_armor_piercing.json
+8873350d448f4c016e4066b20e51bf5ed1ed4b03 assets/createarsenal/models/item/big_bomb_cluster.json
+62b6beaea0f840e057b91f35d663470ec0776f44 assets/createarsenal/models/item/big_bomb_incendiary.json
+79454b5df8d7fcc39dac7ffbf059359c30b37c21 assets/createarsenal/models/item/big_bomb_shrapnel.json
 c7b71e0c121ac211974467c55201f02e1a7620f5 assets/createarsenal/models/item/brass_rod.json
 7e086c0376999698e8dd6ee631ac1f7699d76356 assets/createarsenal/models/item/cartridge_cutout_large.json
 ec969ef6388de23dbda90db5459f615a87f9e2e2 assets/createarsenal/models/item/cartridge_cutout_medium.json
@@ -19,6 +29,7 @@ d9b971c98ba4753c8048a8605b2c779200edbcb2 assets/createarsenal/models/item/iron_r
 ffdf839262922b624bc7678e3055670de32f4a44 assets/createarsenal/models/item/jacket_plate_medium.json
 2289a2c6bceca72c6b7b7f30e5ed955822a2cac7 assets/createarsenal/models/item/jacket_plate_small.json
 586b2f100210da68117efc14d846a2b9b486594e assets/createarsenal/models/item/normal_gun_bearing.json
+c75f262b4889ff45d6922bf026e538938df36d97 assets/createarsenal/models/item/proximity_fuse.json
 9c6d13b093580667798bd784598a46344c458983 assets/createarsenal/models/item/radar_bearing.json
 60487ceee7b959a8b972f0d9b1fecaff924d4f1d assets/createarsenal/models/item/radar_dish_block.json
 fb7d8cdb66c2a57c03af56f3ec250e4df5763a9b assets/createarsenal/models/item/radar_plate_block.json
@@ -43,6 +54,11 @@ caada641cb23d9f56069f8ec2af84e736512818d assets/createarsenal/models/item/round_
 60b42de7ce696b013ab3eb43b43d9e4d9a99d6de assets/createarsenal/models/item/round_small_incendiary.json
 c34f07bfc865331d26d0ff6fd6d21cce83ade399 assets/createarsenal/models/item/sea_mine.json
 dcfb4620aa9f934193c1ea61ac74dfbade72c448 data/createarsenal/loot_tables/blocks/barrel_block.json
+2b3067f9640f91f7daa6fc52781d7cc1bbc7d2c6 data/createarsenal/loot_tables/blocks/big_bomb.json
+f021c6735ff5c1b114babd4b8c9e6ecfe97ee581 data/createarsenal/loot_tables/blocks/big_bomb_armor_piercing.json
+4cedbaf8c52e3fef811c0b242f0a0d4a333d1ecc data/createarsenal/loot_tables/blocks/big_bomb_cluster.json
+ca14297a4bc85c4449abe9323d5aa1b3ad386709 data/createarsenal/loot_tables/blocks/big_bomb_incendiary.json
+2f231892633810faf0de6681c258e2cec0db8563 data/createarsenal/loot_tables/blocks/big_bomb_shrapnel.json
 ddb06788bf65655a8d263497b2d1b89a14d8d1a0 data/createarsenal/loot_tables/blocks/monitor.json
 6234e30a0a77aeafb8f27e26404acd28123e313f data/createarsenal/loot_tables/blocks/normal_gun_bearing.json
 b9bafaf6a97bfcbfff0090cd26fc054ea96c3979 data/createarsenal/loot_tables/blocks/radar_bearing.json

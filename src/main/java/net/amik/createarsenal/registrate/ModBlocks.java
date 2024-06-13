@@ -7,6 +7,8 @@ import com.simibubi.create.foundation.data.SharedProperties;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.block.aerialBombs.AerialBombBlock;
+import net.amik.createarsenal.block.aerialBombs.AerialBombItem;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
@@ -87,6 +89,14 @@ public class ModBlocks {
                     .build()
                     .register();
 
+    public static final BlockEntry<AerialBombBlock> BIG_BOMB = bomb("big_bomb");
+    public static final BlockEntry<AerialBombBlock> INCENDIARY_BOMB = bomb("big_bomb_incendiary");
+    public static final BlockEntry<AerialBombBlock> CLUSTER_BOMB = bomb("big_bomb_cluster");
+    public static final BlockEntry<AerialBombBlock> ARMOR_PIERCING_BOMB = bomb("big_bomb_armor_piercing");
+    public static final BlockEntry<AerialBombBlock> SHRAPNEL_BOMB = bomb("big_bomb_shrapnel");
+
+
+
     public static final BlockEntry<RadarBearingBlock> RADAR_BEARING_BLOCK =
             REGISTRATE.block("radar_bearing", RadarBearingBlock::new)
                     .initialProperties(SharedProperties::softMetal)
@@ -132,6 +142,17 @@ public class ModBlocks {
                             .getExistingFile(ctx.getId()), 0))
                     .simpleItem()
                     .register();
+
+
+    public static BlockEntry<AerialBombBlock> bomb(String name) {
+        return REGISTRATE.block(name, AerialBombBlock::new)
+                .initialProperties(SharedProperties::softMetal)
+                .properties(BlockBehaviour.Properties::noOcclusion)
+                .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
+                .item(AerialBombItem::new)
+                .build()
+                .register();
+    }
 
 
     public static void register() {

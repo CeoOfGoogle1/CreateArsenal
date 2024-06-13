@@ -39,6 +39,7 @@ public class CreateArsenal
         ModTranslations.register();
         ModSoundEvents.prepare();
         ModCreativeModTab.register(eventBus);
+        ModRecipes.register(eventBus);
         REGISTRATE.registerEventListeners(eventBus);
         eventBus.addListener(CreateArsenal::init);
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ModPartials::init);

@@ -11,8 +11,9 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public enum ModGUI implements ScreenElement {
-
-    SEAMINE_GUI("seamine_gui", 34, 77, 187, 100);
+    PROXIMITY_GUI("proximity_gui", 187, 100),
+    CLUSTER_GUI("cluster_gui", 187, 78),
+    SEAMINE_GUI("seamine_gui", 187, 78);
 
 
     public final ResourceLocation location;

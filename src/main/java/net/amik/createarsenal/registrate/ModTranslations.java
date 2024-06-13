@@ -12,7 +12,7 @@ public class ModTranslations {
 
         CreateArsenal.REGISTRATE.addRawLang(
                 "sea_mine.range",
-                "Trigger Range"
+                "Proximity Range"
         );
 
         CreateArsenal.REGISTRATE.addRawLang(
@@ -23,6 +23,26 @@ public class ModTranslations {
         CreateArsenal.REGISTRATE.addRawLang(
                 "seamine_gui.title",
                 "Sea Mine"
+        );
+
+        CreateArsenal.REGISTRATE.addRawLang(
+                "clusterbomb_gui.title",
+                "CLuster Bomb"
+        );
+
+        CreateArsenal.REGISTRATE.addRawLang(
+                "proximityfuse_gui.title",
+                "Proximity Fuse"
+        );
+
+        CreateArsenal.REGISTRATE.addRawLang(
+                "proximityfuse.range",
+                "Proximity Range"
+        );
+
+        CreateArsenal.REGISTRATE.addRawLang(
+                "clusterbomb.altitude",
+                "Altitude"
         );
 
     }

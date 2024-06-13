@@ -1,0 +1,18 @@
+{
+  "type": "createarsenal:fuse_deploy",
+  "ingredients": [
+    {
+      "item": "createarsenal:big_bomb_shrapnel"
+    },
+    {
+      "item": "createarsenal:proximity_fuse"
+    }
+  ],
+  "keepHeldItem": false,
+  "results": [
+    {
+      "item": "createarsenal:big_bomb_shrapnel",
+      "nbt": "{proximityRange:1}"
+    }
+  ]
+}
