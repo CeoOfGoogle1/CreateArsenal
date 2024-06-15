@@ -104,6 +104,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     }
 
     public BlockPos getControllerPos() {
+        if (controllerPos == null || controllerPos.equals(BlockPos.ZERO))
+            return this.getBlockPos();
         return controllerPos;
     }
 

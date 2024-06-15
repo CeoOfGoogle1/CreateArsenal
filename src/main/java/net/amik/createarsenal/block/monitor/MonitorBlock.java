@@ -3,6 +3,7 @@ package net.amik.createarsenal.block.monitor;
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Lang;
 import net.amik.createarsenal.registrate.ModBlockEntities;
+import net.amik.createarsenal.registrate.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -45,15 +46,17 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
     @Override
     @ParametersAreNonnullByDefault
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
-        MonitorMultiBlockHelper.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
+        //    MonitorMultiBlockHelper.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
         super.neighborChanged(pState, pLevel, pPos, pBlock, pFromPos, pIsMoving);
     }
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        MonitorMultiBlockHelper.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+        if (!ModBlocks.MONITOR.has(pNewState))
+            MonitorMultiBlockHelper.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
+
 
     public enum Shape implements StringRepresentable {
         SINGLE, CENTER, LOWER_CENTER, LOWER_LEFT, LOWER_RIGHT, UPPER_CENTER, UPPER_LEFT, UPPER_RIGHT, MIDDLE_LEFT, MIDDLE_RIGHT;

@@ -7,6 +7,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.AABB;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -20,16 +21,33 @@ public class MonitorMultiBlockHelper {
     public static void onPlace(BlockState pState, Level pLevel, BlockPos pPos, BlockState pOldState, boolean pIsMoving) {
         if (pState.getValue(SHAPE) != MonitorBlock.Shape.SINGLE)
             return;
-        int size = getSize(pLevel, pPos);
-        if (size > 1)
-            formMulti(pState, pLevel, pPos, size);
+        BlockPos.betweenClosedStream(new AABB(pPos).inflate(MAX_SIZE)).forEach(p -> {
+                    if (pLevel.getBlockEntity(p) instanceof MonitorBlockEntity monitor) {
+                        int size = getSize(pLevel, p);
+                        if (size > 1)
+                            formMulti(pState, pLevel, monitor.getControllerPos(), size);
+                    }
+                }
+        );
     }
 
 
     public static void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pBlock, BlockPos pFromPos, boolean pIsMoving) {
+        BlockPos.betweenClosedStream(new AABB(pPos).inflate(3)).forEach(p -> {
+                    if (pLevel.getBlockEntity(p) instanceof MonitorBlockEntity monitor) {
+                        int size = getSize(pLevel, p);
+                        if (size > 1)
+                            formMulti(pState, pLevel, monitor.getControllerPos(), size);
+                    }
+                }
+        );
     }
 
     public static void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+
+        if (pLevel.getBlockEntity(pPos) instanceof MonitorBlockEntity monitor) {
+            destroyMulti(pState, pLevel, pPos, monitor.getControllerPos(), monitor.getSize());
+        }
     }
 
     private static void formMulti(BlockState pState, Level pLevel, BlockPos pPos, int size) {
@@ -54,6 +72,27 @@ public class MonitorMultiBlockHelper {
             }
         }
     }
+
+    private static void destroyMulti(BlockState pState, Level pLevel, BlockPos removedPos, BlockPos controllerPos, int size) {
+        if (size == 1)
+            return;
+        if (pLevel.getBlockEntity(removedPos) instanceof MonitorBlockEntity monitor && monitor.controllerPos.equals(controllerPos)) {
+            monitor.setControllerPos(removedPos, 1);
+        }
+        Direction facing = pState.getValue(FACING);
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                BlockPos pos = controllerPos.above(i).relative(facing.getClockWise(), j);
+                if (pos.equals(removedPos))
+                    continue;
+                if (pLevel.getBlockEntity(pos) instanceof MonitorBlockEntity monitor && monitor.controllerPos.equals(controllerPos)) {
+                    monitor.setControllerPos(pos, 1);
+                    pLevel.setBlockAndUpdate(pos, pState.setValue(SHAPE, MonitorBlock.Shape.SINGLE));
+                }
+            }
+        }
+    }
+
 
     public static int getSize(Level pLevel, BlockPos pPos) {
         if (!pLevel.getBlockState(pPos).is(ModBlocks.MONITOR.get()))
