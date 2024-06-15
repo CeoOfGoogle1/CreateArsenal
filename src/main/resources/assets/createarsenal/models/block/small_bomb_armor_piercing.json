@@ -1,0 +1,8 @@
+{
+  "credit": "Made with Blockbench",
+  "textures": {
+    "0": "createarsenal:block/small_bomb_armor_piercing",
+    "particle": "createarsenal:block/small_bomb_armor_piercing"
+  },
+  "parent": "createarsenal:block/small_bomb"
+}

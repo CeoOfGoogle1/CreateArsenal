@@ -37,7 +37,23 @@ public class ModBlockEntities {
 
     public static final BlockEntityEntry<AerialBombBlockEntity> AERIAL_BOMB = REGISTRATE
             .blockEntity("aerial_bomb", AerialBombBlockEntity::new)
-            .validBlocks(ModBlocks.BIG_BOMB, ModBlocks.INCENDIARY_BOMB, ModBlocks.CLUSTER_BOMB, ModBlocks.ARMOR_PIERCING_BOMB, ModBlocks.SHRAPNEL_BOMB)
+            .validBlocks(
+                    ModBlocks.SMALL_BOMB,
+                    ModBlocks.INCENDIARY_SMALL_BOMB,
+                    ModBlocks.CLUSTER_SMALL_BOMB,
+                    ModBlocks.ARMOR_PIERCING_SMALL_BOMB,
+                    ModBlocks.SHRAPNEL_SMALL_BOMB,
+                    ModBlocks.MEDIUM_BOMB,
+                    ModBlocks.INCENDIARY_MEDIUM_BOMB,
+                    ModBlocks.CLUSTER_MEDIUM_BOMB,
+                    ModBlocks.ARMOR_PIERCING_MEDIUM_BOMB,
+                    ModBlocks.SHRAPNEL_MEDIUM_BOMB,
+                    ModBlocks.BIG_BOMB,
+                    ModBlocks.INCENDIARY_BIG_BOMB,
+                    ModBlocks.CLUSTER_BIG_BOMB,
+                    ModBlocks.ARMOR_PIERCING_BIG_BOMB,
+                    ModBlocks.SHRAPNEL_BIG_BOMB,
+                    ModBlocks.CREATIVE_BOMB)
             .renderer(() -> AerialBombBlockEntityRenderer::new)
             .register();
 

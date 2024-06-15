@@ -51,6 +51,10 @@ public class ShrapnelProjectile extends Projectile {
     }
 
     @Override
+    public boolean ignoreExplosion() {
+        return true;
+    }
+    @Override
     protected void onHitEntity(EntityHitResult result) {
         super.onHitEntity(result);
         if (result.getEntity() instanceof ShrapnelProjectile)

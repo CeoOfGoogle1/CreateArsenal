@@ -8,20 +8,20 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
 public class ClusterBombPacketC2S extends SimplePacketBase {
-    private final int floatLevel;
+    private final int detonationAltitude;
 
     public ClusterBombPacketC2S(FriendlyByteBuf buffer) {
-        floatLevel = buffer.readInt();
+        detonationAltitude = buffer.readInt();
     }
 
-    public ClusterBombPacketC2S(int floatLevel) {
-        this.floatLevel = floatLevel;
+    public ClusterBombPacketC2S(int detonationAltitude) {
+        this.detonationAltitude = detonationAltitude;
     }
 
 
     @Override
     public void write(FriendlyByteBuf buffer) {
-        buffer.writeInt(floatLevel);
+        buffer.writeInt(detonationAltitude);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ClusterBombPacketC2S extends SimplePacketBase {
                 return;
             ItemStack stack = player.getMainHandItem();
             CompoundTag tag = stack.getOrCreateTag();
-            tag.putInt("floatLevel", floatLevel);
+            tag.putInt("detonationAltitude", detonationAltitude);
         });
         return true;
     }

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "buried=false": {
+      "model": "createarsenal:block/landmine"
+    },
+    "buried=true": {
+      "model": "createarsenal:block/landmine_buried"
+    }
+  }
+}

@@ -27,7 +27,7 @@ public class ModTranslations {
 
         CreateArsenal.REGISTRATE.addRawLang(
                 "clusterbomb_gui.title",
-                "CLuster Bomb"
+                "Cluster Bomb"
         );
 
         CreateArsenal.REGISTRATE.addRawLang(

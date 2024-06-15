@@ -32,6 +32,11 @@ public class ClusterBomblet extends Projectile {
     }
 
     @Override
+    public boolean ignoreExplosion() {
+        return true;
+    }
+
+    @Override
     protected void onHitBlock(BlockHitResult result) {
         super.onHitBlock(result);
         level().explode(this, this.getX(), this.getY(), this.getZ(), 2, false, Level.ExplosionInteraction.MOB);

@@ -31,7 +31,7 @@ public class FallingAerialBombRenderer<T extends FallingAerialBomb> extends Enti
         if (blockstate.getRenderShape() == RenderShape.MODEL) {
             Level level = entity.level();
             if (blockstate != level.getBlockState(entity.blockPosition()) && blockstate.getRenderShape() != RenderShape.INVISIBLE) {
-                float i = Math.min(1.0f, entity.getTime() / 20f);
+                float i = Math.min(1.0f, (float) entity.getTime() / entity.getTimeRequired());
                 poseStack.pushPose();
                 poseStack.mulPose(Axis.XP.rotationDegrees(-90f * i));
 

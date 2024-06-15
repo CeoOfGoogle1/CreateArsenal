@@ -9,6 +9,7 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.aerialBombs.AerialBombBlock;
 import net.amik.createarsenal.block.aerialBombs.AerialBombItem;
+import net.amik.createarsenal.block.landmine.LandMineBlock;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
@@ -80,6 +81,24 @@ public class ModBlocks {
                     .build()
                     .register();
 
+
+    public static final BlockEntry<LandMineBlock> LANDMINE =
+            REGISTRATE.block("landmine", LandMineBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate((c, p) -> p.getVariantBuilder(c.get())
+                            .forAllStates(state -> {
+                                String shape = state.getValue(LandMineBlock.BURIED) ? "_buried" : "";
+                                return ConfiguredModel.builder()
+                                        .modelFile(p.models()
+                                                .getExistingFile(new ResourceLocation(CreateArsenal.MOD_ID, "block/landmine" + shape)))
+                                        .build();
+                            }))
+                    .addLayer(() -> RenderType::cutoutMipped)
+                    .item()
+                    .build()
+                    .register();
+
     public static final BlockEntry<SeaMineBlock> SEA_MINE =
             REGISTRATE.block("sea_mine", SeaMineBlock::new)
                     .initialProperties(SharedProperties::softMetal)
@@ -90,12 +109,21 @@ public class ModBlocks {
                     .register();
 
     public static final BlockEntry<AerialBombBlock> BIG_BOMB = bomb("big_bomb");
-    public static final BlockEntry<AerialBombBlock> INCENDIARY_BOMB = bomb("big_bomb_incendiary");
-    public static final BlockEntry<AerialBombBlock> CLUSTER_BOMB = bomb("big_bomb_cluster");
-    public static final BlockEntry<AerialBombBlock> ARMOR_PIERCING_BOMB = bomb("big_bomb_armor_piercing");
-    public static final BlockEntry<AerialBombBlock> SHRAPNEL_BOMB = bomb("big_bomb_shrapnel");
-
-
+    public static final BlockEntry<AerialBombBlock> INCENDIARY_BIG_BOMB = bomb("big_bomb_incendiary");
+    public static final BlockEntry<AerialBombBlock> CLUSTER_BIG_BOMB = bomb("big_bomb_cluster");
+    public static final BlockEntry<AerialBombBlock> ARMOR_PIERCING_BIG_BOMB = bomb("big_bomb_armor_piercing");
+    public static final BlockEntry<AerialBombBlock> SHRAPNEL_BIG_BOMB = bomb("big_bomb_shrapnel");
+    public static final BlockEntry<AerialBombBlock> CREATIVE_BOMB = bomb("creative_big_bomb");
+    public static final BlockEntry<AerialBombBlock> MEDIUM_BOMB = bomb("medium_bomb");
+    public static final BlockEntry<AerialBombBlock> INCENDIARY_MEDIUM_BOMB = bomb("medium_bomb_incendiary");
+    public static final BlockEntry<AerialBombBlock> CLUSTER_MEDIUM_BOMB = bomb("medium_bomb_cluster");
+    public static final BlockEntry<AerialBombBlock> ARMOR_PIERCING_MEDIUM_BOMB = bomb("medium_bomb_armor_piercing");
+    public static final BlockEntry<AerialBombBlock> SHRAPNEL_MEDIUM_BOMB = bomb("medium_bomb_shrapnel");
+    public static final BlockEntry<AerialBombBlock> SMALL_BOMB = bomb("small_bomb");
+    public static final BlockEntry<AerialBombBlock> INCENDIARY_SMALL_BOMB = bomb("small_bomb_incendiary");
+    public static final BlockEntry<AerialBombBlock> CLUSTER_SMALL_BOMB = bomb("small_bomb_cluster");
+    public static final BlockEntry<AerialBombBlock> ARMOR_PIERCING_SMALL_BOMB = bomb("small_bomb_armor_piercing");
+    public static final BlockEntry<AerialBombBlock> SHRAPNEL_SMALL_BOMB = bomb("small_bomb_shrapnel");
 
     public static final BlockEntry<RadarBearingBlock> RADAR_BEARING_BLOCK =
             REGISTRATE.block("radar_bearing", RadarBearingBlock::new)
@@ -148,6 +176,7 @@ public class ModBlocks {
         return REGISTRATE.block(name, AerialBombBlock::new)
                 .initialProperties(SharedProperties::softMetal)
                 .properties(BlockBehaviour.Properties::noOcclusion)
+                .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
                 .item(AerialBombItem::new)
                 .build()

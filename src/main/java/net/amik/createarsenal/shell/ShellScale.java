@@ -2,10 +2,11 @@ package net.amik.createarsenal.shell;
 
 import net.amik.createarsenal.item.ScaleItem;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public enum ShellScale {
+public enum ShellScale implements StringRepresentable {
     SMALL, MEDIUM, LARGE;
 
     static final String NBT_KEY="ArsenalShellScale";
@@ -25,4 +26,8 @@ public enum ShellScale {
         return values()[tag.getInt(NBT_KEY)];
     }
 
+    @Override
+    public String getSerializedName() {
+        return this.name().toLowerCase();
+    }
 }

@@ -31,6 +31,7 @@ public class ModMessages {
         c2s(SeaMinePacketC2S.class);
         c2s(ClusterBombPacketC2S.class);
         c2s(ProximityFusePacketC2S.class);
+        c2s(CreativeBombPacketC2S.class);
 
     }
 

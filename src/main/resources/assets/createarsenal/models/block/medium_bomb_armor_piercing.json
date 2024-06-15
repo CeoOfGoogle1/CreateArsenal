@@ -1,0 +1,12 @@
+{
+  "credit": "Made with Blockbench",
+  "texture_size": [
+    32,
+    32
+  ],
+  "textures": {
+    "0": "createarsenal:block/medium_bomb_armor_piercing",
+    "particle": "createarsenal:block/medium_bomb_armor_piercing"
+  },
+  "parent": "createarsenal:block/medium_bomb"
+}

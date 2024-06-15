@@ -21,6 +21,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     public int widthRange = 256;
     public int heightRange = 4;
     private float animation;
+    private int size = 1;
 
     BlockPos controllerPos = BlockPos.ZERO;
     public int tickSinceLastWork = 0;
@@ -78,6 +79,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
             heightRange = tag.getInt("heightRange");
         if (tag.contains("controllerPos"))
             controllerPos = NbtUtils.readBlockPos(tag.getCompound("controllerPos"));
+        if (tag.contains("size"))
+            size = tag.getInt("size");
     }
 
     @Override
@@ -92,10 +95,12 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         tag.putInt("widthRange", widthRange);
         tag.putInt("heightRange", heightRange);
         tag.put("controllerPos", NbtUtils.writeBlockPos(controllerPos));
+        tag.putInt("size", size);
     }
 
-    public void setControllerPos(BlockPos controllerPos) {
+    public void setControllerPos(BlockPos controllerPos, int size) {
         this.controllerPos = controllerPos;
+        this.size = size;
     }
 
     public BlockPos getControllerPos() {
@@ -122,5 +127,9 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         if (level.getBlockEntity(controllerPos) instanceof MonitorBlockEntity controller)
             return controller;
         return null;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

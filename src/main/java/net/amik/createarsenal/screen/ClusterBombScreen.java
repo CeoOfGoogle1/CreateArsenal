@@ -7,7 +7,6 @@ import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.ScrollInput;
 import net.amik.createarsenal.network.ClusterBombPacketC2S;
 import net.amik.createarsenal.network.ModMessages;
-import net.amik.createarsenal.network.SeaMinePacketC2S;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.amik.createarsenal.registrate.ModGUI;
 import net.minecraft.client.gui.GuiGraphics;
@@ -36,13 +35,14 @@ public class ClusterBombScreen extends AbstractSimiScreen {
         int y = guiTop;
 
 
-        IconButton confirm = new IconButton(x + 155, y + 78, AllIcons.I_CONFIRM);
+        IconButton confirm = new IconButton(x + 155, y + 55, AllIcons.I_CONFIRM);
         confirm.withCallback(this::confirm);
         addRenderableWidget(confirm);
 
 
+
         ScrollInput floatInput =
-                new ScrollInput(x + 20, y + 50, 150, 20).calling(state -> floatLevel = state).withRange(-64, 321).setState(floatLevel);
+                new ScrollInput(x + 20, y + 30, 150, 20).calling(state -> floatLevel = state).withRange(8, 128).setState(floatLevel);
         floatInput.titled(Component.translatable("clusterbomb.altitude"));
         floatInput.active = true;
         floatInput.visible = true;
@@ -61,12 +61,12 @@ public class ClusterBombScreen extends AbstractSimiScreen {
         FormattedCharSequence formattedcharsequence = title.getVisualOrderText();
 
         graphics.drawString(font, formattedcharsequence,
-                (float) (x + (background.width - 8) / 2 - font.width(formattedcharsequence) / 2), (float) y + 4, 0xFFFFFF, false);
+                (float) (x + (background.width - 8) / 2 - font.width(formattedcharsequence) / 2), (float) y + 4, 0x000000, false);
 
-        graphics.drawString(font, String.valueOf(floatLevel), (float) (x + (background.width - 8) / 2 - font.width(String.valueOf(floatLevel)) / 2), (float) y + 51, 0xFFFFFF, false);
+        graphics.drawString(font, String.valueOf(floatLevel), (float) (x + (background.width - 8) / 2 - font.width(String.valueOf(floatLevel)) / 2), (float) y + 28, 0xFFFFFF, false);
 
 
-        GuiGameElement.of(ModBlocks.CLUSTER_BOMB.asStack()).<GuiGameElement
+        GuiGameElement.of(ModBlocks.CLUSTER_BIG_BOMB.asStack()).<GuiGameElement
                         .GuiRenderBuilder>at(x + background.width + 8, y + background.height - 56, -200)
                 .scale(5)
                 .render(graphics);

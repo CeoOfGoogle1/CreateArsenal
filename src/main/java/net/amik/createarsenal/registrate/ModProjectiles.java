@@ -8,6 +8,8 @@ import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.aerialBombs.projectiles.*;
+import net.amik.createarsenal.block.landmine.FallingLandMine;
+import net.amik.createarsenal.block.landmine.FallingLandMineRenderer;
 import net.amik.createarsenal.block.seaMine.FallingSeaMineEntity;
 import net.amik.createarsenal.block.seaMine.FallingSeaMineRenderer;
 import net.amik.createarsenal.shell.BulletEntity;
@@ -29,22 +31,13 @@ public class ModProjectiles {
             register("falling_sea_mine", FallingSeaMineEntity::new, () -> FallingSeaMineRenderer::new,
                     MobCategory.MISC, 64, 1, true, false, FallingSeaMineEntity::build).register();
 
-
     public static final EntityEntry<FallingAerialBomb> FALLING_AERIAL_BOMB =
             register("falling_aerial_bomb", FallingAerialBomb::new, () -> FallingAerialBombRenderer::new,
                     MobCategory.MISC, 64, 1, true, false, FallingAerialBomb::build).register();
 
-    public static final EntityEntry<FallingAPAerialBomb> FALLING_AP_AERIAL_BOMB =
-            register("falling_ap_aerial_bomb", FallingAPAerialBomb::new, () -> FallingAerialBombRenderer::new,
-                    MobCategory.MISC, 64, 1, true, false, FallingAPAerialBomb::APbuild).register();
-
-    public static final EntityEntry<FallingClusterAerialBomb> FALLING_CLUSTER_AERIAL_BOMB =
-            register("falling_cluster_aerial_bomb", FallingClusterAerialBomb::new, () -> FallingAerialBombRenderer::new,
-                    MobCategory.MISC, 64, 1, true, false, FallingClusterAerialBomb::clusterbuild).register();
-
-    public static final EntityEntry<FallingShrapnelAerialBomb> FALLING_SHRAPNEL_AERIAL_BOMB =
-            register("falling_shrapnel_aerial_bomb", FallingShrapnelAerialBomb::new, () -> FallingAerialBombRenderer::new,
-                    MobCategory.MISC, 64, 1, true, false, FallingShrapnelAerialBomb::fragbuild).register();
+    public static final EntityEntry<FallingLandMine> FALLING_LANDMINE =
+            register("falling_landmine", FallingLandMine::new, () -> FallingLandMineRenderer::new,
+                    MobCategory.MISC, 64, 1, true, false, FallingLandMine::build).register();
 
     public static final EntityEntry<ClusterBomblet> CLUSTER_BOMBLET =
             register("cluster_bomblet", ClusterBomblet::new, () -> ClusterBombletRenderer::new,
