@@ -168,6 +168,9 @@ public class ModItems {
             .lang("Small Round (Incendiary)")
             .register();
 
+    public static final ItemEntry<Item> BOMBLET = REGISTRATE.item("bomblet", Item::new)
+            .register();
+
     //TODO: Organize items in creative tab
     public static void register() {}
 

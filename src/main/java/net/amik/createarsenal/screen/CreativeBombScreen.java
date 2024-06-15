@@ -58,14 +58,14 @@ public class CreativeBombScreen extends AbstractSimiScreen {
 
     @Override
     public void init() {
-        setWindowSize(background.width + 30, background.height);
+        setWindowSize(background.width, background.height);
         super.init();
 
         int x = guiLeft;
         int y = guiTop;
 
 
-        IconButton confirm = new IconButton(x + 155, y + 245, AllIcons.I_CONFIRM);
+        IconButton confirm = new IconButton(x + 159, y + 245, AllIcons.I_CONFIRM);
         confirm.withCallback(this::confirm);
         addRenderableWidget(confirm);
 
@@ -141,7 +141,7 @@ public class CreativeBombScreen extends AbstractSimiScreen {
 
     @Override
     protected void renderWindow(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks) {
-        int x = guiLeft;
+        int x = guiLeft + 4;
         int y = guiTop;
 
         background.render(graphics, x, y);

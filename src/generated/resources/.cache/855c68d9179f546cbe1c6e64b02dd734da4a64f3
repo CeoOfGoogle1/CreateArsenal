@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-14T17:59:42.2004125	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-15T22:00:35.1241299	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
 c297026104e18ed66427e41ca9c5d1232b5eceda assets/createarsenal/blockstates/big_bomb.json
 3b410ea89379a6554fd37043c3cdf40159594422 assets/createarsenal/blockstates/big_bomb_armor_piercing.json
@@ -25,13 +25,14 @@ c23d9e1768759fd22cbb672b27a081a984af1404 assets/createarsenal/blockstates/small_
 bd0296c49a3c010ff67e76f3abf0d9a6e64231ea assets/createarsenal/blockstates/small_bomb_cluster.json
 ce67f1a7704f336e3308cc5e35db28d709e5f8ef assets/createarsenal/blockstates/small_bomb_incendiary.json
 9483b4a4b56a0d573b3ea841550b2708f8f8f7ac assets/createarsenal/blockstates/small_bomb_shrapnel.json
-4eace4626b59a5ed144880913411cfa326a3ad44 assets/createarsenal/lang/en_ud.json
-925424383813baf8cb263d7cacbf53a3f4acd057 assets/createarsenal/lang/en_us.json
+3d88af01ee23d04ae06376b6df743a2b7a490fec assets/createarsenal/lang/en_ud.json
+ab618e4e47ac1782f8db79934141448a12b5c915 assets/createarsenal/lang/en_us.json
 45b3d5e0e9e1354e359c3be906eb5cb80d0550a3 assets/createarsenal/models/item/big_bomb.json
 bd5e721db38060b154735df59ad8a02f91bf7eb9 assets/createarsenal/models/item/big_bomb_armor_piercing.json
 8873350d448f4c016e4066b20e51bf5ed1ed4b03 assets/createarsenal/models/item/big_bomb_cluster.json
 62b6beaea0f840e057b91f35d663470ec0776f44 assets/createarsenal/models/item/big_bomb_incendiary.json
 79454b5df8d7fcc39dac7ffbf059359c30b37c21 assets/createarsenal/models/item/big_bomb_shrapnel.json
+e8f2770508cf68030d64c70ca7f52641673bc0e3 assets/createarsenal/models/item/bomblet.json
 c7b71e0c121ac211974467c55201f02e1a7620f5 assets/createarsenal/models/item/brass_rod.json
 7e086c0376999698e8dd6ee631ac1f7699d76356 assets/createarsenal/models/item/cartridge_cutout_large.json
 ec969ef6388de23dbda90db5459f615a87f9e2e2 assets/createarsenal/models/item/cartridge_cutout_medium.json

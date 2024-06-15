@@ -14,7 +14,7 @@ public enum ModGUI implements ScreenElement {
     CREATIVE_BOMB_GUI("creative_bomb_gui", 0, 0, 187, 268, 512, 512),
     PROXIMITY_GUI("proximity_gui", 187, 100),
     CLUSTER_GUI("cluster_gui", 187, 78),
-    SEAMINE_GUI("seamine_gui", 187, 78);
+    SEAMINE_GUI("seamine_gui", 187, 101);
 
 
     public final ResourceLocation location;
