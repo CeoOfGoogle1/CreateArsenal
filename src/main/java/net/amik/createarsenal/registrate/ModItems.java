@@ -171,6 +171,18 @@ public class ModItems {
     public static final ItemEntry<Item> BOMBLET = REGISTRATE.item("bomblet", Item::new)
             .register();
 
+    public static final ItemEntry<Item> BOMB_HEAVY_CUTOUT = REGISTRATE.item("bomb_heavy_cutout", Item::new)
+            .lang("Heavy Bomb Cutout")
+            .register();
+
+    public static final ItemEntry<Item> BOMB_MEDIUM_CUTOUT = REGISTRATE.item("bomb_medium_cutout", Item::new)
+            .lang("Medium Bomb Cutout")
+            .register();
+
+    public static final ItemEntry<Item> BOMB_LIGHT_CUTOUT = REGISTRATE.item("bomb_light_cutout", Item::new)
+            .lang("Light Bomb Cutout")
+            .register();
+
     //TODO: Organize items in creative tab
     public static void register() {}
 

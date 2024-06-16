@@ -18,7 +18,7 @@ public class ProjectileDispenserBlockEntity extends KineticBlockEntity {
     public static final int MAX_ANGLE = 90;
     public static final int MIN_ANGLE = -90;
     int angle = 90;
-    int count = 16;
+    int count = 4;
     int delay = 10;
 
     public ProjectileDispenserBlockEntity(BlockEntityType<?> typeIn, BlockPos pos, BlockState state) {
