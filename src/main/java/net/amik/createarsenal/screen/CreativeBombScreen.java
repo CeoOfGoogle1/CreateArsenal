@@ -5,7 +5,6 @@ import com.simibubi.create.foundation.gui.AllIcons;
 import com.simibubi.create.foundation.gui.element.GuiGameElement;
 import com.simibubi.create.foundation.gui.widget.IconButton;
 import com.simibubi.create.foundation.gui.widget.ScrollInput;
-import net.amik.createarsenal.network.ClusterBombPacketC2S;
 import net.amik.createarsenal.network.CreativeBombPacketC2S;
 import net.amik.createarsenal.network.ModMessages;
 import net.amik.createarsenal.registrate.ModBlocks;
@@ -28,6 +27,7 @@ public class CreativeBombScreen extends AbstractSimiScreen {
     int detonationAltitude = 32;
     int shrapnelCount = 0;
     int landmineCount = 0;
+    int count = 1;
 
     public CreativeBombScreen(CompoundTag nbt) {
         super(Component.literal("Creative Bomb"));
@@ -53,6 +53,8 @@ public class CreativeBombScreen extends AbstractSimiScreen {
             shrapnelCount = nbt.getInt("shrapnelCount");
         if (nbt.contains("landmineCount"))
             landmineCount = nbt.getInt("landmineCount");
+        if (nbt.contains("count"))
+            count = nbt.getInt("count");
     }
 
 
@@ -195,6 +197,7 @@ public class CreativeBombScreen extends AbstractSimiScreen {
         nbt.putInt("detonationAltitude", detonationAltitude);
         nbt.putInt("shrapnelCount", shrapnelCount);
         nbt.putInt("landmineCount", landmineCount);
+        nbt.putInt("count", count);
         ModMessages.sendToServer(new CreativeBombPacketC2S(nbt));
         onClose();
     }

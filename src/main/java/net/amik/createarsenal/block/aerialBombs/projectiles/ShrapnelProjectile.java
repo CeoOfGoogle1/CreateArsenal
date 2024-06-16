@@ -4,7 +4,6 @@ import net.amik.createarsenal.registrate.ModProjectiles;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
@@ -18,10 +17,9 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
+import rbasamoyai.ritchiesprojectilelib.PreciseProjectile;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
-public class ShrapnelProjectile extends Projectile {
+public class ShrapnelProjectile extends Projectile implements PreciseProjectile {
 
 
     public ShrapnelProjectile(EntityType<? extends Projectile> entityType, Level level) {

@@ -9,6 +9,7 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.amik.createarsenal.CreateArsenal;
 import net.amik.createarsenal.block.aerialBombs.AerialBombBlock;
 import net.amik.createarsenal.block.aerialBombs.AerialBombItem;
+import net.amik.createarsenal.block.dispenser.ProjectileDispenserBlock;
 import net.amik.createarsenal.block.landmine.LandMineBlock;
 import net.amik.createarsenal.block.monitor.MonitorBlock;
 import net.amik.createarsenal.block.radar.AbstractRadarFrame;
@@ -51,6 +52,17 @@ public class ModBlocks {
                     .item()
                     .build()
                     .register();
+
+    public static final BlockEntry<ProjectileDispenserBlock> PROJECTILE_DISPENSER =
+            REGISTRATE.block("projectile_dispenser", ProjectileDispenserBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .properties(properties -> properties.isRedstoneConductor((pState, pLevel, pPos) -> false))
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate(CreateUtil.horizontalDirectionalBlockProvider(false, 0))
+                    .item()
+                    .build()
+                    .register();
+
 
     public static final BlockEntry<GunBarrelBlock> BARREL_BLOCK =
             REGISTRATE.block("barrel_block", GunBarrelBlock::new)

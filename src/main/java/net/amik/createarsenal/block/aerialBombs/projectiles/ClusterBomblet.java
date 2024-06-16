@@ -15,8 +15,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
+import rbasamoyai.ritchiesprojectilelib.PreciseProjectile;
 
-public class ClusterBomblet extends Projectile {
+public class ClusterBomblet extends Projectile implements PreciseProjectile {
 
     public ClusterBomblet(EntityType<? extends Projectile> entityType, Level level) {
         super(entityType, level);

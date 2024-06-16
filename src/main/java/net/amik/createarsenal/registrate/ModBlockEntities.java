@@ -9,6 +9,8 @@ import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRende
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntity;
 import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntityRenderer;
+import net.amik.createarsenal.block.dispenser.ProjectileDispenserBlockEntity;
+import net.amik.createarsenal.block.dispenser.ProjectileDispenserRenderer;
 import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
 import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
@@ -27,6 +29,12 @@ public class ModBlockEntities {
             .blockEntity("normal_gun_bearing", NormalGunBlockEntity::new)
             .validBlocks(ModBlocks.NORMAL_GUN)
             .renderer(() -> SmartBlockEntityRenderer::new)
+            .register();
+
+    public static final BlockEntityEntry<ProjectileDispenserBlockEntity> PROJECTILE_DISPENSER = REGISTRATE
+            .blockEntity("projectile_dispenser", ProjectileDispenserBlockEntity::new)
+            .validBlocks(ModBlocks.PROJECTILE_DISPENSER)
+            .renderer(() -> ProjectileDispenserRenderer::new)
             .register();
 
     public static final BlockEntityEntry<SeaMineBlockEntity> SEA_MINE = REGISTRATE

@@ -1,4 +1,14 @@
 {
+  "bombfall_whistle": {
+    "sounds": [
+      {
+        "type": "file",
+        "attenuation_distance": 150,
+        "name": "createarsenal:bombfall_whistle"
+      }
+    ],
+    "subtitle": "createarsenal.subtitle.bombfall_whistle"
+  },
   "bullet_impact": {
     "sounds": [
       {

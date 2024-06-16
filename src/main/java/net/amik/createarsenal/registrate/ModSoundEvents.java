@@ -44,11 +44,17 @@ public class ModSoundEvents {
             .attenuationDistance(32)
             .category(SoundSource.BLOCKS)
             .build(),
-
     FIRE_CHAINGUN_TURRET = create("fire_chaingun_turret").subtitle("Chaingun Turret fired")
             .attenuationDistance(150)
             .category(SoundSource.BLOCKS)
             .build(),
+
+    BOMB_WHISTLE = create("bombfall_whistle").subtitle("Bomb Dropped Whistle")
+            .attenuationDistance(150)
+            .category(SoundSource.HOSTILE)
+            .build(),
+
+
 
     FIRE_SMALL_TURRET = create("fire_small_turret").subtitle("Small Turret fired")
             .playExisting(SoundEvents.FIREWORK_ROCKET_BLAST_FAR, 10f, 0.0f)

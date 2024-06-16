@@ -24,8 +24,9 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.FluidType;
+import rbasamoyai.ritchiesprojectilelib.PreciseProjectile;
 
-public class FallingAerialBomb extends Projectile {
+public class FallingAerialBomb extends Projectile implements PreciseProjectile {
 
     int proximityRadius = 0;
     int explosionRadius = 0;

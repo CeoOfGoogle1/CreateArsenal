@@ -5,10 +5,12 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.aerialBombs.projectiles.FallingAerialBomb;
 import net.amik.createarsenal.registrate.ModBlocks;
+import net.amik.createarsenal.registrate.ModSoundEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -68,6 +70,7 @@ public class AerialBombBlockEntity extends SmartBlockEntity implements IHaveGogg
         loadBomb(bomb);
         bomb.setPos(getBlockPos().getX() + .5, getBlockPos().getY() - .5, getBlockPos().getZ() + .5);
         level.addFreshEntity(bomb);
+        level.playSound(null, bomb, ModSoundEvents.BOMB_WHISTLE.getMainEvent(), SoundSource.HOSTILE, 1, 1);
     }
 
 

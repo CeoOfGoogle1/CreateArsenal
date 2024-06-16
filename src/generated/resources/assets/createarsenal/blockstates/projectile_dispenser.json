@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "createarsenal:block/projectile_dispenser"
+    },
+    "facing=east": {
+      "model": "createarsenal:block/projectile_dispenser",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "createarsenal:block/projectile_dispenser",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "createarsenal:block/projectile_dispenser"
+    },
+    "facing=up": {
+      "model": "createarsenal:block/projectile_dispenser"
+    },
+    "facing=west": {
+      "model": "createarsenal:block/projectile_dispenser",
+      "y": 90
+    }
+  }
+}

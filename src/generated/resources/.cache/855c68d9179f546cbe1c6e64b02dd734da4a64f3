@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-15T22:00:35.1241299	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-15T22:56:44.1179052	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
 c297026104e18ed66427e41ca9c5d1232b5eceda assets/createarsenal/blockstates/big_bomb.json
 3b410ea89379a6554fd37043c3cdf40159594422 assets/createarsenal/blockstates/big_bomb_armor_piercing.json
@@ -14,6 +14,7 @@ b41c8a61750c84a7f06c8e6e9a2206e8cf5dbb16 assets/createarsenal/blockstates/medium
 c915b05958a4ae0d13b6289e6ce13690041d7736 assets/createarsenal/blockstates/medium_bomb_shrapnel.json
 feeace049314abe5eba539261d7427abfede0431 assets/createarsenal/blockstates/monitor.json
 4d5ba169f97e0ebfd69da65901cc82aeec256a95 assets/createarsenal/blockstates/normal_gun_bearing.json
+9097d29e8485d52b9621feb04b9ea8aff0b8dc1a assets/createarsenal/blockstates/projectile_dispenser.json
 b29f3e45594b01e8f650e69a67a346af26d13f69 assets/createarsenal/blockstates/radar_bearing.json
 d14fa7d67b744f4770e75f01a72d3cf8cdd4a34c assets/createarsenal/blockstates/radar_dish_block.json
 249429b440e81be19cb593e1ef15991cbbb3f975 assets/createarsenal/blockstates/radar_plate_block.json
@@ -25,8 +26,8 @@ c23d9e1768759fd22cbb672b27a081a984af1404 assets/createarsenal/blockstates/small_
 bd0296c49a3c010ff67e76f3abf0d9a6e64231ea assets/createarsenal/blockstates/small_bomb_cluster.json
 ce67f1a7704f336e3308cc5e35db28d709e5f8ef assets/createarsenal/blockstates/small_bomb_incendiary.json
 9483b4a4b56a0d573b3ea841550b2708f8f8f7ac assets/createarsenal/blockstates/small_bomb_shrapnel.json
-3d88af01ee23d04ae06376b6df743a2b7a490fec assets/createarsenal/lang/en_ud.json
-ab618e4e47ac1782f8db79934141448a12b5c915 assets/createarsenal/lang/en_us.json
+862fd298557a149b7759b43fa54ff827afe55d69 assets/createarsenal/lang/en_ud.json
+55766765efb879291fb55a5d7e933c8e70fbc1b4 assets/createarsenal/lang/en_us.json
 45b3d5e0e9e1354e359c3be906eb5cb80d0550a3 assets/createarsenal/models/item/big_bomb.json
 bd5e721db38060b154735df59ad8a02f91bf7eb9 assets/createarsenal/models/item/big_bomb_armor_piercing.json
 8873350d448f4c016e4066b20e51bf5ed1ed4b03 assets/createarsenal/models/item/big_bomb_cluster.json
@@ -49,6 +50,7 @@ ffdf839262922b624bc7678e3055670de32f4a44 assets/createarsenal/models/item/jacket
 b932c487e1545f6884a8e0b02d59b8613d32a34e assets/createarsenal/models/item/medium_bomb_incendiary.json
 fd49ab884092c1b53eb24b117f0740d6347dc3ce assets/createarsenal/models/item/medium_bomb_shrapnel.json
 586b2f100210da68117efc14d846a2b9b486594e assets/createarsenal/models/item/normal_gun_bearing.json
+59116dd0e64adfab0f4f95fd3c9df36b117965f5 assets/createarsenal/models/item/projectile_dispenser.json
 c75f262b4889ff45d6922bf026e538938df36d97 assets/createarsenal/models/item/proximity_fuse.json
 9c6d13b093580667798bd784598a46344c458983 assets/createarsenal/models/item/radar_bearing.json
 60487ceee7b959a8b972f0d9b1fecaff924d4f1d assets/createarsenal/models/item/radar_dish_block.json
@@ -93,6 +95,7 @@ d49f87429f3b6ac10eab3189595832249e95094e data/createarsenal/loot_tables/blocks/m
 f2c9f45086f73b728d13ee2c0166e85cad08ea2f data/createarsenal/loot_tables/blocks/medium_bomb_shrapnel.json
 ddb06788bf65655a8d263497b2d1b89a14d8d1a0 data/createarsenal/loot_tables/blocks/monitor.json
 6234e30a0a77aeafb8f27e26404acd28123e313f data/createarsenal/loot_tables/blocks/normal_gun_bearing.json
+1e84290d3a276694f5d961392fdc4dc23d84f419 data/createarsenal/loot_tables/blocks/projectile_dispenser.json
 b9bafaf6a97bfcbfff0090cd26fc054ea96c3979 data/createarsenal/loot_tables/blocks/radar_bearing.json
 d466795cdfba69d0b78586cc86a37c1d6885d6ca data/createarsenal/loot_tables/blocks/radar_dish_block.json
 43b7be63374c98bb34cf7f7b57d2c177ea643bec data/createarsenal/loot_tables/blocks/radar_plate_block.json
