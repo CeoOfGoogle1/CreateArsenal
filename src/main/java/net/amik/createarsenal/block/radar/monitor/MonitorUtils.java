@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import net.amik.createarsenal.shell.BulletEntity;
 import net.minecraft.world.entity.Entity;

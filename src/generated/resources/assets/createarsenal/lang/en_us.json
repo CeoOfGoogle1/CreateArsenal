@@ -87,6 +87,8 @@
   "item.createarsenal.small_gun_barrel": "Small Gun Barrel",
   "item.createarsenal.spring": "Spring",
   "itemGroup.createarsenal.base": "Create: Arsenal",
+  "itemGroup.createarsenal.kaboom": "Create: Kaboom",
+  "itemGroup.createarsenal.radar": "Create: Radar",
   "proximityfuse.range": "Proximity Range",
   "proximityfuse_gui.title": "Proximity Fuse",
   "sea_mine.armed": "Armed",

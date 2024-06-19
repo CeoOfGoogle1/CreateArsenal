@@ -1,9 +1,15 @@
 {
   "variants": {
-    "buried=false": {
+    "armed=false,buried=false": {
       "model": "createarsenal:block/landmine"
     },
-    "buried=true": {
+    "armed=false,buried=true": {
+      "model": "createarsenal:block/landmine_buried"
+    },
+    "armed=true,buried=false": {
+      "model": "createarsenal:block/landmine"
+    },
+    "armed=true,buried=true": {
       "model": "createarsenal:block/landmine_buried"
     }
   }

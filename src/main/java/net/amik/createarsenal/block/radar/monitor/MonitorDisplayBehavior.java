@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import com.simibubi.create.content.contraptions.Contraption;
 import com.simibubi.create.content.contraptions.ControlledContraptionEntity;
@@ -6,8 +6,8 @@ import com.simibubi.create.content.redstone.displayLink.DisplayLinkContext;
 import com.simibubi.create.content.redstone.displayLink.source.DisplaySource;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTarget;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
-import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
+import net.amik.createarsenal.block.radar.receiver.AbstractRadarFrame;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -41,8 +41,6 @@ public class MonitorDisplayBehavior extends DisplayTarget {
             if (info.state().getBlock() instanceof AbstractRadarFrame)
                 width += 10;
         }
-
-
         MonitorBlockEntity monitor = (MonitorBlockEntity) context.getTargetBlockEntity();
         monitor = monitor.getController();
 

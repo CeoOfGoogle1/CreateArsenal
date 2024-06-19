@@ -11,9 +11,9 @@ import net.amik.createarsenal.block.aerialBombs.AerialBombBlock;
 import net.amik.createarsenal.block.aerialBombs.AerialBombItem;
 import net.amik.createarsenal.block.dispenser.ProjectileDispenserBlock;
 import net.amik.createarsenal.block.landmine.LandMineBlock;
-import net.amik.createarsenal.block.monitor.MonitorBlock;
-import net.amik.createarsenal.block.radar.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.base.RadarBearingBlock;
+import net.amik.createarsenal.block.radar.monitor.MonitorBlock;
+import net.amik.createarsenal.block.radar.receiver.AbstractRadarFrame;
 import net.amik.createarsenal.block.radar.receiver.RadarReceiverBlock;
 import net.amik.createarsenal.block.seaMine.SeaMineBlock;
 import net.amik.createarsenal.block.seaMine.SeaMineBlockItem;
@@ -188,6 +188,7 @@ public class ModBlocks {
         return REGISTRATE.block(name, AerialBombBlock::new)
                 .initialProperties(SharedProperties::softMetal)
                 .properties(BlockBehaviour.Properties::noOcclusion)
+                .properties(properties -> properties.isRedstoneConductor((pState, pLevel, pPos) -> false))
                 .addLayer(() -> RenderType::cutoutMipped)
                 .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
                 .item(AerialBombItem::new)

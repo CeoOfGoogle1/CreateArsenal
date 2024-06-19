@@ -14,7 +14,11 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -47,6 +51,14 @@ public class CreateArsenal
         eventBus.addListener(EventPriority.LOWEST, ArsenalDataGen::gatherData);
 
     }
+
+    public static String toHumanReadable(String key) {
+        String s = key.replaceAll("_", " ");
+        s = Arrays.stream(StringUtils.splitByCharacterTypeCamelCase(s)).map(StringUtils::capitalize).collect(Collectors.joining(" "));
+        s = StringUtils.normalizeSpace(s);
+        return s;
+    }
+
 
 
     public static void init(final FMLCommonSetupEvent event) {

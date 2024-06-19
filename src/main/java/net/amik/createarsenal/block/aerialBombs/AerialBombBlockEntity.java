@@ -57,6 +57,7 @@ public class AerialBombBlockEntity extends SmartBlockEntity implements IHaveGogg
         }
         if (count <= 0) {
             level.setBlockAndUpdate(worldPosition, Blocks.AIR.defaultBlockState());
+            level.updateNeighborsAt(worldPosition.above(), this.getBlockState().getBlock());
         }
     }
 
@@ -236,16 +237,16 @@ public class AerialBombBlockEntity extends SmartBlockEntity implements IHaveGogg
         }
         if (ModBlocks.SHRAPNEL_BIG_BOMB.has(this.getBlockState())) {
             explosionRadius = 3;
-            shrapnelCount = 32;
+            shrapnelCount = 64;
         }
         if (ModBlocks.SHRAPNEL_MEDIUM_BOMB.has(this.getBlockState())) {
             explosionRadius = 2;
-            shrapnelCount = 16;
+            shrapnelCount = 32;
             maxCount = 4;
         }
         if (ModBlocks.SHRAPNEL_SMALL_BOMB.has(this.getBlockState())) {
             explosionRadius = 1;
-            shrapnelCount = 8;
+            shrapnelCount = 16;
             maxCount = 9;
         }
         if (ModBlocks.CREATIVE_BOMB.has(this.getBlockState())) {

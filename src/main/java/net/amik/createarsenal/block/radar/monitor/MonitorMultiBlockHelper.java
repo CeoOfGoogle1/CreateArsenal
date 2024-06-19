@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.minecraft.core.BlockPos;
@@ -11,7 +11,7 @@ import net.minecraft.world.phys.AABB;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static net.amik.createarsenal.block.monitor.MonitorBlock.SHAPE;
+import static net.amik.createarsenal.block.radar.monitor.MonitorBlock.SHAPE;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class MonitorMultiBlockHelper {

@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import com.simibubi.create.foundation.block.IBE;
 import com.simibubi.create.foundation.utility.Lang;
@@ -6,6 +6,9 @@ import net.amik.createarsenal.registrate.ModBlockEntities;
 import net.amik.createarsenal.registrate.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -14,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -32,6 +36,17 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
         return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection()
                         .getOpposite());
+    }
+
+    @Override
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (player.getItemInHand(hand).is(ModBlocks.MONITOR.get().asItem()))
+            return super.use(state, level, pos, player, hand, hit);
+
+        withBlockEntityDo(level, pos, monitorBlockEntity -> {
+            monitorBlockEntity.handleClick(player, hit);
+        });
+        return InteractionResult.SUCCESS;
     }
 
     @SuppressWarnings("deprecation")

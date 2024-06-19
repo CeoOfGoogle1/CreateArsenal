@@ -2,8 +2,8 @@ package net.amik.createarsenal.registrate;
 
 
 import com.simibubi.create.content.contraptions.bearing.BearingInstance;
+import com.simibubi.create.content.contraptions.bearing.BearingRenderer;
 import com.simibubi.create.content.kinetics.base.HalfShaftInstance;
-import com.simibubi.create.content.kinetics.base.KineticBlockEntityRenderer;
 import com.simibubi.create.content.kinetics.base.ShaftRenderer;
 import com.simibubi.create.foundation.blockEntity.renderer.SmartBlockEntityRenderer;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -11,9 +11,9 @@ import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntity;
 import net.amik.createarsenal.block.aerialBombs.AerialBombBlockEntityRenderer;
 import net.amik.createarsenal.block.dispenser.ProjectileDispenserBlockEntity;
 import net.amik.createarsenal.block.dispenser.ProjectileDispenserRenderer;
-import net.amik.createarsenal.block.monitor.MonitorBlockEntity;
-import net.amik.createarsenal.block.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
+import net.amik.createarsenal.block.radar.monitor.MonitorBlockEntity;
+import net.amik.createarsenal.block.radar.monitor.MonitorRenderer;
 import net.amik.createarsenal.block.seaMine.SeaMineBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockRenderer;
@@ -23,7 +23,6 @@ import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunB
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
 public class ModBlockEntities {
-
 
     public static final BlockEntityEntry<NormalGunBlockEntity> NORMAL_GUN_BLOCK_ENTITY = REGISTRATE
             .blockEntity("normal_gun_bearing", NormalGunBlockEntity::new)
@@ -71,6 +70,7 @@ public class ModBlockEntities {
             .validBlocks(ModBlocks.ROTARY_GUN)
             .renderer(() -> ShaftRenderer::new)
             .register();
+
     public static final BlockEntityEntry<GunBarrelBlockEntity> BARREL_BLOCK_ENTITY = REGISTRATE
             .blockEntity("barrel_block", GunBarrelBlockEntity::new)
             .validBlocks(ModBlocks.BARREL_BLOCK)
@@ -83,12 +83,11 @@ public class ModBlockEntities {
             .renderer(() -> MonitorRenderer::new)
             .register();
 
-
     public static final BlockEntityEntry<RadarBaseBlockTileEntity> RADAR_BASE_BLOCK_TILE_ENTITY = REGISTRATE
             .blockEntity("radar_base_block", RadarBaseBlockTileEntity::new)
             .instance(() -> BearingInstance::new, true)
             .validBlocks(ModBlocks.RADAR_BEARING_BLOCK)
-            .renderer(() -> KineticBlockEntityRenderer::new)
+            .renderer(() -> BearingRenderer::new)
             .register();
 
 

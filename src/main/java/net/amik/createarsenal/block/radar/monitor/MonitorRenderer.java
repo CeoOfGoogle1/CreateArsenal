@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -14,7 +14,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.monster.Slime;
 
-import static net.amik.createarsenal.block.monitor.MonitorMultiBlockHelper.getSize;
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity> {
@@ -38,7 +37,7 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
         if (!monitor.isControllerPos())
             return;
 
-        int size = getSize(monitor.getLevel(), monitor.getBlockPos());
+        int size = monitor.getSize();
         SuperByteBuffer radar = CachedBufferer.partialFacing(ModPartials.RADAR, monitor.getBlockState(), direction);
         SuperByteBuffer radar_line = CachedBufferer.partialFacing(ModPartials.RADAR_LINE, monitor.getBlockState(), direction);
 
@@ -58,7 +57,7 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
                 radar.translate(0.01, 0, 0);
                 radar_line.translate(-.045, 0, 0);}
         }
-        int translation = size - (size * 2 - 1);
+        int translation = 0;
 
         switch (direction) {
             case NORTH -> {

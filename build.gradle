@@ -2,7 +2,6 @@ plugins {
     id 'dev.architectury.loom' version "${loom_version}"
     id 'io.github.juuxel.loom-vineflower' version "${vineflower_version}"
     id 'io.github.p03w.machete' version '2.0.1'
-    id 'org.jetbrains.kotlin.jvm' version '1.8.21'
     id 'maven-publish'
 }
 
@@ -113,7 +112,6 @@ dependencies {
     modImplementation "com.tterrag.registrate:Registrate:${registrate_version}"
     modImplementation("com.simibubi.create:create-${minecraft_version}:${create_version}:slim") { transitive = false }
     modImplementation "com.jozufozu.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
-
 
     // Create Big Cannons
     modImplementation("curse.maven:cbc-646668:5282123")

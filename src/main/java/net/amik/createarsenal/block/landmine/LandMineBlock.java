@@ -20,15 +20,14 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.Tags;
 
 public class LandMineBlock extends Block {
 
     public static final BooleanProperty BURIED = BooleanProperty.create("buried");
+    public static final BooleanProperty ARMED = BooleanProperty.create("armed");
 
     VoxelShape SHAPE = Block.box(2, 0, 2, 14, 3, 14);
     VoxelShape BURRIED_SHAPE = Block.box(5, 0, 5, 11, 3, 11);
@@ -36,12 +35,21 @@ public class LandMineBlock extends Block {
     public LandMineBlock(Properties pProperties) {
         super(pProperties);
         registerDefaultState(super.defaultBlockState().setValue(BURIED, false));
+        registerDefaultState(super.defaultBlockState().setValue(ARMED, false));
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockPos blockpos = pos.below();
-        return level.getBlockState(blockpos).isFaceSturdy(level, blockpos, Direction.UP);
+        return level.getBlockState(blockpos).isFaceSturdy(level, blockpos, Direction.UP) && !level.getBlockState(blockpos).isAir();
+    }
+
+
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+        if (!this.canSurvive(state, level, pos) || level.getBlockState(pos.below()).isAir())
+            explode(level, pos);
+        super.neighborChanged(state, level, pos, neighborBlock, neighborPos, movedByPiston);
     }
 
     @Override
@@ -53,6 +61,7 @@ public class LandMineBlock extends Block {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(BURIED);
+        builder.add(ARMED);
         super.createBlockStateDefinition(builder);
     }
 
@@ -63,12 +72,22 @@ public class LandMineBlock extends Block {
 
     @Override
     public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
-        if (state.getValue(BURIED) && entity.getType() != ModProjectiles.FALLING_LANDMINE.get() && !(entity instanceof ItemEntity)) {
-            level.explode(entity, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.BLOCK);
-            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.NONE);
+        if (state.getValue(ARMED) && validEntity(entity)) {
+            this.explode(level, pos);
             level.destroyBlock(pos, false);
         }
         super.entityInside(state, level, pos, entity);
+    }
+
+    private boolean validEntity(Entity entity) {
+        return entity.getType() != ModProjectiles.FALLING_LANDMINE.get() && !(entity instanceof ItemEntity);
+    }
+
+    private void explode(Level level, BlockPos pos) {
+        if (!level.isClientSide()) {
+            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.BLOCK);
+            level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.NONE);
+        }
     }
 
     @Override

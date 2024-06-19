@@ -1,14 +1,17 @@
-package net.amik.createarsenal.block.monitor;
+package net.amik.createarsenal.block.radar.monitor;
 
 import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +21,15 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         super(type, pos, state);
     }
 
-    public int widthRange = 256;
+    public int widthRange = 0;
     public int heightRange = 4;
     private float animation;
     private int size = 1;
 
     BlockPos controllerPos = BlockPos.ZERO;
     public int tickSinceLastWork = 0;
-
+    private BlockPos selectedTarget = BlockPos.ZERO;
+    private Entity targetEntity;
 
     List<Entity> scannedEntities = new ArrayList<>();
 
@@ -64,8 +68,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
     public void scanEntities(){
         if(level==null)return;
-        scannedEntities=level.getEntities(null, this.getRenderBoundingBox().inflate(widthRange, heightRange, widthRange));
-
+        scannedEntities = level.getEntities(null, this.getRenderBoundingBox().inflate(widthRange, 50, widthRange));
     }
 
     @Override
@@ -133,5 +136,61 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
     public int getSize() {
         return size;
+    }
+
+    public void handleClick(Player player, BlockHitResult hit) {
+        Direction.Axis axis = hit.getDirection().getAxis();
+        if (axis == Direction.Axis.Y)
+            return;
+
+        double hitX;
+        double hitZ;
+        if (axis == Direction.Axis.X) {
+            hitX = hit.getLocation().y - hit.getBlockPos().getY();
+            hitZ = hit.getLocation().z - hit.getBlockPos().getZ();
+        } else {
+            hitX = hit.getLocation().x - hit.getBlockPos().getX();
+            hitZ = hit.getLocation().y - hit.getBlockPos().getY();
+        }
+        hitX -= .51;
+        hitZ -= .5;
+        BlockPos target = getControllerPos();
+        int targetX = (int) (target.getX() + (-hitX / .33 * widthRange));
+        int targetZ = (int) (target.getZ() + (hitZ / .33 * widthRange));
+        setSelectedTarget(new BlockPos(targetX, target.getY(), targetZ));
+        System.out.println("selectedTarget" + selectedTarget);
+        findClosestTarget(selectedTarget);
+    }
+
+    private void findClosestTarget(BlockPos target) {
+        Entity closestEntity = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        for (Entity entity : scannedEntities) {
+            double distance = entity.blockPosition().distSqr(target);
+
+            if (distance < closestDistance) {
+                closestEntity = entity;
+                closestDistance = distance;
+            }
+        }
+
+        if (closestEntity != null) {
+            System.out.println("closest entity" + closestEntity);
+            targetEntity = closestEntity;
+            notifyUpdate();
+        }
+    }
+
+    public void setSelectedTarget(BlockPos selectedTarget) {
+        this.selectedTarget = selectedTarget;
+    }
+
+    public boolean hasTarget() {
+        return selectedTarget != null && !this.selectedTarget.equals(BlockPos.ZERO);
+    }
+
+    public BlockPos getSelectedTarget() {
+        return targetEntity != null ? targetEntity.blockPosition() : selectedTarget;
     }
 }

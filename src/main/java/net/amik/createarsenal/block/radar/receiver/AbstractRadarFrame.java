@@ -1,4 +1,4 @@
-package net.amik.createarsenal.block.radar;
+package net.amik.createarsenal.block.radar.receiver;
 
 import com.simibubi.create.content.contraptions.bearing.SailBlock;
 import com.simibubi.create.foundation.block.WrenchableDirectionalBlock;

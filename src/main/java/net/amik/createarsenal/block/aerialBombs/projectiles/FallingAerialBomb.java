@@ -156,7 +156,7 @@ public class FallingAerialBomb extends Projectile implements PreciseProjectile {
             for (int i = 0; i < this.clusterBombletCount; ++i) {
                 ClusterBomblet bomb = new ClusterBomblet(this.level());
                 bomb.setPos(this.getX(), this.getY(), this.getZ());
-                bomb.setDeltaMovement(new Vec3(this.random.nextFloat() - .5f * .7f, -Math.abs(this.random.nextFloat()), this.random.nextFloat() - .5f * .7f));
+                bomb.setDeltaMovement(new Vec3(this.random.nextFloat() - .5f * .7f, -Math.abs(this.random.nextFloat()) + this.getDeltaMovement().y, this.random.nextFloat() - .5f * .7f));
                 this.level().addFreshEntity(bomb);
             }
         }
@@ -205,6 +205,7 @@ public class FallingAerialBomb extends Projectile implements PreciseProjectile {
 
     private void triggerFragExplosion() {
         if (this.shrapnelCount > 0) {
+            double fragSpeed = 1.5; // Adjust this value to change the speed of the fragments
             for (int i = 0; i < this.shrapnelCount; ++i) {
                 ShrapnelProjectile bomb = new ShrapnelProjectile(this.level());
                 bomb.setPos(this.getX(), this.getY(), this.getZ());
@@ -214,7 +215,8 @@ public class FallingAerialBomb extends Projectile implements PreciseProjectile {
                 double x = r * Math.sin(phi) * Math.cos(theta);
                 double y = r * Math.sin(phi) * Math.sin(theta);
                 double z = r * Math.cos(phi);
-                bomb.setDeltaMovement(new Vec3(x, y * .5f + .1f, z));
+                Vec3 velocity = new Vec3(x, y * .5f + .1f, z);
+                bomb.setDeltaMovement(velocity.scale(fragSpeed)); // Scale the velocity vector to adjust the speed
                 this.level().addFreshEntity(bomb);
             }
         }
@@ -225,12 +227,20 @@ public class FallingAerialBomb extends Projectile implements PreciseProjectile {
     }
 
     private void triggerExplosion() {
+        if (level().isClientSide)
+            return;
+        if (level() instanceof ServerLevel level) {
+            spawnParticles(level);
+        }
         if (explosionRadius > 0)
             level().explode(this, this.getX(), this.getY(), this.getZ(), explosionRadius, false, Level.ExplosionInteraction.BLOCK);
         if (fireRadius > 0)
             level().explode(this, this.getX(), this.getY(), this.getZ(), fireRadius, true, Level.ExplosionInteraction.NONE);
     }
 
+    private void spawnParticles(ServerLevel level) {
+
+    }
 
     @Override
     public boolean isPushable() {
