@@ -19,6 +19,8 @@ import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBloc
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlockRenderer;
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlockEntity;
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlockEntity;
+import net.amik.createarsenal.compat.cbc.block.CannonControllerBlockEntity;
+import net.amik.createarsenal.compat.cbc.block.CannonControllerRenderer;
 
 import static net.amik.createarsenal.CreateArsenal.REGISTRATE;
 
@@ -29,6 +31,12 @@ public class ModBlockEntities {
             .validBlocks(ModBlocks.NORMAL_GUN)
             .renderer(() -> SmartBlockEntityRenderer::new)
             .register();
+    public static final BlockEntityEntry<CannonControllerBlockEntity> CANNON_CONTROLLER = REGISTRATE
+            .blockEntity("cannon_controller", CannonControllerBlockEntity::new)
+            .validBlocks(ModBlocks.CANNON_CONTROLLER_BLOCK)
+            .renderer(() -> CannonControllerRenderer::new)
+            .register();
+
 
     public static final BlockEntityEntry<ProjectileDispenserBlockEntity> PROJECTILE_DISPENSER = REGISTRATE
             .blockEntity("projectile_dispenser", ProjectileDispenserBlockEntity::new)

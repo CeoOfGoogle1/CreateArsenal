@@ -20,6 +20,7 @@ import net.amik.createarsenal.block.seaMine.SeaMineBlockItem;
 import net.amik.createarsenal.block.staticTurret.modularGun.barrel.GunBarrelBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.normalGun.NormalGunBlock;
 import net.amik.createarsenal.block.staticTurret.modularGun.rotaryGun.RotaryGunBlock;
+import net.amik.createarsenal.compat.cbc.block.CannonControllerBlock;
 import net.amik.createarsenal.util.CreateUtil;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
@@ -146,6 +147,16 @@ public class ModBlocks {
                             .getExistingFile(c.getId()), 180))
                     .item()
                     .model(AssetLookup.customBlockItemModel("_", "item"))
+                    .build()
+                    .register();
+
+    public static final BlockEntry<CannonControllerBlock> CANNON_CONTROLLER_BLOCK =
+            REGISTRATE.block("cannon_controller", CannonControllerBlock::new)
+                    .initialProperties(SharedProperties::softMetal)
+                    .transform(BlockStressDefaults.setImpact(128))
+                    .properties(BlockBehaviour.Properties::noOcclusion)
+                    .blockstate((c, p) -> p.simpleBlock(c.getEntry(), AssetLookup.standardModel(c, p)))
+                    .item()
                     .build()
                     .register();
 

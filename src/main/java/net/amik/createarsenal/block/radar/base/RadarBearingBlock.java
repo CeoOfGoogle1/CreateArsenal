@@ -27,8 +27,7 @@ public class RadarBearingBlock extends BearingBlock implements IBE<RadarBaseBloc
             return InteractionResult.FAIL;
         if (player.isShiftKeyDown())
             return InteractionResult.FAIL;
-        if (player.getItemInHand(handIn)
-                .isEmpty()) {
+        if (player.getItemInHand(handIn).isEmpty()) {
             if (worldIn.isClientSide)
                 return InteractionResult.SUCCESS;
             withBlockEntityDo(worldIn, pos, be -> {

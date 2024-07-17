@@ -1,20 +1,17 @@
 package net.amik.createarsenal.block.radar.monitor;
 
-import com.simibubi.create.content.contraptions.Contraption;
-import com.simibubi.create.content.contraptions.ControlledContraptionEntity;
 import com.simibubi.create.content.redstone.displayLink.DisplayLinkContext;
 import com.simibubi.create.content.redstone.displayLink.source.DisplaySource;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTarget;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
+import com.simibubi.create.foundation.gui.ModularGuiLineBuilder;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
-import net.amik.createarsenal.block.radar.receiver.AbstractRadarFrame;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
-import java.util.Map;
 
 public class MonitorDisplayBehavior extends DisplayTarget {
     @Override
@@ -25,28 +22,17 @@ public class MonitorDisplayBehavior extends DisplayTarget {
         if (!radar.isRunning())
             return;
 
-        ControlledContraptionEntity contraptionEntity = radar.getMovedContraption();
-        if (contraptionEntity == null)
+        if (!radar.hasReceiver())
             return;
 
-        Contraption contraption = contraptionEntity.getContraption();
-        if (contraption == null)
-            return;
 
-        int width = 0;
-
-        for (Map.Entry<BlockPos, StructureTemplate.StructureBlockInfo> block : contraption.getBlocks().entrySet()) {
-            StructureTemplate.StructureBlockInfo info = block.getValue();
-
-            if (info.state().getBlock() instanceof AbstractRadarFrame)
-                width += 10;
-        }
         MonitorBlockEntity monitor = (MonitorBlockEntity) context.getTargetBlockEntity();
         monitor = monitor.getController();
-
-        monitor.tickSinceLastWork = 120;
-        monitor.widthRange = width;
+        monitor.setRadarPos(radar.getBlockPos());
+        monitor.setFilter(MonitorFilter.values()[context.blockEntity().getSourceConfig().getInt("Filter")]);
+        monitor.setActive();
         monitor.notifyUpdate();
+
     }
 
     @Override
@@ -58,7 +44,27 @@ public class MonitorDisplayBehavior extends DisplayTarget {
 
         @Override
         public List<MutableComponent> provideText(DisplayLinkContext context, DisplayTargetStats stats) {
-            return List.of(Component.literal(" "));
+            return List.of(Component.literal(""));
+        }
+
+        @Override
+        @OnlyIn(Dist.CLIENT)
+        public void initConfigurationWidgets(DisplayLinkContext context, ModularGuiLineBuilder builder, boolean isFirstLine) {
+            if (isFirstLine)
+                addFilterConfig(builder);
+        }
+
+        @OnlyIn(Dist.CLIENT)
+        protected void addFilterConfig(ModularGuiLineBuilder builder) {
+            builder.addSelectionScrollInput(0, 100,
+                    (si, l) -> si.forOptions(List.of(
+                                    Component.literal("All Entities"),
+                                    Component.literal("No Mobs"),
+                                    Component.literal("Players Only"),
+                                    Component.literal("Projectiles Only"),
+                                    Component.literal("VS2 Only")))
+                            .titled(Component.literal("Show")),
+                    "Filter");
         }
     }
 }

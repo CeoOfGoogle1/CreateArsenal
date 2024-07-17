@@ -38,6 +38,21 @@ public class LandMineBlock extends Block {
         registerDefaultState(super.defaultBlockState().setValue(ARMED, false));
     }
 
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(BURIED);
+        builder.add(ARMED);
+        super.createBlockStateDefinition(builder);
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        return state.getValue(BURIED) ? BURRIED_SHAPE : SHAPE;
+    }
+
+
+
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockPos blockpos = pos.below();
@@ -55,19 +70,6 @@ public class LandMineBlock extends Block {
     @Override
     public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level, BlockPos pos, BlockPos neighborPos) {
         return this.canSurvive(state, level, pos) ? state : Blocks.AIR.defaultBlockState();
-    }
-
-
-    @Override
-    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(BURIED);
-        builder.add(ARMED);
-        super.createBlockStateDefinition(builder);
-    }
-
-    @Override
-    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return state.getValue(BURIED) ? BURRIED_SHAPE : SHAPE;
     }
 
     @Override
@@ -88,6 +90,7 @@ public class LandMineBlock extends Block {
             level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.BLOCK);
             level.explode(null, pos.getX(), pos.getY(), pos.getZ(), 2, false, Level.ExplosionInteraction.NONE);
         }
+
     }
 
     @Override

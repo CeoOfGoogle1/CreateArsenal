@@ -6,6 +6,7 @@ import com.simibubi.create.foundation.utility.Components;
 import com.tterrag.registrate.util.entry.ItemProviderEntry;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.amik.createarsenal.CreateArsenal;
+import net.amik.createarsenal.compat.Mods;
 import net.amik.createarsenal.shell.ShellScale;
 import net.amik.createarsenal.util.IAdditionalCreativeItems;
 import net.minecraft.core.registries.Registries;
@@ -29,14 +30,21 @@ public class ModCreativeModTab{
 
     public static final List<ItemProviderEntry<?>> RADAR_ITEMS = new ArrayList<>();
     public static final List<ItemProviderEntry<?>> KABOOM_ITEMS = new ArrayList<>();
+    public static final List<ItemProviderEntry<?>> SKIP = new ArrayList<>();
+
 
     static {
+        // adds SKIP items
+        SKIP.add(ModBlocks.CANNON_CONTROLLER_BLOCK);
+
         // adds RADAR items
         RADAR_ITEMS.add(ModBlocks.MONITOR);
         RADAR_ITEMS.add(ModBlocks.RADAR_BEARING_BLOCK);
         RADAR_ITEMS.add(ModBlocks.RADAR_RECEIVER_BLOCK);
         RADAR_ITEMS.add(ModBlocks.RADAR_DISH_BLOCK);
         RADAR_ITEMS.add(ModBlocks.RADAR_PLATE_BLOCK);
+        if (Mods.CREATEBIGCANNONS.isLoaded())
+            RADAR_ITEMS.add(ModBlocks.CANNON_CONTROLLER_BLOCK);
 
         // adds KABOOM items
         KABOOM_ITEMS.add(ModBlocks.SMALL_BOMB);
@@ -63,12 +71,13 @@ public class ModCreativeModTab{
         KABOOM_ITEMS.add(ModItems.BOMB_LIGHT_CUTOUT);
         KABOOM_ITEMS.add(ModItems.BOMB_MEDIUM_CUTOUT);
         KABOOM_ITEMS.add(ModItems.BOMB_HEAVY_CUTOUT);
+
     }
 
     public static final RegistryObject<CreativeModeTab> BASE_CREATIVE_TAB = addTab("base", "Create: Arsenal",
             ModItems.bulletItems.get(ShellScale.LARGE)::asStack);
 
-    public static final RegistryObject<CreativeModeTab> RADAR_CREATIVE_TAB = addTab("radar", "Create: Radar",
+    public static final RegistryObject<CreativeModeTab> RADAR_CREATIVE_TAB = addTab("radar", "Create: radar",
             ModBlocks.MONITOR::asStack, RADAR_ITEMS);
 
     public static final RegistryObject<CreativeModeTab> KABOOM_CREATIVE_TAB = addTab("kaboom", "Create: Kaboom",
@@ -79,11 +88,7 @@ public class ModCreativeModTab{
         REGISTRATE.addRawLang(itemGroupId, name);
         CreativeModeTab.Builder tabBuilder = CreativeModeTab.builder()
                 .icon(icon)
-                .displayItems((pParameters, pOutput) -> {
-                    for (ItemProviderEntry<?> item : items) {
-                        pOutput.accept(item);
-                    }
-                })
+                .displayItems((pParameters, pOutput) -> items.forEach(pOutput::accept))
                 .title(Components.translatable(itemGroupId))
                 .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey());
         return REGISTER.register(id, tabBuilder::build);
@@ -106,6 +111,12 @@ public class ModCreativeModTab{
             if (item.get() instanceof SequencedAssemblyItem)
                 continue;
             boolean skip = false;
+            for (ItemProviderEntry<?> entry : SKIP) {
+                if (entry.is(item.get()))
+                    skip = true;
+            }
+            if (skip)
+                continue;
             for (ItemProviderEntry<?> entry : RADAR_ITEMS) {
                 if (entry.is(item.get()))
                     skip = true;

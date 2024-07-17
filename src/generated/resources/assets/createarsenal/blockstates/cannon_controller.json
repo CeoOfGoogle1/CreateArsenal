@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "createarsenal:block/cannon_controller"
+    }
+  }
+}

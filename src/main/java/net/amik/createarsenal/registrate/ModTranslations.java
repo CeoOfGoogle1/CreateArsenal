@@ -33,7 +33,7 @@ public class ModTranslations {
                 "Cannon Mount");
 
         add("createarsenal.display_source.radar",
-                "Radar");
+                "radar");
     }
 
     public static void add(String key, String value) {

@@ -1,10 +1,11 @@
-// 1.20.1	2024-06-19T13:49:04.1039971	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-06-19T20:51:58.1624895	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
 c297026104e18ed66427e41ca9c5d1232b5eceda assets/createarsenal/blockstates/big_bomb.json
 3b410ea89379a6554fd37043c3cdf40159594422 assets/createarsenal/blockstates/big_bomb_armor_piercing.json
 d2248df58e8a7b03cdbb89feb62d88cb8718a95f assets/createarsenal/blockstates/big_bomb_cluster.json
 60089103d51d45003331578ebbf2bfeabd1a19b4 assets/createarsenal/blockstates/big_bomb_incendiary.json
 ece1694c5144c4a55f29cbee2e29464ac95dafa6 assets/createarsenal/blockstates/big_bomb_shrapnel.json
+dfaf056c95e981556d5b3787b7ff27efbf9d5a7a assets/createarsenal/blockstates/cannon_controller.json
 73bfbf544aba1a0299ce972f3fdee4de597237f7 assets/createarsenal/blockstates/creative_big_bomb.json
 3503cebe9603f9a8167dc33596e7422f557b7e74 assets/createarsenal/blockstates/landmine.json
 1c7105482d1ee61225df1c94d6129b2e8bc55396 assets/createarsenal/blockstates/medium_bomb.json
@@ -26,8 +27,8 @@ c23d9e1768759fd22cbb672b27a081a984af1404 assets/createarsenal/blockstates/small_
 bd0296c49a3c010ff67e76f3abf0d9a6e64231ea assets/createarsenal/blockstates/small_bomb_cluster.json
 ce67f1a7704f336e3308cc5e35db28d709e5f8ef assets/createarsenal/blockstates/small_bomb_incendiary.json
 9483b4a4b56a0d573b3ea841550b2708f8f8f7ac assets/createarsenal/blockstates/small_bomb_shrapnel.json
-ea5ecd3b1afef2d5c1f09a23376392ba2413ed96 assets/createarsenal/lang/en_ud.json
-a6833bb3d490af46fb8038e33085b523f32cf87b assets/createarsenal/lang/en_us.json
+7fd184597cc76bedaed3a8d2e9dd6bdfeaac072f assets/createarsenal/lang/en_ud.json
+e6101b3264dde893d369d637bb9709ba32685a99 assets/createarsenal/lang/en_us.json
 45b3d5e0e9e1354e359c3be906eb5cb80d0550a3 assets/createarsenal/models/item/big_bomb.json
 bd5e721db38060b154735df59ad8a02f91bf7eb9 assets/createarsenal/models/item/big_bomb_armor_piercing.json
 8873350d448f4c016e4066b20e51bf5ed1ed4b03 assets/createarsenal/models/item/big_bomb_cluster.json
@@ -38,6 +39,7 @@ b61889db3ce5ea5223c42b770b503017056ecc7d assets/createarsenal/models/item/bomb_h
 bbacba8ed550a2efd5b64ea3bc3b313aaf987a75 assets/createarsenal/models/item/bomb_light_cutout.json
 677cce16860819cbffe850eb54f03721e8ef75b2 assets/createarsenal/models/item/bomb_medium_cutout.json
 c7b71e0c121ac211974467c55201f02e1a7620f5 assets/createarsenal/models/item/brass_rod.json
+cc3c6ef2369cca1e31c23fae9ecd76453541976b assets/createarsenal/models/item/cannon_controller.json
 7e086c0376999698e8dd6ee631ac1f7699d76356 assets/createarsenal/models/item/cartridge_cutout_large.json
 ec969ef6388de23dbda90db5459f615a87f9e2e2 assets/createarsenal/models/item/cartridge_cutout_medium.json
 952fc541943d8648e8170bc3b09246346213ef88 assets/createarsenal/models/item/cartridge_cutout_small.json
@@ -89,6 +91,7 @@ f021c6735ff5c1b114babd4b8c9e6ecfe97ee581 data/createarsenal/loot_tables/blocks/b
 4cedbaf8c52e3fef811c0b242f0a0d4a333d1ecc data/createarsenal/loot_tables/blocks/big_bomb_cluster.json
 ca14297a4bc85c4449abe9323d5aa1b3ad386709 data/createarsenal/loot_tables/blocks/big_bomb_incendiary.json
 2f231892633810faf0de6681c258e2cec0db8563 data/createarsenal/loot_tables/blocks/big_bomb_shrapnel.json
+2ed39036a58f628d0367b9f09664175df4af9638 data/createarsenal/loot_tables/blocks/cannon_controller.json
 109b685adf4d685debd3a49078558a9a9cfd599a data/createarsenal/loot_tables/blocks/creative_big_bomb.json
 2ed2fe214c7e04016651f8b22bbe483a155f4fcd data/createarsenal/loot_tables/blocks/landmine.json
 51f8daa9d423fdc7522f19a28b3ea4522e81abb4 data/createarsenal/loot_tables/blocks/medium_bomb.json

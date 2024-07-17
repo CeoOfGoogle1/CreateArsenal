@@ -48,7 +48,7 @@ public class BulletModel {
 	public void render(@NotNull PoseStack poseStack, @NotNull MultiBufferSource pBuffer) {
 
 		outside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), true))
-				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
+                , LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, outsideColor.getRedAsFloat(), outsideColor.getGreenAsFloat(), outsideColor.getBlueAsFloat(), 1f);
 
 		inside.render(poseStack, pBuffer.getBuffer(RenderType.beaconBeam(getTextureLocation(), false))
 				, LightTexture.FULL_BRIGHT, LightTexture.FULL_BRIGHT, insideColor.getRedAsFloat(), insideColor.getGreenAsFloat(), insideColor.getBlueAsFloat(), 1f);

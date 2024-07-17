@@ -38,15 +38,16 @@ public class MonitorBlock extends HorizontalDirectionalBlock implements IBE<Moni
                         .getOpposite());
     }
 
+
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
-        if (player.getItemInHand(hand).is(ModBlocks.MONITOR.get().asItem()))
-            return super.use(state, level, pos, player, hand, hit);
-
-        withBlockEntityDo(level, pos, monitorBlockEntity -> {
-            monitorBlockEntity.handleClick(player, hit);
-        });
-        return InteractionResult.SUCCESS;
+        if (player.getItemInHand(hand).isEmpty()) {
+            withBlockEntityDo(level, pos, monitorBlockEntity -> {
+                monitorBlockEntity.handleClick(player, hit);
+            });
+            return InteractionResult.SUCCESS;
+        }
+        return super.use(state, level, pos, player, hand, hit);
     }
 
     @SuppressWarnings("deprecation")
