@@ -35,9 +35,10 @@ public class TurretGuidanceBehavior extends DisplaySource {
         if (contraptionEntity == null)
             return;
 
-        if (!(context.getTargetBlockEntity() instanceof MonitorBlockEntity monitor))
+        if (!(context.getTargetBlockEntity() instanceof MonitorBlockEntity))
             return;
 
+        MonitorBlockEntity monitor = (MonitorBlockEntity) ((MonitorBlockEntity) context.getTargetBlockEntity()).getController();
         BlockPos targetPos = monitor.getTargetPos();
         if (targetPos == null)
             return;

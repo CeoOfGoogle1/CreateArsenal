@@ -73,6 +73,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
             return;
         scanEntities();
         updateEntityPositions();
+        removeEntitiesOutsideOfRange();
     }
 
     @Override
@@ -173,6 +174,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
             if (!entity.isAlive() && !scannedEntities.contains(entity)) {
                 entitiesToRemove.add(entity);
             }
+
         }
 
         // Remove the entities from the map
@@ -180,6 +182,26 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
             entityPositions.remove(entity);
         }
 
+    }
+
+    private void removeEntitiesOutsideOfRange() {
+        List<Entity> entitiesToRemove = new ArrayList<>();
+        int radarRange = getRange();
+        BlockPos radarPos = this.getBlockPos();
+
+        for (Map.Entry<Entity, BlockPos> entry : entityPositions.entrySet()) {
+            Entity entity = entry.getKey();
+            BlockPos entityPos = entry.getValue();
+            double distance = Math.sqrt(entityPos.distSqr(radarPos));
+
+            if (distance > radarRange) {
+                entitiesToRemove.add(entity);
+            }
+        }
+
+        for (Entity entity : entitiesToRemove) {
+            entityPositions.remove(entity);
+        }
     }
 
     private boolean isInFieldOfView(BlockPos pos, double fovModifier) {

@@ -6,8 +6,11 @@ import com.simibubi.create.content.redstone.displayLink.target.DisplayTarget;
 import com.simibubi.create.content.redstone.displayLink.target.DisplayTargetStats;
 import com.simibubi.create.foundation.gui.ModularGuiLineBuilder;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -33,6 +36,14 @@ public class MonitorDisplayBehavior extends DisplayTarget {
         monitor.setActive();
         monitor.notifyUpdate();
 
+    }
+
+    @Override
+    public AABB getMultiblockBounds(LevelAccessor level, BlockPos pos) {
+        if (level.getBlockEntity(pos) instanceof MonitorBlockEntity monitor && monitor.getController() != null) {
+            return monitor.getController().getMultiblockBounds(level, pos);
+        }
+        return super.getMultiblockBounds(level, pos);
     }
 
     @Override

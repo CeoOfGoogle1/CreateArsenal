@@ -4,16 +4,19 @@ import com.simibubi.create.foundation.blockEntity.SmartBlockEntity;
 import com.simibubi.create.foundation.blockEntity.behaviour.BlockEntityBehaviour;
 import net.amik.createarsenal.block.radar.base.RadarBaseBlockTileEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.NbtUtils;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 
 import java.util.*;
+
 
 public class MonitorBlockEntity extends SmartBlockEntity {
     public MonitorBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -108,14 +111,20 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     public boolean hasController() {
         if (level == null)
             return false;
+        if (controllerPos == null || controllerPos.equals(BlockPos.ZERO))
+            return false;
         return level.getBlockEntity(controllerPos) instanceof MonitorBlockEntity controller
                 && controller.isControllerPos();
     }
 
 
     public MonitorBlockEntity getController() {
-        if (isControllerPos() || !hasController())
+        if (isControllerPos())
             return this;
+        if (!hasController()) {
+            controllerPos = getBlockPos();
+            return this;
+        }
         if (level == null)
             return null;
         if (level.getBlockEntity(controllerPos) instanceof MonitorBlockEntity controller)
@@ -169,5 +178,12 @@ public class MonitorBlockEntity extends SmartBlockEntity {
 
     public void setActive() {
         ticksSinceLastUpdate = 100;
+    }
+
+    public AABB getMultiblockBounds(LevelAccessor level, BlockPos pos) {
+        Direction facing = level.getBlockState(getBlockPos())
+                .getValue(MonitorBlock.FACING).getClockWise();
+        AABB aabb = new AABB(getBlockPos(), getBlockPos().offset(facing.getStepX() * (size), size, facing.getStepZ() * (size)));
+        return aabb;
     }
 }
