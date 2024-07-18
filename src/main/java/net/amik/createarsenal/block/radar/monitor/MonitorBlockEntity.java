@@ -156,6 +156,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
                 Entity selectedEntity = entities.get(random.nextInt(entities.size()));
                 targetEntity = selectedEntity;
             }
+            notifyUpdate();
         }
     }
 
@@ -177,7 +178,7 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     }
 
     public void setActive() {
-        ticksSinceLastUpdate = 100;
+        ticksSinceLastUpdate = 120;
     }
 
     public AABB getMultiblockBounds(LevelAccessor level, BlockPos pos) {

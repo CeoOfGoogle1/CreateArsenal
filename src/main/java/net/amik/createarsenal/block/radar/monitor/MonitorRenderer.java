@@ -14,6 +14,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.state.BlockState;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import static net.minecraft.world.level.block.HorizontalDirectionalBlock.FACING;
 
 public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity> {
@@ -59,15 +61,17 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
         radarLine.light(LightTexture.FULL_BRIGHT).renderInto(ms, buffer.getBuffer(RenderType.translucent()));
 
         //Draw Entities
+        AtomicInteger i = new AtomicInteger();
         radar.getEntityPositions(monitor.getFilter()).forEach((entity, pos) -> {
+            i.getAndIncrement();
             // Calculate relative position scaled by radar range
-            double scaledX = (pos.getX() - referencePos.getX()) / radarRange * .7;
-            double scaledZ = (pos.getZ() - referencePos.getZ()) / radarRange * .7;
+            double scaledX = (pos.getX() - referencePos.getX()) / radarRange * .7 / 2;
+            double scaledZ = (pos.getZ() - referencePos.getZ()) / radarRange * .7 / 2;
 
             // Translate and render hitbox
             SuperByteBuffer hitbox = CachedBufferer.partialFacing(ModPartials.HITBOX_1, state, facing);
             hitbox.color(MonitorUtils.getColor(entity)).light(LightTexture.FULL_BRIGHT);
-            hitbox.translate(zDir ? scaledX : facing.getStepX() * .001, zDir ? -facing.getStepZ() * scaledZ : -facing.getStepX() * scaledX, xDir ? scaledZ : facing.getStepZ() * .001);
+            hitbox.translate(zDir ? scaledX : facing.getStepX() * .001 * i.get(), zDir ? -facing.getStepZ() * scaledZ : -facing.getStepX() * scaledX, xDir ? scaledZ : facing.getStepZ() * .001 * i.get());
             hitbox.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
         });
 
@@ -77,8 +81,8 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
             return;
 
         SuperByteBuffer entityMarker = CachedBufferer.partialFacing(ModPartials.TARGET_SELECTED, state, facing);
-        double scaledX = (targetPos.getX() - referencePos.getX()) / radarRange * .7;
-        double scaledZ = (targetPos.getZ() - referencePos.getZ()) / radarRange * .7;
+        double scaledX = (targetPos.getX() - referencePos.getX()) / radarRange * .7 / 2;
+        double scaledZ = (targetPos.getZ() - referencePos.getZ()) / radarRange * .7 / 2;
         entityMarker.translate(zDir ? scaledX : facing.getStepX() * .002, zDir ? -facing.getStepZ() * scaledZ : -facing.getStepX() * scaledX, xDir ? scaledZ : facing.getStepZ() * .002);
         entityMarker.renderInto(ms, buffer.getBuffer(RenderType.cutoutMipped()));
     }

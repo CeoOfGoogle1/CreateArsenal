@@ -38,7 +38,7 @@ public class TurretGuidanceBehavior extends DisplaySource {
         if (!(context.getTargetBlockEntity() instanceof MonitorBlockEntity))
             return;
 
-        MonitorBlockEntity monitor = (MonitorBlockEntity) ((MonitorBlockEntity) context.getTargetBlockEntity()).getController();
+        MonitorBlockEntity monitor = ((MonitorBlockEntity) context.getTargetBlockEntity()).getController();
         BlockPos targetPos = monitor.getTargetPos();
         if (targetPos == null)
             return;
@@ -49,17 +49,23 @@ public class TurretGuidanceBehavior extends DisplaySource {
         double dy = targetPos.getY() - turretPos.getY();
         double dz = targetPos.getZ() - turretPos.getZ();
 
-        double targetYaw = calculateTargetYaw(dx, dz);
-        double targetPitch = calculateTargetPitch(dx, dy, dz);
 
-        double currentYaw = contraptionEntity.yaw;
-        double currentPitch = contraptionEntity.pitch;
+        double horizontalDistance = Math.sqrt(dx * dx + dz * dz);
+        double newYaw = Math.toDegrees(Math.atan2(dz, dx)) - 90; // Subtracting 90 to align with the game's coordinate system
+        double newPitch = Math.toDegrees(Math.atan2(dy, horizontalDistance));
 
-        double yawDiff = normalizeDifference(targetYaw - currentYaw);
-        double pitchDiff = normalizeDifference(targetPitch - currentPitch);
+        // Normalize yaw to 0-360 degrees
+        if (newYaw < 0) {
+            newYaw += 360;
+        }
 
-        double newYaw = adjustYaw(currentYaw, yawDiff);
-        double newPitch = adjustPitch(currentPitch, pitchDiff);
+        // Ensure pitch is within -90 to 90 degrees
+        if (newPitch < -90) {
+            newPitch = -90;
+        } else if (newPitch > 90) {
+            newPitch = 90;
+        }
+
 
         contraptionEntity.yaw = (float) newYaw;
         contraptionEntity.pitch = (float) newPitch;
@@ -69,60 +75,5 @@ public class TurretGuidanceBehavior extends DisplaySource {
 
     }
 
-    private double calculateTargetYaw(double dx, double dz) {
-        double targetYaw = Math.atan2(dz, dx) - Math.PI / 2;
-        targetYaw = Math.toDegrees(targetYaw);
-        return targetYaw < 0 ? targetYaw + 360 : targetYaw;
-    }
 
-    private double calculateTargetPitch(double dx, double dy, double dz) {
-        double distance = Math.sqrt(dx * dx + dz * dz);
-        double targetPitch = Math.atan2(dy, distance);
-        targetPitch = Math.toDegrees(targetPitch);
-        return targetPitch < 0 ? targetPitch + 360 : targetPitch;
-    }
-
-    private double normalizeDifference(double diff) {
-        return ((diff + 180) % 360) - 180;
-    }
-
-    private double adjustYaw(double currentYaw, double diff) {
-        double tolerance = 2.0; // Tolerance level, adjust as needed
-        if (Math.abs(diff) <= tolerance) {
-            return currentYaw; // Do not adjust if within tolerance
-        }
-
-        double yawAdjustmentRate = 0.5; // Adjust this value to control the smoothness
-        if (Math.abs(diff) < yawAdjustmentRate) {
-            return currentYaw + diff; // If the difference is smaller than the rate, adjust directly
-        }
-        currentYaw += diff < 0 ? -yawAdjustmentRate : yawAdjustmentRate;
-        // Normalize the yaw to keep it within 0 - 360 degrees
-        if (currentYaw < 0) {
-            currentYaw += 360;
-        } else if (currentYaw >= 360) {
-            currentYaw -= 360;
-        }
-        return currentYaw;
-    }
-
-    private double adjustPitch(double currentPitch, double diff) {
-        double tolerance = 2.0; // Tolerance level, adjust as needed
-        if (Math.abs(diff) <= tolerance) {
-            return currentPitch; // Do not adjust if within tolerance
-        }
-
-        double pitchAdjustmentRate = 0.5; // Adjust this value to control the smoothness
-        if (Math.abs(diff) < pitchAdjustmentRate) {
-            return currentPitch + diff; // If the difference is smaller than the rate, adjust directly
-        }
-        currentPitch += diff < 0 ? -pitchAdjustmentRate : pitchAdjustmentRate;
-        // Normalize the pitch to keep it within 0 - 360 degrees
-        if (currentPitch < 0) {
-            currentPitch += 360;
-        } else if (currentPitch >= 360) {
-            currentPitch -= 360;
-        }
-        return currentPitch;
-    }
 }

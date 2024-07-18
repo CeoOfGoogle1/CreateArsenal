@@ -159,7 +159,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
         // Iterate over the scanned entities
         for (Entity entity : scannedEntities) {
             // Update the position of each entity in the map
-            entityPositions.put(entity, entity.blockPosition());
+            entityPositions.put(entity, entity.getOnPos());
         }
 
         // Create a list of entities to remove
