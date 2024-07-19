@@ -27,6 +27,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     BlockPos controllerPos = BlockPos.ZERO;
     private BlockPos radarPos = BlockPos.ZERO;
     private Entity targetEntity;
+    private BlockPos targetPos;
+
     private MonitorFilter filter = MonitorFilter.ALL_ENTITIES;
     private int ticksSinceLastUpdate = 0;
 
@@ -41,20 +43,30 @@ public class MonitorBlockEntity extends SmartBlockEntity {
             ticksSinceLastUpdate--;
         else
             radarPos = BlockPos.ZERO;
-
+        updateTargetPos();
     }
+
 
     public BlockPos getTargetPos() {
-        if (targetEntity == null)
-            return null;
-        if (getRadar().isPresent()) {
-            RadarBaseBlockTileEntity radar = getRadar().get();
-            if (radar.getEntityPositions(filter).containsKey(targetEntity))
-                return radar.getEntityPositions(filter).get(targetEntity);
-        }
-        return null;
+        return targetPos;
+
     }
 
+    public void updateTargetPos() {
+        if (level.isClientSide())
+            return;
+        if (targetEntity == null)
+            targetPos = null;
+        if (getRadar().isPresent()) {
+            RadarBaseBlockTileEntity radar = getRadar().get();
+            if (radar.getEntityPositions(filter).containsKey(targetEntity)) {
+                targetPos = radar.getEntityPositions(filter).get(targetEntity);
+                notifyUpdate();
+                return;
+            }
+        }
+        targetPos = null;
+    }
     @Override
     protected void read(CompoundTag tag, boolean clientPacket) {
         super.read(tag, clientPacket);
@@ -63,6 +75,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         radarPos = NbtUtils.readBlockPos(tag.getCompound("radarPos"));
         filter = MonitorFilter.values()[tag.getInt("filter")];
         ticksSinceLastUpdate = tag.getInt("ticksSinceLastUpdate");
+        if (tag.contains("targetPos"))
+            targetPos = NbtUtils.readBlockPos(tag.getCompound("targetPos"));
     }
 
 
@@ -74,6 +88,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
         tag.put("radarPos", NbtUtils.writeBlockPos(radarPos));
         tag.putInt("filter", filter.ordinal());
         tag.putInt("ticksSinceLastUpdate", ticksSinceLastUpdate);
+        if (targetPos != null)
+            tag.put("targetPos", NbtUtils.writeBlockPos(targetPos));
     }
 
     public Optional<RadarBaseBlockTileEntity> getRadar() {
@@ -137,6 +153,8 @@ public class MonitorBlockEntity extends SmartBlockEntity {
     }
 
     public void handleClick(Player player, BlockHitResult hit) {
+        if (level.isClientSide)
+            return;
         if (getController() == null)
             return;
         if (!isControllerPos()) {
@@ -154,10 +172,14 @@ public class MonitorBlockEntity extends SmartBlockEntity {
             if (!entityPositions.isEmpty()) {
                 List<Entity> entities = new ArrayList<>(entityPositions.keySet());
                 Entity selectedEntity = entities.get(random.nextInt(entities.size()));
-                targetEntity = selectedEntity;
+                setTargetEntity(selectedEntity);
             }
             notifyUpdate();
         }
+    }
+
+    public void setTargetEntity(Entity entity) {
+        targetEntity = entity;
     }
 
     public BlockPos getRadarPos() {

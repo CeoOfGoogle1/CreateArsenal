@@ -11,12 +11,14 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.phys.AABB;
+import net.minecraftforge.entity.PartEntity;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -147,7 +149,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
 
         scannedEntities = level.getEntities(this.movedContraption, box)
                 .stream()
-                .filter(entity -> isInFieldOfView(entity.blockPosition(), -5))
+                .filter(entity -> isInFieldOfView(entity.blockPosition(), -5) && !(entity instanceof ItemEntity) && !(entity instanceof PartEntity<?>))
                 .collect(Collectors.toList());
     }
 

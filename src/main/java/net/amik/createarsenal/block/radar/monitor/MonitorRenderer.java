@@ -80,7 +80,7 @@ public class MonitorRenderer extends SmartBlockEntityRenderer<MonitorBlockEntity
         if (targetPos == null)
             return;
 
-        SuperByteBuffer entityMarker = CachedBufferer.partialFacing(ModPartials.TARGET_SELECTED, state, facing);
+        SuperByteBuffer entityMarker = CachedBufferer.partialFacing(ModPartials.TARGET_SELECTED, state, facing).light(LightTexture.FULL_BRIGHT);
         double scaledX = (targetPos.getX() - referencePos.getX()) / radarRange * .7 / 2;
         double scaledZ = (targetPos.getZ() - referencePos.getZ()) / radarRange * .7 / 2;
         entityMarker.translate(zDir ? scaledX : facing.getStepX() * .002, zDir ? -facing.getStepZ() * scaledZ : -facing.getStepX() * scaledX, xDir ? scaledZ : facing.getStepZ() * .002);

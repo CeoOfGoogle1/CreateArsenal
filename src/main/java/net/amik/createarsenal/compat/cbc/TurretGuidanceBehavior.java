@@ -54,10 +54,6 @@ public class TurretGuidanceBehavior extends DisplaySource {
         double newYaw = Math.toDegrees(Math.atan2(dz, dx)) - 90; // Subtracting 90 to align with the game's coordinate system
         double newPitch = Math.toDegrees(Math.atan2(dy, horizontalDistance));
 
-        // Normalize yaw to 0-360 degrees
-        if (newYaw < 0) {
-            newYaw += 360;
-        }
 
         // Ensure pitch is within -90 to 90 degrees
         if (newPitch < -90) {
