@@ -25,13 +25,13 @@ public class CannonControllerBlockEntity extends KineticBlockEntity {
     }
 
     private void aimCannonAtTarget(CannonMountBlockEntity cannon) {
-        if (target != null && cannon.getContraption() != null) {
-            double dx = target.getX() - getBlockPos().getX();
-            double dy = target.getY() - getBlockPos().getY();
-            double dz = target.getZ() - getBlockPos().getZ();
+        if (target != null && target != BlockPos.ZERO && cannon.getContraption() != null) {
+            double dx = getBlockPos().getX() - target.getX();
+            double dy = getBlockPos().getY() - target.getY();
+            double dz = getBlockPos().getZ() - target.getZ();
             double horizontalDistance = Math.sqrt(dx * dx + dz * dz);
 
-            double newYaw = Math.toDegrees(Math.atan2(dz, dx)) - 90; // Subtracting 90 to align with the game's coordinate system
+            double newYaw = Math.toDegrees(Math.atan2(dz, dx)) + 90;
             double newPitch = Math.toDegrees(Math.atan2(dy, horizontalDistance));
 
             // Normalize yaw to 0-360 degrees
