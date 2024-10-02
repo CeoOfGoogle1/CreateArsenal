@@ -3,10 +3,7 @@ package net.amik.createarsenal.registrate;
 import com.simibubi.create.content.processing.sequenced.SequencedAssemblyItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
-import net.amik.createarsenal.item.BulletItem;
-import net.amik.createarsenal.item.ProximityFuseItem;
-import net.amik.createarsenal.item.ScaleItem;
-import net.amik.createarsenal.item.SpringItem;
+import net.amik.createarsenal.item.*;
 import net.amik.createarsenal.shell.ShellScale;
 import net.minecraft.world.item.Item;
 
@@ -28,6 +25,12 @@ public class ModItems {
     public static final ItemEntry<ProximityFuseItem> PROXIMITY_FUSE = REGISTRATE.item("proximity_fuse", ProximityFuseItem::new)
             .register();
 
+    public static final ItemEntry<RadioItem> RADIO = REGISTRATE.item("radio", RadioItem::new)
+            .model(NonNullBiConsumer.noop())
+            .register();
+
+    public static final ItemEntry<MarkerItem> MARKER = REGISTRATE.item("marker", MarkerItem::new)
+            .register();
 
     public static final ItemEntry<Item> IRON_ROD = REGISTRATE.item("iron_rod", Item::new)
             .register();

@@ -73,7 +73,8 @@ public class MonitorDisplayBehavior extends DisplayTarget {
                                     Component.literal("No Mobs"),
                                     Component.literal("Players Only"),
                                     Component.literal("Projectiles Only"),
-                                    Component.literal("VS2 Only")))
+                                    Component.literal("VS2 Only"),
+                                    Component.literal("Mob Bosses Only")))
                             .titled(Component.literal("Show")),
                     "Filter");
         }

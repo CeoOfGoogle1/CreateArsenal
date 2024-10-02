@@ -1,4 +1,4 @@
-// 1.20.1	2024-06-19T20:51:58.1624895	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
+// 1.20.1	2024-10-01T19:54:03.6172055	Registrate Provider for createarsenal [Recipes, Advancements, Loot Tables, Tags (blocks), Tags (items), Tags (fluids), Tags (entity_types), Blockstates, Item models, Lang (en_us/en_ud)]
 3dff9e1ec59415779195d2abfa9f07bc17b428a1 assets/createarsenal/blockstates/barrel_block.json
 c297026104e18ed66427e41ca9c5d1232b5eceda assets/createarsenal/blockstates/big_bomb.json
 3b410ea89379a6554fd37043c3cdf40159594422 assets/createarsenal/blockstates/big_bomb_armor_piercing.json
@@ -27,8 +27,8 @@ c23d9e1768759fd22cbb672b27a081a984af1404 assets/createarsenal/blockstates/small_
 bd0296c49a3c010ff67e76f3abf0d9a6e64231ea assets/createarsenal/blockstates/small_bomb_cluster.json
 ce67f1a7704f336e3308cc5e35db28d709e5f8ef assets/createarsenal/blockstates/small_bomb_incendiary.json
 9483b4a4b56a0d573b3ea841550b2708f8f8f7ac assets/createarsenal/blockstates/small_bomb_shrapnel.json
-7fd184597cc76bedaed3a8d2e9dd6bdfeaac072f assets/createarsenal/lang/en_ud.json
-e6101b3264dde893d369d637bb9709ba32685a99 assets/createarsenal/lang/en_us.json
+32e4e2388788f7068298f7640de64707af0131b3 assets/createarsenal/lang/en_ud.json
+7ae35f412c8d4352648d52df2178ee667abc7b80 assets/createarsenal/lang/en_us.json
 45b3d5e0e9e1354e359c3be906eb5cb80d0550a3 assets/createarsenal/models/item/big_bomb.json
 bd5e721db38060b154735df59ad8a02f91bf7eb9 assets/createarsenal/models/item/big_bomb_armor_piercing.json
 8873350d448f4c016e4066b20e51bf5ed1ed4b03 assets/createarsenal/models/item/big_bomb_cluster.json
@@ -49,6 +49,7 @@ d9b971c98ba4753c8048a8605b2c779200edbcb2 assets/createarsenal/models/item/iron_r
 ffdf839262922b624bc7678e3055670de32f4a44 assets/createarsenal/models/item/jacket_plate_medium.json
 2289a2c6bceca72c6b7b7f30e5ed955822a2cac7 assets/createarsenal/models/item/jacket_plate_small.json
 388f7e6746ee537fd773f58c6d647231765fd296 assets/createarsenal/models/item/landmine.json
+3ca9a0b0c4dd084cf54653073f0794c3724209dc assets/createarsenal/models/item/marker.json
 6fb36618898de338ee6adddb5c0ddb7c79b2a78c assets/createarsenal/models/item/medium_bomb.json
 0dc26820c3125acd7226ddb8bb946c19f4435f92 assets/createarsenal/models/item/medium_bomb_armor_piercing.json
 013fe5a8e37b783bdd7c87d9248c5a9cea94c3d0 assets/createarsenal/models/item/medium_bomb_cluster.json

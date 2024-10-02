@@ -11,6 +11,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
+import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -35,6 +37,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
     private static final int BASE_RANGE = 20;
     private static final int RANGE_INCREMENT = 10;
     private static final int MAX_RANGE = 1300;
+    private static final int HEIGHT = 100;
 
     private int dishCount;
     private boolean hasReceiver;
@@ -54,6 +57,8 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
             if (filter == MonitorFilter.PLAYERS_ONLY && entity instanceof Player)
                 filteredEntityPositions.put(entity, pos);
             if (filter == MonitorFilter.PROJECTILES_ONLY && entity instanceof Projectile)
+                filteredEntityPositions.put(entity, pos);
+            if (filter == MonitorFilter.MOB_BOSSES_ONLY && (entity instanceof EnderDragon || entity instanceof WitherBoss))
                 filteredEntityPositions.put(entity, pos);
         }
         return filteredEntityPositions;
@@ -154,7 +159,7 @@ public class RadarBaseBlockTileEntity extends MechanicalBearingBlockEntity {
     }
 
     private @NotNull AABB getAabb(double angleRad, double fovRad) {
-        return this.getRenderBoundingBox().inflate(getRange(), 25, getRange());
+        return this.getRenderBoundingBox().inflate(getRange(), HEIGHT, getRange());
     }
 
     private void updateEntityPositions() {

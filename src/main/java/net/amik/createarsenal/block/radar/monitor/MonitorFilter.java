@@ -6,5 +6,6 @@ public enum MonitorFilter {
     NO_MOBS,
     PLAYERS_ONLY,
     PROJECTILES_ONLY,
-    VS2_ONLY;
+    VS2_ONLY,
+    MOB_BOSSES_ONLY;
 }

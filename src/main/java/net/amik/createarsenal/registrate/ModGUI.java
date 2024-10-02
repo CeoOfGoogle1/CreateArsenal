@@ -14,6 +14,7 @@ public enum ModGUI implements ScreenElement {
     CREATIVE_BOMB_GUI("creative_bomb_gui", 0, 0, 187, 268, 512, 512),
     PROXIMITY_GUI("proximity_gui", 187, 100),
     CLUSTER_GUI("cluster_gui", 187, 78),
+    RADIO_GUI("artillery_radio_gui", 179, 82),
     SEAMINE_GUI("seamine_gui", 187, 101);
 
 
